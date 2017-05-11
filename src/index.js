@@ -2,8 +2,10 @@ export * from './Alert';
 export * from './Badge';
 export * from './ItemLinkList';
 export * from './LoadingSpinner';
-export * from './Page';
-export * from './PageHeader';
+import _Page from './Page';
+export { _Page as Page };
+import _PageHeader from './PageHeader';
+export { _PageHeader as PageHeader };
 export * from './ScrollToTop';
 export * from './SubHeader';
 
