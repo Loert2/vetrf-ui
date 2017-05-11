@@ -59,6 +59,4 @@ typings/
 # dotenv environment variables file
 .env
 
-
-Будет удалено .gitignore
-Будет удалено .idea/
+.idea/
