@@ -1,4 +1,4 @@
-export * from './elements/EditableActions';
-export * from './elements/NumberEditable';
-export * from './elements/TextareaEditable';
-export * from './forms/NumberEditableForm';
+export { default as EditableActions } from './elements/EditableActions';
+export { default as NumberEditable } from './elements/NumberEditable';
+export { default as TextareaEditable } from './elements/TextareaEditable';
+export { default as NumberEditableForm } from './forms/NumberEditableForm';

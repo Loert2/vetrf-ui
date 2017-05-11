@@ -1,5 +1,5 @@
-export * from './Tab';
-export * from './TabContent';
-export * from './TabContentList';
-export * from './TabList';
-export * from './Tabs';
+export { default as Tab } from './Tab';
+export { default as TabContent } from './TabContent';
+export { default as TabContentList } from './TabContentList';
+export { default as TabList } from './TabList';
+export { default as Tabs } from './Tabs';
