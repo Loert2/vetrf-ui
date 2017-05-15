@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FormGroup from './FormGroup';
-import AutocompleteInput from '../../../form/elements/simple/input/AutocompleteInput';
+import AutocompleteInput from '../simple/input/AutocompleteInput';
 
 const AutocompleteFormGroup = (props) => {
    return (
@@ -10,7 +10,8 @@ const AutocompleteFormGroup = (props) => {
                  require={ props.require }
                  help={ props.help }
                  additionalBlock={ props.additionalBlock }
-                 hasError={ props.hasError } >
+                 hasError={ props.hasError || (props.validate && props.require && !props.value) }
+                 errorText={ props.errorText } >
          <AutocompleteInput  name={ props.name }
                              id={ props.id }
                              maxLength={ props.maxLength }
@@ -38,6 +39,7 @@ AutocompleteFormGroup.propTypes = {
    name: PropTypes.string,
    id: PropTypes.string,
    placeholder: PropTypes.string,
+   errorText: PropTypes.string,
    maxLength: PropTypes.number,
    style: PropTypes.object,
    onFocus: PropTypes.func,
@@ -54,6 +56,8 @@ AutocompleteFormGroup.propTypes = {
    help: PropTypes.string,
    viewKey: PropTypes.string,
    require: PropTypes.bool,
+   hasError: PropTypes.bool,
+   validate: PropTypes.bool,
    searchLabel: PropTypes.bool,
    additionalBlock: PropTypes.node,
    items: PropTypes.array

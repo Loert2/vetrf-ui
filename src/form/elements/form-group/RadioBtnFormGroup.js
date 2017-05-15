@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FormGroup from './FormGroup';
-import RadioBtn from '../../../form/elements/simple/RadioBtn';
+import RadioBtn from '../simple/RadioBtn';
 import uniqueId from 'lodash/uniqueId';
 
 const RadioBtnFormGroup = (props) => {
@@ -12,14 +12,18 @@ const RadioBtnFormGroup = (props) => {
       require,
       help,
       options,
-      value,
-      onChange
+      value, //выбранное значение
+      name,
+      onChange,
+      hasError,
+      validate,
+      errorText
    } = props;
    const radioBtnGroup = options.map(
       (item) =>
          <div key={ uniqueId() } >
             <RadioBtn id={ item.id }
-                      name={ props.name }
+                      name={ name }
                       value={ item.value }
                       onChange={ onChange }
                       className={ item.className }
@@ -29,7 +33,12 @@ const RadioBtnFormGroup = (props) => {
          </div>
    );
    return (
-      <FormGroup labelText={ labelText } require={ require } help={ help } additionalBlock={ additionalBlock } >
+      <FormGroup labelText={ labelText }
+                 require={ require }
+                 help={ help }
+                 additionalBlock={ additionalBlock }
+                 hasError={ hasError || (validate && require && !value) }
+                 errorText={ errorText } >
          { radioBtnGroup }
       </FormGroup>
    );

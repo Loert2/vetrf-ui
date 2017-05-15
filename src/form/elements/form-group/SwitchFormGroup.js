@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FormGroup from './FormGroup';
-import Switch from '../../../form/elements/simple/switch/Switch';
+import Switch from '../simple/switch/Switch';
 
 const SwitchFormGroup = (props) => (
-   <FormGroup labelText={ props.labelText } require={ props.require } help={ props.help } additionalBlock={ props.additionalBlock } >
+   <FormGroup labelText={ props.labelText } help={ props.help } additionalBlock={ props.additionalBlock } >
       <Switch id={ props.id }
               name={ props.name }
               value={ props.value }
@@ -33,7 +33,6 @@ SwitchFormGroup.propTypes = {
    onChange: PropTypes.func,
    labelText: PropTypes.string,
    help: PropTypes.string,
-   require: PropTypes.bool,
    additionalBlock: PropTypes.node,
    className: PropTypes.string
 };

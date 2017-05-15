@@ -1,13 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Input from '../../../form/elements/simple/input/Input';
-import NumberInput from '../../../form/elements/simple/input/NumberInput';
-import Select from '../../../form/elements/simple/select/Select';
+import Input from '../simple/input/Input';
+import NumberInput from '../simple/input/NumberInput';
+import Select from '../simple/select/Select';
 import FormGroup from './FormGroup';
 
-const InputSelectFormGroup = ({ labelText, require, help, input, select, additionalBlock }) => (
-   <FormGroup labelText={ labelText } require={ require } help={ help } additionalBlock={ additionalBlock } >
+const InputSelectFormGroup = ({ labelText, require, help, input, select, additionalBlock, validate, errorText  }) => (
+   <FormGroup labelText={ labelText }
+              require={ require }
+              help={ help }
+              additionalBlock={ additionalBlock }
+              hasError={ props.hasError || (validate && require && (!input.value || !select.value )) }
+              errorText={ errorText } >
       <div className="form-group row">
          <div className="col-md-12 no-padding">
             <span className="col-md-6">
@@ -16,11 +21,11 @@ const InputSelectFormGroup = ({ labelText, require, help, input, select, additio
                      <NumberInput name={ input.name }
                                   id={ input.id }
                                   maxLength={ input.maxLength || 255 }
-                                  value={ input.value || "" }
+                                  value={ input.value }
                                   style={ input.style }
                                   autoFocus={ input.autoFocus }
                                   onFocus={ input.onFocus }
-                                  disabled={ input.disabled || "" }
+                                  disabled={ input.disabled }
                                   onKeyPress={ input.onEnter }
                                   onChange={ input.onChange }
                                   className={ input.className || "form-control" }

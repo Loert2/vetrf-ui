@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import update from 'react-addons-update'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default class FileUpload extends Component {
-
+class FileUpload extends Component {
    constructor(props, context) {
       super(props, context);
+      this.onDragStart = this.onDragStart.bind(this);
+      this.onDragEnd = this.onDragEnd.bind(this);
       this.state = {
          dragState: "off",
          defaultMessage: "Выберите файл ..."
@@ -12,33 +13,35 @@ export default class FileUpload extends Component {
    }
 
    onDragStart() {
-      this.setState(update(this.state, {
-         dragState: { $set: "on" },
-         defaultMessage: { $set: "" }
-      }));
+      this.setState({
+         dragState: "on",
+         defaultMessage:  ""
+      });
    }
 
    onDragEnd() {
-      this.setState(update(this.state, {
-         dragState: { $set: "off" },
-         defaultMessage: { $set: "Выберите файл ..." }
-      }));
+      this.setState({
+         dragState: "off",
+         defaultMessage: "Выберите файл ..."
+      });
    }
 
    render () {
+      const { dataText, value, className, onChange } = this.props;
+      const { dragState, defaultMessage } = this.state;
       return (
          <div className="file-upload-container">
             <div className="file-upload-form"
-                 onDragOver={this.onDragStart.bind(this)}
-                 onDragLeave={this.onDragEnd.bind(this)}>
-               <div className={classNames("file-upload-wrapper", { "drag-state-on": this.state.dragState === "on"})}
-                    data-text={this.props.dataText || this.state.defaultMessage}>
+                 onDragOver={ this.onDragStart }
+                 onDragLeave={ this.onDragEnd }>
+               <div className={classNames("file-upload-wrapper", { "drag-state-on": dragState === "on" })}
+                    data-text={ dataText || defaultMessage }>
                   <input type="file"
-                         value={this.props.value}
-                         className={this.props.className}
+                         value={ value }
+                         className={ className }
                          onChange={e => {
                             this.onDragEnd();
-                            this.props.onChange && this.props.onChange(e);
+                            onChange && onChange(e);
                          }}/>
                </div>
             </div>
@@ -46,3 +49,12 @@ export default class FileUpload extends Component {
       )
    }
 }
+
+FileUpload.PropTypes = {
+   dataText: PropTypes.string,
+   value: PropTypes.any,
+   className: PropTypes.string,
+   onChange: PropTypes.func
+};
+
+export default FileUpload;

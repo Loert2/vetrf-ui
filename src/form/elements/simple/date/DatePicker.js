@@ -17,12 +17,16 @@ const DatePicker = ({ value, onChange, className, inputProps, id, validate }) =>
              timeFormat={ false }
              onBlur={
                 () => {
-                   Moment.locale("ru");
-                   const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
-                   if (Moment(value, formats).isValid()) {
-                      onChange && onChange(Moment(value, formats).format("DD.MM.YYYY"));
+                   if (validate) {
+                      validate(value);
                    } else {
-                      onChange && onChange(Moment().format("DD.MM.YYYY"));
+                      Moment.locale("ru");
+                      const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
+                      if (Moment(value, formats).isValid()) {
+                         onChange && onChange(Moment(value, formats).format("DD.MM.YYYY"));
+                      } else {
+                         onChange && onChange(Moment().format("DD.MM.YYYY"));
+                      }
                    }
                 }
              }
@@ -38,6 +42,7 @@ DatePicker.propTypes = {
       PropTypes.object,
       PropTypes.string
    ]),
+   validate: PropTypes.func,
    inputProps: PropTypes.object
 };
 

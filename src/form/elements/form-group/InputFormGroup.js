@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Input from '../../../form/elements/simple/input/Input';
+import Input from '../simple/input/Input';
 import FormGroup from './FormGroup';
 
-const InputFormGroup = (props) =>  (
+const InputFormGroup = (props) => (
    <FormGroup labelText={ props.labelText }
               require={ props.require }
               help={ props.help }
               additionalBlock={ props.additionalBlock }
-              hasError={ props.hasError } >
+              hasError={ props.hasError || (props.validate && props.require && !props.value) }
+              errorText={ props.errorText } >
          <Input type={ props.type || "text" } autocomplete="off"
                 name={ props.name }
                 id={ props.id }
@@ -33,12 +34,14 @@ InputFormGroup.propTypes = {
    id: PropTypes.string,
    labelText: PropTypes.string,
    help: PropTypes.string,
+   errorText: PropTypes.string,
    placeholder: PropTypes.string,
    maxLength: PropTypes.number,
    style: PropTypes.object,
    autoFocus: PropTypes.bool,
    require: PropTypes.bool,
    hasError: PropTypes.bool,
+   validate: PropTypes.bool,
    onFocus: PropTypes.func,
    onEnter: PropTypes.func,
    disabled: PropTypes.oneOfType([

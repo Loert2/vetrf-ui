@@ -8,9 +8,10 @@ const SelectFormGroup = (props) => (
    <FormGroup labelText={ props.labelText }
               require={ props.require }
               help={ props.help }
-              hasError={ props.hasError }
+              hasError={ props.hasError || (props.validate && props.require && !props.value) }
               errorClassName={ props.errorClassName }
-              additionalBlock={ props.additionalBlock } >
+              additionalBlock={ props.additionalBlock }
+              errorText={ props.errorText } >
       <Select multi={ props.multiple }
               value={ props.value }
               name={ props.name }
@@ -31,9 +32,11 @@ SelectFormGroup.propTypes = {
    name: PropTypes.string,
    id: PropTypes.string,
    errorClassName: PropTypes.string,
+   errorText: PropTypes.string,
    hasError: PropTypes.bool,
    require: PropTypes.bool,
    multiple: PropTypes.bool,
+   validate: PropTypes.bool,
    value: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object

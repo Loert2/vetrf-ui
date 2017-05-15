@@ -3,6 +3,7 @@ export { default as Badge } from './Badge';
 export { default as ItemLinkList } from './ItemLinkList';
 export { default as LoadingSpinner } from './LoadingSpinner';
 export { default as Page } from './Page';
+export { default as SimplePage } from './SimplePage';
 export { default as PageHeader } from './PageHeader';
 export { default as ScrollToTop } from './ScrollToTop';
 export { default as SubHeader } from './SubHeader';

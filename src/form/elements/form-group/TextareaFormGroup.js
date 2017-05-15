@@ -1,16 +1,21 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Textarea from '../../../form/elements/simple/Textarea';
+import Textarea from '../simple/Textarea';
 import FormGroup from './FormGroup';
 
 const TextareaFormGroup = (props) =>  (
-   <FormGroup labelText={ props.labelText } require={ props.require } help={ props.help } additionalBlock={ props.additionalBlock } >
+   <FormGroup labelText={ props.labelText }
+              require={ props.require }
+              help={ props.help }
+              additionalBlock={ props.additionalBlock }
+              hasError={ props.hasError || (props.validate && props.require && !props.value) }
+              errorText={ props.errorText } >
       <Textarea value={ props.value }
                 id={ props.id }
                 name={ props.name }
                 style={ props.style }
-                disabled={ props.disabled || "" }
+                disabled={ props.disabled }
                 onChange={ props.onChange }
                 className={ props.className || "form-control" }
                 placeholder={ props.placeholder }
@@ -32,8 +37,11 @@ TextareaFormGroup.propTypes = {
    id: PropTypes.string,
    placeholder: PropTypes.string,
    help: PropTypes.string,
+   errorText: PropTypes.string,
    additionalBlock: PropTypes.node,
-   require: PropTypes.bool
+   require: PropTypes.bool,
+   hasError: PropTypes.bool,
+   validate: PropTypes.bool
 };
 
 export default TextareaFormGroup;
