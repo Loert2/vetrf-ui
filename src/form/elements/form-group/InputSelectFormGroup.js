@@ -6,12 +6,12 @@ import NumberInput from '../simple/input/NumberInput';
 import Select from '../simple/select/Select';
 import FormGroup from './FormGroup';
 
-const InputSelectFormGroup = ({ labelText, require, help, input, select, additionalBlock, validate, errorText  }) => (
+const InputSelectFormGroup = ({ labelText, require, help, input, select, additionalBlock, validate, errorText, hasError  }) => (
    <FormGroup labelText={ labelText }
               require={ require }
               help={ help }
               additionalBlock={ additionalBlock }
-              hasError={ props.hasError || (validate && require && (!input.value || !select.value )) }
+              hasError={ hasError || (validate && require && (!input.value || !select.value )) }
               errorText={ errorText } >
       <div className="form-group row">
          <div className="col-md-12 no-padding">
