@@ -34,3 +34,5 @@ export { default as Select } from './elements/simple/select/Select';
 export { default as SimpleSelect } from './elements/simple/select/SimpleSelect';
 export { default as Switch } from './elements/simple/switch/Switch';
 export { default as SwitchText } from './elements/simple/switch/SwitchText';
+
+export { default as setIn } from './utils/setIn';

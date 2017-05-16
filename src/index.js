@@ -118,3 +118,5 @@ export { default as WidgetTitle } from './widget/components/header/WidgetTitle';
 export { default as WidgetToolbar } from './widget/components/header/WidgetToolbar';
 export { default as WidgetBox } from './widget/components/WidgetBox';
 export { default as Widget } from './widget/Widget';
+// Утилиты форм
+export { default as setIn } from './form/utils/setIn';
