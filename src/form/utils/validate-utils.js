@@ -1,8 +1,7 @@
-export default (props = {}) => {
+export default (props = {}, defaultValidate) => {
    const {
       showError,
       value,
-      defaultValidate,
       customValidate,
       errorHandler,
       field,
