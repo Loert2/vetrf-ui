@@ -6,7 +6,7 @@ const Input = (props) =>  (
           name={ props.name }
           id={ props.id }
           maxLength={ props.maxLength }
-          value={ props.value }
+          value={ props.value || "" }
           style={ props.style }
           autoFocus={ props.autoFocus }
           onFocus={ props.onFocus }

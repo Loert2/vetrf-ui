@@ -6,7 +6,7 @@ const RadioBtn = (props) => (
       <input type="radio"
              id={ props.id }
              name={ props.name }
-             value={ props.value }
+             value={ props.value || "" }
              style={ props.style }
              disabled={ props.disabled }
              checked={ props.checked }

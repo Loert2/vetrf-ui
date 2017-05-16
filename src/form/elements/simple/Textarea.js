@@ -5,7 +5,7 @@ const Textarea = (props) => (
    <textarea type="text"
              id={ props.id }
              name={ props.name }
-             value={ props.value }
+             value={ props.value || "" }
              style={ props.style }
              disabled={ props.disabled || "" }
              onChange={ e => props.onChange && props.onChange(e.target.value) }

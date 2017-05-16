@@ -9,7 +9,7 @@ const DatePicker = ({ value, onChange, className, inputProps, id, validate }) =>
    <Datetime dateFormat="DD.MM.YYYY"
              id={ id }
              locale="ru"
-             value={ value }
+             value={ value || "" }
              onChange={
                 (m) => onChange && onChange(m && m.format ? m.format("DD.MM.YYYY") : m)
              }
