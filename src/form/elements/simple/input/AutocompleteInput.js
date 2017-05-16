@@ -47,16 +47,14 @@ class AutocompleteInput extends Component {
       this.setState({ helpVisible: false });
    }
 
-   changeHandler(event) {
+   changeHandler(value) {
       const { onChange, name, items, resetAutocompleteList } = this.props;
-      onChange && onChange(event);
+      onChange && onChange(value);
       if (name) {
-         event.persist();
-         const value = event.target.value;
          if (value && value.length > 2) {
             this.requestAutocompleteList({ [name]: value }, name);
          } else if (!isEmpty(items)) {
-            resetAutocompleteList && resetAutocompleteList()
+            resetAutocompleteList && resetAutocompleteList();
          }
       }
    }

@@ -14,7 +14,7 @@ const Checkbox = (props) => (
              style={ props.style }
              disabled={ props.disabled }
              onKeyPress={ e => (e.which === 10 || e.which === 13) && props.onEnter && props.onEnter() }
-             onChange={ props.name ? props.onChange : (e) => props.onChange && props.onChange(e.target.checked) }
+             onChange={ (e) => props.onChange && props.onChange(e.target.checked) }
              className={ classNames("ace input-sm", props.className) } />
       <span className="lbl padding-top-6">
          { props.text }

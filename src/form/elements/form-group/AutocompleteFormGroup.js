@@ -4,13 +4,15 @@ import PropTypes from 'prop-types';
 import FormGroup from './FormGroup';
 import AutocompleteInput from '../simple/input/AutocompleteInput';
 
+import validate from '../../utils/validate-utils';
+
 const AutocompleteFormGroup = (props) => {
    return (
       <FormGroup labelText={ props.labelText }
                  require={ props.require }
                  help={ props.help }
                  additionalBlock={ props.additionalBlock }
-                 hasError={ props.hasError || (props.validate && props.require && !props.value) }
+                 hasError={ validate(props, () => props.require && !props.value ) }
                  errorText={ props.errorText } >
          <AutocompleteInput  name={ props.name }
                              id={ props.id }
@@ -22,7 +24,7 @@ const AutocompleteFormGroup = (props) => {
                              onAutocomplete={ props.onAutocomplete }
                              resetAutocompleteList={ props.resetAutocompleteList }
                              onKeyPress={ props.onEnter }
-                             onChange={ props.onChange }
+                             onChange={ (value) => props.onChange && props.onChange(value, props.field) }
                              onSelect={ props.onSelect }
                              items={ props.items }
                              viewKey={ props.viewKey }
@@ -35,6 +37,7 @@ const AutocompleteFormGroup = (props) => {
 
 AutocompleteFormGroup.propTypes = {
    value: PropTypes.string,
+   field: PropTypes.string,
    labelText: PropTypes.string,
    name: PropTypes.string,
    id: PropTypes.string,
@@ -56,8 +59,9 @@ AutocompleteFormGroup.propTypes = {
    help: PropTypes.string,
    viewKey: PropTypes.string,
    require: PropTypes.bool,
-   hasError: PropTypes.bool,
-   validate: PropTypes.bool,
+   showError: PropTypes.bool,
+   customValidate: PropTypes.func,
+   errorHandler: PropTypes.func,
    searchLabel: PropTypes.bool,
    additionalBlock: PropTypes.node,
    items: PropTypes.array

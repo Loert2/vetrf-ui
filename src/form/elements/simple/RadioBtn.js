@@ -11,7 +11,7 @@ const RadioBtn = (props) => (
              disabled={ props.disabled }
              checked={ props.checked }
              onKeyPress={ e => (e.which === 10 || e.which === 13) && props.onEnter && props.onEnter() }
-             onChange={ props.name ? props.onChange : (e) => props.onChange && props.onChange(e.target.value) }
+             onChange={(e) => props.onChange && props.onChange(e.target.value) }
              className={ props.className } />
       <span className="lbl">
          &nbsp;{ props.text }

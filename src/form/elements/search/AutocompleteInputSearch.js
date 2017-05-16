@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import AutocompleteInput from '../../../form/elements/simple/input/AutocompleteInput';
+import AutocompleteInput from '../simple/input/AutocompleteInput';
 
 const AutocompleteInputSearch = (props) => (
    <div className="form-group">
@@ -16,7 +16,7 @@ const AutocompleteInputSearch = (props) => (
                              onAutocomplete={ props.onAutocomplete }
                              resetAutocompleteList={ props.resetAutocompleteList }
                              onKeyPress={ props.onEnter }
-                             onChange={ props.onChange }
+                             onChange={ (value) => props.onChange && props.onChange(value, props.field) }
                              onSelect={ props.onSelect }
                              items={ props.items }
                              viewKey={ props.viewKey }
@@ -28,6 +28,7 @@ const AutocompleteInputSearch = (props) => (
 
 AutocompleteInputSearch.propTypes = {
    value: PropTypes.string,
+   field: PropTypes.string,
    labelText: PropTypes.string,
    name: PropTypes.string,
    id: PropTypes.string,

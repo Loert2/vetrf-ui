@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Select from '../../../form/elements/simple/select/Select';
+import Select from '../simple/select/Select';
 import FormGroup from './FormGroup';
+
+import validate from '../../utils/validate-utils';
 
 const SelectFormGroup = (props) => (
    <FormGroup labelText={ props.labelText }
               require={ props.require }
               help={ props.help }
-              hasError={ props.hasError || (props.validate && props.require && !props.value) }
+              hasError={ validate(props, () => props.require && !props.value) }
               errorClassName={ props.errorClassName }
               additionalBlock={ props.additionalBlock }
               errorText={ props.errorText } >
@@ -33,7 +35,7 @@ SelectFormGroup.propTypes = {
    id: PropTypes.string,
    errorClassName: PropTypes.string,
    errorText: PropTypes.string,
-   hasError: PropTypes.bool,
+   showError: PropTypes.bool,
    require: PropTypes.bool,
    multiple: PropTypes.bool,
    validate: PropTypes.bool,
@@ -41,6 +43,7 @@ SelectFormGroup.propTypes = {
       PropTypes.array,
       PropTypes.object
    ]),
+   field: PropTypes.string,
    style: PropTypes.object,
    styleInput: PropTypes.object,
    valueKey: PropTypes.string,
@@ -49,6 +52,8 @@ SelectFormGroup.propTypes = {
    placeholder: PropTypes.string,
    options: PropTypes.array,
    additionalBlock: PropTypes.node,
+   customValidate: PropTypes.func,
+   errorHandler: PropTypes.func,
    onChange: PropTypes.func
 };
 

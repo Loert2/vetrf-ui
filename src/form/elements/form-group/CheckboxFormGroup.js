@@ -4,6 +4,8 @@ import React from 'react';
 import Checkbox from '../../../form/elements/simple/Checkbox';
 import FormGroup from './FormGroup'
 
+import validate from '../../utils/validate-utils';
+
 /**
 * Одиночный checkbox
 * */
@@ -12,7 +14,7 @@ const CheckboxFormGroup = (props) =>  (
               require={ props.require }
               help={ props.help }
               additionalBlock={ props.additionalBlock }
-              hasError={ props.hasError || (props.validate && props.require && !props.value) }
+              hasError={ validate(props, () => props.require && !props.value ) }
               errorText={ props.errorText } >
       <Checkbox name={ props.name }
                 id={ props.id }
@@ -20,13 +22,14 @@ const CheckboxFormGroup = (props) =>  (
                 style={ props.style }
                 disabled={ props.disabled }
                 onKeyPress={ props.onEnter }
-                onChange={ props.onChange }
+                onChange={ (value) => props.onChange && props.onChange(value, props.field) }
                 className={ props.className || "form-control" } />
    </FormGroup>
 );
 
 CheckboxFormGroup.propTypes = {
    value: PropTypes.string,
+   field: PropTypes.string,
    name: PropTypes.string,
    id: PropTypes.string,
    labelText: PropTypes.string,
@@ -34,8 +37,9 @@ CheckboxFormGroup.propTypes = {
    help: PropTypes.string,
    style: PropTypes.object,
    require: PropTypes.bool,
-   hasError: PropTypes.bool,
-   validate: PropTypes.bool,
+   showError: PropTypes.bool,
+   customValidate: PropTypes.func,
+   errorHandler: PropTypes.func,
    onEnter: PropTypes.func,
    disabled: PropTypes.oneOfType([
       PropTypes.bool,

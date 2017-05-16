@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Select from '../../../form/elements/simple/select/Select';
+import Select from '../simple/select/Select';
 
 const SelectSearch = (props) => (
    <div className="form-group">
@@ -14,7 +14,7 @@ const SelectSearch = (props) => (
                     valueKey={ props.valueKey || "id" }
                     labelKey={ props.labelKey || "name" }
                     options={ props.options }
-                    onChange={ props.onChange }
+                    onChange={ (value) => props.onChange && props.onChange(value, props.field) }
                     className={ props.className || "select" }
                     placeholder={ props.placeholder }/>
          </div>
@@ -24,6 +24,7 @@ const SelectSearch = (props) => (
 
 SelectSearch.propTypes = {
    labelText: PropTypes.string,
+   field: PropTypes.string,
    id: PropTypes.string,
    value: PropTypes.object,
    style: PropTypes.object,

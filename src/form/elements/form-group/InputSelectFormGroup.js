@@ -6,15 +6,27 @@ import NumberInput from '../simple/input/NumberInput';
 import Select from '../simple/select/Select';
 import FormGroup from './FormGroup';
 
-const InputSelectFormGroup = ({ labelText, require, help, input, select, additionalBlock, validate, errorText, hasError  }) => (
-   <FormGroup labelText={ labelText }
-              require={ require }
-              help={ help }
-              additionalBlock={ additionalBlock }
-              hasError={ hasError || (validate && require && (!input.value || !select.value )) }
-              errorText={ errorText } >
-      <div className="form-group row">
-         <div className="col-md-12 no-padding">
+import validate from '../../utils/validate-utils';
+
+const InputSelectFormGroup = (props) => {
+   const {
+      labelText,
+      require,
+      help,
+      input,
+      select,
+      additionalBlock,
+      errorText
+   } = props;
+   return(
+      <FormGroup labelText={ labelText }
+                 require={ require }
+                 help={ help }
+                 additionalBlock={ additionalBlock }
+                 hasError={ validate(props, () => require && (!input.value || !select.value ))  }
+                 errorText={ errorText }>
+         <div className="form-group row">
+            <div className="col-md-12 no-padding">
             <span className="col-md-6">
                {
                   input.number || input.float ?
@@ -27,10 +39,10 @@ const InputSelectFormGroup = ({ labelText, require, help, input, select, additio
                                   onFocus={ input.onFocus }
                                   disabled={ input.disabled }
                                   onKeyPress={ input.onEnter }
-                                  onChange={ input.onChange }
+                                  onChange={ (value) => input.onChange && input.onChange(value, input.field) }
                                   className={ input.className || "form-control" }
                                   placeholder={ input.placeholder }
-                                  float={ input.float } />
+                                  float={ input.float }/>
                      :
                      <Input type={ input.type || "text" } autocomplete="off"
                             name={ input.name }
@@ -42,36 +54,42 @@ const InputSelectFormGroup = ({ labelText, require, help, input, select, additio
                             onFocus={ input.onFocus }
                             disabled={ input.disabled || "" }
                             onKeyPress={ input.onEnter }
-                            onChange={ input.onChange }
+                            onChange={ (value) => input.onChange && input.onChange(value, input.field) }
                             className={ input.className || "form-control" }
-                            placeholder={ input.placeholder } />
+                            placeholder={ input.placeholder }/>
                }
             </span>
-            <span className="col-md-6">
+               <span className="col-md-6">
                <Select value={ select.value }
                        name={ select.name }
                        id={ select.id }
                        style={ select.style }
                        styleInput={ select.styleInput }
                        options={ select.options }
-                       onChange={ select.onChange }
+                       onChange={ (value) => select.onChange && select.onChange(value, select.field) }
                        valueKey={ select.valueKey }
                        labelKey={ select.labelKey }
                        className={ select.className }
-                       placeholder={ select.placeholder } />
+                       placeholder={ select.placeholder }/>
             </span>
+            </div>
          </div>
-      </div>
-   </FormGroup>
-);
+      </FormGroup>
+   );
+};
 
 InputSelectFormGroup.propTypes = {
    labelText: PropTypes.string,
    help: PropTypes.string,
+   errorText: PropTypes.string,
    require: PropTypes.bool,
+   showError: PropTypes.bool,
+   customValidate: PropTypes.func,
+   errorHandler: PropTypes.func,
    additionalBlock: PropTypes.node,
    input: PropTypes.shape({
       value: PropTypes.string,
+      field: PropTypes.string,
       name: PropTypes.string,
       id: PropTypes.string,
       placeholder: PropTypes.string,
@@ -92,6 +110,7 @@ InputSelectFormGroup.propTypes = {
    select: PropTypes.shape({
       id: PropTypes.string,
       value: PropTypes.object,
+      field: PropTypes.string,
       style: PropTypes.object,
       styleInput: PropTypes.object,
       valueKey: PropTypes.string,

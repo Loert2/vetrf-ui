@@ -5,6 +5,8 @@ import FormGroup from './FormGroup';
 import RadioBtn from '../simple/RadioBtn';
 import uniqueId from 'lodash/uniqueId';
 
+import validate from '../../utils/validate-utils';
+
 const RadioBtnFormGroup = (props) => {
    const {
       additionalBlock,
@@ -15,9 +17,8 @@ const RadioBtnFormGroup = (props) => {
       value, //выбранное значение
       name,
       onChange,
-      hasError,
-      validate,
-      errorText
+      errorText,
+      field
    } = props;
    const radioBtnGroup = options.map(
       (item) =>
@@ -25,7 +26,7 @@ const RadioBtnFormGroup = (props) => {
             <RadioBtn id={ item.id }
                       name={ name }
                       value={ item.value }
-                      onChange={ onChange }
+                      onChange={ (value) => onChange && onChange(value, field) }
                       className={ item.className }
                       text={ item.text }
                       checked={ value === item.value }
@@ -37,7 +38,7 @@ const RadioBtnFormGroup = (props) => {
                  require={ require }
                  help={ help }
                  additionalBlock={ additionalBlock }
-                 hasError={ hasError || (validate && require && !value) }
+                 hasError={ validate(props, () => require && !value) }
                  errorText={ errorText } >
          { radioBtnGroup }
       </FormGroup>
@@ -59,6 +60,7 @@ RadioBtnFormGroup.propTypes = {
       ])
    })),
    name: PropTypes.string,
+   field: PropTypes.string,
    value: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string
@@ -66,7 +68,10 @@ RadioBtnFormGroup.propTypes = {
    help: PropTypes.string,
    labelText: PropTypes.string,
    onChange: PropTypes.func,
+   customValidate: PropTypes.func,
+   errorHandler: PropTypes.func,
    additionalBlock: PropTypes.node,
+   showError: PropTypes.bool,
    require: PropTypes.bool
 };
 

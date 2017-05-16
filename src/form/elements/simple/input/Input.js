@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-/**
- * Компонет-обертка над input
- * если есть name, то в onChange передается сам event, иначе только его value
- * */
+
 const Input = (props) =>  (
    <input type={ props.type || "text" } autoComplete="off"
           name={ props.name }
@@ -16,7 +13,7 @@ const Input = (props) =>  (
           disabled={ props.disabled || "" }
           onKeyUp={ props.onKeyUp }
           onKeyPress={ e => (e.which === 10 || e.which === 13) && props.onEnter ? props.onEnter() : props.onKeyPress && props.onKeyPress() }
-          onChange={ props.name ? props.onChange : (e) => props.onChange && props.onChange(e.target.value) }
+          onChange={ (e) => props.onChange && props.onChange(e.target.value) }
           onClick={ props.onClick }
           className={ props.className }
           placeholder={ props.placeholder }/>

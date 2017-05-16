@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Input from '../../../form/elements/simple/input/Input';
-import Select from '../../../form/elements/simple/select/Select';
-import AutocompleteInput from '../../../form/elements/simple/input/AutocompleteInput';
+import Input from '../simple/input/Input';
+import Select from '../simple/select/Select';
+import AutocompleteInput from '../simple/input/AutocompleteInput';
 
 const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
    <div className="form-group">
-      <label className="col-sm-5 control-label no-padding-right">{ labelText}</label>
+      <label className="col-sm-5 control-label no-padding-right">{ labelText }</label>
       <div className="col-sm-7">
          <span className="col-xs-12 col-sm-7 no-padding">
             {
@@ -14,16 +14,16 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                   <span className="col-xs-8 no-padding">
                      <AutocompleteInput name={ input.name }
                                         id={ input.id }
-                                        value={ input.value || "" }
+                                        value={ input.value }
                                         items={ input.autocompleteItems }
                                         onSelect={ input.onSelectItem }
-                                        onChange={ input.onChange }
+                                        onChange={ (value) => input.onChange && input.onChange(value, input.field) }
                                         maxLength={ input.maxLength }
                                         style={ input.styleInput }
                                         onAutocomplete={ input.onAutocomplete }
                                         resetAutocompleteList={ input.resetAutocompleteList }
                                         onFocus={ input.onFocus }
-                                        disabled={ input.disabled || "" }
+                                        disabled={ input.disabled }
                                         onKeyPress={ input.onEnter }
                                         className={ input.className || "input-sm col-xs-12" }
                                         placeholder={ input.placeholder || labelText }
@@ -33,13 +33,13 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                   <Input type="text"
                          maxLength={ input.maxLength }
                          name={ input.name }
-                         value={ input.value || ""}
+                         value={ input.value }
                          style={ input.styleInput }
                          autoFocus={ input.autoFocus }
                          onFocus={ input.onFocus }
-                         disabled={ input.disabled || "" }
+                         disabled={ input.disabled }
                          onKeyPress={ input.onEnter }
-                         onChange={ input.onChange }
+                         onChange={ (value) => input.onChange && input.onChange(value, input.field) }
                          className={ input.className || "input-sm col-xs-8" }
                          placeholder={ input.placeholder || labelText } />
             }
@@ -50,7 +50,7 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                     valueKey={ select.valueKey || "id" }
                     labelKey={ select.labelKey || "name" }
                     options={ select.options }
-                    onChange={ select.onChange }
+                    onChange={ (value) => select.onChange && select.onChange(value, select.field) }
                     className={ select.className || "col-xs-4 no-padding" }
                     placeholder={ select.placeholder || "" }/>
          </span>
@@ -64,6 +64,7 @@ InputSelectSearch.propTypes = {
    input: PropTypes.shape({
       id: PropTypes.string,
       value: PropTypes.string,
+      field: PropTypes.string,
       name: PropTypes.string,
       placeholder: PropTypes.string,
       maxLength: PropTypes.number,
@@ -85,6 +86,7 @@ InputSelectSearch.propTypes = {
    select: PropTypes.shape({
       id: PropTypes.string,
       value: PropTypes.object,
+      field: PropTypes.string,
       style: PropTypes.object,
       styleInput: PropTypes.object,
       valueKey: PropTypes.string,

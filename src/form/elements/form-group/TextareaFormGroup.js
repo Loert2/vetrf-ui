@@ -4,19 +4,21 @@ import React from 'react';
 import Textarea from '../simple/Textarea';
 import FormGroup from './FormGroup';
 
+import validate from '../../utils/validate-utils';
+
 const TextareaFormGroup = (props) =>  (
    <FormGroup labelText={ props.labelText }
               require={ props.require }
               help={ props.help }
               additionalBlock={ props.additionalBlock }
-              hasError={ props.hasError || (props.validate && props.require && !props.value) }
+              hasError={ validate(props, (value) => props.require && !value ) }
               errorText={ props.errorText } >
       <Textarea value={ props.value }
                 id={ props.id }
                 name={ props.name }
                 style={ props.style }
                 disabled={ props.disabled }
-                onChange={ props.onChange }
+                onChange={ (value) => props.onChange && props.onChange(value, props.field) }
                 className={ props.className || "form-control" }
                 placeholder={ props.placeholder }
       />
@@ -25,6 +27,7 @@ const TextareaFormGroup = (props) =>  (
 
 TextareaFormGroup.propTypes = {
    value: PropTypes.string,
+   field: PropTypes.string,
    name: PropTypes.string,
    labelText: PropTypes.string,
    style: PropTypes.object,
@@ -40,8 +43,9 @@ TextareaFormGroup.propTypes = {
    errorText: PropTypes.string,
    additionalBlock: PropTypes.node,
    require: PropTypes.bool,
-   hasError: PropTypes.bool,
-   validate: PropTypes.bool
+   showError: PropTypes.bool,
+   customValidate: PropTypes.func,
+   errorHandler: PropTypes.func
 };
 
 export default TextareaFormGroup;

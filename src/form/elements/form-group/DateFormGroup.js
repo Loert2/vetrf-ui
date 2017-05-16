@@ -3,19 +3,20 @@ import React, { Component } from 'react';
 import Moment from 'moment';
 
 import DatePicker from '../simple/date/DatePicker';
-import FormGroup from './FormGroup'
+import FormGroup from './FormGroup';
 
-//todo: отрефакторить неочевидную валидацию
+import validate from '../../utils/validate-utils';
+
 class DateFormGroup extends Component {
    constructor(props, context) {
       super(props, context);
-      this.validate = this.validate.bind(this);
+      this.validateFormat = this.validateFormat.bind(this);
       this.state = {
          isValid: true
       }
    }
 
-   validate(value) {
+   validateFormat(value) {
       if (Moment(value, "DD.MM.YYYY").isValid()) {
          this.setState({ isValid: true });
       } else {
@@ -34,8 +35,7 @@ class DateFormGroup extends Component {
          onChange,
          className,
          errorText,
-         hasError,
-         validate,
+         field,
          validateDateFormat
       } = this.props;
       const { isValid } = this.state;
@@ -45,12 +45,12 @@ class DateFormGroup extends Component {
                     help={ help }
                     additionalBlock={ additionalBlock }
                     errorText={ isValid ? errorText : "Введенная дата не соотвествует формату - ДД.ММ.ГГГГ" }
-                    hasError={ hasError || !isValid || (validate && require && !value) } >
+                    hasError={ !isValid || validate(this.props, () => require && !value ) } >
             <DatePicker value={ value }
                         id={ id }
-                        onChange={ onChange }
+                        onChange={ (value) => onChange && onChange(value, field) }
                         className={ className }
-                        validate={ validateDateFormat && this.validate } />
+                        validate={ validateDateFormat && this.validateFormat } />
          </FormGroup>
       );
    }
@@ -59,6 +59,7 @@ class DateFormGroup extends Component {
 DateFormGroup.propTypes = {
    value: PropTypes.string,
    labelText: PropTypes.string,
+   field: PropTypes.string,
    id: PropTypes.string,
    help: PropTypes.string,
    errorText: PropTypes.string,

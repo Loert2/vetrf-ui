@@ -11,7 +11,7 @@ const SwitchFormGroup = (props) => (
               value={ props.value }
               style={ props.style }
               disabled={ props.disabled }
-              onChange={ props.onChange }
+              onChange={ (value) => props.onChange && props.onChange(value, props.field) }
               className={ props.className }
               text={ props.text }/>
    </FormGroup>
@@ -23,6 +23,7 @@ SwitchFormGroup.propTypes = {
       PropTypes.string
    ]),
    name: PropTypes.string,
+   field: PropTypes.string,
    id: PropTypes.string,
    text: PropTypes.string,
    style: PropTypes.object,
