@@ -18,8 +18,7 @@ class TextareaFormGroup extends Component {
       const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
       if (hasError !== this.state.hasError) {
          this.setState({
-            hasError: hasError,
-            isValid: this.state.isValid
+            hasError: hasError
          });
       }
    }

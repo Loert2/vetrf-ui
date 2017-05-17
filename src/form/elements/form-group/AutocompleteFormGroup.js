@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import FormGroup from './FormGroup';
@@ -6,33 +6,77 @@ import AutocompleteInput from '../simple/input/AutocompleteInput';
 
 import validate from '../../utils/validate-utils';
 
-const AutocompleteFormGroup = (props) => {
-   return (
-      <FormGroup labelText={ props.labelText }
-                 require={ props.require }
-                 help={ props.help }
-                 additionalBlock={ props.additionalBlock }
-                 hasError={ validate(props, () => props.require && !props.value ) }
-                 errorText={ props.errorText } >
-         <AutocompleteInput  name={ props.name }
-                             id={ props.id }
-                             maxLength={ props.maxLength }
-                             value={ props.value }
-                             style={ props.style }
-                             onFocus={ props.onFocus }
-                             disabled={ props.disabled }
-                             onAutocomplete={ props.onAutocomplete }
-                             resetAutocompleteList={ props.resetAutocompleteList }
-                             onKeyPress={ props.onEnter }
-                             onChange={ (value) => props.onChange && props.onChange(value, props.field) }
-                             onSelect={ props.onSelect }
-                             items={ props.items }
-                             viewKey={ props.viewKey }
-                             className={ props.className ||  "form-control" }
-                             searchLabel={ props.searchLabel }
-                             placeholder={ props.placeholder } />
-      </FormGroup>
-   );
+class AutocompleteFormGroup extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         hasError: false
+      };
+   }
+
+   componentWillReceiveProps(nextProps) {
+      const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
+      if (hasError !== this.state.hasError) {
+         this.setState({
+            hasError: hasError
+         });
+      }
+   }
+
+   render() {
+      const {
+         labelText,
+         require,
+         help,
+         additionalBlock,
+         value,
+         errorText,
+         name,
+         id,
+         maxLength,
+         style,
+         onFocus,
+         disabled,
+         onAutocomplete,
+         resetAutocompleteList,
+         onEnter,
+         onChange,
+         onSelect,
+         items,
+         viewKey,
+         className,
+         searchLabel,
+         placeholder,
+         field
+      } = this.props;
+      return (
+         <FormGroup labelText={ labelText }
+                    require={ require }
+                    help={ help }
+                    additionalBlock={ additionalBlock }
+                    hasError={ this.state.hasError }
+                    errorText={ errorText } >
+            <AutocompleteInput  name={ name }
+                                id={ id }
+                                maxLength={ maxLength }
+                                value={ value }
+                                style={ style }
+                                onFocus={ onFocus }
+                                disabled={ disabled }
+                                onAutocomplete={ onAutocomplete }
+                                resetAutocompleteList={ resetAutocompleteList }
+                                onKeyPress={ onEnter }
+                                onChange={ (value) => onChange && onChange(value, field) }
+                                onSelect={ onSelect }
+                                items={ items }
+                                viewKey={ viewKey }
+                                className={ className ||  "form-control" }
+                                searchLabel={ searchLabel }
+                                placeholder={ placeholder } />
+         </FormGroup>
+      );
+   }
+
 };
 
 AutocompleteFormGroup.propTypes = {

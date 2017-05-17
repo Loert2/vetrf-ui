@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 
 import Input from '../simple/input/Input';
 import NumberInput from '../simple/input/NumberInput';
@@ -8,25 +8,42 @@ import FormGroup from './FormGroup';
 
 import validate from '../../utils/validate-utils';
 
-const InputSelectFormGroup = (props) => {
-   const {
-      labelText,
-      require,
-      help,
-      input,
-      select,
-      additionalBlock,
-      errorText
-   } = props;
-   return(
-      <FormGroup labelText={ labelText }
-                 require={ require }
-                 help={ help }
-                 additionalBlock={ additionalBlock }
-                 hasError={ validate(props, () => require && (!input.value || !select.value ))  }
-                 errorText={ errorText }>
-         <div className="form-group row">
-            <div className="col-md-12 no-padding">
+class InputSelectFormGroup extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         hasError: false
+      };
+   }
+
+   componentWillReceiveProps(nextProps) {
+      const hasError = validate(nextProps, () => nextProps.require && (!nextProps.input.value || !nextProps.select.value), this.state.hasError);
+      if (hasError !== this.state.hasError) {
+         this.setState({
+            hasError: hasError
+         });
+      }
+   }
+
+   render() {
+      const {
+         labelText,
+         require,
+         help,
+         input,
+         select,
+         additionalBlock,
+         errorText
+      } = this.props;
+      return(
+         <FormGroup labelText={ labelText }
+                    require={ require }
+                    help={ help }
+                    additionalBlock={ additionalBlock }
+                    hasError={ this.state.hasError  }
+                    errorText={ errorText }>
+            <div className="form-group row">
+               <div className="col-md-12 no-padding">
             <span className="col-md-6">
                {
                   input.number || input.float ?
@@ -59,7 +76,7 @@ const InputSelectFormGroup = (props) => {
                             placeholder={ input.placeholder }/>
                }
             </span>
-               <span className="col-md-6">
+                  <span className="col-md-6">
                <Select value={ select.value }
                        name={ select.name }
                        id={ select.id }
@@ -72,11 +89,12 @@ const InputSelectFormGroup = (props) => {
                        className={ select.className }
                        placeholder={ select.placeholder }/>
             </span>
+               </div>
             </div>
-         </div>
-      </FormGroup>
-   );
-};
+         </FormGroup>
+      );
+   }
+}
 
 InputSelectFormGroup.propTypes = {
    labelText: PropTypes.string,

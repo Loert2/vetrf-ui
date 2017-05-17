@@ -1,33 +1,73 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 
 import Select from '../simple/select/Select';
 import FormGroup from './FormGroup';
 
 import validate from '../../utils/validate-utils';
 
-const SelectFormGroup = (props) => (
-   <FormGroup labelText={ props.labelText }
-              require={ props.require }
-              help={ props.help }
-              hasError={ validate(props, () => props.require && !props.value) }
-              errorClassName={ props.errorClassName }
-              additionalBlock={ props.additionalBlock }
-              errorText={ props.errorText } >
-      <Select multi={ props.multiple }
-              value={ props.value }
-              name={ props.name }
-              id={ props.id }
-              style={ props.style }
-              styleInput={ props.styleInput }
-              options={ props.options }
-              onChange={ props.onChange }
-              valueKey={ props.valueKey }
-              labelKey={ props.labelKey }
-              className={ props.className }
-              placeholder={ props.placeholder }/>
-   </FormGroup>
-);
+class SelectFormGroup extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         hasError: false
+      };
+   }
+
+   componentWillReceiveProps(nextProps) {
+      const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
+      if (hasError !== this.state.hasError) {
+         this.setState({
+            hasError: hasError
+         });
+      }
+   }
+
+   render() {
+      const {
+         labelText,
+         require,
+         help,
+         errorClassName,
+         additionalBlock,
+         errorText,
+         multiple,
+         value,
+         name,
+         id,
+         style,
+         styleInput,
+         options,
+         onChange,
+         valueKey,
+         labelKey,
+         className,
+         placeholder
+      } = this.props;
+      return(
+         <FormGroup labelText={ labelText }
+                    require={ require }
+                    help={ help }
+                    hasError={ this.state.hasError }
+                    errorClassName={ errorClassName }
+                    additionalBlock={ additionalBlock }
+                    errorText={ errorText } >
+            <Select multi={ multiple }
+                    value={ value }
+                    name={ name }
+                    id={ id }
+                    style={ style }
+                    styleInput={ styleInput }
+                    options={ options }
+                    onChange={ onChange }
+                    valueKey={ valueKey }
+                    labelKey={ labelKey }
+                    className={ className }
+                    placeholder={ placeholder }/>
+         </FormGroup>
+      );
+   }
+}
 
 SelectFormGroup.propTypes = {
    labelText: PropTypes.string,

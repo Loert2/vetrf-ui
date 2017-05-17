@@ -1,33 +1,74 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 
 import NumberInput from '../simple/input/NumberInput';
 import FormGroup from './FormGroup';
 
 import validate from '../../utils/validate-utils';
 
-const NumberFormGroup = (props) =>  (
-   <FormGroup labelText={ props.labelText }
-              require={ props.require }
-              help={ props.help }
-              additionalBlock={ props.additionalBlock }
-              hasError={ validate(props, () => props.require && !props.value) }
-              errorText={ props.errorText } >
-      <NumberInput name={ props.name }
-                   id={ props.id }
-                   maxLength={ props.maxLength || 255 }
-                   value={ props.value }
-                   style={ props.style }
-                   autoFocus={ props.autoFocus }
-                   onFocus={ props.onFocus }
-                   disabled={ props.disabled }
-                   onKeyPress={ props.onEnter }
-                   onChange={ (value) => props.onChange && props.onChange(value, props.field) }
-                   className={ props.className || "form-control" }
-                   placeholder={ props.placeholder }
-                   float={ props.float } />
-   </FormGroup>
-);
+class NumberFormGroup extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         hasError: false
+      };
+   }
+
+   componentWillReceiveProps(nextProps) {
+      const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
+      if (hasError !== this.state.hasError) {
+         this.setState({
+            hasError: hasError
+         });
+      }
+   }
+
+   render() {
+      const {
+         labelText,
+         require,
+         help,
+         additionalBlock,
+         value,
+         errorText,
+         name,
+         id,
+         maxLength,
+         style,
+         autoFocus,
+         onFocus,
+         disabled,
+         onEnter,
+         onChange,
+         className,
+         placeholder,
+         float,
+         field
+      } = this.props;
+      return(
+         <FormGroup labelText={ labelText }
+                    require={ require }
+                    help={ help }
+                    additionalBlock={ additionalBlock }
+                    hasError={ this.state.hasError }
+                    errorText={ errorText } >
+            <NumberInput name={ name }
+                         id={ id }
+                         maxLength={ maxLength || 255 }
+                         value={ value }
+                         style={ style }
+                         autoFocus={ autoFocus }
+                         onFocus={ onFocus }
+                         disabled={ disabled }
+                         onKeyPress={ onEnter }
+                         onChange={ (value) => onChange && onChange(value, field) }
+                         className={ className || "form-control" }
+                         placeholder={ placeholder }
+                         float={ float } />
+         </FormGroup>
+      );
+   }
+}
 
 NumberFormGroup.propTypes = {
    value: PropTypes.string,
