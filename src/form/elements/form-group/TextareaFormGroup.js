@@ -1,29 +1,60 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 
 import Textarea from '../simple/Textarea';
 import FormGroup from './FormGroup';
 
 import validate from '../../utils/validate-utils';
 
-const TextareaFormGroup = (props) =>  (
-   <FormGroup labelText={ props.labelText }
-              require={ props.require }
-              help={ props.help }
-              additionalBlock={ props.additionalBlock }
-              hasError={ validate(props, (value) => props.require && !value ) }
-              errorText={ props.errorText } >
-      <Textarea value={ props.value }
-                id={ props.id }
-                name={ props.name }
-                style={ props.style }
-                disabled={ props.disabled }
-                onChange={ (value) => props.onChange && props.onChange(value, props.field) }
-                className={ props.className || "form-control" }
-                placeholder={ props.placeholder }
+class TextareaFormGroup extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         hasError: false
+      };
+   }
+
+   componentWillReceiveProps(nextProps) {
+      this.setState({ hasError: validate(nextProps, () => nextProps.require && !nextProps.value) });
+   }
+
+   render() {
+      const {
+         labelText,
+         require,
+         help,
+         additionalBlock,
+         value,
+         errorText,
+         id,
+         name,
+         style,
+         disabled,
+         onChange,
+         className,
+         placeholder,
+         field
+      } = this.props;
+      return(
+         <FormGroup labelText={ labelText }
+                    require={ require }
+                    help={ help }
+                    additionalBlock={ additionalBlock }
+                    hasError={ this.state.hasError }
+                    errorText={ errorText } >
+      <Textarea value={ value }
+                id={ id }
+                name={ name }
+                style={ style }
+                disabled={ disabled }
+                onChange={ (value) => onChange && onChange(value, field) }
+                className={ className || "form-control" }
+                placeholder={ placeholder }
       />
-   </FormGroup>
-);
+         </FormGroup>
+      );
+   }
+}
 
 TextareaFormGroup.propTypes = {
    value: PropTypes.string,

@@ -12,15 +12,23 @@ class DateFormGroup extends Component {
       super(props, context);
       this.validateFormat = this.validateFormat.bind(this);
       this.state = {
-         isValid: true
+         isValid: true,
+         hasError: false
       }
+   }
+
+   componentWillReceiveProps(nextProps) {
+      this.setState({
+         hasError: validate(nextProps, () => nextProps.require && !nextProps.value),
+         isValid: this.state.isValid
+      });
    }
 
    validateFormat(value) {
       if (Moment(value, "DD.MM.YYYY").isValid()) {
-         this.setState({ isValid: true });
+         this.setState({ isValid: true, hasError: this.state.hasError });
       } else {
-         this.setState({ isValid: false });
+         this.setState({ isValid: false, hasError: this.state.hasError });
       }
    }
 
@@ -38,14 +46,14 @@ class DateFormGroup extends Component {
          field,
          validateDateFormat
       } = this.props;
-      const { isValid } = this.state;
+      const { isValid, hasError } = this.state;
       return(
          <FormGroup labelText={ labelText }
                     require={ require }
                     help={ help }
                     additionalBlock={ additionalBlock }
                     errorText={ isValid ? errorText : "Введенная дата не соотвествует формату - ДД.ММ.ГГГГ" }
-                    hasError={ !isValid || validate(this.props, () => require && !value ) } >
+                    hasError={ !isValid || hasError } >
             <DatePicker value={ value }
                         id={ id }
                         onChange={ (value) => onChange && onChange(value, field) }

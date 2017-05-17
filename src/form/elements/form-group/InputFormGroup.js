@@ -1,33 +1,69 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Component } from 'react';
 
 import Input from '../simple/input/Input';
 import FormGroup from './FormGroup';
 
 import validate from '../../utils/validate-utils';
 
-const InputFormGroup = (props) => (
-   <FormGroup labelText={ props.labelText }
-              require={ props.require }
-              help={ props.help }
-              additionalBlock={ props.additionalBlock }
-              hasError={ validate(props, () => props.require && !props.value) }
-              errorText={ props.errorText } >
-      <Input type={ props.type || "text" } autocomplete="off"
-             name={ props.name }
-             id={ props.id }
-             maxLength={ props.maxLength || 255 }
-             value={ props.value }
-             style={ props.style }
-             autoFocus={ props.autoFocus }
-             onFocus={ props.onFocus }
-             disabled={ props.disabled }
-             onKeyPress={ props.onEnter }
-             onChange={ (value) => props.onChange && props.onChange(value, props.field) }
-             className={ props.className || "form-control" }
-             placeholder={ props.placeholder } />
-   </FormGroup>
-);
+class InputFormGroup extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         hasError: false
+      };
+   }
+
+   componentWillReceiveProps(nextProps) {
+      this.setState({ hasError: validate(nextProps, () => nextProps.require && !nextProps.value) });
+   }
+
+   render() {
+      const {
+         labelText,
+         require,
+         help,
+         additionalBlock,
+         value,
+         errorText,
+         type,
+         name,
+         id,
+         maxLength,
+         style,
+         autoFocus,
+         onFocus,
+         disabled,
+         onEnter,
+         onChange,
+         className,
+         placeholder,
+         field
+      } = this.props;
+      return (
+         <FormGroup labelText={ labelText }
+                    require={ require }
+                    help={ help }
+                    additionalBlock={ additionalBlock }
+                    hasError={ this.state.hasError }
+                    errorText={ errorText } >
+            <Input type={ type || "text" } autocomplete="off"
+                   name={ name }
+                   id={ id }
+                   maxLength={ maxLength || 255 }
+                   value={ value }
+                   style={ style }
+                   autoFocus={ autoFocus }
+                   onFocus={ onFocus }
+                   disabled={ disabled }
+                   onKeyPress={ onEnter }
+                   onChange={ (value) => onChange && onChange(value, field) }
+                   className={ className || "form-control" }
+                   placeholder={ placeholder } />
+         </FormGroup>
+      );
+   }
+}
 
 InputFormGroup.propTypes = {
    value: PropTypes.string,
