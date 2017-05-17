@@ -15,7 +15,13 @@ class InputFormGroup extends Component {
    }
 
    componentWillReceiveProps(nextProps) {
-      this.setState({ hasError: validate(nextProps, () => nextProps.require && !nextProps.value) });
+      const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
+      if (hasError !== this.state.hasError) {
+         this.setState({
+            hasError: hasError,
+            isValid: this.state.isValid
+         });
+      }
    }
 
    render() {
