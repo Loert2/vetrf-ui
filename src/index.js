@@ -35,6 +35,7 @@ export { default as InputFormGroup } from './form/elements/form-group/InputFormG
 export { default as InputSelectFormGroup } from './form/elements/form-group/InputSelectFormGroup';
 export { default as NumberFormGroup } from './form/elements/form-group/NumberFormGroup';
 export { default as RadioBtnFormGroup } from './form/elements/form-group/RadioBtnFormGroup';
+export { default as RadioBtnSwitchFormGroup } from './form/elements/form-group/RadioBtnSwitchFormGroup';
 export { default as RequireStar } from './form/elements/form-group/RequireStar';
 export { default as SelectFormGroup } from './form/elements/form-group/SelectFormGroup';
 export { default as SwitchFormGroup } from './form/elements/form-group/SwitchFormGroup';
