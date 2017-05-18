@@ -18,7 +18,7 @@ class DateFormGroup extends PureComponent {
    }
 
    componentWillReceiveProps(nextProps) {
-      const hasError = validate(nextProps, () => !this.state.isValid || (nextProps.require && !nextProps.value), this.state.hasError);
+      const hasError = validate(nextProps, () => !this.state.isValid || (nextProps.require && !nextProps.value), this.state.hasError, "Введенная дата не соотвествует формату - ДД.ММ.ГГГГ");
       if (hasError !== this.state.hasError) {
          this.setState({
             hasError: hasError,

@@ -1,4 +1,4 @@
-export default (props = {}, defaultValidate, oldHasError) => {
+export default (props = {}, defaultValidate, oldHasError, defaultErrorText) => {
    const {
       showError,
       value,
@@ -10,7 +10,7 @@ export default (props = {}, defaultValidate, oldHasError) => {
    } = props;
    const hasError = showError && (customValidate ? customValidate(value) : defaultValidate && defaultValidate(value));
    if (oldHasError !== hasError) {
-      errorHandler && errorHandler(hasError, field, labelText, errorText);
+      errorHandler && errorHandler(hasError, field, labelText, errorText || defaultErrorText);
    }
    return hasError;
 }
