@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 import DatePicker from '../simple/date/DatePicker';
 import FormGroup from './FormGroup';
 
-import validate from '../../utils/validate-utils';
+import validate, { isValidDate } from '../../utils/validate-utils';
 
 class DateFormGroup extends PureComponent {
    constructor(props, context) {
@@ -29,7 +29,7 @@ class DateFormGroup extends PureComponent {
    }
 
    validateFormat(value) {
-      if (Moment(value, "DD.MM.YYYY", true).isValid() || isEmpty(value)) {
+      if (isValidDate(value) || isEmpty(value)) {
          this.setState({ isValid: true, hasError: this.state.hasError });
       } else {
          this.setState({ isValid: false, hasError: this.state.hasError });

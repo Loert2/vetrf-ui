@@ -14,3 +14,11 @@ export default (props = {}, defaultValidate, oldHasError) => {
    }
    return hasError;
 }
+
+const DATE_LENGTH = 10;
+export const isValidDate = (value) => {
+   if (!value || value.length !== DATE_LENGTH) {
+      return false;
+   }
+   return value.match(/(0[1-9]|[12][0-9]|3[01])[.-](0[1-9]|1[012])[.-](19|20)\d\d/i);
+};
