@@ -3,13 +3,14 @@ import React, { PureComponent } from 'react';
 import Datetime from 'react-datetime';
 import Moment from 'moment';
 import debounce from 'lodash/debounce';
+
 /**
 * Компонент-обертка для Datetime из react-datetime: https://github.com/YouCanBookMe/react-datetime
 * */
 class DatePicker extends PureComponent {
    constructor(props, context) {
       super(props, context);
-      this.validateFormat = props.validate ? debounce(props.validate, 400) : null;
+      this.validateFormat = props.validate ? debounce(props.validate, 300) : null;
    }
 
    render() {
@@ -23,14 +24,16 @@ class DatePicker extends PureComponent {
                       (m) => {
                          const val = m && m.format ? m.format("DD.MM.YYYY") : m;
                          onChange && onChange(val);
-                         this.validateFormat(val);
+                         if (validate) {
+                            this.validateFormat(val);
+                         }
                       }
                    }
                    className={ className }
                    timeFormat={ false }
                    onBlur={
                       () => {
-                         if (value && validate) {
+                         if (validate) {
                             validate(value);
                          } else {
                             Moment.locale("ru");

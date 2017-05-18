@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import Moment from 'moment';
+import isEmpty from 'lodash/isEmpty';
 
 import DatePicker from '../simple/date/DatePicker';
 import FormGroup from './FormGroup';
@@ -28,7 +29,7 @@ class DateFormGroup extends PureComponent {
    }
 
    validateFormat(value) {
-      if (Moment(value, "DD.MM.YYYY").isValid()) {
+      if (Moment(value, "DD.MM.YYYY").isValid() || isEmpty(value)) {
          this.setState({ isValid: true, hasError: this.state.hasError });
       } else {
          this.setState({ isValid: false, hasError: this.state.hasError });
