@@ -97,7 +97,8 @@ TableBody.propTypes = {
    getRowClassName: PropTypes.func,
    selectOptions: PropTypes.shape({
       selectedClassName: PropTypes.string,
-      selectedItems: PropTypes.array
+      selectedItems: PropTypes.array,
+      compare: PropTypes.func
    }),
    columns: PropTypes.arrayOf(
       PropTypes.shape({

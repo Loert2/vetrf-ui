@@ -21,8 +21,8 @@ const TableRow = ({ columns, item, onClick, selectOptions, getRowClassName }) =>
    };
 
    const isSelected = () => {
-      const { selectedItems } = selectOptions;
-      return !!(selectedItems && item && some(selectedItems, ['id', item.id]));
+      const { selectedItems, compare } = selectOptions;
+      return compare ? compare(selectedItems, item) : !!(selectedItems && item && some(selectedItems, ['id', item.id]));
    };
 
    const getSelectedClassName = () => {
@@ -46,7 +46,8 @@ TableRow.propTypes = {
    getRowClassName: PropTypes.func,
    selectOptions: PropTypes.shape({
       selectedClassName: PropTypes.string,
-      selectedItems: PropTypes.array
+      selectedItems: PropTypes.array,
+      compare: PropTypes.func
    }),
    columns: PropTypes.arrayOf(
       PropTypes.shape({
