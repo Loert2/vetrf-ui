@@ -31,6 +31,7 @@ class DatePicker extends PureComponent {
                    }
                    className={ className }
                    timeFormat={ false }
+                   closeOnSelect
                    onBlur={
                       () => {
                          if (validate) {
