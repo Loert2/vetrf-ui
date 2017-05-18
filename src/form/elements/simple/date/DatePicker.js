@@ -39,7 +39,7 @@ class DatePicker extends PureComponent {
                          } else {
                             Moment.locale("ru");
                             const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
-                            if (Moment(value, formats).isValid()) {
+                            if (Moment(value, formats, true).isValid()) {
                                onChange && onChange(Moment(value, formats).format("DD.MM.YYYY"));
                             } else {
                                onChange && onChange(Moment().format("DD.MM.YYYY"));

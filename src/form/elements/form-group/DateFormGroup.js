@@ -29,7 +29,7 @@ class DateFormGroup extends PureComponent {
    }
 
    validateFormat(value) {
-      if (Moment(value, "DD.MM.YYYY").isValid() || isEmpty(value)) {
+      if (Moment(value, "DD.MM.YYYY", true).isValid() || isEmpty(value)) {
          this.setState({ isValid: true, hasError: this.state.hasError });
       } else {
          this.setState({ isValid: false, hasError: this.state.hasError });
