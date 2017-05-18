@@ -75,16 +75,16 @@ class RadioBtnSwitchFormGroup extends PureComponent {
 }
 
 RadioBtnSwitchFormGroup.propTypes = {
-   itemTrue: PropTypes.arrayOf(PropTypes.shape({
+   itemTrue: PropTypes.shape({
       id: PropTypes.string,
       className: PropTypes.string,
       text: PropTypes.string
-   })),
-   itemFalse: PropTypes.arrayOf(PropTypes.shape({
+   }),
+   itemFalse: PropTypes.shape({
       id: PropTypes.string,
       className: PropTypes.string,
       text: PropTypes.string
-   })),
+   }),
    name: PropTypes.string,
    field: PropTypes.string,
    value:  PropTypes.bool,

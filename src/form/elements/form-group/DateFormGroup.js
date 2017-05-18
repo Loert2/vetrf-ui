@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import Moment from 'moment';
 import isEmpty from 'lodash/isEmpty';
 
 import DatePicker from '../simple/date/DatePicker';
@@ -19,7 +18,7 @@ class DateFormGroup extends PureComponent {
    }
 
    componentWillReceiveProps(nextProps) {
-      const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
+      const hasError = validate(nextProps, () => !this.state.isValid || (nextProps.require && !nextProps.value), this.state.hasError);
       if (hasError !== this.state.hasError) {
          this.setState({
             hasError: hasError,
