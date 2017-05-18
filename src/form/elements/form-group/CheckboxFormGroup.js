@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import Checkbox from '../simple/Checkbox';
 import FormGroup from './FormGroup'
@@ -9,7 +9,7 @@ import validate from '../../utils/validate-utils';
 /**
 * Одиночный checkbox
 * */
-class CheckboxFormGroup extends Component {
+class CheckboxFormGroup extends PureComponent {
    constructor(props) {
       super(props);
       this.state = {

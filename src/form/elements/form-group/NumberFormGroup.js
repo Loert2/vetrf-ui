@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import NumberInput from '../simple/input/NumberInput';
 import FormGroup from './FormGroup';
 
 import validate from '../../utils/validate-utils';
 
-class NumberFormGroup extends Component {
+class NumberFormGroup extends PureComponent {
    constructor(props) {
       super(props);
       this.state = {

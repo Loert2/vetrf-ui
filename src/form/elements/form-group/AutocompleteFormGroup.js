@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import FormGroup from './FormGroup';
@@ -6,7 +6,7 @@ import AutocompleteInput from '../simple/input/AutocompleteInput';
 
 import validate from '../../utils/validate-utils';
 
-class AutocompleteFormGroup extends Component {
+class AutocompleteFormGroup extends PureComponent {
    constructor(props) {
       super(props);
       this.state = {

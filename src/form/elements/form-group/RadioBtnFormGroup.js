@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import FormGroup from './FormGroup';
@@ -7,7 +7,7 @@ import uniqueId from 'lodash/uniqueId';
 
 import validate from '../../utils/validate-utils';
 
-class RadioBtnFormGroup extends Component {
+class RadioBtnFormGroup extends PureComponent {
    constructor(props) {
       super(props);
       this.state = {

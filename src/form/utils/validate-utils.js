@@ -9,8 +9,8 @@ export default (props = {}, defaultValidate, oldHasError) => {
       errorText
    } = props;
    const hasError = showError && (customValidate ? customValidate(value) : defaultValidate && defaultValidate(value));
-   if (errorHandler && (oldHasError !== hasError)) {
-      errorHandler(hasError, field, labelText, errorText);
+   if (oldHasError !== hasError) {
+      errorHandler && errorHandler(hasError, field, labelText, errorText);
    }
    return hasError;
 }

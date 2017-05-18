@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import Textarea from '../simple/Textarea';
 import FormGroup from './FormGroup';
 
 import validate from '../../utils/validate-utils';
 
-class TextareaFormGroup extends Component {
+class TextareaFormGroup extends PureComponent {
    constructor(props) {
       super(props);
       this.state = {

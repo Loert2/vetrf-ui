@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Moment from 'moment';
 
 import DatePicker from '../simple/date/DatePicker';
@@ -7,7 +7,7 @@ import FormGroup from './FormGroup';
 
 import validate from '../../utils/validate-utils';
 
-class DateFormGroup extends Component {
+class DateFormGroup extends PureComponent {
    constructor(props, context) {
       super(props, context);
       this.validateFormat = this.validateFormat.bind(this);
