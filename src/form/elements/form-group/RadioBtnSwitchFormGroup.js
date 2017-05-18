@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 
 import FormGroup from './FormGroup';
 import RadioBtn from '../simple/RadioBtn';
-import uniqueId from 'lodash/uniqueId';
 
 import validate from '../../utils/validate-utils';
 
+/**
+* Компонент-переключатель из двух радио-кнопок - true или false, по умолчанию не выбрано ничего.
+* */
 class RadioBtnSwitchFormGroup extends PureComponent {
    constructor(props) {
       super(props);
@@ -16,7 +18,7 @@ class RadioBtnSwitchFormGroup extends PureComponent {
    }
 
    componentWillReceiveProps(nextProps) {
-      const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
+      const hasError = validate(nextProps, () => nextProps.require && nextProps.value !== undefined, this.state.hasError);
       if (hasError !== this.state.hasError) {
          this.setState({
             hasError: hasError
@@ -36,7 +38,8 @@ class RadioBtnSwitchFormGroup extends PureComponent {
          name,
          onChange,
          errorText,
-         field
+         field,
+         disabled
       } = this.props;
       return (
          <FormGroup labelText={ labelText }
@@ -47,20 +50,20 @@ class RadioBtnSwitchFormGroup extends PureComponent {
                     errorText={ errorText } >
             <RadioBtn id={ itemTrue.id }
                       name={ name }
-                      value={ itemTrue.value }
-                      onChange={ (value) => onChange && onChange(value, field) }
+                      value="true"
+                      onChange={ () => onChange && onChange(true, field) }
                       className={ itemTrue.className }
                       text={ itemTrue.text }
-                      checked={ value === itemTrue.value }
-                      disabled={ itemTrue.disabled } />
+                      checked={ value === true }
+                      disabled={ disabled } />
             <RadioBtn id={ itemFalse.id }
                       name={ name }
-                      value={ itemFalse.value }
-                      onChange={ (value) => onChange && onChange(value, field) }
+                      value="false"
+                      onChange={ (value) => onChange && onChange(false, field) }
                       className={ itemFalse.className }
                       text={ itemFalse.text }
-                      checked={ value === itemFalse.value }
-                      disabled={ itemFalse.disabled } />
+                      checked={ value === false }
+                      disabled={ disabled } />
          </FormGroup>
       );
    }
@@ -68,25 +71,19 @@ class RadioBtnSwitchFormGroup extends PureComponent {
 }
 
 RadioBtnSwitchFormGroup.propTypes = {
-   options: PropTypes.arrayOf(PropTypes.shape({
+   itemTrue: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       className: PropTypes.string,
-      text: PropTypes.string,
-      value: PropTypes.oneOfType([
-         PropTypes.bool,
-         PropTypes.string
-      ]),
-      disabled: PropTypes.oneOfType([
-         PropTypes.bool,
-         PropTypes.string
-      ])
+      text: PropTypes.string
+   })),
+   itemFalse: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      className: PropTypes.string,
+      text: PropTypes.string
    })),
    name: PropTypes.string,
    field: PropTypes.string,
-   value: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ]),
+   value:  PropTypes.bool,
    help: PropTypes.string,
    labelText: PropTypes.string,
    onChange: PropTypes.func,
@@ -94,9 +91,12 @@ RadioBtnSwitchFormGroup.propTypes = {
    errorHandler: PropTypes.func,
    additionalBlock: PropTypes.node,
    showError: PropTypes.bool,
+   disabled: PropTypes.bool,
    require: PropTypes.bool
 };
 
-RadioBtnSwitchFormGroup.defaultProps = {};
+RadioBtnSwitchFormGroup.defaultProps = {
+   itemTrue: {}, itemFalse: {}
+};
 
 export default RadioBtnSwitchFormGroup;
