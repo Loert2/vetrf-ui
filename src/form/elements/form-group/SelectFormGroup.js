@@ -42,7 +42,8 @@ class SelectFormGroup extends PureComponent {
          valueKey,
          labelKey,
          className,
-         placeholder
+         placeholder,
+         field
       } = this.props;
       return(
          <FormGroup labelText={ labelText }
@@ -59,7 +60,7 @@ class SelectFormGroup extends PureComponent {
                     style={ style }
                     styleInput={ styleInput }
                     options={ options }
-                    onChange={ onChange }
+                    onChange={ (value) => onChange && onChange(value, field) }
                     valueKey={ valueKey }
                     labelKey={ labelKey }
                     className={ className }
