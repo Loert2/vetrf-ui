@@ -74,12 +74,13 @@ class AutocompleteInput extends Component {
          viewKey,
          items,
          searchLabel,
-         button
+         button,
+         field
       } = this.props;
       const spliceItems = (!isEmpty(items) && items.length > 10) ? items.slice(0, 10) : items || [];
       const itemList = spliceItems.map((item, index) => (
          <li key={ uniqueId() }
-             onClick={ () => { this.hideHelp(); onSelect && onSelect(item, name); } }>
+             onClick={ () => { this.hideHelp(); onSelect && onSelect(item, name || field); } }>
             { isObject(item) ? item[viewKey || "name"] : item }
          </li>
       ));
@@ -129,6 +130,7 @@ AutocompleteInput.propTypes = {
    value: PropTypes.string,
    name: PropTypes.string,
    id: PropTypes.string,
+   field: PropTypes.string,
    placeholder: PropTypes.string,
    maxLength: PropTypes.number,
    style: PropTypes.object,

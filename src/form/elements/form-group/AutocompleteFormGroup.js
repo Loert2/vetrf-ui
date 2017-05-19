@@ -60,6 +60,7 @@ class AutocompleteFormGroup extends PureComponent {
                                 id={ id }
                                 maxLength={ maxLength }
                                 value={ value }
+                                field={ field }
                                 style={ style }
                                 onFocus={ onFocus }
                                 disabled={ disabled }
