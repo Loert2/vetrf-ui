@@ -63,7 +63,7 @@ class SelectFormGroup extends PureComponent {
                     onChange={ (value) => onChange && onChange(value, field) }
                     valueKey={ valueKey }
                     labelKey={ labelKey }
-                    className={ className }
+                    className={ className || "form-control" }
                     placeholder={ placeholder }/>
          </FormGroup>
       );
