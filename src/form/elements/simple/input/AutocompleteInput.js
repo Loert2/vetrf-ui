@@ -8,7 +8,7 @@ import uniqueId from 'lodash/uniqueId';
 import isObject from 'lodash/isObject';
 
 import Input from './Input';
-import Button from '../../../../buttons/Button';
+import Button from '../../../../buttons/button/Button';
 
 class AutocompleteInput extends Component {
    constructor(props, context) {

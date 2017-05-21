@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 
-import ProfileTableRow from './elements/ProfileTableRow';
+import ProfileTableRow from '../elements/ProfileTableRow';
 
 const ProfileTable = ({ rows, itemList, tableClassName }) => {
    const tableRows = [];

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import WidgetBox from './components/WidgetBox';
-import WidgetHeader from './components/header/WidgetHeader';
-import WidgetBody from  './components/body/WidgetBody';
+import WidgetBox from '../elements/WidgetBox';
+import WidgetHeader from '../elements/header/WidgetHeader';
+import WidgetBody from  '../elements/body/WidgetBody';
 
 const Widget = ({ className, header, body, children }) => (
    <WidgetBox className={ className }>

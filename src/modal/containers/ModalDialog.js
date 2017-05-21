@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Modal from './elements/Modal';
-import HeaderModal from './elements/HeaderModal';
-import BodyModal from './elements/BodyModal';
-import CustomFooterModal from './elements/CustomFooterModal';
-import ConfirmFooterModal from './elements/ConfirmFooterModal';
+import Modal from '../elements/Modal';
+import HeaderModal from '../elements/HeaderModal';
+import BodyModal from '../elements/BodyModal';
+import CustomFooterModal from '../elements/CustomFooterModal';
+import ConfirmFooterModal from '../elements/ConfirmFooterModal';
 
 class ModalDialog extends Component {
    constructor(props, context) {

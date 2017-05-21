@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Button from '../../buttons/Button';
+import Button from '../../buttons/button/Button';
 
 class EditableActions extends Component {
    constructor(props, context) {

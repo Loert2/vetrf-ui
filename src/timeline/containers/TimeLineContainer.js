@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import TimeLineLabelContainer from './label/TimeLineLabelContainer';
-import TimeLineItemsContainer from './item/TimeLineItemsContainer';
+import TimeLineLabelContainer from '../elements/label/TimeLineLabelContainer';
+import TimeLineItemsContainer from '../elements/item/TimeLineItemsContainer';
 
 const TimeLineContainer = ({ timeline, className }) => {
    return (

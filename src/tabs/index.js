@@ -1,5 +1,5 @@
-export { default as Tab } from './Tab';
-export { default as TabContent } from './TabContent';
-export { default as TabContentList } from './TabContentList';
-export { default as TabList } from './TabList';
-export { default as Tabs } from './Tabs';
+export { default as Tab } from './elements/Tab';
+export { default as TabContent } from './elements/TabContent';
+export { default as TabContentList } from './elements/TabContentList';
+export { default as TabList } from './elements/TabList';
+export { default as Tabs } from './containers/Tabs';

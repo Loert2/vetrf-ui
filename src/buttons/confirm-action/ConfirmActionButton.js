@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ConfirmModal from '../modal/ConfirmModal';
-import Button from './Button';
+import ConfirmModal from '../../modal/containers/ConfirmModal';
+import Button from '../button/Button';
 
 class ConfirmActionButton extends Component {
    constructor(props, context) {

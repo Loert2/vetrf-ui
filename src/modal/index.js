@@ -1,5 +1,5 @@
-export { default as ConfirmModal } from './ConfirmModal';
-export { default as ModalDialog } from './ModalDialog';
+export { default as ConfirmModal } from './containers/ConfirmModal';
+export { default as ModalDialog } from './containers/ModalDialog';
 
 export { default as BodyModal } from './elements/BodyModal';
 export { default as ConfirmFooterModal } from './elements/ConfirmFooterModal';

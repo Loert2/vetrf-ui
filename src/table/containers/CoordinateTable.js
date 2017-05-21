@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import CoordinateTableBody from './elements/CoordinateTableBody';
-import TableHeader from './elements/TableHeader';
+import CoordinateTableBody from '../elements/CoordinateTableBody';
+import TableHeader from '../elements/TableHeader';
 
 const CoordinateTable = ({ id, tableClassName, columns, rows, readOnly }) => (
    <table id={ id }

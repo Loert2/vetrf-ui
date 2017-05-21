@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Button from '../../buttons/Button';
-import ConfirmActionButton from '../../buttons/ConfirmActionButton';
+import Button from '../../buttons/button/Button';
+import ConfirmActionButton from '../../buttons/confirm-action/ConfirmActionButton';
 
 const TableActionButtons = ({ viewBtn, editBtn, deleteBtn, item }) => (
    <div className="inline actions">

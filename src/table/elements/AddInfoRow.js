@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Button from '../../buttons/Button';
+import Button from '../../buttons/button/Button';
 
 const AddInfoRow = ({ columnsLength, href, btnClassName, addAction, text }) => (
    <tr>

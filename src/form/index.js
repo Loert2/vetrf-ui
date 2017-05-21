@@ -1,5 +1,5 @@
-export { default as Form } from './Form';
-export { default as FormAction } from './FormAction';
+export { default as Form } from './containers/Form';
+export { default as FormAction } from './actions/FormAction';
 
 export { default as AutocompleteFormGroup } from './elements/form-group/AutocompleteFormGroup';
 export { default as CheckboxFormGroup } from './elements/form-group/CheckboxFormGroup';

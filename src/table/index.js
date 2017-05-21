@@ -1,6 +1,6 @@
-export { default as CoordinateTable } from './CoordinateTable';
-export { default as ProfileTable } from './ProfileTable';
-export { default as Table } from './Table';
+export { default as CoordinateTable } from './containers/CoordinateTable';
+export { default as ProfileTable } from './containers/ProfileTable';
+export { default as Table } from './containers/Table';
 
 export { default as AddInfoRow } from './elements/AddInfoRow';
 export { default as CoordinateTableBody } from './elements/CoordinateTableBody';

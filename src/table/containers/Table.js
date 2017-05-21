@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import TableHeader from './elements/TableHeader';
-import TableBody from './elements/TableBody';
-import TableLoadingBlock from './elements/TableLoadingBlock';
+import TableHeader from '../elements/TableHeader';
+import TableBody from '../elements/TableBody';
+import TableLoadingBlock from '../elements/TableLoadingBlock';
 
 const Table = (props) =>  (
    <div>

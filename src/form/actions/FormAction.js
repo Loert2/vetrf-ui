@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Button from '../buttons/Button';
+import Button from '../../buttons/button/Button';
 
 const FormAction = ({ confirmBtn, resetBtn }) => (
    <div className="clearfix form-actions no-margin-bottom col-xs-12">

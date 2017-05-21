@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Modal from './elements/Modal';
-import HeaderModal from './elements/HeaderModal';
-import BodyModal from './elements/BodyModal';
-import ConfirmFooterModal from './elements/ConfirmFooterModal';
+import Modal from '../elements/Modal';
+import HeaderModal from '../elements/HeaderModal';
+import BodyModal from '../elements/BodyModal';
+import ConfirmFooterModal from '../elements/ConfirmFooterModal';
 
 class ConfirmModal extends Component {
    constructor(props, context) {

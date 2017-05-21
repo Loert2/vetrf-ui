@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TimeLineDate from './TimeLineDate';
 import TimeLineInfo from './TimeLineInfo';
-import Widget from '../../widget/Widget';
+import Widget from '../../../widget/containers/Widget';
 import classNames from 'classnames';
 
 const TimeLineItem = ({ className, widgetMetaData, date, icon, children }) => {

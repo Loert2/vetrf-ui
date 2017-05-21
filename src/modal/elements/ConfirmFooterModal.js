@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import CustomFooterModal from './CustomFooterModal';
-import Button from '../../buttons/Button';
+import Button from '../../buttons/button/Button';
 
 const ConfirmFooterModal = ({ className, confirmBtn, cancelBtn  }) => (
    <CustomFooterModal className={ className } >

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import NavSearch from '../form/elements/simple/NavSearch';
 import Breadcrumb from './Breadcrumb';
 import uniqueId from 'lodash/uniqueId';
 
@@ -9,10 +8,6 @@ const Breadcrumbs = ({ breadcrumbs, search }) => (
       <ul className="breadcrumb">
          { breadcrumbs.map((elem, index) => <Breadcrumb key={ uniqueId() } elem={ elem } />) }
       </ul>
-      {
-         search &&
-         <NavSearch />
-      }
    </div>
 );
 
