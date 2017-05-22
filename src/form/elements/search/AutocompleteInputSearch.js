@@ -18,7 +18,7 @@ const AutocompleteInputSearch = (props) => (
                              onAutocomplete={ props.onAutocomplete }
                              resetAutocompleteList={ props.resetAutocompleteList }
                              onKeyPress={ props.onEnter }
-                             onChange={ (value) => props.onChange && props.onChange(value, props.searchField) }
+                             onChange={ (value) => props.onChange && props.onChange(value, props.searchField, props.selectField) }
                              onSelect={ props.onSelect }
                              items={ props.items }
                              viewKey={ props.viewKey }
