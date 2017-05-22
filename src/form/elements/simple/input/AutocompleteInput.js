@@ -48,11 +48,11 @@ class AutocompleteInput extends Component {
    }
 
    changeHandler(value) {
-      const { onChange, name, items, resetAutocompleteList } = this.props;
+      const { onChange, name, field, items, resetAutocompleteList } = this.props;
       onChange && onChange(value);
-      if (name) {
+      if (name || field) {
          if (value && value.length > 2) {
-            this.requestAutocompleteList({ [name]: value }, name);
+            this.requestAutocompleteList(name ? { [name]: value } : value, name || field);
          } else if (!isEmpty(items)) {
             resetAutocompleteList && resetAutocompleteList();
          }
