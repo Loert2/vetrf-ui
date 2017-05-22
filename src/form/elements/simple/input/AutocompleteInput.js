@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 
 import debounce from 'lodash/debounce';
@@ -10,7 +10,7 @@ import isObject from 'lodash/isObject';
 import Input from './Input';
 import Button from '../../../../buttons/button/Button';
 
-class AutocompleteInput extends Component {
+class AutocompleteInput extends PureComponent {
    constructor(props, context) {
       super(props, context);
       this.state = {
@@ -20,7 +20,7 @@ class AutocompleteInput extends Component {
       this.hideHelp = this.hideHelp.bind(this);
       this.handleClickOutside = this.handleClickOutside.bind(this);
       this.changeHandler = this.changeHandler.bind(this);
-      this.requestAutocompleteList = debounce(props.onAutocomplete, 600);
+      this.requestAutocompleteList = debounce(props.onAutocomplete, 500);
    }
 
    handleClickOutside(e) {
