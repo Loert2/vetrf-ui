@@ -10,13 +10,15 @@ const AutocompleteInputSearch = (props) => (
                              id={ props.id }
                              maxLength={ props.maxLength }
                              value={ props.value }
+                             searchField={ props.searchField }
+                             selectField={ props.selectField }
                              style={ props.style }
                              onFocus={ props.onFocus }
                              disabled={ props.disabled }
                              onAutocomplete={ props.onAutocomplete }
                              resetAutocompleteList={ props.resetAutocompleteList }
                              onKeyPress={ props.onEnter }
-                             onChange={ (value) => props.onChange && props.onChange(value, props.field) }
+                             onChange={ (value) => props.onChange && props.onChange(value, props.searchField) }
                              onSelect={ props.onSelect }
                              items={ props.items }
                              viewKey={ props.viewKey }
@@ -28,7 +30,8 @@ const AutocompleteInputSearch = (props) => (
 
 AutocompleteInputSearch.propTypes = {
    value: PropTypes.string,
-   field: PropTypes.string,
+   searchField: PropTypes.string,
+   selectField: PropTypes.string,
    labelText: PropTypes.string,
    name: PropTypes.string,
    id: PropTypes.string,

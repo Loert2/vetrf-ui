@@ -47,7 +47,8 @@ class AutocompleteFormGroup extends PureComponent {
          className,
          searchLabel,
          placeholder,
-         field
+         searchField,
+         selectField
       } = this.props;
       return (
          <FormGroup labelText={ labelText }
@@ -60,14 +61,15 @@ class AutocompleteFormGroup extends PureComponent {
                                 id={ id }
                                 maxLength={ maxLength }
                                 value={ value }
-                                field={ field }
+                                searchField={ searchField }
+                                selectField={ selectField }
                                 style={ style }
                                 onFocus={ onFocus }
                                 disabled={ disabled }
                                 onAutocomplete={ onAutocomplete }
                                 resetAutocompleteList={ resetAutocompleteList }
                                 onKeyPress={ onEnter }
-                                onChange={ (value) => onChange && onChange(value, field) }
+                                onChange={ (value) => onChange && onChange(value, searchField) }
                                 onSelect={ onSelect }
                                 items={ items }
                                 viewKey={ viewKey }
@@ -82,7 +84,8 @@ class AutocompleteFormGroup extends PureComponent {
 
 AutocompleteFormGroup.propTypes = {
    value: PropTypes.string,
-   field: PropTypes.string,
+   searchField: PropTypes.string,
+   selectField: PropTypes.string,
    labelText: PropTypes.string,
    name: PropTypes.string,
    id: PropTypes.string,
