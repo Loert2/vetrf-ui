@@ -48,11 +48,11 @@ class AutocompleteInput extends Component {
    }
 
    changeHandler(value) {
-      const { onChange, name, field, items, resetAutocompleteList } = this.props;
+      const { onChange, name, searchField, items, resetAutocompleteList } = this.props;
       onChange && onChange(value);
-      if (name || field) {
+      if (name || searchField) {
          if (value && value.length > 2) {
-            this.requestAutocompleteList(name ? { [name]: value } : value, name || field);
+            this.requestAutocompleteList(name ? { [name]: value } : value, name || searchField);
          } else if (!isEmpty(items)) {
             resetAutocompleteList && resetAutocompleteList();
          }
@@ -75,12 +75,14 @@ class AutocompleteInput extends Component {
          items,
          searchLabel,
          button,
-         field
+         searchField,
+         selectField
       } = this.props;
       const spliceItems = (!isEmpty(items) && items.length > 10) ? items.slice(0, 10) : items || [];
+      const field = name || selectField || searchField;
       const itemList = spliceItems.map((item, index) => (
          <li key={ uniqueId() }
-             onClick={ () => { this.hideHelp(); onSelect && onSelect(item, name || field); } }>
+             onClick={ () => { this.hideHelp(); onSelect && onSelect(item, field); } }>
             { isObject(item) ? item[viewKey || "name"] : item }
          </li>
       ));
@@ -130,7 +132,8 @@ AutocompleteInput.propTypes = {
    value: PropTypes.string,
    name: PropTypes.string,
    id: PropTypes.string,
-   field: PropTypes.string,
+   searchField: PropTypes.string,
+   selectField: PropTypes.string,
    placeholder: PropTypes.string,
    maxLength: PropTypes.number,
    style: PropTypes.object,
