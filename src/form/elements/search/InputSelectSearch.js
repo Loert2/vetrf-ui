@@ -15,6 +15,8 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                      <AutocompleteInput name={ input.name }
                                         id={ input.id }
                                         value={ input.value }
+                                        selectField={ input.selectField }
+                                        searchField={ input.searchField }
                                         items={ input.autocompleteItems }
                                         onSelect={ input.onSelectItem }
                                         onChange={ (value) => input.onChange && input.onChange(value, input.field) }
@@ -65,6 +67,8 @@ InputSelectSearch.propTypes = {
       id: PropTypes.string,
       value: PropTypes.string,
       field: PropTypes.string,
+      selectField: PropTypes.string,
+      searchField: PropTypes.string,
       name: PropTypes.string,
       placeholder: PropTypes.string,
       maxLength: PropTypes.number,
