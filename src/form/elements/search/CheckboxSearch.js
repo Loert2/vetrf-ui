@@ -15,7 +15,7 @@ const CheckboxSearch = (props) => {
       onChange,
       className,
       field
-   } = this.props;
+   } = props;
    return (
       <div className="form-group">
          <label className="col-xs-5 control-label no-padding-right">{ labelText }</label>
