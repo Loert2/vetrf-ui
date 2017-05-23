@@ -39,7 +39,8 @@ class RadioBtnSwitchFormGroup extends PureComponent {
          onChange,
          errorText,
          field,
-         disabled
+         disabled,
+         id
       } = this.props;
       return (
          <FormGroup labelText={ labelText }
@@ -49,21 +50,21 @@ class RadioBtnSwitchFormGroup extends PureComponent {
                     hasError={ this.state.hasError }
                     errorText={ errorText } >
             <div>
-               <RadioBtn id={ itemTrue.id }
+               <RadioBtn id={ itemTrue.id || (id && `${ id }_true`) }
                          name={ name }
                          value="true"
                          onChange={ () => onChange && onChange(true, field) }
-                         className={ itemTrue.className }
+                         className={ itemTrue.className || "ace form-control" }
                          text={ itemTrue.text || "Да" }
                          checked={ value === true }
                          disabled={ disabled } />
             </div>
             <div>
-               <RadioBtn id={ itemFalse.id }
+               <RadioBtn id={ itemFalse.id || (id && `${ id }_false`) }
                          name={ name }
                          value="false"
-                         onChange={ (value) => onChange && onChange(false, field) }
-                         className={ itemFalse.className }
+                         onChange={ () => onChange && onChange(false, field) }
+                         className={ itemFalse.className || "ace form-control" }
                          text={ itemFalse.text || "Нет" }
                          checked={ value === false }
                          disabled={ disabled } />
