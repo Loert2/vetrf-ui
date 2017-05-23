@@ -54,7 +54,7 @@ class RadioBtnSwitchFormGroup extends PureComponent {
                          value="true"
                          onChange={ () => onChange && onChange(true, field) }
                          className={ itemTrue.className }
-                         text={ itemTrue.text }
+                         text={ itemTrue.text || "Да" }
                          checked={ value === true }
                          disabled={ disabled } />
             </div>
@@ -64,7 +64,7 @@ class RadioBtnSwitchFormGroup extends PureComponent {
                          value="false"
                          onChange={ (value) => onChange && onChange(false, field) }
                          className={ itemFalse.className }
-                         text={ itemFalse.text }
+                         text={ itemFalse.text || "Нет" }
                          checked={ value === false }
                          disabled={ disabled } />
             </div>
