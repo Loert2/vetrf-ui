@@ -28,6 +28,7 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                                         disabled={ input.disabled }
                                         onKeyPress={ input.onEnter }
                                         className={ input.className || "input-sm col-xs-12" }
+                                        dpropdownClass={ input.dpropdownClass }
                                         placeholder={ input.placeholder || labelText }
                      />
                   </span>
@@ -73,6 +74,7 @@ InputSelectSearch.propTypes = {
       placeholder: PropTypes.string,
       maxLength: PropTypes.number,
       className: PropTypes.string,
+      dpropdownClass: PropTypes.string,
       style: PropTypes.object,
       autoFocus: PropTypes.bool,
       onFocus: PropTypes.func,

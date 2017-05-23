@@ -23,6 +23,7 @@ const AutocompleteInputSearch = (props) => (
                              items={ props.items }
                              viewKey={ props.viewKey }
                              className={ props.className || "col-xs-12 col-sm-7 input-sm" }
+                             dpropdownClass={ props.dpropdownClass }
                              placeholder={ props.placeholder || props.labelText } />
       </div>
    </div>
@@ -33,6 +34,7 @@ AutocompleteInputSearch.propTypes = {
    searchField: PropTypes.string,
    selectField: PropTypes.string,
    labelText: PropTypes.string,
+   dpropdownClass: PropTypes.string,
    name: PropTypes.string,
    id: PropTypes.string,
    placeholder: PropTypes.string,

@@ -136,6 +136,7 @@ AutocompleteInput.propTypes = {
    id: PropTypes.string,
    searchField: PropTypes.string,
    selectField: PropTypes.string,
+   dpropdownClass: PropTypes.string,
    placeholder: PropTypes.string,
    maxLength: PropTypes.number,
    style: PropTypes.object,
