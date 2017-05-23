@@ -19,7 +19,7 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                                         searchField={ input.searchField }
                                         items={ input.autocompleteItems }
                                         onSelect={ input.onSelectItem }
-                                        onChange={ (value) => input.onChange && input.onChange(value, input.field) }
+                                        onChange={ (value) => input.onChange && input.onChange(value, input.searchField) }
                                         maxLength={ input.maxLength }
                                         style={ input.styleInput }
                                         onAutocomplete={ input.onAutocomplete }
