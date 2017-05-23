@@ -45,6 +45,7 @@ export { default as AutocompleteInputSearch } from './form/elements/search/Autoc
 export { default as InputSearch } from './form/elements/search/InputSearch';
 export { default as InputSelectSearch } from './form/elements/search/InputSelectSearch';
 export { default as SelectSearch } from './form/elements/search/SelectSearch';
+export { default as CheckboxSearch } from './form/elements/search/CheckboxSearch';
 
 export { default as Checkbox } from './form/elements/simple/Checkbox';
 export { default as RadioBtn } from './form/elements/simple/RadioBtn';

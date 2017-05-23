@@ -19,6 +19,7 @@ export { default as AutocompleteInputSearch } from './elements/search/Autocomple
 export { default as InputSearch } from './elements/search/InputSearch';
 export { default as InputSelectSearch } from './elements/search/InputSelectSearch';
 export { default as SelectSearch } from './elements/search/SelectSearch';
+export { default as CheckboxSearch } from './elements/search/CheckboxSearch';
 
 export { default as Checkbox } from './elements/simple/Checkbox';
 export { default as RadioBtn } from './elements/simple/RadioBtn';
