@@ -37,3 +37,4 @@ export { default as Switch } from './elements/simple/switch/Switch';
 export { default as SwitchText } from './elements/simple/switch/SwitchText';
 
 export { default as setIn } from './utils/setIn';
+export { default as deleteIn } from './utils/deleteIn';
