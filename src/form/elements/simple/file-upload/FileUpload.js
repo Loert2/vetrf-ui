@@ -28,19 +28,20 @@ class FileUpload extends PureComponent {
    }
 
    render () {
-      const { dataText, value, className, onChange } = this.props;
+      const { dataText, value, className, onChange, id } = this.props;
       const { dragState, defaultMessage } = this.state;
       return (
          <div className="file-upload-container">
             <div className="file-upload-form"
                  onDragOver={ this.onDragStart }
                  onDragLeave={ this.onDragEnd }>
-               <div className={classNames("file-upload-wrapper", { "drag-state-on": dragState === "on" })}
+               <div className={ classNames("file-upload-wrapper", { "drag-state-on": dragState === "on" }) }
                     data-text={ dataText || defaultMessage }>
-                  <input type="file"
+                  <input id={ id }
+                         type="file"
                          value={ value }
                          className={ className }
-                         onChange={e => {
+                         onChange={ e => {
                             this.onDragEnd();
                             onChange && onChange(e);
                          }}/>
@@ -51,8 +52,9 @@ class FileUpload extends PureComponent {
    }
 }
 
-FileUpload.PropTypes = {
+FileUpload.propTypes = {
    dataText: PropTypes.string,
+   id: PropTypes.string,
    value: PropTypes.any,
    className: PropTypes.string,
    onChange: PropTypes.func

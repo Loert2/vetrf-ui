@@ -31,6 +31,7 @@ export { default as CheckboxFormGroup } from './form/elements/form-group/Checkbo
 export { default as DateFormGroup } from './form/elements/form-group/DateFormGroup';
 export { default as FormBlock } from './form/elements/form-group/FormBlock';
 export { default as FormGroup } from './form/elements/form-group/FormGroup';
+export { default as FileUploadFormGroup } from './form/elements/form-group/FileUploadFormGroup';
 export { default as InputFormGroup } from './form/elements/form-group/InputFormGroup';
 export { default as InputSelectFormGroup } from './form/elements/form-group/InputSelectFormGroup';
 export { default as NumberFormGroup } from './form/elements/form-group/NumberFormGroup';
