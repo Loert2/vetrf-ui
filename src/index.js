@@ -54,6 +54,7 @@ export { default as DatePicker } from './form/elements/simple/date/DatePicker';
 export { default as DateRange } from './form/elements/simple/date/DateRange';
 export { default as AutocompleteInput } from './form/elements/simple/input/AutocompleteInput';
 export { default as FileInput } from './form/elements/simple/input/FileInput';
+export { default as FileUpload } from './form/elements/simple/file-upload/FileUpload';
 export { default as Input } from './form/elements/simple/input/Input';
 export { default as NumberInput } from './form/elements/simple/input/NumberInput';
 export { default as Select } from './form/elements/simple/select/Select';

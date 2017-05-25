@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-class FileUpload extends Component {
+class FileUpload extends PureComponent {
    constructor(props, context) {
       super(props, context);
       this.onDragStart = this.onDragStart.bind(this);
