@@ -23,7 +23,7 @@ const FormGroup = (props) => {
             { labelText }
             { require && <RequireStar /> }
          </label>
-         <div className={ fieldClassName || "col-sm-9" }><span className="block input-icon input-icon-right"/>
+         <div className={ fieldClassName || "col-sm-9 padding-top-10" }><span className="block input-icon input-icon-right"/>
             { children }
             {
                help &&
