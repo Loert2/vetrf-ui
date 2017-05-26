@@ -98,8 +98,8 @@ class InputSelectFormGroup extends PureComponent {
 
 InputSelectFormGroup.propTypes = {
    labelText: PropTypes.string,
-   help: PropTypes.string,
-   errorText: PropTypes.string,
+   help: PropTypes.node,
+   errorText: PropTypes.node,
    require: PropTypes.bool,
    showError: PropTypes.bool,
    customValidate: PropTypes.func,

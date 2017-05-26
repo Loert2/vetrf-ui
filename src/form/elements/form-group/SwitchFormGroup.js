@@ -33,7 +33,7 @@ SwitchFormGroup.propTypes = {
    ]),
    onChange: PropTypes.func,
    labelText: PropTypes.string,
-   help: PropTypes.string,
+   help: PropTypes.node,
    additionalBlock: PropTypes.node,
    className: PropTypes.string
 };

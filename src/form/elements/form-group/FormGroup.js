@@ -41,13 +41,13 @@ const FormGroup = (props) => {
 
 FormGroup.propTypes = {
    labelText: PropTypes.string,
-   help: PropTypes.string,
+   help: PropTypes.node,
    require: PropTypes.bool,
    hasError: PropTypes.bool,
    errorClassName: PropTypes.string,
    labelClassName: PropTypes.string,
    fieldClassName: PropTypes.string,
-   errorText: PropTypes.string,
+   errorText: PropTypes.node,
    children: PropTypes.node,
    additionalBlock: PropTypes.node
 };

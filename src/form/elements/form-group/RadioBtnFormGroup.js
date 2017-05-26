@@ -84,8 +84,9 @@ RadioBtnFormGroup.propTypes = {
       PropTypes.bool,
       PropTypes.string
    ]),
-   help: PropTypes.string,
+   help: PropTypes.node,
    labelText: PropTypes.string,
+   errorText: PropTypes.node,
    onChange: PropTypes.func,
    customValidate: PropTypes.func,
    errorHandler: PropTypes.func,
