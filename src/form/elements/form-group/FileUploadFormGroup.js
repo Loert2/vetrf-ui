@@ -37,7 +37,7 @@ class FileUploadFormGroup extends PureComponent {
          fileName: fileName,
          hasError: this.state.hasError
       });
-      const file = { file: get(event, "target.files[0]"), fileName };
+      const file = { file: get(event, "target.files[0]"), name: fileName };
       onChange && onChange(file, field);
    }
 
