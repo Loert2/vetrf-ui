@@ -30,6 +30,7 @@ class FileUploadFormGroup extends PureComponent {
 
    onChangeHandler(event) {
       const { onChange, field } = this.props;
+      event.persist();
       const value = get(event, "target.value");
       const fileName = value ? value.replace(/.*(\/|\\)/, "") : "";
       this.setState({
