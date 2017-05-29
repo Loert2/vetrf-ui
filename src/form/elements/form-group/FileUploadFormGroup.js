@@ -6,21 +6,38 @@ import FormGroup from './FormGroup';
 
 import validate from '../../utils/validate-utils';
 
+import get from 'lodash/get';
+
 class FileUploadFormGroup extends PureComponent {
    constructor(props) {
       super(props);
       this.state = {
-         hasError: false
+         hasError: false,
+         fileName: ""
       };
+      this.onChangeHandler = this.onChangeHandler.bind(this);
    }
 
    componentWillReceiveProps(nextProps) {
       const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
       if (hasError !== this.state.hasError) {
          this.setState({
-            hasError: hasError
+            hasError: hasError,
+            fileName: this.state.fileName
          });
       }
+   }
+
+   onChangeHandler(event) {
+      const { onChange, field } = this.props;
+      const value = get(event, "target.value");
+      const fileName = value ? value.replace(/.*(\/|\\)/, "") : "";
+      this.setState({
+         fileName: { $set: fileName },
+         hasError: { $set: this.state.hasError }
+      });
+      const file = get(event, "target.files[0]");
+      onChange && onChange(file, field);
    }
 
    render() {
@@ -33,22 +50,24 @@ class FileUploadFormGroup extends PureComponent {
          errorText,
          dataText,
          id,
-         field,
-         onChange,
          className,
       } = this.props;
+      const {
+         hasError,
+         fileName
+      } = this.state;
       return (
          <FormGroup labelText={ labelText }
                     require={ require }
                     help={ help }
                     additionalBlock={ additionalBlock }
-                    hasError={ this.state.hasError }
+                    hasError={ hasError }
                     errorText={ errorText } >
             <FileUpload id={ id }
-                        dataText={ dataText }
+                        dataText={ dataText || fileName }
                         value={ value }
                         className={ className }
-                        onChange={ (e) => onChange && onChange(e, field) } />
+                        onChange={ this.onChangeHandler } />
          </FormGroup>
       );
    }
