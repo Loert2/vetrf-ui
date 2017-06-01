@@ -10,6 +10,7 @@ const TableBody = (props) => {
    const rows = [];
    const {
       dataList,
+      keyField,
       columns,
       paginationRow,
       additionalDataRow,
@@ -27,7 +28,7 @@ const TableBody = (props) => {
    if (dataList && dataList.length){
       for (let i = 0; i < dataList.length; i++){
          rows.push(
-            <TableRow key={ dataList[i].id || uniqueId() }
+            <TableRow key={ dataList[i][keyField] ||dataList[i].id || uniqueId() } //TODO: Убрать uniqueId, постараться его не использовать.
                       columns={ columns }
                       onClick={ onClickRow }
                       getRowClassName={ getRowClassName }
@@ -76,6 +77,7 @@ const TableBody = (props) => {
 TableBody.propTypes = {
    readOnly: PropTypes.bool,
    dataList: PropTypes.array,
+   keyField: PropTypes.string,
    paginationRow: PropTypes.node,
    additionalDataRow: PropTypes.shape({
       additionalMetadata: PropTypes.arrayOf(

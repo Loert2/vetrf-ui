@@ -25,6 +25,7 @@ const Table = (props) =>  (
                          filterableTable={ props.filterableTable } />
          }
          <TableBody dataList={ props.dataList }
+                    keyField={props.keyField}
                     onClickRow={ props.onClickRow }
                     selectOptions={ props.selectOptions }
                     emptyText={ props.emptyText }
@@ -45,6 +46,7 @@ Table.propTypes = {
    filterableTable: PropTypes.bool,
    hideHeader: PropTypes.bool,
    dataList: PropTypes.array,
+   keyField: PropTypes.string,
    paginationRow: PropTypes.node,
    additionalDataRow: PropTypes.shape({
       additionalMetadata: PropTypes.arrayOf(
