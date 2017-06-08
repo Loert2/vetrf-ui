@@ -25,6 +25,7 @@ export { default as NumberEditableForm } from './editable/forms/NumberEditableFo
 // Формы и их элементы
 export { default as Form } from './form/containers/Form';
 export { default as FormAction } from './form/actions/FormAction';
+export { default as FormActionsPanel } from './form/actions/FormActionsPanel';
 
 export { default as AutocompleteFormGroup } from './form/elements/form-group/AutocompleteFormGroup';
 export { default as CheckboxFormGroup } from './form/elements/form-group/CheckboxFormGroup';

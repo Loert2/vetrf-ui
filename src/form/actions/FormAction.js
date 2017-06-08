@@ -2,23 +2,22 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Button from '../../buttons/button/Button';
+import FormActionsPanel from './FormActionsPanel';
 
-const FormAction = ({ confirmBtn, resetBtn }) => (
-   <div className="clearfix form-actions no-margin-bottom col-xs-12">
-      <div className="col-md-offset-5 col-md-7">
-         <Button text={ confirmBtn.text }
-                 className={ confirmBtn.className || "btn btn-info" }
-                 icon={ confirmBtn.icon || "ace-icon fa fa-check bigger-110" }
-                 disabled={ confirmBtn.disabled }
-                 onClick={ confirmBtn.action } />
-         &nbsp;&nbsp;&nbsp;
-         <Button onClick={ resetBtn.action }
-                 icon={  resetBtn.icon || "ace-icon fa fa-undo bigger-110" }
-                 className={ resetBtn.className || "btn" }
-                 text={ resetBtn.text }
-                 href={ resetBtn.href } />
-      </div>
-   </div>
+const FormAction = ({confirmBtn, resetBtn}) => (
+   <FormActionsPanel>
+      <Button text={ confirmBtn.text }
+              className={ confirmBtn.className || "btn btn-info" }
+              icon={ confirmBtn.icon || "ace-icon fa fa-check bigger-110" }
+              disabled={ confirmBtn.disabled }
+              onClick={ confirmBtn.action }/>
+      &nbsp;&nbsp;&nbsp;
+      <Button onClick={ resetBtn.action }
+              icon={  resetBtn.icon || "ace-icon fa fa-undo bigger-110" }
+              className={ resetBtn.className || "btn" }
+              text={ resetBtn.text }
+              href={ resetBtn.href }/>
+   </FormActionsPanel>
 );
 
 FormAction.propTypes = {
@@ -41,7 +40,7 @@ FormAction.propTypes = {
    })
 };
 
-FormAction.defaultProps = { confirmBtn: {}, resetBtn: {} };
+FormAction.defaultProps = {confirmBtn: {}, resetBtn: {}};
 
 export default FormAction;
 
