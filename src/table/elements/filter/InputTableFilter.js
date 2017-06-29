@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import Input from '../../../form/elements/simple/input/Input';
 import Const from '../../elements/constants';
 
 export default class InputTableFilter extends Component {
@@ -33,7 +32,7 @@ export default class InputTableFilter extends Component {
    render () {
       const { placeholder, name, style, onEnter, className } = this.props;
       return (
-         <Input placeholder={ placeholder }
+         <input placeholder={ placeholder }
                 name={ name }
                 type="text"
                 style={ style }
