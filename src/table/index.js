@@ -18,6 +18,7 @@ export { default as TableRow } from './elements/TableRow';
 export { default as DatePickerTableFilter } from './elements/filter/DatePickerTableFilter';
 export { default as FilterCell } from './elements/filter/FilterCell';
 export { default as InputTableFilter } from './elements/filter/InputTableFilter';
+export { default as SelectTableFilter } from './elements/filter/SelectTableFilter';
 
 export { default as PageButton } from './elements/pagination/PageButton';
 export { default as PaginationList } from './elements/pagination/PaginationList';

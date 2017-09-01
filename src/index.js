@@ -15,6 +15,7 @@ export { default as  Breadcrumbs } from './page/elements/breadcrumbs/Breadcrumbs
 export { default as Button } from './buttons/button/Button';
 export { default as ButtonLink } from './buttons/button-link/ButtonLink';
 export { default as ConfirmActionButton } from './buttons/confirm-action/ConfirmActionButton';
+export { default as ConfirmAddActionButton } from './buttons/confirm-action/ConfirmAddActionButton';
 
 // Инлайн редактирование
 export { default as EditableActions } from './editable/elements/EditableActions';
@@ -92,6 +93,7 @@ export { default as TableRow } from './table/elements/TableRow';
 export { default as DatePickerTableFilter } from './table/elements/filter/DatePickerTableFilter';
 export { default as FilterCell } from './table/elements/filter/FilterCell';
 export { default as InputTableFilter } from './table/elements/filter/InputTableFilter';
+export { default as SelectTableFilter } from './table/elements/filter/SelectTableFilter';
 
 export { default as PageButton } from './table/elements/pagination/PageButton';
 export { default as PaginationList } from './table/elements/pagination/PaginationList';

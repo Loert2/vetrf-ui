@@ -1,68 +1,73 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-
-import Const from '../../elements/constants';
+import isEmpty from 'lodash/isEmpty'
 
 export default class SelectTableFilter extends Component {
    constructor(props, context) {
       super(props, context);
-      this.timeout = null;
+      this.filter = this.filter.bind(this);
    }
 
-   componentWillUnmount() {
-      this.timeout && clearTimeout(this.timeout);
-   }
-
-   filter = (event) => {
+   filter(event){
       let filter;
-      const { onChange, delay, name } = this.props;
+      const { onChange, name } = this.props;
       if (name){
          event.persist();
          filter = { [event.target.name]: event.target.value };
       } else {
          filter = event;
       }
-      this.timeout && clearTimeout(this.timeout);
-      this.timeout = setTimeout(() => {
-         onChange(filter);
-      },  delay || Const.FILTER_DELAY);
+      onChange(filter);
    };
 
    render () {
-      const { placeholder, name, style, onEnter, className, valuesSelect } = this.props;
-      let selectOptionList = null;
-      if(valuesSelect && valuesSelect.length > 0){
+      const {
+         id,
+         name,
+         style,
+         className,
+         valuesSelect,
+         multiple,
+         optionStartText,
+         disabled,
+         titleText
+      } = this.props;
+
+      let selectOptionList = [ <option disabled> Выберите { optionStartText || 'статус' } </option> ];
+      if (isEmpty(valuesSelect)) {
+         // valuesSelect.forEach( (item) => {
+         //    const newValue = item.value;
+         //    selectOptionList += <option value={ newValue }> { newValue } </option>
+         // });
           for (let i = 0; i < valuesSelect.length; i++){
-              selectOptionList += <option>valuesSelect[{i}].value</option>
+              const newValue = valuesSelect[{i}].value;
+              selectOptionList += <option value={ newValue }> { newValue } </option>
           }
       }
       return (
       <div>
          <select name={ name }
-                 style={style}
+                 disabled={ disabled }
+                 multiple={ multiple || false }
+                 style={ style }
                  onChange={ this.filter }
-                 className={ className || "input-filter form-control" }>
-             {selectOptionList}
+                 className={ className || "input-filter form-control" }
+                 id={ id }
+                 title={ titleText || "Отфильтравать по статусу" }>
+             { selectOptionList }
          </select>
-         {/*<input placeholder={ placeholder }*/}
-                {/*name={ name }*/}
-                {/*type="text"*/}
-                {/*style={ style }*/}
-                {/*onKeyPress={ onEnter }*/}
-                {/*onChange={ this.filter }*/}
-                {/*className={ className || "input-filter form-control" } />*/}
       </div>
       );
    }
 }
 
 SelectTableFilter.propTypes = {
+   valuesSelect: PropTypes.arrayOf(PropTypes.string),
    name: PropTypes.string,
    className: PropTypes.string,
    style: PropTypes.object,
-   delay: PropTypes.number,
-   onEnter: PropTypes.func,
    onChange: PropTypes.func,
-   valuesSelect: PropTypes.object
+   multiple: PropTypes.bool,
+   optionStartText: PropTypes.string
 };
 

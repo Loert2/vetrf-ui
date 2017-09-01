@@ -20,6 +20,7 @@ class ConfirmModal extends Component {
    render () {
       const {
          header,
+         bodyObject,
          onClose,
          confirmBtn,
          cancelBtn,
@@ -32,6 +33,7 @@ class ConfirmModal extends Component {
                          onClose={ () => { this.hide(); onClose && onClose(); } } />
             <BodyModal>
                <p style={{ whiteSpace: "normal" }} >{ bodyText }</p>
+               { bodyObject }
             </BodyModal>
             <ConfirmFooterModal confirmBtn={ confirmBtn }
                                 cancelBtn={{
@@ -47,6 +49,7 @@ class ConfirmModal extends Component {
 ConfirmFooterModal.propTypes = {
    header: PropTypes.string,
    bodyText: PropTypes.string,
+   bodyObject: PropTypes.element,
    onClose: PropTypes.func,
    confirmBtn: PropTypes.shape({
       disabled: PropTypes.oneOfType([

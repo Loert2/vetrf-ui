@@ -49,6 +49,7 @@ class PaginationList extends Component {
 			sizePerPage,
 			pageStartIndex
 		} = this.props;
+
 		this.totalPages = Math.ceil(dataSize / sizePerPage);
 		this.lastPage = pageStartIndex + this.totalPages - 1;
 		const pageBtns = this.makePage();
@@ -60,7 +61,7 @@ class PaginationList extends Component {
 
 		return (
 			<ul className='pagination padding-top-6' style={ pageListStyle }>
-				{pageBtns}
+				{ pageBtns }
 			</ul>
 		);
 	}
