@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 import SimpleSelect from "../../../form/elements/simple/select/SimpleSelect";
 
 class SelectTableFilter extends Component {
-   constructor(props, context) {
-      super(props, context);
-   }
-
    filter = (value) => {
       const { onChange } = this.props;
       if(onChange && value){
@@ -20,16 +16,14 @@ class SelectTableFilter extends Component {
          id,
          className,
          optionList,
-         placeholder,
          idType,
          valueType
       } = this.props;
 
-
       return (
          <div>
             <SimpleSelect className={ className || "input-filter form-control" }
-                          placeholder={ placeholder }
+                          placeholder={ "Выберите статус из списка..." }
                           notClearableOptions={ false }
                           options={ optionList }
                           idType={ idType || "id" }
@@ -51,7 +45,6 @@ SelectTableFilter.propTypes = {
    id: PropTypes.string,
    className: PropTypes.string,
    onChange: PropTypes.func,
-   placeholder: PropTypes.string
 };
 
 export default SelectTableFilter;
