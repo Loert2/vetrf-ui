@@ -15,3 +15,13 @@ npm run test
 ```bash
 npm run compile
 ```
+
+## Подключение проекта
+
+```bash
+Сделать изменения
+Прописать экспорты в index.js файлах
+npm run compile
+Psuh в свою ветку
+в проекте в Например(galen) - в файле package.json на против библиотеки 
+```

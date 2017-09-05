@@ -10,7 +10,7 @@ class SelectTableFilter extends Component {
 
    filter (value) {
       const { onChange } = this.props;
-      if(onChange && value){
+      if(onChange && value !== undefined && value !== null){
          onChange(value);
       }
       return null;
@@ -29,7 +29,7 @@ class SelectTableFilter extends Component {
          <div>
             <SimpleSelect className={ className || "input-filter form-control" }
                           placeholder={ "Выберите статус из списка..." }
-                          notClearableOptions={ false }
+                          notClearableOptions={ true }
                           options={ optionList }
                           idType={ idType || "id" }
                           valueType={ valueType || "name" }
