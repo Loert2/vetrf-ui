@@ -3,7 +3,12 @@ import React, { Component } from 'react';
 import SimpleSelect from "../../../form/elements/simple/select/SimpleSelect";
 
 class SelectTableFilter extends Component {
-   filter = (value) => {
+   constructor(props, context) {
+      super(props, context);
+      this.filter = this.filter.bind(this);
+   }
+
+   filter (value) {
       const { onChange } = this.props;
       if(onChange && value){
          onChange(value);

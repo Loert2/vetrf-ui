@@ -10,9 +10,10 @@ class PromptConfirmActionButton extends Component {
       this.state = {
          showModal: false
       };
+      this.toggleModal = this.toggleModal.bind(this);
    }
 
-   toggleModal = () => {
+   toggleModal () {
       this.setState({ showModal: !this.state.showModal });
    };
 
