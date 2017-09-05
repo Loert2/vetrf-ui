@@ -4,18 +4,17 @@ import PropTypes from 'prop-types';
 import ConfirmModal from '../../modal/containers/ConfirmModal';
 import Button from '../button/Button';
 
-class ConfirmAddActionButton extends Component {
+class PromptConfirmActionButton extends Component {
    constructor(props, context) {
       super(props, context);
       this.state = {
          showModal: false
       };
-      this.toggleModal = this.toggleModal.bind(this);
    }
 
-   toggleModal(){
+   toggleModal = () => {
       this.setState({ showModal: !this.state.showModal });
-   }
+   };
 
    render () {
       const {
@@ -29,7 +28,7 @@ class ConfirmAddActionButton extends Component {
          confirmHeaderText,
          confirmBodyText,
          onConfirm,
-         confirmBtnDisabled,
+         disabledConfirmBtnWithOutComment,
          confirmBtnClass,
          confirmBtnIcon,
          cancelBtnIcon,
@@ -55,7 +54,7 @@ class ConfirmAddActionButton extends Component {
                              confirmBtn={{
                                 action: onConfirm,
                                 className: confirmBtnClass || "btn btn-danger",
-                                disabled: confirmBtnDisabled,
+                                disabled: disabledConfirmBtnWithOutComment,
                                 text: confirmBtnText || "Удалить",
                                 icon: confirmBtnIcon
                              }}
@@ -69,7 +68,7 @@ class ConfirmAddActionButton extends Component {
    }
 }
 
-ConfirmAddActionButton.propTypes = {
+PromptConfirmActionButton.propTypes = {
    id: PropTypes.string,
    className: PropTypes.string,
    buttonText: PropTypes.string,
@@ -94,4 +93,4 @@ ConfirmAddActionButton.propTypes = {
    onConfirm: PropTypes.func
 };
 
-export default ConfirmAddActionButton;
+export default PromptConfirmActionButton;

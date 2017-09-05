@@ -2,14 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const TableInfo = ({ page, sizePerPage, itemCount }) => {
+
    const firstResultIndex = () => {
+      const currentPage = ((page - 1) * sizePerPage + 1);
       if (page === 1) {
          return page;
-      } else if (((page - 1) * sizePerPage + 1) < itemCount) {
-         return (page - 1) * sizePerPage + 1;
-      } else {
-         return itemCount;
+      } else if (currentPage < itemCount) {
+         return currentPage;
       }
+      return itemCount;
    };
    let to = Math.min((page * sizePerPage) - 1, itemCount);
    if (to >= itemCount) to--;
