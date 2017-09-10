@@ -10,17 +10,33 @@ class ConfirmModal extends Component {
    constructor(props, context) {
       super(props, context);
       this.hide = this.hide.bind(this);
-      this.state = { show: true };
+      this.changeDisabledConfirm = this.changeDisabledConfirm.bind(this);
+      this.state = {
+         show: true,
+         disabled: this.props.disabledConfirmBtn || false
+      };
    }
 
    hide() {
       this.setState({ show: false });
    }
 
+   shouldComponentUpdate(nextProps, nextState) {
+      this.changeDisabledConfirm();
+   }
+
+   changeDisabledConfirm() {
+      const { onEnableConfirmBtn, disabledConfirmBtn } = this.props;
+      if (disabledConfirmBtn === true && onEnableConfirmBtn) {
+         this.setState({ disabled: onEnableConfirmBtn() });
+         return true;
+      }
+   }
+
    render () {
       const {
          header,
-         bodyObject,
+         body,
          onClose,
          confirmBtn,
          cancelBtn,
@@ -33,9 +49,10 @@ class ConfirmModal extends Component {
                          onClose={ () => { this.hide(); onClose && onClose(); } } />
             <BodyModal>
                <p style={{ whiteSpace: "normal" }} >{ bodyText }</p>
-               { bodyObject }
+               { body }
             </BodyModal>
             <ConfirmFooterModal confirmBtn={ confirmBtn }
+                                disabledConfirmBtn={ this.state.disabled }
                                 cancelBtn={{
                                    action: () => { this.hide(); onClose && onClose(); },
                                    text: cancelBtn && cancelBtn.cancelText,
@@ -49,7 +66,7 @@ class ConfirmModal extends Component {
 ConfirmFooterModal.propTypes = {
    header: PropTypes.string,
    bodyText: PropTypes.string,
-   bodyObject: PropTypes.element,
+   body: PropTypes.node,
    onClose: PropTypes.func,
    confirmBtn: PropTypes.shape({
       disabled: PropTypes.oneOfType([

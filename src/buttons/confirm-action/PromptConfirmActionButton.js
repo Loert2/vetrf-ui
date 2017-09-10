@@ -1,21 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import ConfirmModal from '../../modal/containers/ConfirmModal';
-import Button from '../button/Button';
+import EmbeddedConfirmActionButton from './EmbeddedConfirmActionButton';
+import Textarea from "../../form/elements/simple/Textarea";
 
 class PromptConfirmActionButton extends Component {
    constructor(props, context) {
       super(props, context);
+      const { textAreaValue } = this.props;
       this.state = {
-         showModal: false
+         showModal: false,
+         textAreaValue: textAreaValue || ""
       };
       this.toggleModal = this.toggleModal.bind(this);
+      this.onChangeTextArea = this.onChangeTextArea.bind(this);
    }
 
    toggleModal () {
       this.setState({ showModal: !this.state.showModal });
    };
+
+   onChangeTextArea(text) {
+      if (text !== this.state.textAreaValue) {
+         const newState = update(this.state, {
+            textAreaValue: { $set: text }
+         });
+         this.setState(newState);
+      }
+   }
 
    render () {
       const {
@@ -25,45 +36,46 @@ class PromptConfirmActionButton extends Component {
          buttonText,
          tooltip,
          disabled,
-         bodyObject,
          confirmHeaderText,
          confirmBodyText,
          onConfirm,
-         disabledConfirmBtnWithOutComment,
+         confirmBtnText,
          confirmBtnClass,
          confirmBtnIcon,
          cancelBtnIcon,
-         confirmBtnText,
-         cancelBtnText
+         cancelBtnText,
+         textAreaValue,
+         textAreaPlaceholder,
+         textAreaClassName
       } = this.props;
 
       return (
          <div className="inline" >
-            <Button id={ id }
-                    className={ className }
-                    onClick={ this.toggleModal }
-                    icon={ icon }
-                    text={ buttonText }
-                    disabled={ disabled }
-                    tooltip={ tooltip } />
-            {
-               this.state.showModal &&
-               <ConfirmModal onClose={ this.toggleModal }
-                             header={ confirmHeaderText || "Подтверждение" }
-                             bodyText={ confirmBodyText || "Вы уверены?" }
-                             bodyObject={ bodyObject }
-                             confirmBtn={{
-                                action: onConfirm,
-                                className: confirmBtnClass || "btn btn-danger",
-                                disabled: disabledConfirmBtnWithOutComment,
-                                text: confirmBtnText || "Удалить",
-                                icon: confirmBtnIcon
-                             }}
-                             cancelBtn={{
-                                text: cancelBtnText || "Отмена",
-                                icon: cancelBtnIcon
-                             }} />
+            <EmbeddedConfirmActionButton id={ id }
+                                         className={ className }
+                                         icon={ icon }
+                                         buttonText={ buttonText }
+                                         disabled={ disabled }
+                                         tooltip={ tooltip }
+
+            body={
+               <Textarea value={ this.state.textAreaValue }
+                             onChange={ this.onChangeTextArea }
+                             id={ "idTextArea" }
+                             placeholder={ textAreaPlaceholder }
+                             className={ textAreaClassName || "form-control width-300" }/>
+
             }
+            confirmHeaderText={ confirmHeaderText }
+            confirmBodyText={ confirmBodyText }
+            onConfirm={ onConfirm }
+            onEnableConfirmBtn={  }
+            disabledConfirmBtn={ true }
+            confirmBtnClass={ confirmBtnClass }
+            confirmBtnIcon={ confirmBtnIcon }
+            cancelBtnIcon={ cancelBtnIcon }
+            confirmBtnText={ confirmBtnText }
+            cancelBtnText={ cancelBtnText }/>
          </div>
       )
    }
@@ -73,7 +85,7 @@ PromptConfirmActionButton.propTypes = {
    id: PropTypes.string,
    className: PropTypes.string,
    buttonText: PropTypes.string,
-   bodyObject: PropTypes.object,
+   body: PropTypes.node,
    disabled: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string

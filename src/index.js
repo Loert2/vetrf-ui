@@ -16,6 +16,7 @@ export { default as Button } from './buttons/button/Button';
 export { default as ButtonLink } from './buttons/button-link/ButtonLink';
 export { default as ConfirmActionButton } from './buttons/confirm-action/ConfirmActionButton';
 export { default as PromptConfirmActionButton } from './buttons/confirm-action/PromptConfirmActionButton';
+export { default as EmbeddedConfirmActionButton } from './buttons/confirm-action/EmbeddedConfirmActionButton';
 
 // Инлайн редактирование
 export { default as EditableActions } from './editable/elements/EditableActions';

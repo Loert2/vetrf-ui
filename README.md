@@ -25,6 +25,7 @@ npm run compile
 Push в свою ветку
 в проекте в Например(galen) - в файле package.json напротив 
 библиотеки git+http://git.vetrf.ru/platform/vetrf-ui.git - через # указать ветку
-Результат - "vetrf-ui": "git+http://git.vetrf.ru/platform/vetrf-ui.git#select-filter"
+Результат будет похожий - "vetrf-ui": "git+http://git.vetrf.ru/platform/vetrf-ui.git#select-filter"
 и сделать обновление зависимостей - npm up
+После запускать проект
 ```
