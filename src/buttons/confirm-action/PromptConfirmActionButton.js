@@ -20,9 +20,9 @@ class PromptConfirmActionButton extends Component {
    onEnableConfirmBtn() {
       const { textAreaValue } = this.props;
       if (textAreaValue && textAreaValue.length > 0) {
-         return true;
+         return false;
       }
-      return false;
+      return true;
    };
 
    render () {
