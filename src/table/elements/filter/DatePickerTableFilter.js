@@ -1,35 +1,50 @@
 import React, { Component } from 'react';
-
-import Const from '../../elements/constants';
+import PropTypes from 'prop-types';
 import DatePicker from '../../../form/elements/simple/date/DatePicker';
 
-//todo: недоделано
-export default class DatePickerTableFilter extends Component {
+class DatePickerTableFilter extends Component {
    constructor(props, context) {
       super(props, context);
       this.filter = this.filter.bind(this);
-      this.timeout = null;
    }
 
-   filter(event) {
-      let filter;
-      if (this.props.name){
-         event.persist();
-         filter = { [event.target.name]: event.target.value };
-      } else {
-         filter = event;
+   filter (value) {
+      const { onChange } = this.props;
+      if(onChange && value !== undefined && value !== null){
+         onChange(value);
       }
-      if (this.timeout) {
-         clearTimeout(this.timeout);
-      }
-      this.timeout = setTimeout(() => {
-         this.props.onChange(filter);
-      }, this.props.delay || Const.FILTER_DELAY);
-   }
+      return null;
+   };
 
    render () {
+      const {
+         value,
+         className,
+         inputProps,
+         id,
+         validate
+      } = this.props;
       return (
-         <DatePicker />
+         <DatePicker id={ id }
+                     value={ value }
+                     onChange={ this.filter }
+                     className={ className }
+                     inputProps={ inputProps }
+                     validate={ validate }/>
       );
    }
 }
+
+DatePickerTableFilter.propTypes = {
+   className: PropTypes.string,
+   id: PropTypes.string,
+   onChange: PropTypes.func,
+   value: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string
+   ]),
+   validate: PropTypes.func,
+   inputProps: PropTypes.object
+};
+
+export default DatePickerTableFilter;
