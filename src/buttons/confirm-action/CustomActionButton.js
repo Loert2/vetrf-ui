@@ -27,14 +27,14 @@ class CustomActionButton extends Component {
          disabled,
          body,
          onConfirm,
-         onEnableConfirmBtn,
+         confirmBtnText,
          confirmHeaderText,
          confirmBodyText,
          confirmBtnClass,
          confirmBtnIcon,
+         onEnableConfirmBtn,
          disabledConfirmBtn,
          cancelBtnIcon,
-         confirmBtnText,
          cancelBtnText
       } = this.props;
 

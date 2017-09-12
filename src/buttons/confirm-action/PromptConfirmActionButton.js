@@ -55,6 +55,7 @@ class PromptConfirmActionButton extends Component {
                                 buttonText={ buttonText }
                                 disabled={ disabled }
                                 tooltip={ tooltip }
+                                onConfirm={ onConfirm }
                                 body={
                                    <Textarea value={ textAreaValue }
                                              onChange={ onChangeTextArea }
@@ -62,15 +63,14 @@ class PromptConfirmActionButton extends Component {
                                              placeholder={ textAreaPlaceholder }
                                              className={ textAreaClassName || "form-control width-300" }/>
                                 }
+                                confirmBtnText={ confirmBtnText }
                                 confirmHeaderText={ confirmHeaderText }
                                 confirmBodyText={ confirmBodyText }
-                                onConfirm={ onConfirm }
-                                onEnableConfirmBtn={ this.onEnableConfirmBtn }
-                                disabledConfirmBtn={ true }
                                 confirmBtnClass={ confirmBtnClass }
                                 confirmBtnIcon={ confirmBtnIcon }
+                                onEnableConfirmBtn={ this.onEnableConfirmBtn }
+                                disabledConfirmBtn={ true }
                                 cancelBtnIcon={ cancelBtnIcon }
-                                confirmBtnText={ confirmBtnText }
                                 cancelBtnText={ cancelBtnText }/>
          </div>
       )
@@ -78,24 +78,23 @@ class PromptConfirmActionButton extends Component {
 }
 
 PromptConfirmActionButton.propTypes = {
+   onConfirm: PropTypes.func,
    id: PropTypes.string,
    className: PropTypes.string,
+   icon: PropTypes.string,
    buttonText: PropTypes.string,
-   body: PropTypes.node,
+   tooltip: PropTypes.string,
    disabled: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string
    ]),
-   tooltip: PropTypes.string,
+   confirmBtnText: PropTypes.string,
    confirmHeaderText: PropTypes.string,
    confirmBodyText: PropTypes.string,
    confirmBtnClass: PropTypes.string,
    confirmBtnIcon: PropTypes.string,
    cancelBtnIcon: PropTypes.string,
-   confirmBtnText: PropTypes.string,
    cancelBtnText: PropTypes.string,
-   icon: PropTypes.string,
-   onConfirm: PropTypes.func,
    onChangeTextArea: PropTypes.func,
    textAreaValue: PropTypes.string,
    textAreaPlaceholder: PropTypes.string,
