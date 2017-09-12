@@ -6,15 +6,28 @@ import Textarea from "../../form/elements/simple/Textarea";
 class PromptConfirmActionButton extends Component {
    constructor(props, context) {
       super(props, context);
+      const { valueTextArea } = this.props;
       this.state = {
-         showModal: false
+         showModal: false,
+         valueTextArea: valueTextArea
       };
       this.toggleModal = this.toggleModal.bind(this);
+      this.onChangeTextArea = this.onChangeTextArea.bind(this);
       this.onEnableConfirmBtn = this.onEnableConfirmBtn.bind(this);
    }
 
    toggleModal () {
       this.setState({ showModal: !this.state.showModal });
+   };
+
+   onChangeTextArea (text) {
+      if (text !== this.state.valueTextArea) {
+         this.setState(
+            {
+            showModal: this.state.showModal,
+            valueTextArea: text
+            });
+      }
    };
 
    onEnableConfirmBtn() {
@@ -41,11 +54,11 @@ class PromptConfirmActionButton extends Component {
          confirmBtnIcon,
          cancelBtnIcon,
          cancelBtnText,
-         onChangeTextArea,
-         textAreaValue,
          textAreaPlaceholder,
          textAreaClassName
       } = this.props;
+
+      const { valueTextArea } = this.state;
 
       return (
          <div className="inline" >
@@ -57,8 +70,8 @@ class PromptConfirmActionButton extends Component {
                                 tooltip={ tooltip }
                                 onConfirm={ onConfirm }
                                 body={
-                                   <Textarea value={ textAreaValue }
-                                             onChange={ onChangeTextArea }
+                                   <Textarea value={ valueTextArea }
+                                             onChange={ this.onChangeTextArea }
                                              id={ "idTextArea" }
                                              placeholder={ textAreaPlaceholder }
                                              className={ textAreaClassName || "form-control width-300" }/>
@@ -68,6 +81,7 @@ class PromptConfirmActionButton extends Component {
                                 confirmBodyText={ confirmBodyText }
                                 confirmBtnClass={ confirmBtnClass }
                                 confirmBtnIcon={ confirmBtnIcon }
+
                                 onEnableConfirmBtn={ this.onEnableConfirmBtn }
                                 disabledConfirmBtn={ true }
                                 cancelBtnIcon={ cancelBtnIcon }
