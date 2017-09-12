@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ConfirmModal from '../../modal/containers/ConfirmModal';
 import Button from '../button/Button';
 
-class EmbeddedConfirmActionButton extends Component {
+class CustomActionButton extends Component {
    constructor(props, context) {
       super(props, context);
       this.state = {
@@ -26,13 +26,13 @@ class EmbeddedConfirmActionButton extends Component {
          tooltip,
          disabled,
          body,
-         confirmHeaderText,
-         confirmBodyText,
          onConfirm,
          onEnableConfirmBtn,
-         disabledConfirmBtn,
+         confirmHeaderText,
+         confirmBodyText,
          confirmBtnClass,
          confirmBtnIcon,
+         disabledConfirmBtn,
          cancelBtnIcon,
          confirmBtnText,
          cancelBtnText
@@ -71,10 +71,11 @@ class EmbeddedConfirmActionButton extends Component {
    }
 }
 
-EmbeddedConfirmActionButton.propTypes = {
+CustomActionButton.propTypes = {
    id: PropTypes.string,
    className: PropTypes.string,
    buttonText: PropTypes.string,
+   icon: PropTypes.string,
    body: PropTypes.node,
    disabled: PropTypes.oneOfType([
       PropTypes.bool,
@@ -85,15 +86,15 @@ EmbeddedConfirmActionButton.propTypes = {
    confirmBodyText: PropTypes.string,
    confirmBtnClass: PropTypes.string,
    confirmBtnIcon: PropTypes.string,
-   confirmBtnDisabled: PropTypes.oneOfType([
+   disabledConfirmBtn: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string
    ]),
    cancelBtnIcon: PropTypes.string,
    confirmBtnText: PropTypes.string,
    cancelBtnText: PropTypes.string,
-   icon: PropTypes.string,
-   onConfirm: PropTypes.func
+   onConfirm: PropTypes.func,
+   onEnableConfirmBtn: PropTypes.func,
 };
 
-export default EmbeddedConfirmActionButton;
+export default CustomActionButton;
