@@ -29,8 +29,8 @@ class PromptActionButton extends Component {
    };
 
    onEnableConfirmBtn() {
-      const { textAreaValue } = this.state;
-      if (textAreaValue && textAreaValue.length > 0) {
+      const { valueTextArea } = this.state;
+      if (valueTextArea && valueTextArea.length > 0) {
          return false;
       }
       return true;
@@ -52,8 +52,8 @@ class PromptActionButton extends Component {
          confirmBtnIcon,
          cancelBtnIcon,
          cancelBtnText,
-         textAreaPlaceholder,
-         textAreaClassName
+         placeholderTextArea,
+         classNameTextArea
       } = this.props;
 
       const { valueTextArea } = this.state;
@@ -71,8 +71,8 @@ class PromptActionButton extends Component {
                                    <Textarea value={ valueTextArea }
                                              onChange={ this.onChangeTextArea }
                                              id={ "idTextArea" }
-                                             placeholder={ textAreaPlaceholder }
-                                             className={ textAreaClassName || "form-control width-300" }/>
+                                             placeholder={ placeholderTextArea }
+                                             className={ classNameTextArea || "form-control width-300" }/>
                                 }
                                 confirmBtnText={ confirmBtnText }
                                 confirmHeaderText={ confirmHeaderText }
@@ -107,8 +107,8 @@ PromptActionButton.propTypes = {
    confirmBtnIcon: PropTypes.string,
    cancelBtnIcon: PropTypes.string,
    cancelBtnText: PropTypes.string,
-   textAreaPlaceholder: PropTypes.string,
-   textAreaClassName: PropTypes.string
+   placeholderTextArea: PropTypes.string,
+   classNameTextArea: PropTypes.string
 };
 
 export default PromptActionButton;
