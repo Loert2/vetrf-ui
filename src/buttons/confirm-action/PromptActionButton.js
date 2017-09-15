@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import CustomActionButton from './CustomActionButton';
 import Textarea from "../../form/elements/simple/Textarea";
 
-class PromptConfirmActionButton extends Component {
+class PromptActionButton extends Component {
    constructor(props, context) {
       super(props, context);
-      const { valueTextArea } = this.props;
       this.state = {
          showModal: false,
-         valueTextArea: valueTextArea
+         valueTextArea: ""
       };
       this.toggleModal = this.toggleModal.bind(this);
       this.onChangeTextArea = this.onChangeTextArea.bind(this);
@@ -22,8 +21,7 @@ class PromptConfirmActionButton extends Component {
 
    onChangeTextArea (text) {
       if (text !== this.state.valueTextArea) {
-         this.setState(
-            {
+         this.setState({
             showModal: this.state.showModal,
             valueTextArea: text
             });
@@ -31,7 +29,7 @@ class PromptConfirmActionButton extends Component {
    };
 
    onEnableConfirmBtn() {
-      const { textAreaValue } = this.props;
+      const { textAreaValue } = this.state;
       if (textAreaValue && textAreaValue.length > 0) {
          return false;
       }
@@ -66,9 +64,9 @@ class PromptConfirmActionButton extends Component {
                                 className={ className }
                                 icon={ icon }
                                 buttonText={ buttonText }
-                                disabled={ disabled }
                                 tooltip={ tooltip }
-                                onConfirm={ onConfirm }
+                                disabled={ disabled }
+                                onConfirm={ () => onConfirm && onConfirm(this.state.valueTextArea) }
                                 body={
                                    <Textarea value={ valueTextArea }
                                              onChange={ this.onChangeTextArea }
@@ -91,7 +89,7 @@ class PromptConfirmActionButton extends Component {
    }
 }
 
-PromptConfirmActionButton.propTypes = {
+PromptActionButton.propTypes = {
    onConfirm: PropTypes.func,
    id: PropTypes.string,
    className: PropTypes.string,
@@ -109,10 +107,8 @@ PromptConfirmActionButton.propTypes = {
    confirmBtnIcon: PropTypes.string,
    cancelBtnIcon: PropTypes.string,
    cancelBtnText: PropTypes.string,
-   onChangeTextArea: PropTypes.func,
-   textAreaValue: PropTypes.string,
    textAreaPlaceholder: PropTypes.string,
    textAreaClassName: PropTypes.string
 };
 
-export default PromptConfirmActionButton;
+export default PromptActionButton;
