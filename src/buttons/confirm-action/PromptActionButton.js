@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import CustomActionButton from './CustomActionButton';
 import Textarea from "../../form/elements/simple/Textarea";
 
-class PromptConfirmActionButton extends Component {
+class PromptActionButton extends Component {
    constructor(props, context) {
       super(props, context);
       this.state = {
-         showModal: false
+         showModal: false,
+         valueTextArea: ""
       };
       this.toggleModal = this.toggleModal.bind(this);
+      this.onChangeTextArea = this.onChangeTextArea.bind(this);
       this.onEnableConfirmBtn = this.onEnableConfirmBtn.bind(this);
    }
 
@@ -17,9 +19,18 @@ class PromptConfirmActionButton extends Component {
       this.setState({ showModal: !this.state.showModal });
    };
 
+   onChangeTextArea (text) {
+      if (text !== this.state.valueTextArea) {
+         this.setState({
+            showModal: this.state.showModal,
+            valueTextArea: text
+            });
+      }
+   };
+
    onEnableConfirmBtn() {
-      const { textAreaValue } = this.props;
-      if (textAreaValue && textAreaValue.length > 0) {
+      const { valueTextArea } = this.state;
+      if (valueTextArea && valueTextArea.length > 0) {
          return false;
       }
       return true;
@@ -41,11 +52,11 @@ class PromptConfirmActionButton extends Component {
          confirmBtnIcon,
          cancelBtnIcon,
          cancelBtnText,
-         onChangeTextArea,
-         textAreaValue,
-         textAreaPlaceholder,
-         textAreaClassName
+         placeholderTextArea,
+         classNameTextArea
       } = this.props;
+
+      const { valueTextArea } = this.state;
 
       return (
          <div className="inline" >
@@ -53,53 +64,51 @@ class PromptConfirmActionButton extends Component {
                                 className={ className }
                                 icon={ icon }
                                 buttonText={ buttonText }
-                                disabled={ disabled }
                                 tooltip={ tooltip }
+                                disabled={ disabled }
+                                onConfirm={ () => onConfirm && onConfirm(this.state.valueTextArea) }
                                 body={
-                                   <Textarea value={ textAreaValue }
-                                             onChange={ onChangeTextArea }
+                                   <Textarea value={ valueTextArea }
+                                             onChange={ this.onChangeTextArea }
                                              id={ "idTextArea" }
-                                             placeholder={ textAreaPlaceholder }
-                                             className={ textAreaClassName || "form-control width-300" }/>
+                                             placeholder={ placeholderTextArea }
+                                             className={ classNameTextArea || "form-control width-300" }/>
                                 }
+                                confirmBtnText={ confirmBtnText }
                                 confirmHeaderText={ confirmHeaderText }
                                 confirmBodyText={ confirmBodyText }
-                                onConfirm={ onConfirm }
-                                onEnableConfirmBtn={ this.onEnableConfirmBtn }
-                                disabledConfirmBtn={ true }
                                 confirmBtnClass={ confirmBtnClass }
                                 confirmBtnIcon={ confirmBtnIcon }
+
+                                onEnableConfirmBtn={ this.onEnableConfirmBtn }
+                                disabledConfirmBtn={ true }
                                 cancelBtnIcon={ cancelBtnIcon }
-                                confirmBtnText={ confirmBtnText }
                                 cancelBtnText={ cancelBtnText }/>
          </div>
       )
    }
 }
 
-PromptConfirmActionButton.propTypes = {
+PromptActionButton.propTypes = {
+   onConfirm: PropTypes.func,
    id: PropTypes.string,
    className: PropTypes.string,
+   icon: PropTypes.string,
    buttonText: PropTypes.string,
-   body: PropTypes.node,
+   tooltip: PropTypes.string,
    disabled: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string
    ]),
-   tooltip: PropTypes.string,
+   confirmBtnText: PropTypes.string,
    confirmHeaderText: PropTypes.string,
    confirmBodyText: PropTypes.string,
    confirmBtnClass: PropTypes.string,
    confirmBtnIcon: PropTypes.string,
    cancelBtnIcon: PropTypes.string,
-   confirmBtnText: PropTypes.string,
    cancelBtnText: PropTypes.string,
-   icon: PropTypes.string,
-   onConfirm: PropTypes.func,
-   onChangeTextArea: PropTypes.func,
-   textAreaValue: PropTypes.string,
-   textAreaPlaceholder: PropTypes.string,
-   textAreaClassName: PropTypes.string
+   placeholderTextArea: PropTypes.string,
+   classNameTextArea: PropTypes.string
 };
 
-export default PromptConfirmActionButton;
+export default PromptActionButton;

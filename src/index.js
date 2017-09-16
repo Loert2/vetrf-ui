@@ -15,7 +15,7 @@ export { default as  Breadcrumbs } from './page/elements/breadcrumbs/Breadcrumbs
 export { default as Button } from './buttons/button/Button';
 export { default as ButtonLink } from './buttons/button-link/ButtonLink';
 export { default as ConfirmActionButton } from './buttons/confirm-action/ConfirmActionButton';
-export { default as PromptConfirmActionButton } from './buttons/confirm-action/PromptConfirmActionButton';
+export { default as PromptActionButton } from './buttons/confirm-action/PromptActionButton';
 export { default as CustomActionButton } from './buttons/confirm-action/CustomActionButton';
 
 // Инлайн редактирование

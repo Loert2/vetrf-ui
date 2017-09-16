@@ -21,13 +21,13 @@ class ConfirmModal extends Component {
       this.setState({ show: false });
    }
 
-   shouldComponentUpdate(nextProps, nextState) {
+   componentWillReceiveProps(nextProps){
       this.changeDisabledConfirm();
    }
 
    changeDisabledConfirm() {
-      const { onEnableConfirmBtn, disabledConfirmBtn } = this.props;
-      if (disabledConfirmBtn === true && onEnableConfirmBtn) {
+      const { onEnableConfirmBtn } = this.props;
+      if (onEnableConfirmBtn) {
          this.setState({ disabled: onEnableConfirmBtn() });
          return true;
       }
