@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from '../../../form/elements/simple/date/DatePicker';
+import Const from '../../elements/constants';
 
 class DatePickerTableFilter extends Component {
    constructor(props, context) {
       super(props, context);
       this.filter = this.filter.bind(this);
+      this.timeout = null;
+   }
+
+   componentWillUnmount() {
+      this.timeout && clearTimeout(this.timeout);
    }
 
    filter (value) {
-      const { onChange } = this.props;
+      const { onChange, delay } = this.props;
       if(onChange && value !== undefined && value !== null){
-         onChange(value);
+         this.timeout && clearTimeout(this.timeout);
+         this.timeout = setTimeout(() => {
+            onChange(value)
+            }, delay || Const.FILTER_DELAY);
       }
       return null;
    };
@@ -44,7 +53,8 @@ DatePickerTableFilter.propTypes = {
       PropTypes.string
    ]),
    validate: PropTypes.func,
-   inputProps: PropTypes.object
+   inputProps: PropTypes.object,
+   delay: PropTypes.number
 };
 
 export default DatePickerTableFilter;
