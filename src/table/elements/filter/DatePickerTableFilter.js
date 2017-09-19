@@ -12,11 +12,21 @@ class DatePickerTableFilter extends Component {
       };
       const { onChange, delay } = props;
       this.filter = this.filter.bind(this);
+      this.validDate = this.validDate.bind(this);
       this.request = debounce(onChange, delay || 800);
    }
 
+   validDate (value) {
+      const arrayOfDate = value.split(".");
+      const date = new Date(arrayOfDate[2], arrayOfDate[1] - 1, arrayOfDate[0]);
+      if ((date.getFullYear() == arrayOfDate[2]) && (date.getMonth() == arrayOfDate[1]) && (date.getDate() == arrayOfDate[0])) {
+         return true;
+      }
+      return null;
+   }
+
    filter (value) {
-      if (value !== this.state.value) {
+      if (value !== this.state.value && Date.parse(value)) {
          this.setState({ value: value });
          const { onChange } = this.props;
          if(onChange && value !== undefined && value !== null) {
