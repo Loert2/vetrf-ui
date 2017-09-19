@@ -22,7 +22,7 @@ class DatePickerTableFilter extends Component {
    };
 
    filter (value) {
-      if (value !== this.state.value && this.validDate(value)) {
+      if (value !== this.state.value && (value === "" || this.validDate(value))) {
          this.setState({ value: value });
          const { onChange } = this.props;
          if(onChange && value !== undefined && value !== null) {
