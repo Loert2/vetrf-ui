@@ -28,12 +28,13 @@ class DatePickerTableFilter extends Component {
 
    render () {
       const {
-         value,
          className,
          inputProps,
          id,
          validate
       } = this.props;
+
+      const { value } = this.state;
       return (
          <DatePicker id={ id }
                      value={ value }
