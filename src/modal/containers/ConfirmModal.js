@@ -10,10 +10,9 @@ class ConfirmModal extends Component {
    constructor(props, context) {
       super(props, context);
       this.hide = this.hide.bind(this);
-      this.changeDisabledConfirm = this.changeDisabledConfirm.bind(this);
+      this.returnConfirmBtn = this.returnConfirmBtn.bind(this);
       this.state = {
-         show: true,
-         disabled: this.props.disabledConfirmBtn || false
+         show: true
       };
    }
 
@@ -21,24 +20,18 @@ class ConfirmModal extends Component {
       this.setState({ show: false });
    }
 
-   componentWillReceiveProps(nextProps){
-      this.changeDisabledConfirm();
-   }
+   returnConfirmBtn () {
+      const { confirmBtn, disabledConfirmBtn } = this.props;
 
-   changeDisabledConfirm() {
-      const { onEnableConfirmBtn } = this.props;
-      if (onEnableConfirmBtn) {
-         this.setState({ disabled: onEnableConfirmBtn() });
-         return true;
-      }
-   }
+      confirmBtn.disabled = disabledConfirmBtn;
+      return confirmBtn;
+   };
 
    render () {
       const {
          header,
          body,
          onClose,
-         confirmBtn,
          cancelBtn,
          bodyText
       } = this.props;
@@ -51,8 +44,7 @@ class ConfirmModal extends Component {
                <p style={{ whiteSpace: "normal" }} >{ bodyText }</p>
                { body }
             </BodyModal>
-            <ConfirmFooterModal confirmBtn={ confirmBtn }
-                                disabledConfirmBtn={ this.state.disabled }
+            <ConfirmFooterModal confirmBtn={ this.returnConfirmBtn() }
                                 cancelBtn={{
                                    action: () => { this.hide(); onClose && onClose(); },
                                    text: cancelBtn && cancelBtn.cancelText,

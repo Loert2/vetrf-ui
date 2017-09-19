@@ -7,33 +7,15 @@ class PromptActionButton extends Component {
    constructor(props, context) {
       super(props, context);
       this.state = {
-         showModal: false,
          valueTextArea: ""
       };
-      this.toggleModal = this.toggleModal.bind(this);
       this.onChangeTextArea = this.onChangeTextArea.bind(this);
-      this.onEnableConfirmBtn = this.onEnableConfirmBtn.bind(this);
    }
-
-   toggleModal () {
-      this.setState({ showModal: !this.state.showModal });
-   };
 
    onChangeTextArea (text) {
       if (text !== this.state.valueTextArea) {
-         this.setState({
-            showModal: this.state.showModal,
-            valueTextArea: text
-            });
+         this.setState({ valueTextArea: text });
       }
-   };
-
-   onEnableConfirmBtn() {
-      const { valueTextArea } = this.state;
-      if (valueTextArea && valueTextArea.length > 0) {
-         return false;
-      }
-      return true;
    };
 
    render () {
@@ -59,32 +41,28 @@ class PromptActionButton extends Component {
       const { valueTextArea } = this.state;
 
       return (
-         <div className="inline" >
-            <CustomActionButton id={ id }
-                                className={ className }
-                                icon={ icon }
-                                buttonText={ buttonText }
-                                tooltip={ tooltip }
-                                disabled={ disabled }
-                                onConfirm={ () => onConfirm && onConfirm(this.state.valueTextArea) }
-                                body={
-                                   <Textarea value={ valueTextArea }
-                                             onChange={ this.onChangeTextArea }
-                                             id={ "idTextArea" }
-                                             placeholder={ placeholderTextArea }
-                                             className={ classNameTextArea || "form-control width-300" }/>
-                                }
-                                confirmBtnText={ confirmBtnText }
-                                confirmHeaderText={ confirmHeaderText }
-                                confirmBodyText={ confirmBodyText }
-                                confirmBtnClass={ confirmBtnClass }
-                                confirmBtnIcon={ confirmBtnIcon }
-
-                                onEnableConfirmBtn={ this.onEnableConfirmBtn }
-                                disabledConfirmBtn={ true }
-                                cancelBtnIcon={ cancelBtnIcon }
-                                cancelBtnText={ cancelBtnText }/>
-         </div>
+         <CustomActionButton id={ id }
+                             className={ className }
+                             icon={ icon }
+                             buttonText={ buttonText }
+                             tooltip={ tooltip }
+                             disabled={ disabled }
+                             onConfirm={ () => onConfirm && onConfirm(valueTextArea) }
+                             body={
+                                <Textarea value={ valueTextArea }
+                                          onChange={ this.onChangeTextArea }
+                                          id="promptTextArea"
+                                          placeholder={ placeholderTextArea }
+                                          className={ classNameTextArea || "form-control width-300" }/>
+                             }
+                             confirmBtnText={ confirmBtnText }
+                             confirmHeaderText={ confirmHeaderText }
+                             confirmBodyText={ confirmBodyText }
+                             confirmBtnClass={ confirmBtnClass }
+                             confirmBtnIcon={ confirmBtnIcon }
+                             disabledConfirmBtn={ valueTextArea.length > 0 }
+                             cancelBtnIcon={ cancelBtnIcon }
+                             cancelBtnText={ cancelBtnText }/>
       )
    }
 }

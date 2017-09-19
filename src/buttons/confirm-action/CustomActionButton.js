@@ -32,7 +32,6 @@ class CustomActionButton extends Component {
          confirmBodyText,
          confirmBtnClass,
          confirmBtnIcon,
-         onEnableConfirmBtn,
          disabledConfirmBtn,
          cancelBtnIcon,
          cancelBtnText
@@ -53,7 +52,6 @@ class CustomActionButton extends Component {
                              header={ confirmHeaderText || "Подтверждение" }
                              bodyText={ confirmBodyText || "Вы уверены?" }
                              body={ body }
-                             onEnableConfirmBtn={ onEnableConfirmBtn }
                              disabledConfirmBtn={ disabledConfirmBtn }
                              confirmBtn={{
                                 action: onConfirm,
@@ -93,8 +91,7 @@ CustomActionButton.propTypes = {
    cancelBtnIcon: PropTypes.string,
    confirmBtnText: PropTypes.string,
    cancelBtnText: PropTypes.string,
-   onConfirm: PropTypes.func,
-   onEnableConfirmBtn: PropTypes.func,
+   onConfirm: PropTypes.func
 };
 
 export default CustomActionButton;

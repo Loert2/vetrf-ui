@@ -7,11 +7,10 @@ import Moment from 'moment';
 class DatePickerTableFilter extends Component {
    constructor(props, context) {
       super(props, context);
-      const { value } = props;
+      const { value, onChange, delay } = props;
       this.state = {
          value: value || ""
       };
-      const { onChange, delay } = props;
       this.filter = this.filter.bind(this);
       this.validDate = this.validDate.bind(this);
       this.request = debounce(onChange, delay || 800);
@@ -30,7 +29,6 @@ class DatePickerTableFilter extends Component {
             this.request(value);
          }
       }
-      return null;
    };
 
    render () {

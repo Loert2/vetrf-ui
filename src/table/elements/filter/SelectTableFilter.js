@@ -13,7 +13,6 @@ class SelectTableFilter extends Component {
       if(onChange && value !== undefined && value !== null){
          onChange(value);
       }
-      return null;
    };
 
    render () {
@@ -26,17 +25,14 @@ class SelectTableFilter extends Component {
       } = this.props;
 
       return (
-         <div>
-            <SimpleSelect className={ className || "input-filter form-control" }
-                          placeholder={ "Выберите статус из списка..." }
-                          notClearableOptions={ true }
-                          options={ optionList }
-                          idType={ idType || "id" }
-                          valueType={ valueType || "name" }
-                          onChange={ this.filter }
-                          value={ {} }
-                          id={ id } />
-         </div>
+         <SimpleSelect className={ className || "input-filter form-control" }
+                       placeholder="Выберите статус из списка..."
+                       notClearableOptions={ true }
+                       options={ optionList }
+                       idType={ idType }
+                       valueType={ valueType }
+                       onChange={ this.filter }
+                       id={ id } />
       );
    }
 }
