@@ -10,7 +10,6 @@ class ConfirmModal extends Component {
    constructor(props, context) {
       super(props, context);
       this.hide = this.hide.bind(this);
-      this.returnConfirmBtn = this.returnConfirmBtn.bind(this);
       this.state = {
          show: true
       };
@@ -20,17 +19,11 @@ class ConfirmModal extends Component {
       this.setState({ show: false });
    }
 
-   returnConfirmBtn () {
-      const { confirmBtn, disabledConfirmBtn } = this.props;
-
-      confirmBtn.disabled = disabledConfirmBtn;
-      return confirmBtn;
-   };
-
    render () {
       const {
          header,
          body,
+         confirmBtn,
          onClose,
          cancelBtn,
          bodyText
@@ -44,7 +37,7 @@ class ConfirmModal extends Component {
                <p style={{ whiteSpace: "normal" }} >{ bodyText }</p>
                { body }
             </BodyModal>
-            <ConfirmFooterModal confirmBtn={ this.returnConfirmBtn() }
+            <ConfirmFooterModal confirmBtn={ confirmBtn }
                                 cancelBtn={{
                                    action: () => { this.hide(); onClose && onClose(); },
                                    text: cancelBtn && cancelBtn.cancelText,

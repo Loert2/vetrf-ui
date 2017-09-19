@@ -52,9 +52,9 @@ class CustomActionButton extends Component {
                              header={ confirmHeaderText || "Подтверждение" }
                              bodyText={ confirmBodyText || "Вы уверены?" }
                              body={ body }
-                             disabledConfirmBtn={ disabledConfirmBtn }
                              confirmBtn={{
                                 action: onConfirm,
+                                disabled: disabledConfirmBtn,
                                 className: confirmBtnClass || "btn btn-danger",
                                 text: confirmBtnText || "Удалить",
                                 icon: confirmBtnIcon
