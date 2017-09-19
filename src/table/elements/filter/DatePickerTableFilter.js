@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from '../../../form/elements/simple/date/DatePicker';
-import Const from '../../elements/constants';
+import debounce from 'lodash/debounce';
 
 class DatePickerTableFilter extends Component {
    constructor(props, context) {
       super(props, context);
+      const { value } = props;
+      this.state = {
+         value: value || ""
+      };
+      const { onChange, delay } = props;
       this.filter = this.filter.bind(this);
-      this.timeout = null;
-   }
-
-   componentWillUnmount() {
-      this.timeout && clearTimeout(this.timeout);
+      this.request = debounce(onChange, delay || 800);
    }
 
    filter (value) {
-      const { onChange, delay } = this.props;
-      if(onChange && value !== undefined && value !== null){
-         this.timeout && clearTimeout(this.timeout);
-         this.timeout = setTimeout(() => {
-            onChange(value)
-            }, delay || Const.FILTER_DELAY);
+      if (value !== this.state.value) {
+         this.setState({ value: value });
+         const { onChange } = this.props;
+         if(onChange && value !== undefined && value !== null) {
+            this.request(value);
+         }
       }
       return null;
    };
