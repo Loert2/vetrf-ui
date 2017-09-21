@@ -9,7 +9,7 @@ const Table = (props) =>  (
    <div>
       {
          props.loading &&
-         <TableLoadingBlock style={ props.tableLoadingBlockStyle }/>
+         <TableLoadingBlock/>
       }
       <table id={ props.id }
              className={
@@ -85,11 +85,7 @@ Table.propTypes = {
          onSort: PropTypes.func,
          getClassName: PropTypes.func,
       })
-   ),
-   tableLoadingBlockStyle: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string
-   ])
+   )
 };
 
 export default Table;
