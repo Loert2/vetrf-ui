@@ -10,7 +10,7 @@ class SelectTableFilter extends Component {
 
    filter (value) {
       const { onChange } = this.props;
-      if(onChange && value){
+      if (onChange && (value || value === "")) {
          onChange(value);
       }
    };
