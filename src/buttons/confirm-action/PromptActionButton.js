@@ -60,7 +60,7 @@ class PromptActionButton extends Component {
                              confirmBodyText={ confirmBodyText }
                              confirmBtnClass={ confirmBtnClass }
                              confirmBtnIcon={ confirmBtnIcon }
-                             disabledConfirmBtn={ !(valueTextArea.length > 0) }
+                             disabledConfirmBtn={ valueTextArea.length === 0 }
                              cancelBtnIcon={ cancelBtnIcon }
                              cancelBtnText={ cancelBtnText }/>
       )

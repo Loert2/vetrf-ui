@@ -15,6 +15,7 @@ const PaginationRow = (props) => (
             (props.itemCount > props.sizePerPage) &&
             <PaginationList
                currPage={ props.page }
+               sizePerPage={ props.sizePerPage }
                changePage={ props.onChangePage }
                pageStartIndex={ props.pageStartIndex }
                paginationSize={ props.paginationSize || Const.PAGINATION_SIZE }

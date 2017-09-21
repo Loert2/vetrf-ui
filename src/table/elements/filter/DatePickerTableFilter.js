@@ -25,7 +25,7 @@ class DatePickerTableFilter extends Component {
       if (value !== this.state.value && (value === "" || this.validDate(value))) {
          this.setState({ value: value });
          const { onChange } = this.props;
-         if(onChange && value !== undefined && value !== null) {
+         if(onChange) {
             this.request(value);
          }
       }

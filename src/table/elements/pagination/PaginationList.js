@@ -139,13 +139,16 @@ PaginationList.defaultProps = {
 
 PaginationList.propTypes = {
    currPage: PropTypes.number,
-   paginationSize: PropTypes.number,
+   sizePerPage: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string
+   ]),
    pageStartIndex: PropTypes.number,
+   paginationSize: PropTypes.number,
    firstPage: PropTypes.string,
    lastPage: PropTypes.string,
    prePage: PropTypes.string,
    dataSize: PropTypes.number,
-   sizePerPage: PropTypes.number,
    nextPage: PropTypes.string,
    changePage: PropTypes.func
 };
