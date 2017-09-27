@@ -13,24 +13,16 @@ class DatePickerTableFilter extends Component {
       };
       this.filter = this.filter.bind(this);
       this.validDate = this.validDate.bind(this);
-      this.returnValidDate = this.returnValidDate.bind(this);
       this.request = debounce(onChange, delay || 800);
    }
 
    validDate (date) {
-      const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
-      return moment(date, formats, true).isValid();
+      return moment(date, "DD.MM.YYYY", true).isValid();
    };
 
-   returnValidDate (date) {
-      const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
-      return moment(date,formats).format("DD.MM.YYYY");
-   }
-
    filter (value) {
-      if (value !== this.state.value &&
-         (value === "" || this.validDate(value))) {
-         this.setState({ value: this.returnValidDate(value) });
+      if (value !== this.state.value && (value === "" || this.validDate(value))) {
+         this.setState({ value: value });
          const { onChange } = this.props;
          if(onChange) {
             const { value } = this.state;
