@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from '../../../form/elements/simple/date/DatePicker';
 import debounce from 'lodash/debounce';
-import Moment from 'moment';
+import moment from 'moment';
 
 class DatePickerTableFilter extends Component {
    constructor(props, context) {
@@ -17,14 +17,15 @@ class DatePickerTableFilter extends Component {
       this.request = debounce(onChange, delay || 800);
    }
 
-   validDate (value) {
+   validDate (date) {
       const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
-      return Moment(value, formats, true).isValid();
+      return moment(date, formats, true).isValid();
    };
 
-   returnValidDate (value) {
+   returnValidDate (date) {
       const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
-      return Moment(value, formats).format("DD.MM.YYYY");
+      const dateResult = moment(date, formats).format("DD.MM.YYYY");
+      return dateResult;
    }
 
    filter (value) {
