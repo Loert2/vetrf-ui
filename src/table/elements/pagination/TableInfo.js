@@ -12,11 +12,12 @@ const TableInfo = ({ page, sizePerPage, itemCount }) => {
       }
       return itemCount;
    };
+   const firstIndex = firstResultIndex();
    let to = Math.min((page * sizePerPage) - 1, itemCount);
    if (to >= itemCount) to--;
    return (
       <p className="padding-top-6">
-         Записи с <strong>{ firstResultIndex }</strong> по <strong>{ to + 1 }</strong>
+         Записи с <strong>{ firstIndex }</strong> по <strong>{ to + 1 }</strong>
          &nbsp;из <strong>{ itemCount }</strong>
          &nbsp;записей
       </p>

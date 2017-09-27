@@ -13,6 +13,7 @@ class DatePickerTableFilter extends Component {
       };
       this.filter = this.filter.bind(this);
       this.validDate = this.validDate.bind(this);
+      this.returnValidDate = this.returnValidDate.bind(this);
       this.request = debounce(onChange, delay || 800);
    }
 
@@ -21,9 +22,16 @@ class DatePickerTableFilter extends Component {
       return Moment(value, formats, true).isValid();
    };
 
+   returnValidDate (value) {
+      const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
+      return Moment(value, formats).format("DD.MM.YYYY")
+
+   }
+
    filter (value) {
-      if (value !== this.state.value && (value === "" || this.validDate(value))) {
-         this.setState({ value: value });
+      if (value !== this.state.value &&
+         (value === "" || this.validDate(value))) {
+         this.setState({ value: this.returnValidDate(value) });
          const { onChange } = this.props;
          if(onChange) {
             this.request(value);
@@ -35,8 +43,7 @@ class DatePickerTableFilter extends Component {
       const {
          className,
          inputProps,
-         id,
-         validate
+         id
       } = this.props;
 
       const { value } = this.state;
@@ -45,8 +52,7 @@ class DatePickerTableFilter extends Component {
                      value={ value }
                      onChange={ this.filter }
                      className={ className }
-                     inputProps={ inputProps }
-                     validate={ validate }/>
+                     inputProps={ inputProps }/>
       );
    }
 }
