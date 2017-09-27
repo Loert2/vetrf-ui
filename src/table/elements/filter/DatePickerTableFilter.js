@@ -23,9 +23,7 @@ class DatePickerTableFilter extends Component {
    };
 
    returnValidDate (date) {
-      const dateResult = moment(date).format("DD.MM.YYYY");
-      debugger;
-      return dateResult;
+      return moment(date).format("DD.MM.YYYY");
    }
 
    filter (value) {
@@ -34,6 +32,7 @@ class DatePickerTableFilter extends Component {
          this.setState({ value: this.returnValidDate(value) });
          const { onChange } = this.props;
          if(onChange) {
+            const { value } = this.state;
             this.request(value);
          }
       }
