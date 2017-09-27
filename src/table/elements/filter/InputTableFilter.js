@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import Const from '../../elements/constants';
 
-export default class InputTableFilter extends Component {
+class InputTableFilter extends Component {
    constructor(props, context) {
       super(props, context);
       this.filter = this.filter.bind(this);
@@ -53,3 +53,4 @@ InputTableFilter.propTypes = {
    onChange: PropTypes.func
 };
 
+export default InputTableFilter;

@@ -24,8 +24,7 @@ class DatePickerTableFilter extends Component {
 
    returnValidDate (value) {
       const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
-      return Moment(value, formats).format("DD.MM.YYYY")
-
+      return Moment(value, formats).format("DD.MM.YYYY");
    }
 
    filter (value) {
