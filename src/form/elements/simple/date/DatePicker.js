@@ -20,6 +20,7 @@ class DatePicker extends PureComponent {
    render() {
       const { onChange, className, inputProps, id, validate } = this.props;
       const { value } = this.state;
+
       return(
          <Datetime dateFormat="DD.MM.YYYY"
                    id={ id }
@@ -28,9 +29,7 @@ class DatePicker extends PureComponent {
                    onChange={
                       (m) => {
                          const val = m && m.format ? m.format("DD.MM.YYYY") : m;
-                         // НЕ ЗНАЮ ЗДЕСЬ СДЕЛАТЬ ПРОВЕРКУ
-                         // if (val === "" || Moment(val, "DD.MM.YYYY", true).isValid())
-                         // ИЛИ ОСТАВИТЬ В DatePickerTableFilter
+                         this.setState({ value: val });
                          onChange && onChange(val);
                          if (validate) {
                             this.validateFormat(val);
@@ -40,21 +39,22 @@ class DatePicker extends PureComponent {
                    className={ className }
                    timeFormat={ false }
                    closeOnSelect
-                   onBlur={
-                      () => {
-                         if (validate) {
-                            validate(value);
-                         } else if (value !== this.state.value) {
-                            Moment.locale("ru");
-                            const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
-                            if (Moment(value, formats, true).isValid()) {
-                               onChange && onChange(Moment(value, formats).format("DD.MM.YYYY"));
-                            } else {
-                               onChange && onChange(Moment().format("DD.MM.YYYY"));
-                            }
-                         }
-                      }
-                   }
+                  // onBlur={
+                  //    () => {
+                  //       if (validate) {
+                  //          validate(value);
+                  //       } else if (value !== this.state.value) {
+                  //          this.setState({ value: value });
+                  //          Moment.locale("ru");
+                  //          const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
+                  //          if (Moment(value, formats, true).isValid()) {
+                  //             onChange && onChange(Moment(value, formats).format("DD.MM.YYYY"));
+                  //          } else {
+                  //             onChange && onChange(Moment().format("DD.MM.YYYY"));
+                  //          }
+                  //       }
+                  //    }
+                  // }
                    disableOnClickOutside
                    inputProps={ inputProps || { placeholder: "дд.мм.гггг" } } />
       );
