@@ -7,10 +7,7 @@ import Moment from 'moment';
 class DatePickerTableFilter extends Component {
    constructor(props, context) {
       super(props, context);
-      const { value, onChange, delay } = props;
-      this.state = {
-         value: value || ""
-      };
+      const { onChange, delay } = props;
       this.filter = this.filter.bind(this);
       this.validDate = this.validDate.bind(this);
       this.request = debounce(onChange, delay || 800);
@@ -21,8 +18,7 @@ class DatePickerTableFilter extends Component {
    };
 
    filter (value) {
-      if (value !== this.state.value && (value === "" || this.validDate(value))) {
-         this.setState({ value: value });
+      if (value === "" || this.validDate(value)) {
          const { onChange } = this.props;
          if(onChange) {
             this.request(value);
@@ -34,10 +30,10 @@ class DatePickerTableFilter extends Component {
       const {
          className,
          inputProps,
-         id
+         id,
+         value
       } = this.props;
 
-      const { value } = this.state;
       return (
          <DatePicker id={ id }
                      value={ value }

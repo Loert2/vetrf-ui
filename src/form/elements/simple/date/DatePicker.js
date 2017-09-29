@@ -10,19 +10,27 @@ import debounce from 'lodash/debounce';
 class DatePicker extends PureComponent {
    constructor(props, context) {
       super(props, context);
+      const { value } = props;
+      this.state = {
+         value: value || ""
+      };
       this.validateFormat = props.validate ? debounce(props.validate, 300) : null;
    }
 
    render() {
-      const { value, onChange, className, inputProps, id, validate } = this.props;
+      const { onChange, className, inputProps, id, validate } = this.props;
+      const { value } = this.state;
       return(
          <Datetime dateFormat="DD.MM.YYYY"
                    id={ id }
                    locale="ru"
-                   value={ value || "" }
+                   value={ value }
                    onChange={
                       (m) => {
                          const val = m && m.format ? m.format("DD.MM.YYYY") : m;
+                         // НЕ ЗНАЮ ЗДЕСЬ СДЕЛАТЬ ПРОВЕРКУ
+                         // if (val === "" || Moment(val, "DD.MM.YYYY", true).isValid())
+                         // ИЛИ ОСТАВИТЬ В DatePickerTableFilter
                          onChange && onChange(val);
                          if (validate) {
                             this.validateFormat(val);
@@ -36,7 +44,7 @@ class DatePicker extends PureComponent {
                       () => {
                          if (validate) {
                             validate(value);
-                         } else {
+                         } else if (value !== this.state.value) {
                             Moment.locale("ru");
                             const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
                             if (Moment(value, formats, true).isValid()) {
