@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from '../../../form/elements/simple/date/DatePicker';
 import debounce from 'lodash/debounce';
-import moment from 'moment';
+import Moment from 'moment';
 
 class DatePickerTableFilter extends Component {
    constructor(props, context) {
@@ -17,7 +17,7 @@ class DatePickerTableFilter extends Component {
    }
 
    validDate (date) {
-      return moment(date, "DD.MM.YYYY", true).isValid();
+      return Moment(date, "DD.MM.YYYY", true).isValid();
    };
 
    filter (value) {
@@ -25,7 +25,6 @@ class DatePickerTableFilter extends Component {
          this.setState({ value: value });
          const { onChange } = this.props;
          if(onChange) {
-            const { value } = this.state;
             this.request(value);
          }
       }
