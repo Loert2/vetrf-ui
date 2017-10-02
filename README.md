@@ -35,8 +35,8 @@ npm run compile
     ```
     "vetrf-ui": "git+http://git.vetrf.ru/platform/vetrf-ui.git#select-filter"
     ```
- 8. Cделать обновление зависимостей в проекте, из места где вызываете npm start
+ 6. Cделать обновление зависимостей в проекте, из места где вызываете npm start
      ```bash
       npm up
       ```
- 9. После запускать проект
+ 7. После запускать проект
