@@ -28,7 +28,7 @@ class SelectTableFilter extends Component {
       return (
          <SimpleSelect className={ className || "input-filter form-control" }
                        placeholder="Выберите статус из списка..."
-                       notClearableOptions={ notClearableOptions || true }
+                       notClearableOptions={ notClearableOptions }
                        options={ optionList }
                        idType={ idType }
                        valueType={ valueType }
