@@ -3,7 +3,7 @@ import React from 'react';
 
 const TableInfo = ({ page, sizePerPage, itemCount }) => {
 
-   const firstResultIndex = () => {
+   const getFirstResultIndex = () => {
       const currentPage = ((page - 1) * sizePerPage + 1);
       if (page === 1) {
          return page;
@@ -12,7 +12,8 @@ const TableInfo = ({ page, sizePerPage, itemCount }) => {
       }
       return itemCount;
    };
-   const firstIndex = firstResultIndex();
+
+   const firstIndex = getFirstResultIndex();
    let to = Math.min((page * sizePerPage) - 1, itemCount);
    if (to >= itemCount) to--;
    return (

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import Datetime from 'react-datetime';
+import Moment from 'moment';
 import debounce from 'lodash/debounce';
 
 /**
@@ -21,10 +22,13 @@ class DatePicker extends PureComponent {
                    value={ value }
                    onChange={
                       (m) => {
-                         const val = m && m.format ? m.format("DD.MM.YYYY") : m;
-                         onChange && onChange(val);
-                         if (validate) {
-                            this.validateFormat(val);
+                         Moment.locale("ru");
+                         if (Moment(value, "DD.MM.YYYY", true).isValid()) {
+                            const val = m && m.format ? m.format("DD.MM.YYYY") : m;
+                            onChange && onChange(val);
+                            if (validate) {
+                               this.validateFormat(val);
+                            }
                          }
                       }
                    }

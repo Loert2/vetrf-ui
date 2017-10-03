@@ -27,8 +27,6 @@ class SimpleSelect extends Component {
          valueType
       } = this.props;
 
-      debugger;
-
       return (
          <select className={ className }
                  id={ id }

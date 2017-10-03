@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from '../../../form/elements/simple/date/DatePicker';
 import debounce from 'lodash/debounce';
+import isEmpty from 'lodash/isEmpty';
 import Moment from 'moment';
 
 class DatePickerTableFilter extends Component {
@@ -18,10 +19,17 @@ class DatePickerTableFilter extends Component {
    };
 
    filter (value) {
+      const { inputProps, onChange } = this.props;
       if (value === "" || this.validDate(value)) {
-         const { onChange } = this.props;
+         if ( !isEmpty(inputProps) ) {
+            inputProps.className = "form-control has-success";
+         }
          if(onChange) {
             this.request(value);
+         }
+      } else {
+         if ( !isEmpty(inputProps) ) {
+            inputProps.className = "form-control has-error";
          }
       }
    };
