@@ -11,7 +11,12 @@ class DatePicker extends PureComponent {
    constructor(props, context) {
       super(props, context);
       this.validateFormat = props.validate ? debounce(props.validate, 300) : null;
+      this.validDate = this.validDate.bind(this);
    }
+
+   validDate (date) {
+      return Moment(date, "DD.MM.YYYY", true).isValid();
+   };
 
    render() {
       const { value, onChange, className, inputProps, id, validate } = this.props;
@@ -22,13 +27,16 @@ class DatePicker extends PureComponent {
                    value={ value }
                    onChange={
                       (m) => {
+                         debugger;
                          Moment.locale("ru");
-                         if (Moment(value, "DD.MM.YYYY", true).isValid()) {
-                            const val = m && m.format ? m.format("DD.MM.YYYY") : m;
+                         const val = m && m.format ? m.format("DD.MM.YYYY") : m;
+                         if ( val === "" || this.validDate(val) ) {
                             onChange && onChange(val);
                             if (validate) {
                                this.validateFormat(val);
                             }
+                         } else {
+                            //   Подчеркнуть красным
                          }
                       }
                    }

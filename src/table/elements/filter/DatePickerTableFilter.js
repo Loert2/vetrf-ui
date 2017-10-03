@@ -2,34 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from '../../../form/elements/simple/date/DatePicker';
 import debounce from 'lodash/debounce';
-import isEmpty from 'lodash/isEmpty';
-import Moment from 'moment';
 
 class DatePickerTableFilter extends Component {
    constructor(props, context) {
       super(props, context);
-      const { onChange, delay } = props;
+      const { onChange, delay, value } = props;
+      this.state = {
+         value: value || ""
+      };
+
       this.filter = this.filter.bind(this);
-      this.validDate = this.validDate.bind(this);
       this.request = debounce(onChange, delay || 800);
    }
 
-   validDate (date) {
-      return Moment(date, "DD.MM.YYYY", true).isValid();
-   };
-
    filter (value) {
-      const { inputProps, onChange } = this.props;
-      if (value === "" || this.validDate(value)) {
-         if ( !isEmpty(inputProps) ) {
-            inputProps.className = "form-control has-success";
-         }
-         if(onChange) {
+      const { value: valueInState } = this.state;
+      if ( valueInState !== value ) {
+         this.setState({ value: value });
+
+         const { onChange } = this.props;
+         if (onChange) {
             this.request(value);
-         }
-      } else {
-         if ( !isEmpty(inputProps) ) {
-            inputProps.className = "form-control has-error";
          }
       }
    };
@@ -38,9 +31,10 @@ class DatePickerTableFilter extends Component {
       const {
          className,
          inputProps,
-         id,
-         value
+         id
       } = this.props;
+
+      const { value } = this.state;
 
       return (
          <DatePicker id={ id }
