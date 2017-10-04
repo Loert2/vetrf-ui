@@ -11,12 +11,7 @@ class DatePicker extends PureComponent {
    constructor(props, context) {
       super(props, context);
       this.validateFormat = props.validate ? debounce(props.validate, 300) : null;
-      this.validDate = this.validDate.bind(this);
    }
-
-   validDate (date) {
-      return Moment(date, "DD.MM.YYYY", true).isValid();
-   };
 
    render() {
       const { value, onChange, className, inputProps, id, validate } = this.props;
@@ -27,27 +22,37 @@ class DatePicker extends PureComponent {
                    value={ value }
                    onChange={
                       (m) => {
-                         debugger;
-                         Moment.locale("ru");
                          const val = m && m.format ? m.format("DD.MM.YYYY") : m;
-                         if ( val === "" || this.validDate(val) ) {
-                            onChange && onChange(val);
-                            if (validate) {
-                               this.validateFormat(val);
-                            }
-                         } else {
-                            //   Подчеркнуть красным
+                         onChange && onChange(val);
+                         if (validate) {
+                            this.validateFormat(val);
                          }
                       }
                    }
                    className={ className }
                    timeFormat={ false }
                    closeOnSelect
+                   onBlur={
+                      () => {
+                         if (validate) {
+                            validate(value);
+                         } else {
+                            Moment.locale("ru");
+                            const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
+                            if (Moment(value, formats, true).isValid()) {
+                               onChange && onChange(Moment(value, formats).format("DD.MM.YYYY"));
+                            } else {
+                               onChange && onChange(Moment().format("DD.MM.YYYY"));
+                            }
+                         }
+                      }
+                   }
                    disableOnClickOutside
                    inputProps={ inputProps || { placeholder: "дд.мм.гггг" } } />
       );
    }
 }
+
 
 DatePicker.propTypes = {
    className: PropTypes.string,
