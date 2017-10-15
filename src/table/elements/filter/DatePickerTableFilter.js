@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from '../../../form/elements/simple/date/DatePicker';
-import FormGroup from '../../../form/elements/form-group/FormGroup';
 import debounce from 'lodash/debounce';
 import Moment from 'moment';
+import classNames from 'classnames';
 
 class DatePickerTableFilter extends Component {
    constructor(props, context) {
@@ -40,33 +40,37 @@ class DatePickerTableFilter extends Component {
    };
 
    validate (date) {
-      if (this.validDate(date)) {
-         this.setState({ value: date, hasError: false });
-      } else {
-         this.setState({ value: date, hasError: true });
-      }
+      this.setState({ value: date, hasError: !this.validDate(date) });
    }
 
    render () {
       const {
          className,
          inputProps,
-         id
+         id,
+         errorClassName,
+         errorText
       } = this.props;
 
       const { value, hasError } = this.state;
 
       return (
-         <FormGroup hasError={ hasError }
-                    labelClassName="col-sm-0"
-                    fieldClassName="col-sm-13" >
+         <div className={ classNames("form-group", hasError ? (errorClassName || "has-error") : "" ) }
+              style={ { paddingTop: 10 } }>
             <DatePicker id={ id }
                         value={ value }
                         onChange={ this.filter }
                         className={ className }
                         inputProps={ inputProps }
                         validate={ this.validate }/>
-         </FormGroup>
+            {
+               hasError &&
+               <p className="help-block has-error"
+                  style={ { fontSize: 11 } }>
+                  { errorText || "Не соотвествует формату - ДД.ММ.ГГГГ" }
+               </p>
+            }
+         </div>
       );
    }
 }
@@ -81,7 +85,9 @@ DatePickerTableFilter.propTypes = {
    ]),
    validate: PropTypes.func,
    inputProps: PropTypes.object,
-   delay: PropTypes.number
+   delay: PropTypes.number,
+   errorClassName: PropTypes.string,
+   errorText: PropTypes.node,
 };
 
 export default DatePickerTableFilter;

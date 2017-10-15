@@ -21,14 +21,13 @@ class SelectTableFilter extends Component {
          className,
          optionList,
          idType,
-         valueType,
-         notClearableOptions
+         valueType
       } = this.props;
 
       return (
          <SimpleSelect className={ className || "input-filter form-control" }
                        placeholder="Выберите статус из списка..."
-                       notClearableOptions={ notClearableOptions }
+                       notClearableOptions={ false }
                        options={ optionList }
                        idType={ idType }
                        valueType={ valueType }
@@ -46,8 +45,7 @@ SelectTableFilter.propTypes = {
       })),
    id: PropTypes.string,
    className: PropTypes.string,
-   onChange: PropTypes.func,
-   notClearableOptions: PropTypes.bool
+   onChange: PropTypes.func
 };
 
 export default SelectTableFilter;
