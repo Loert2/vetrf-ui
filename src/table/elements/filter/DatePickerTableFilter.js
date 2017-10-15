@@ -103,7 +103,6 @@ DatePickerTableFilter.propTypes = {
       PropTypes.object,
       PropTypes.string
    ]),
-   validate: PropTypes.func,
    inputProps: PropTypes.object,
    delay: PropTypes.number,
    errorClassName: PropTypes.string,
