@@ -12,26 +12,33 @@ class DatePickerTableFilter extends Component {
       const { value, onChange, delay } = props;
       this.state = {
          value: value || "",
+         validlValue: value || "",
          hasError: false
       };
       this.filter = this.filter.bind(this);
-      this.validDate = this.validDate.bind(this);
+      this.validateDate = this.validateDate.bind(this);
       this.validate = this.validate.bind(this);
       this.request = debounce(onChange, delay || 800);
    }
 
-   validDate (date) {
+   validateDate (date) {
       return date === "" || Moment(date, "DD.MM.YYYY", true).isValid();
    };
 
    filter (value) {
       const {
          value: valueFromState,
-         hasError: hasErrorFromState
+         hasError: hasErrorFromState,
+         validlValue
       } = this.state;
 
-      if (value !== valueFromState && this.validDate(value)) {
-         this.setState({ value: value, hasError: hasErrorFromState });
+      if (value !== valueFromState && this.validateDate(value) && value !== validlValue) {
+         this.setState({
+            value: value,
+            hasError: hasErrorFromState,
+            validlValue: validlValue
+         });
+
          const { onChange } = this.props;
          if(onChange) {
             this.request(value);
@@ -40,7 +47,20 @@ class DatePickerTableFilter extends Component {
    };
 
    validate (date) {
-      this.setState({ value: date, hasError: !this.validDate(date) });
+      if (this.validateDate(date)) {
+         this.setState({
+            value: date,
+            hasError: false,
+            validlValue: date
+         });
+      } else {
+         const { validlValue } = this.state;
+         this.setState({
+            value: date,
+            hasError: true,
+            validlValue: validlValue
+         });
+      }
    }
 
    render () {

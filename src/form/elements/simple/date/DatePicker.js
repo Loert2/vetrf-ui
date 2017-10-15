@@ -53,7 +53,6 @@ class DatePicker extends PureComponent {
    }
 }
 
-
 DatePicker.propTypes = {
    className: PropTypes.string,
    id: PropTypes.string,
