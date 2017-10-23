@@ -10,9 +10,10 @@ class DatePickerTableFilter extends Component {
       super(props, context);
 
       const { value, onChange, delay } = props;
+      debugger;
       this.state = {
-         value: value || "",
-         validlValue: value || "",
+         value: value,
+         validlValue: value,
          hasError: false
       };
       this.filter = this.filter.bind(this);
@@ -95,10 +96,15 @@ class DatePickerTableFilter extends Component {
    }
 }
 
+DatePickerTableFilter.defaultProps = {
+   value: "",
+   validlValue: ""
+};
+
 DatePickerTableFilter.propTypes = {
    className: PropTypes.string,
    id: PropTypes.string,
-   onChange: PropTypes.func,
+   onChange: PropTypes.func.isRequired,
    value: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string
