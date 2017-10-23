@@ -10,7 +10,6 @@ class DatePickerTableFilter extends Component {
       super(props, context);
 
       const { value, onChange, delay } = props;
-      debugger;
       this.state = {
          value: value,
          validlValue: value,
