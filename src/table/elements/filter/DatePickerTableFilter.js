@@ -12,13 +12,13 @@ class DatePickerTableFilter extends Component {
       const { value, onChange, delay } = props;
       this.state = {
          value: value,
-         validlValue: value,
+         validValue: value,
          hasError: false
       };
       this.filter = this.filter.bind(this);
       this.validateDate = this.validateDate.bind(this);
       this.validate = this.validate.bind(this);
-      this.request = debounce(onChange, delay || 800);
+      this.request = debounce(this.filter, delay || 800);
    }
 
    validateDate (date) {
@@ -29,14 +29,14 @@ class DatePickerTableFilter extends Component {
       const {
          value: valueFromState,
          hasError: hasErrorFromState,
-         validlValue
+         validValue
       } = this.state;
 
-      if (value !== valueFromState && this.validateDate(value) && value !== validlValue) {
+      if (value !== valueFromState && this.validateDate(value) && value !== validValue) {
          this.setState({
             value: value,
             hasError: hasErrorFromState,
-            validlValue: validlValue
+            validValue: validValue
          });
 
          const { onChange } = this.props;
@@ -51,14 +51,14 @@ class DatePickerTableFilter extends Component {
          this.setState({
             value: date,
             hasError: false,
-            validlValue: date
+            validValue: date
          });
       } else {
-         const { validlValue } = this.state;
+         const { validValue } = this.state;
          this.setState({
             value: date,
             hasError: true,
-            validlValue: validlValue
+            validValue: validValue
          });
       }
    }
@@ -96,7 +96,7 @@ class DatePickerTableFilter extends Component {
 
 DatePickerTableFilter.defaultProps = {
    value: "",
-   validlValue: ""
+   validValue: ""
 };
 
 DatePickerTableFilter.propTypes = {
