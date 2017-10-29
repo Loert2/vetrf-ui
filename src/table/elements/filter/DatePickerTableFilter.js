@@ -4,7 +4,6 @@ import DatePicker from '../../../form/elements/simple/date/DatePicker';
 import debounce from 'lodash/debounce';
 import Moment from 'moment';
 import classNames from 'classnames';
-import './DatePickerTableFilter.css';
 
 class DatePickerTableFilter extends Component {
    constructor(props, context) {
