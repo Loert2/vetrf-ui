@@ -4,6 +4,7 @@ import DatePicker from '../../../form/elements/simple/date/DatePicker';
 import debounce from 'lodash/debounce';
 import Moment from 'moment';
 import classNames from 'classnames';
+import './DatePickerTableFilter.css';
 
 class DatePickerTableFilter extends Component {
    constructor(props, context) {
@@ -75,7 +76,7 @@ class DatePickerTableFilter extends Component {
       const { value, hasError } = this.state;
 
       return (
-         <div className={ classNames("date-table-filer form-group", hasError ? (errorClassName || "has-error") : "" ) }>
+         <div className={ classNames("date-filter form-group", hasError ? (errorClassName || "has-error") : "" ) }>
             <DatePicker id={ id }
                         value={ value }
                         onChange={ this.filter }
