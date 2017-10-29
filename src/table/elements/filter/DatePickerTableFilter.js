@@ -9,7 +9,7 @@ class DatePickerTableFilter extends Component {
    constructor(props, context) {
       super(props, context);
 
-      const { value, onChange, delay } = props;
+      const { value, delay } = props;
       this.state = {
          value: value,
          validValue: value,
@@ -18,7 +18,8 @@ class DatePickerTableFilter extends Component {
       this.filter = this.filter.bind(this);
       this.validateDate = this.validateDate.bind(this);
       this.validate = this.validate.bind(this);
-      this.request = debounce(this.filter, delay || 800);
+      this.validateDateAndOnChange = this.validateDateAndOnChange.bind(this);
+      this.request = debounce(this.validateDateAndOnChange, delay || 800);
    }
 
    validateDate (date) {
@@ -26,6 +27,10 @@ class DatePickerTableFilter extends Component {
    };
 
    filter (value) {
+      this.request(value);
+   };
+
+   validateDateAndOnChange (value) {
       const {
          value: valueFromState,
          hasError: hasErrorFromState,
@@ -40,8 +45,8 @@ class DatePickerTableFilter extends Component {
          });
 
          const { onChange } = this.props;
-         if(onChange) {
-            this.request(value);
+         if (onChange) {
+            onChange(value);
          }
       }
    };
@@ -61,7 +66,7 @@ class DatePickerTableFilter extends Component {
             validValue: validValue
          });
       }
-   }
+   };
 
    render () {
       const {
@@ -80,8 +85,7 @@ class DatePickerTableFilter extends Component {
                         value={ value }
                         onChange={ this.filter }
                         className={ className }
-                        inputProps={ inputProps }
-                        validate={ this.validate }/>
+                        inputProps={ inputProps }/>
             {
                hasError &&
                <p className="help-block has-error"

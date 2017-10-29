@@ -10,7 +10,7 @@ import debounce from 'lodash/debounce';
 class DatePicker extends PureComponent {
    constructor(props, context) {
       super(props, context);
-      this.validateFormat = props.validate ? debounce(props.validate, 300) : null;
+      this.validateFormat = props.validate ? debounce(props.validate, 800) : null;
    }
 
    render() {
