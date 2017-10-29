@@ -75,8 +75,7 @@ class DatePickerTableFilter extends Component {
       const { value, hasError } = this.state;
 
       return (
-         <div className={ classNames("form-group", hasError ? (errorClassName || "has-error") : "" ) }
-              style={ { paddingTop: 10 } }>
+         <div className={ classNames("date-table-filer form-group", hasError ? (errorClassName || "has-error") : "" ) }>
             <DatePicker id={ id }
                         value={ value }
                         onChange={ this.filter }
