@@ -31,6 +31,7 @@ class DatePickerTableFilter extends Component {
    };
 
    validateDateAndOnChange (value) {
+      this.validate(value);
       const {
          value: valueFromState,
          hasError: hasErrorFromState,
