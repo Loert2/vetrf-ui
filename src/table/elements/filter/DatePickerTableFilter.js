@@ -5,6 +5,8 @@ import debounce from 'lodash/debounce';
 import Moment from 'moment';
 import classNames from 'classnames';
 
+const errorFontSize = { fontSize: 11 };
+
 class DatePickerTableFilter extends Component {
    constructor(props, context) {
       super(props, context);
@@ -22,54 +24,51 @@ class DatePickerTableFilter extends Component {
       this.request = debounce(this.validateDateAndOnChange, delay || 800);
    }
 
-   validateDate (date) {
+   validateDate(date) {
       return date === "" || Moment(date, "DD.MM.YYYY", true).isValid();
    };
 
-   filter (value) {
+   filter(value) {
       this.request(value);
    };
 
-   validateDateAndOnChange (value) {
-      this.validate(value);
+   validateDateAndOnChange(value) {
       const {
          value: valueFromState,
-         hasError: hasErrorFromState,
          validValue
       } = this.state;
 
-      if (value !== valueFromState && this.validateDate(value) && value !== validValue) {
-         this.setState({
-            value: value,
-            hasError: hasErrorFromState,
-            validValue: validValue
-         });
-
-         const { onChange } = this.props;
-         if (onChange) {
-            onChange(value);
-         }
+      if (!this.validate(value)) {
+         return;
       }
+
+      const { onChange } = this.props;
+      if (value !== valueFromState && value !== validValue && onChange) {
+         onChange(value);
+      }
+
+      this.setState({
+         value: value,
+         hasError: false,
+         validValue: value
+      });
    };
 
-   validate (date) {
+   validate(date) {
       if (this.validateDate(date)) {
-         this.setState({
-            value: date,
-            hasError: false,
-            validValue: date
-         });
-      } else {
-         const { validValue } = this.state;
-         this.setState({
-            value: date,
-            hasError: true,
-            validValue: validValue
-         });
+         return true;
       }
+
+      const { validValue } = this.state;
+      this.setState({
+         value: date,
+         hasError: true,
+         validValue: validValue
+      });
+      return false;
    };
 
-   render () {
+   render() {
       const {
          className,
          inputProps,
@@ -81,17 +80,18 @@ class DatePickerTableFilter extends Component {
       const { value, hasError } = this.state;
 
       return (
-         <div className={ classNames("date-filter form-group", hasError ? (errorClassName || "has-error") : "" ) }>
+         <div className={ classNames("table-filter table-filter_date", hasError ? (errorClassName || "has-error") : "") }>
             <DatePicker id={ id }
                         value={ value }
                         onChange={ this.filter }
                         className={ className }
-                        inputProps={ inputProps }/>
+                        inputProps={ inputProps }
+                        validate={ this.validateDate }/>
             {
                hasError &&
                <p className="help-block has-error"
                   style={ { fontSize: 11 } }>
-                  { errorText || "Не соотвествует формату - ДД.ММ.ГГГГ" }
+                  { errorText || "Не соответствует формату - ДД.ММ.ГГГГ" }
                </p>
             }
          </div>
