@@ -4,13 +4,15 @@ import Datetime from 'react-datetime';
 import Moment from 'moment';
 import debounce from 'lodash/debounce';
 
+const placeholderProps = { placeholder: "дд.мм.гггг" };
+
 /**
 * Компонент-обертка для Datetime из react-datetime: https://github.com/YouCanBookMe/react-datetime
 * */
 class DatePicker extends PureComponent {
    constructor(props, context) {
       super(props, context);
-      this.validateFormat = props.validate ? debounce(props.validate, 800) : null;
+      this.validateFormat = props.validate ? debounce(props.validate, 600) : null;
    }
 
    render() {
@@ -48,7 +50,7 @@ class DatePicker extends PureComponent {
                       }
                    }
                    disableOnClickOutside
-                   inputProps={ inputProps || { placeholder: "дд.мм.гггг" } } />
+                   inputProps={ inputProps || placeholderProps } />
       );
    }
 }

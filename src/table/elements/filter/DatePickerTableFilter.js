@@ -90,7 +90,7 @@ class DatePickerTableFilter extends Component {
             {
                hasError &&
                <p className="help-block has-error"
-                  style={ { fontSize: 11 } }>
+                  style={ errorFontSize }>
                   { errorText || "Не соответствует формату - ДД.ММ.ГГГГ" }
                </p>
             }

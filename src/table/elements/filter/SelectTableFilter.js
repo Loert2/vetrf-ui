@@ -21,12 +21,13 @@ class SelectTableFilter extends Component {
          className,
          optionList,
          idType,
-         valueType
+         valueType,
+         placeholder
       } = this.props;
 
       return (
          <SimpleSelect className={ className || "input-filter form-control" }
-                       placeholder="Выберите статус из списка..."
+                       placeholder={ placeholder || "Выберите статус из списка..." }
                        options={ optionList }
                        idType={ idType }
                        valueType={ valueType }
@@ -44,6 +45,7 @@ SelectTableFilter.propTypes = {
       })),
    id: PropTypes.string,
    className: PropTypes.string,
+   placeholder: PropTypes.string,
    onChange: PropTypes.func
 };
 
