@@ -40,3 +40,8 @@ npm run compile
       npm up
       ```
  7. После запускать проект
+
+
+## Sandbox
+
+Песочница для разработки компонентов представляет собой экземпляр [Create React App](https://github.com/facebookincubator/create-react-app)
