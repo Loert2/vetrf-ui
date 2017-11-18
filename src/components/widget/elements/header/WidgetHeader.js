@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import WidgetTitle from './WidgetTitle';
-import WidgetToolbar from './WidgetToolbar';
+import WidgetTitle from './title/WidgetTitle';
+import WidgetToolbar from './toolbar/WidgetToolbar';
 import isEmpty from 'lodash/isEmpty';
 
 const WidgetHeader = ({ className, title, toolbar }) => (

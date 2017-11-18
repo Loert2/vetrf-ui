@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import WidgetMain from './WidgetMain';
-import WidgetToolbox from './WidgetToolbox';
+import WidgetMain from './main/WidgetMain';
+import WidgetToolbox from './toolbox/WidgetToolbox';
 import isEmpty from 'lodash/isEmpty';
 
 const WidgetBody = ({ className, children, toolbox, footer }) => (

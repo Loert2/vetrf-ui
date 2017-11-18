@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component }   from 'react';
 
-import TabList from '../elements/TabList';
-import TabContentList from '../elements/TabContentList';
+import TabList from '../elements/tab-list/TabList';
+import TabContentList from '../elements/content-list/TabContentList';
 
 export default class Tabs extends Component{
    constructor(props, context) {

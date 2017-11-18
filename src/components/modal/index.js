@@ -1,8 +1,8 @@
-export { default as ConfirmModal } from './containers/ConfirmModal';
-export { default as ModalDialog } from './containers/ModalDialog';
+export { default as ConfirmModal } from './containers/confirm-modal/ConfirmModal';
+export { default as ModalDialog } from './containers/modal-dialog/ModalDialog';
 
-export { default as BodyModal } from './elements/BodyModal';
-export { default as ConfirmFooterModal } from './elements/ConfirmFooterModal';
-export { default as CustomFooterModal } from './elements/CustomFooterModal';
-export { default as HeaderModal } from './elements/HeaderModal';
-export { default as Modal } from './elements/Modal';
+export { default as BodyModal } from './elements/body/BodyModal';
+export { default as ConfirmFooterModal } from './elements/confirm-footer/ConfirmFooterModal';
+export { default as CustomFooterModal } from './elements/custom-footer/CustomFooterModal';
+export { default as HeaderModal } from './elements/header/HeaderModal';
+export { default as Modal } from './elements/modal/Modal';
