@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import DocumentTitle        from 'react-document-title';
 
-import Breadcrumbs          from '../elements/breadcrumbs/Breadcrumbs';
-import PageHeader           from '../elements/PageHeader';
+import Breadcrumbs          from '../../elements/breadcrumbs/breadcrumbs/Breadcrumbs';
+import PageHeader           from '../../elements/page-header/PageHeader';
 
 const Page = (props) => (
    <DocumentTitle title={ props.title || 'Ирена'}>

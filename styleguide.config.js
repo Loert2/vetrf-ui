@@ -140,5 +140,9 @@ module.exports = {
       path.join(__dirname, './src/assets/css/font-vetis.css'),
       path.join(__dirname, './src/assets/css/address.css'),
       path.join(__dirname, './src/assets/css/toggle-text.css')
-   ]
+   ],
+
+   styleguideComponents: {
+      Wrapper: path.join(__dirname, 'src/styleguide/Wrapper')
+   }
 };

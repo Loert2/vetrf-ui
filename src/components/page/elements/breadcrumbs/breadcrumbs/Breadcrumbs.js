@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Breadcrumb from './Breadcrumb';
+import Breadcrumb from '../breadcrumb/Breadcrumb';
 import uniqueId from 'lodash/uniqueId';
 
 const Breadcrumbs = ({ breadcrumbs, search }) => (

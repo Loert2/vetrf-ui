@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import SubHeader from '../../../page/elements/SubHeader';
+import SubHeader from '../../../page/elements/sub-header/SubHeader';
 
 const FormBlock = ({ header, description, icon, children }) =>  (
    <div className="col-xs-12" >

@@ -2,14 +2,14 @@ export { default as Alert } from './other/alert/Alert';
 export { default as Badge } from './other/badge/Badge';
 export { default as ItemLinkList } from './other/item-link-list/ItemLinkList';
 export { default as LoadingSpinner } from './other/loading/LoadingSpinner';
-export { default as Page } from './page/containers/Page';
-export { default as SimplePage } from './page/containers/SimplePage';
-export { default as PageHeader } from './page/elements/PageHeader';
-export { default as ScrollToTop } from './page/elements/ScrollToTop';
-export { default as SubHeader } from './page/elements/SubHeader';
+export { default as Page } from './page/containers/page/Page';
+export { default as SimplePage } from './page/containers/simple-page/SimplePage';
+export { default as PageHeader } from './page/elements/page-header/PageHeader';
+export { default as ScrollToTop } from './page/elements/scroll-to-top/ScrollToTop';
+export { default as SubHeader } from './page/elements/sub-header/SubHeader';
 
 // Breadcrumbs
-export { default as  Breadcrumbs } from './page/elements/breadcrumbs/Breadcrumbs';
+export { default as  Breadcrumbs } from './page/elements/breadcrumbs/breadcrumbs/Breadcrumbs';
 
 // Кнопки
 export { default as Button } from './buttons/button/Button';

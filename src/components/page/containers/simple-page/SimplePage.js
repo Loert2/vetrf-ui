@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
 
 const SimplePage = ({ title, children }) => (
-   <DocumentTitle title={ title }>
+   <DocumentTitle title={ title || "Ирена" }>
       <div className="main-content-inner">
          <div className="page-content">
             <div className="row">
