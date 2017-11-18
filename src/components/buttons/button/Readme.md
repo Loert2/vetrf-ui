@@ -1,5 +1,5 @@
 Кнопка, построенная вокруг элемента ``<a>``.
 
-```
-<Button tooltip="Тултип" text="Кнопка"/>
+```js
+<Button tooltip="Тултип" text="Кнопка" className="btn btn-primary"/>
 ```

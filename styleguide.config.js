@@ -1,7 +1,5 @@
 const path = require('path');
 
-
-
 module.exports = {
    components: 'src/components/**/*.{js,jsx}',
    title: 'Vetrf UI Style Guide',
@@ -133,4 +131,14 @@ module.exports = {
    ],
    //components: './components/**/*.js',
 
+   require: [
+      path.join(__dirname, './src/vendor/styles/vendor.css'),
+      path.join(__dirname, './src/vendor/src/file-upload/file-upload.css'),
+      path.join(__dirname, './src/vendor/src/react-datetime/react-datetime.css'),
+      path.join(__dirname, './src/vendor/src/react-select/react-select.css'),
+      path.join(__dirname, './src/assets/css/irena.css'),
+      path.join(__dirname, './src/assets/css/font-vetis.css'),
+      path.join(__dirname, './src/assets/css/address.css'),
+      path.join(__dirname, './src/assets/css/toggle-text.css')
+   ]
 };
