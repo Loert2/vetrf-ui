@@ -123,7 +123,7 @@ export { default as WidgetToolbox } from './widget/elements/body/toolbox/WidgetT
 export { default as WidgetHeader } from './widget/elements/header/WidgetHeader';
 export { default as WidgetTitle } from './widget/elements/header/title/WidgetTitle';
 export { default as WidgetToolbar } from './widget/elements/header/toolbar/WidgetToolbar';
-export { default as WidgetBox } from './widget/elements/WidgetBox';
+export { default as WidgetBox } from './widget/elements/box/WidgetBox';
 export { default as Widget } from './widget/containers/Widget';
 // Утилиты форм
 export { default as setIn } from './form/utils/setIn';

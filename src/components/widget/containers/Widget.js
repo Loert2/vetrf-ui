@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import WidgetBox from '../elements/WidgetBox';
+import WidgetBox from '../elements/box/WidgetBox';
 import WidgetHeader from '../elements/header/WidgetHeader';
 import WidgetBody from  '../elements/body/WidgetBody';
 
