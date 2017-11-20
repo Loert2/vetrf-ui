@@ -38,7 +38,7 @@ module.exports = {
             },
             {
                name: 'Контейнеры',
-               components: './src/components/form/actions/**/[A-Z]*.js'
+               components: './src/components/form/containers/**/[A-Z]*.js'
             }
          ],
       },

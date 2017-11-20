@@ -4,9 +4,11 @@
   "description": "vetrf UI library",
   "main": "lib/index.js",
   "scripts": {
-    "compile": "babel --presets react,env --plugins transform-object-rest-spread  -d lib/ src/components",
+    "lint": "eslint src/",
+    "compile": "npm run lint && babel --presets react,env --plugins transform-object-rest-spread  -d lib/ src/components",
     "styleguide-server": "styleguidist server",
     "styleguide-build": "styleguidist build",
+    "stlg": "npm run styleguide-build && npm run styleguide-server",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
