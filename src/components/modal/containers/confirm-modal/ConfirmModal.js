@@ -40,8 +40,8 @@ class ConfirmModal extends Component {
             <ConfirmFooterModal confirmBtn={ confirmBtn }
                                 cancelBtn={{
                                    action: () => { this.hide(); onClose && onClose(); },
-                                   text: cancelBtn && cancelBtn.cancelText,
-                                   icon: cancelBtn && cancelBtn.cancelIcon
+                                   text: cancelBtn && cancelBtn.text,
+                                   icon: cancelBtn && cancelBtn.icon
                                 }} />
          </Modal>
       )
