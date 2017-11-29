@@ -27,6 +27,7 @@ class SelectFormGroup extends PureComponent {
       const {
          labelText,
          require,
+         disabled,
          help,
          errorClassName,
          additionalBlock,
@@ -64,6 +65,7 @@ class SelectFormGroup extends PureComponent {
                     valueKey={ valueKey }
                     labelKey={ labelKey }
                     className={ className }
+                    disabled={ disabled }
                     placeholder={ placeholder }/>
          </FormGroup>
       );
@@ -79,6 +81,7 @@ SelectFormGroup.propTypes = {
    help: PropTypes.node,
    showError: PropTypes.bool,
    require: PropTypes.bool,
+   disabled: PropTypes.bool,
    multiple: PropTypes.bool,
    validate: PropTypes.bool,
    value: PropTypes.oneOfType([
