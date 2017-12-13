@@ -8,8 +8,13 @@ const TimeLineItemsContainer = ({ timelineItems }) => {
    const timeline = timelineItems.map(
       (item, index) =>
          <TimeLineItem key={ item.key || uniqueId() }
-                       icon={ item.icon }
-                       infoText={ ++index }
+                       info={{
+                          indicator: {
+                             ...(item.indicator || {}),
+                             text: (item.indicator && item.indicator.text) || ++index
+                          },
+                          className: item.infoClassName
+                       }}
                        className={ item.className }
                        date={ item.date }
                        widgetMetaData={ item.widgetMetaData }>
@@ -53,7 +58,12 @@ TimeLineItemsContainer.propTypes = {
                })
             })
          }),
-         icon: PropTypes.string,
+         indicator: PropTypes.shape({
+            icon: PropTypes.string,
+            className: PropTypes.string,
+            text: PropTypes.node
+         }),
+         infoClassName: PropTypes.string,
          key: PropTypes.string,
          date: PropTypes.shape({
             className: PropTypes.string,

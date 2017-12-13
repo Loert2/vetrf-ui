@@ -6,7 +6,7 @@ import TimeLineItemsContainer from '../../elements/item/items-container/TimeLine
 
 const TimeLineContainer = ({ timeline, className }) => {
    return (
-      <div className={ classNames("timeline-container", className || 'history') }>
+      <div className={ classNames("timeline-container", className) }>
          {
             timeline.label &&
             <TimeLineLabelContainer label={ timeline.label }/>
@@ -53,7 +53,12 @@ TimeLineContainer.propTypes = {
                   })
                })
             }),
-            icon: PropTypes.string,
+            indicator: PropTypes.shape({
+               icon: PropTypes.string,
+               className: PropTypes.string,
+               text: PropTypes.node
+            }),
+            infoClassName: PropTypes.string,
             date: PropTypes.shape({
                className: PropTypes.string,
                content: PropTypes.node

@@ -55,7 +55,12 @@ TimeLineListContainer.propTypes = {
                      })
                   })
                }),
-               icon: PropTypes.string,
+               indicator: PropTypes.shape({
+                  icon: PropTypes.string,
+                  className: PropTypes.string,
+                  text: PropTypes.node
+               }),
+               infoClassName: PropTypes.string,
                date: PropTypes.shape({
                   className: PropTypes.string,
                   content: PropTypes.node

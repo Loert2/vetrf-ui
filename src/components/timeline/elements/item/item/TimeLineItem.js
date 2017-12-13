@@ -5,12 +5,14 @@ import TimeLineInfo from '../info/TimeLineInfo';
 import Widget from '../../../../widget/containers/Widget';
 import classNames from 'classnames';
 
-const TimeLineItem = ({ className, widgetMetaData = {}, date = {}, icon, infoText, children }) => {
+const TimeLineItem = ({ className, widgetMetaData = {}, date = {}, info = {}, children }) => {
    return (
-      <div className={ classNames("timeline-item clearfix", className) }>
+      <div className={ classNames('timeline-item clearfix', className) }>
          <TimeLineDate className={ date.className } date={ date.content } />
-         <TimeLineInfo icon={ icon } text={ infoText } />
-         <Widget className={ widgetMetaData.className || 'transparent history-item' } header={ widgetMetaData.header } body={ widgetMetaData.body } >
+         <TimeLineInfo className={ info.className } indicator={ info.indicator } />
+         <Widget className={ widgetMetaData.className || 'transparent' }
+                 header={ widgetMetaData.header }
+                 body={ widgetMetaData.body } >
             { children }
          </Widget>
       </div>
@@ -20,8 +22,10 @@ const TimeLineItem = ({ className, widgetMetaData = {}, date = {}, icon, infoTex
 TimeLineItem.propTypes = {
    className: PropTypes.string,
    widgetClassName: PropTypes.string,
-   icon: PropTypes.string,
-   infoText: PropTypes.node,
+   info: PropTypes.shape({
+      icon: PropTypes.string,
+      text: PropTypes.node,
+   }),
    date: PropTypes.shape({
       className: PropTypes.string,
       content: PropTypes.node

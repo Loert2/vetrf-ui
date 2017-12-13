@@ -1,22 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from "classnames";
 
-const TimeLineInfo = ({ icon, text }) => (
-   <div className="timeline-info history-item">
-      {
-         icon &&
-         <i className={ icon } />
-      }
-      {
-         !icon && text &&
-         <span className="timeline-indicator btn-primary no-hover">{ text }</span>
-      }
-   </div>
-);
+const defaultClassName = 'timeline-indicator no-hover';
+
+const TimeLineInfo = ({ className, indicator = {} }) => {
+   let content = null;
+   if (indicator.icon) {
+      content = <i className={ classNames(defaultClassName, indicator.icon) }/>;
+   } else if (indicator.text) {
+      content =
+         <span className={ classNames(defaultClassName, indicator.className || 'btn-primary') }>
+            { indicator.text }
+         </span>;
+   }
+
+   return (
+      <div className={classNames('timeline-info', className)}>
+         { content }
+      </div>
+   );
+};
 
 TimeLineInfo.propTypes = {
-   icon: PropTypes.string,
-   text: PropTypes.node
+   indicator: {
+      icon: PropTypes.string,
+      text: PropTypes.node,
+      className: PropTypes.string
+   },
+   className: PropTypes.string
 };
 
 export default TimeLineInfo;
