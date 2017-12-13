@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
 
 import WidgetBox from '../elements/box/WidgetBox';
 import WidgetHeader from '../elements/header/WidgetHeader';
@@ -7,7 +8,11 @@ import WidgetBody from  '../elements/body/WidgetBody';
 
 const Widget = ({ className, header, body, children }) => (
    <WidgetBox className={ className }>
-      <WidgetHeader className={ header.className } title={ header.title } toolbar={ header.toolbar } />
+      {
+         !isEmpty(header) &&
+         <WidgetHeader className={ header.className } title={ header.title } toolbar={ header.toolbar } />
+      }
+
       {
          !body.invisible &&
          <WidgetBody className={ body.className } toolbox={ body.toolbox } footer={ body.footer }>

@@ -6,9 +6,10 @@ import TimeLineItem from '../item/TimeLineItem';
 
 const TimeLineItemsContainer = ({ timelineItems }) => {
    const timeline = timelineItems.map(
-      (item) =>
-         <TimeLineItem key={ uniqueId() }
+      (item, index) =>
+         <TimeLineItem key={ item.key || uniqueId() }
                        icon={ item.icon }
+                       infoText={ ++index }
                        className={ item.className }
                        date={ item.date }
                        widgetMetaData={ item.widgetMetaData }>
@@ -53,6 +54,7 @@ TimeLineItemsContainer.propTypes = {
             })
          }),
          icon: PropTypes.string,
+         key: PropTypes.string,
          date: PropTypes.shape({
             className: PropTypes.string,
             content: PropTypes.node
