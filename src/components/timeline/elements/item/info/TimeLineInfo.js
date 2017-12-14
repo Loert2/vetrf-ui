@@ -23,11 +23,11 @@ const TimeLineInfo = ({ className, indicator = {} }) => {
 };
 
 TimeLineInfo.propTypes = {
-   indicator: {
+   indicator: PropTypes.shape({
       icon: PropTypes.string,
       text: PropTypes.node,
       className: PropTypes.string
-   },
+   }),
    className: PropTypes.string
 };
 
