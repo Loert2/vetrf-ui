@@ -21,7 +21,7 @@ class ConfirmActionButton extends Component {
    handleClick() {
       const { checkOpportunityToOpenModal } = this.props;
       if (checkOpportunityToOpenModal !== undefined && !this.state.showModal) {
-         checkOpportunityToOpenModal() && this.toggleModal();
+         checkOpportunityToOpenModal(this.toggleModal);
       } else {
          this.toggleModal();
       }
