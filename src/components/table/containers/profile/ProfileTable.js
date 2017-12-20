@@ -13,6 +13,7 @@ const ProfileTable = ({ rows, itemList, tableClassName }) => {
                              first={ i === 0 ? "border-top-solid-profile-table" : "" }
                              header={ rows[i].header }
                              dataFormatter={ rows[i].dataFormatter }
+                             getCellClass={ rows[i].getCellClass }
                              field={ rows[i].field }
                              itemList={ itemList } />
          );
@@ -47,7 +48,8 @@ ProfileTable.propTypes = {
             width: PropTypes.string,
          }),
          field: PropTypes.string,
-         dataFormatter: PropTypes.func
+         dataFormatter: PropTypes.func,
+         getCellClass: PropTypes.func
       })
    )
 };

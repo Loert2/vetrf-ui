@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import TableCell from '../cell/TableCell';
 import HeaderColumn from '../header-column/HeaderColumn';
 
-const ProfileTableRow = ({ first, header, field, dataFormatter, itemList }) => {
+const ProfileTableRow = ({ first, header, field, dataFormatter, itemList, getCellClass }) => {
    const cells = [];
    cells.push(
       <HeaderColumn key={ header.key || uniqueId() }
@@ -19,7 +19,7 @@ const ProfileTableRow = ({ first, header, field, dataFormatter, itemList }) => {
    for (let i = 0; i < itemList.length; i++){
       cells.push(
          <TableCell key={ uniqueId() }
-                    className={ itemList[i].cellClassName }
+                    className={ classNames(itemList[i].cellClassName, getCellClass && getCellClass(itemList[i].item)) }
                     data={
                        (dataFormatter && dataFormatter(itemList[i].item)) ||
                        (field && itemList[i].item[field])
@@ -42,6 +42,7 @@ ProfileTableRow.propTypes = {
    }),
    field: PropTypes.string,
    dataFormatter: PropTypes.func,
+   getCellClass: PropTypes.func,
    itemList: PropTypes.arrayOf(
       PropTypes.shape({
          key: PropTypes.string,
