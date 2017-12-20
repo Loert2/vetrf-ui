@@ -11,10 +11,20 @@ class ConfirmActionButton extends Component {
          showModal: false
       };
       this.toggleModal = this.toggleModal.bind(this);
+      this.handleClick = this.handleClick.bind(this);
    }
 
    toggleModal(){
       this.setState({ showModal: !this.state.showModal });
+   }
+
+   handleClick() {
+      const { checkOpportunityToOpenModal } = this.props;
+      if (checkOpportunityToOpenModal !== undefined && !this.state.showModal) {
+         checkOpportunityToOpenModal() && this.toggleModal();
+      } else {
+         this.toggleModal();
+      }
    }
 
    render () {
@@ -32,6 +42,7 @@ class ConfirmActionButton extends Component {
          confirmBtnIcon,
          cancelBtnIcon,
          confirmBtnText,
+         confirmBtnDisabled,
          cancelBtnText
       } = this.props;
 
@@ -39,7 +50,7 @@ class ConfirmActionButton extends Component {
          <div className="inline" >
             <Button id={ id }
                     className={ className }
-                    onClick={ this.toggleModal }
+                    onClick={ this.handleClick }
                     icon={ icon }
                     text={ buttonText }
                     disabled={ disabled }
@@ -53,7 +64,8 @@ class ConfirmActionButton extends Component {
                                 action: onConfirm,
                                 className: confirmBtnClass || "btn btn-danger",
                                 text: confirmBtnText || "Удалить",
-                                icon: confirmBtnIcon
+                                icon: confirmBtnIcon,
+                                disabled: confirmBtnDisabled
                              }}
                              cancelBtn={{
                                 text: cancelBtnText || "Отмена",
@@ -78,11 +90,16 @@ ConfirmActionButton.propTypes = {
    confirmBodyText: PropTypes.string,
    confirmBtnClass: PropTypes.string,
    confirmBtnIcon: PropTypes.string,
+   confirmBtnDisabled: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string
+   ]),
    cancelBtnIcon: PropTypes.string,
    confirmBtnText: PropTypes.string,
    cancelBtnText: PropTypes.string,
    icon: PropTypes.string,
-   onConfirm: PropTypes.func
+   onConfirm: PropTypes.func,
+   checkOpportunityToOpenModal: PropTypes.func
 };
 
 export default ConfirmActionButton;
