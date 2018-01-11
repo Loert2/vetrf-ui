@@ -6,7 +6,7 @@ const SelectSearch = (props) => (
    <div className="form-group">
       <label className="col-xs-5 control-label no-padding-right">{ props.labelText }</label>
       <div className="col-xs-7 no-padding no-padding-right">
-         <div className="col-xs-12 col-sm-7 no-padding-right">
+         <div className="col-xs-12 col-sm-7 padding-right-2">
             <Select value={ props.value }
                     id={ props.id }
                     style={ props.style }
