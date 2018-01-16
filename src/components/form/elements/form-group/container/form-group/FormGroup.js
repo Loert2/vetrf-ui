@@ -19,7 +19,7 @@ const FormGroup = (props) => {
    } = props;
    return(
       <div className={ classNames("form-group", hasError ? (errorClassName || "has-error") : "" ) }>
-         <label className={ labelClassName || "col-sm-3 control-label no-padding-right padding-top-16" }>
+         <label className={ labelClassName || "col-sm-3 control-label no-padding-right control-label--padding-top" }>
             { labelText }
             { require && <RequireStar /> }
          </label>
