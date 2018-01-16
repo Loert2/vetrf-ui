@@ -8,6 +8,7 @@ const SelectSearch = (props) => (
       <div className="col-xs-7 no-padding no-padding-right">
          <div className="col-xs-12 col-sm-7 padding-right-2">
             <Select value={ props.value }
+                    multi={ props.multiple }
                     id={ props.id }
                     style={ props.style }
                     styleInput={ props.styleInput }
@@ -34,7 +35,8 @@ SelectSearch.propTypes = {
    className: PropTypes.string,
    placeholder: PropTypes.string,
    options: PropTypes.array,
-   onChange: PropTypes.func
+   onChange: PropTypes.func,
+   multiple: PropTypes.bool
 };
 
 export default SelectSearch;
