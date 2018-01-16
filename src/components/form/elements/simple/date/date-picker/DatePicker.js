@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import Datetime from 'react-datetime';
 import Moment from 'moment';
+import 'moment/locale/ru';
 import debounce from 'lodash/debounce';
 
 const placeholderProps = { placeholder: "дд.мм.гггг" };
