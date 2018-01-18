@@ -17,7 +17,8 @@ const Page = (props) => (
                               additionalInfo={ props.additionalInfo }
                               toolbar={ props.toolbar }
                               toolbarClassName={ props.toolbarClassName }
-                              subHeader={ props.subHeader }/>
+                              subHeader={ props.subHeader }
+                              secondLineInfo={ props.headerSecondLine }/>
                   { props.children }
                </div>
             </div>
@@ -39,6 +40,7 @@ Page.propTypes = {
    title: PropTypes.string,
    toolbar: PropTypes.node,
    additionalInfo: PropTypes.node,
+   headerSecondLine: PropTypes.node,
    subHeader: PropTypes.string,
    headerClassName: PropTypes.string,
    toolbarClassName: PropTypes.string,

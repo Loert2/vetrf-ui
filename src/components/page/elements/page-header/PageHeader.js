@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const PageHeader = ({ toolbar, toolbarClassName, header, headerClassName, subHeader, additionalInfo }) => (
+const PageHeader = ({ toolbar, toolbarClassName, header, headerClassName, subHeader, additionalInfo, secondLineInfo }) => (
    <div className="page-header col-xs-12 no-padding-left no-padding-right">
       <div className={ toolbar ? headerClassName || "col-xs-12 col-lg-8 no-padding-left" : "col-xs-12 no-padding-left" }>
          <h1>
@@ -21,12 +21,19 @@ const PageHeader = ({ toolbar, toolbarClassName, header, headerClassName, subHea
             { toolbar }
          </div>
       }
+      {
+         secondLineInfo &&
+         <div className="padding-top-10 col-xs-12">
+            { secondLineInfo }
+         </div>
+      }
    </div>
 );
 
 PageHeader.propTypes = {
    toolbar: PropTypes.node,
    additionalInfo: PropTypes.node,
+   secondLineInfo: PropTypes.node,
    subHeader: PropTypes.string,
    headerClassName: PropTypes.string,
    toolbarClassName: PropTypes.string,
