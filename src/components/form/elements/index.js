@@ -23,6 +23,8 @@ export { default as Textarea } from './simple/textarea/Textarea';
 export { default as NavSearch } from './simple/nav-search/NavSearch';
 export { default as DatePicker } from './simple/date/date-picker/DatePicker';
 export { default as DateRange } from './simple/date/date-range/DateRange';
+export { default as ComplexDate } from './simple/date/complex-date/ComplexDate';
+export { default as ComplexDateList } from './simple/date/complex-date/list/ComplexDateList';
 export { default as AutocompleteInput } from './simple/input/autocomplete/AutocompleteInput';
 export { default as FileInput } from './simple/input/file/FileInput';
 export { default as Input } from './simple/input/Input';

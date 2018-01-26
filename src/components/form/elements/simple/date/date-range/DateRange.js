@@ -3,11 +3,15 @@ import React from 'react';
 
 import DatePicker from '../date-picker/DatePicker';
 
+const defaultDateFormat = "DD.MM.YYYY";
+
 const DateRange = (props) => {
    const inputProps = { placeholder: "дд.мм.гггг" };
+   const styleInputGroupAddonBackground = { height: props.height || "34px" };
    if (props.height){
       inputProps.style = { height: props.height };
    }
+   const format = props.dateFormat || defaultDateFormat;
    return (
       <div className={ props.className }>
          <div className="form-group">
@@ -16,13 +20,23 @@ const DateRange = (props) => {
                <div className="col-xs-12 col-sm-7 no-padding" >
                   <div className="col-xs-12 no-padding">
                   <span className="col-xs-5 no-padding">
-                     <DatePicker id={ props.id } onChange={ props.beginChange } value={ props.beginDate } inputProps={ inputProps } />
+                     <DatePicker dateFormat={ format }
+                                 id={ props.id }
+                                 onChange={ props.beginChange }
+                                 value={ props.beginDate }
+                                 inputProps={ inputProps }
+                                 validate={ props.validate } />
                   </span>
-                     <span className="col-xs-2 input-group-addon-background" style={{ height: props.height || "34px" }}  >
+                  <span className="col-xs-2 input-group-addon-background" style={ styleInputGroupAddonBackground } >
                      <i className="fa fa-calendar bigger-130 padding-top-6" />
                   </span>
                   <span className="col-xs-5 no-padding">
-                     <DatePicker id={ props.id } onChange={ props.endChange } value={ props.endDate } inputProps={ inputProps } />
+                     <DatePicker dateFormat={ format }
+                                 id={ props.id }
+                                 onChange={ props.endChange }
+                                 value={ props.endDate }
+                                 inputProps={ inputProps }
+                                 validate={ props.validate } />
                   </span>
                   </div>
                </div>
@@ -38,6 +52,7 @@ DateRange.propTypes = {
    height: PropTypes.string,
    beginChange: PropTypes.func,
    endChange: PropTypes.func,
+   validate: PropTypes.func,
    beginDate: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string

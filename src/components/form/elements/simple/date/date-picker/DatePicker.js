@@ -6,6 +6,7 @@ import 'moment/locale/ru';
 import debounce from 'lodash/debounce';
 
 const placeholderProps = { placeholder: "дд.мм.гггг" };
+const defaultDateFormat = "DD.MM.YYYY";
 
 /**
 * Компонент-обертка для Datetime из react-datetime: https://github.com/YouCanBookMe/react-datetime
@@ -17,15 +18,26 @@ class DatePicker extends PureComponent {
    }
 
    render() {
-      const { value, onChange, className, inputProps, id, validate } = this.props;
+      const {
+         value,
+         onChange,
+         className,
+         inputProps,
+         id,
+         validate,
+         dateFormat
+      } = this.props;
+
+      const format = dateFormat || defaultDateFormat;
+
       return(
-         <Datetime dateFormat="DD.MM.YYYY"
+         <Datetime dateFormat={ format }
                    id={ id }
                    locale="ru"
                    value={ value }
                    onChange={
                       (m) => {
-                         const val = m && m.format ? m.format("DD.MM.YYYY") : m;
+                         const val = m && m.format ? m.format(format) : m;
                          onChange && onChange(val);
                          if (validate) {
                             this.validateFormat(val);
@@ -59,6 +71,7 @@ class DatePicker extends PureComponent {
 DatePicker.propTypes = {
    className: PropTypes.string,
    id: PropTypes.string,
+   dateFormat: PropTypes.string,
    onChange: PropTypes.func,
    value: PropTypes.oneOfType([
       PropTypes.object,
