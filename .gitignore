@@ -76,9 +76,9 @@ typings/
 .env.production.local
 
 # sandbox
-/src/App.js
-/src/App.css
-/src/index.css
-/src/index.js
-/src/registerServiceWorker.js
-/src/App.test.js
+**/src/App.js
+**/src/App.css
+**/src/index.css
+**/src/index.js
+**/src/registerServiceWorker.js
+**/src/App.test.js

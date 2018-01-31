@@ -13,45 +13,74 @@ const defaultItem = {
 const defaultList = [defaultItem];
 const defaultDate = '...';
 
-const getComplexDateList = (list, onChange, validate) => list &&
-   list.map(
-      (it, index) =>
-         <ComplexDate key={ index }
-                      format={ it.format }
-                      endDate={ it.endDate }
-                      beginDate={ it.beginDate }
-                      onChange={ onChange }
-                      beginDateField={ it.beginDateField }
-                      endDateField={ it.endDateField }
-                      singleDate={ it.singleDate }
-                      singleDateField={ it.singleDateField }
-                      validate={ validate } />
-   );
-
-const getView = (list) => list && list.map(complexDate => {
-   if (complexDate.beginDate || complexDate.endDate) {
-      return `${complexDate.beginDate || defaultDate} - ${complexDate.endDate || defaultDate}`;
-   } else if (complexDate.singleDate) {
-      return complexDate.singleDate;
-   }
-   return "";
-}).join(";\n");
-
 class ComplexDateList extends Component {
+   constructor(props, context) {
+      super(props, context);
+      this.getComplexDateList = this.getComplexDateList.bind(this);
+      this.getView = this.getView.bind(this);
+   }
+
+   getComplexDateList(list) {
+      const {
+         validate,
+         onChangeDate,
+         getBeginDatePath,
+         getEndDatePath,
+         getSingleDatePath,
+         getFormatPath,
+         beginDateField,
+         endDateField,
+         singleDateField,
+         formatField
+      } = this.props;
+      return list && list.map(
+         (it, index) =>
+            <ComplexDate key={ index }
+                         format={ it[formatField] }
+                         endDate={ it[endDateField] }
+                         beginDate={ it[beginDateField] }
+                         onChange={ onChangeDate }
+                         beginDateField={ getBeginDatePath && getBeginDatePath(index) }
+                         endDateField={ getEndDatePath && getEndDatePath(index) }
+                         singleDate={ it[singleDateField] }
+                         singleDateField={ getSingleDatePath && getSingleDatePath(index) }
+                         validate={ validate }
+                         formatField={ getFormatPath && getFormatPath(index) } />
+      );
+   }
+
+   getView(list) {
+      const {
+         beginDateField,
+         endDateField,
+         singleDateField
+      } = this.props;
+      return list && list.map(complexDate => {
+         if (complexDate[beginDateField] || complexDate[endDateField]) {
+            return `${complexDate[beginDateField] || defaultDate} - ${complexDate[endDateField] || defaultDate}`;
+         } else if (complexDate[singleDateField]) {
+            return complexDate[singleDateField];
+         }
+         return "";
+      }).join(";\n");
+   }
 
    render() {
-      const { list, onChangeDate, validate, addNewItem } = this.props;
+      const { list, addNewItem } = this.props;
+      const dateList = (isEmpty(list) ? defaultList : list);
       return (
          <div className="col-xs-12">
-            { getComplexDateList((isEmpty(list) ? defaultList : list), onChangeDate, validate) }
+            { this.getComplexDateList(dateList) }
             <div className="col-xs-12">
-               <p>
-                  { getView(list) }
+               <p className="col-xs-10 no-padding">
+                  { this.getView(dateList) }
                </p>
-               <Button text="Добавить"
-                       icon="ace-icon fa fa-plus"
-                       onClick={ () => addNewItem && addNewItem(defaultItem) }
-                       className="btn btn-success btn-minier pull-right" />
+               <div className="col-xs-2">
+                  <Button text="Добавить"
+                          icon="ace-icon fa fa-plus"
+                          onClick={ () => addNewItem && addNewItem(defaultItem) }
+                          className="btn btn-info btn-minier pull-right" />
+               </div>
             </div>
          </div>
       );
@@ -62,7 +91,15 @@ class ComplexDateList extends Component {
 ComplexDateList.propTypes = {
    list: PropTypes.arrayOf(PropTypes.object),
    onChangeDate: PropTypes.func,
-   validate: PropTypes.func
+   validate: PropTypes.func,
+   getBeginDatePath: PropTypes.func,
+   getEndDatePath: PropTypes.func,
+   getSingleDatePath: PropTypes.func,
+   getFormatPath: PropTypes.func,
+   beginDateField: PropTypes.string,
+   endDateField: PropTypes.string,
+   singleDateField: PropTypes.string,
+   formatField: PropTypes.string
 };
 
 ComplexDateList.defaultProps = {};

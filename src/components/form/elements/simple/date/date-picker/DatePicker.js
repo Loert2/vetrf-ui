@@ -4,6 +4,7 @@ import Datetime from 'react-datetime';
 import Moment from 'moment';
 import 'moment/locale/ru';
 import debounce from 'lodash/debounce';
+import isEmpty from 'lodash/isEmpty';
 
 const placeholderProps = { placeholder: "дд.мм.гггг" };
 const defaultDateFormat = "DD.MM.YYYY";
@@ -15,6 +16,18 @@ class DatePicker extends PureComponent {
    constructor(props, context) {
       super(props, context);
       this.validateFormat = props.validate ? debounce(props.validate, 600) : null;
+      this.getValue = this.getValue.bind(this);
+   }
+
+   getValue(value, format) {
+      if (!isEmpty(value)) {
+         let newValue = Moment(value, format, true);
+         if (newValue.isValid()) {
+            return newValue;
+         }
+      }
+
+      return value;
    }
 
    render() {
@@ -25,7 +38,8 @@ class DatePicker extends PureComponent {
          inputProps,
          id,
          validate,
-         dateFormat
+         dateFormat,
+         timeFormat
       } = this.props;
 
       const format = dateFormat || defaultDateFormat;
@@ -34,7 +48,7 @@ class DatePicker extends PureComponent {
          <Datetime dateFormat={ format }
                    id={ id }
                    locale="ru"
-                   value={ value }
+                   value={ this.getValue(value, format) }
                    onChange={
                       (m) => {
                          const val = m && m.format ? m.format(format) : m;
@@ -45,7 +59,7 @@ class DatePicker extends PureComponent {
                       }
                    }
                    className={ className }
-                   timeFormat={ false }
+                   timeFormat={ timeFormat }
                    closeOnSelect
                    onBlur={
                       () => {
@@ -78,7 +92,11 @@ DatePicker.propTypes = {
       PropTypes.string
    ]),
    validate: PropTypes.func,
-   inputProps: PropTypes.object
+   inputProps: PropTypes.object,
+   timeFormat: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string
+   ])
 };
 
 export default DatePicker;

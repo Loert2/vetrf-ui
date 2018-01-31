@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Switch = (props) => (
-   <label className="padding-top-16">
+   <label>
       <input type="checkbox"
              id={ props.id }
              name={ props.name }

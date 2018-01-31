@@ -14,10 +14,13 @@ const DateRange = (props) => {
    const format = props.dateFormat || defaultDateFormat;
    return (
       <div className={ props.className }>
-         <div className="form-group">
-            <label className="col-sm-5 control-label no-padding-right">{ props.labelText }</label>
-            <div className="col-sm-7">
-               <div className="col-xs-12 col-sm-7 no-padding" >
+         <div className="form-group no-margin-bottom">
+            {
+               props.labelText &&
+               <label className="col-sm-5 control-label no-padding-right">{ props.labelText }</label>
+            }
+            <div className={ props.labelText ? "col-sm-7" : "col-xs-12"}>
+               <div className={ `col-xs-12 ${ props.labelText ? "col-sm-7" : ""} no-padding` } >
                   <div className="col-xs-12 no-padding">
                   <span className="col-xs-5 no-padding">
                      <DatePicker dateFormat={ format }
@@ -25,7 +28,8 @@ const DateRange = (props) => {
                                  onChange={ props.beginChange }
                                  value={ props.beginDate }
                                  inputProps={ inputProps }
-                                 validate={ props.validate } />
+                                 validate={ props.validate || props.validateBegin }
+                                 timeFormat={ props.timeFormat } />
                   </span>
                   <span className="col-xs-2 input-group-addon-background" style={ styleInputGroupAddonBackground } >
                      <i className="fa fa-calendar bigger-130 padding-top-6" />
@@ -36,7 +40,8 @@ const DateRange = (props) => {
                                  onChange={ props.endChange }
                                  value={ props.endDate }
                                  inputProps={ inputProps }
-                                 validate={ props.validate } />
+                                 validate={ props.validate || props.validateEnd }
+                                 timeFormat={ props.timeFormat } />
                   </span>
                   </div>
                </div>
@@ -53,6 +58,8 @@ DateRange.propTypes = {
    beginChange: PropTypes.func,
    endChange: PropTypes.func,
    validate: PropTypes.func,
+   validateBegin: PropTypes.func,
+   validateEnd: PropTypes.func,
    beginDate: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string
@@ -61,7 +68,12 @@ DateRange.propTypes = {
       PropTypes.object,
       PropTypes.string
    ]),
-   className: PropTypes.string
+   className: PropTypes.string,
+   dateFormat: PropTypes.string,
+   timeFormat: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string
+   ])
 };
 
 export default DateRange;
