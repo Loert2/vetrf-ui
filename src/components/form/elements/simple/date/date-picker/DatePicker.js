@@ -12,22 +12,30 @@ const defaultDateFormat = "DD.MM.YYYY";
 /**
 * Компонент-обертка для Datetime из react-datetime: https://github.com/YouCanBookMe/react-datetime
 * */
+const getValue = (value, format) => {
+   if (!isEmpty(value)) {
+      let newValue = Moment(value, format, true);
+      if (newValue.isValid()) {
+         return newValue;
+      }
+   }
+
+   return value;
+};
+
 class DatePicker extends PureComponent {
    constructor(props, context) {
       super(props, context);
       this.validateFormat = props.validate ? debounce(props.validate, 600) : null;
-      this.getValue = this.getValue.bind(this);
+      this.getFormat = this.getFormat.bind(this);
    }
 
-   getValue(value, format) {
-      if (!isEmpty(value)) {
-         let newValue = Moment(value, format, true);
-         if (newValue.isValid()) {
-            return newValue;
-         }
+   getFormat() {
+      const { dateFormat = defaultDateFormat, timeFormat, fullFormat } = this.props;
+      if (fullFormat) {
+         return fullFormat;
       }
-
-      return value;
+      return timeFormat ? `${dateFormat} ${timeFormat}` : dateFormat;
    }
 
    render() {
@@ -38,17 +46,17 @@ class DatePicker extends PureComponent {
          inputProps,
          id,
          validate,
-         dateFormat,
+         dateFormat = defaultDateFormat,
          timeFormat
       } = this.props;
 
-      const format = dateFormat || defaultDateFormat;
+      const format = this.getFormat();
 
       return(
-         <Datetime dateFormat={ format }
+         <Datetime dateFormat={ dateFormat }
                    id={ id }
                    locale="ru"
-                   value={ this.getValue(value, format) }
+                   value={ getValue(value, format) }
                    onChange={
                       (m) => {
                          const val = m && m.format ? m.format(format) : m;
@@ -86,6 +94,7 @@ DatePicker.propTypes = {
    className: PropTypes.string,
    id: PropTypes.string,
    dateFormat: PropTypes.string,
+   fullFormat: PropTypes.string,
    onChange: PropTypes.func,
    value: PropTypes.oneOfType([
       PropTypes.object,

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import ComplexDate from '../ComplexDate';
 import { Button } from "../../../../../../index";
 import isEmpty from 'lodash/isEmpty';
-
-const defaultFormat = "DD.MM.YYYY";
+import { defaultFormat, defaultStoreFormat, formatValue } from "../../../../../utils/moment-utils";
 
 const defaultItem = {
    format: defaultFormat
@@ -12,6 +11,7 @@ const defaultItem = {
 
 const defaultList = [defaultItem];
 const defaultDate = '...';
+const defaultHelpText = "Выберите формат для даты и времени";
 
 class ComplexDateList extends Component {
    constructor(props, context) {
@@ -22,7 +22,6 @@ class ComplexDateList extends Component {
 
    getComplexDateList(list) {
       const {
-         validate,
          onChangeDate,
          getBeginDatePath,
          getEndDatePath,
@@ -31,7 +30,9 @@ class ComplexDateList extends Component {
          beginDateField,
          endDateField,
          singleDateField,
-         formatField
+         formatField,
+         formatList,
+         storeFormat = defaultStoreFormat
       } = this.props;
       return list && list.map(
          (it, index) =>
@@ -44,8 +45,9 @@ class ComplexDateList extends Component {
                          endDateField={ getEndDatePath && getEndDatePath(index) }
                          singleDate={ it[singleDateField] }
                          singleDateField={ getSingleDatePath && getSingleDatePath(index) }
-                         validate={ validate }
-                         formatField={ getFormatPath && getFormatPath(index) } />
+                         formatField={ getFormatPath && getFormatPath(index) }
+                         formatList={ formatList }
+                         storeFormat={ storeFormat } />
       );
    }
 
@@ -53,16 +55,21 @@ class ComplexDateList extends Component {
       const {
          beginDateField,
          endDateField,
-         singleDateField
+         singleDateField,
+         formatField,
+         storeFormat = defaultStoreFormat,
+         help
       } = this.props;
-      return list && list.map(complexDate => {
-         if (complexDate[beginDateField] || complexDate[endDateField]) {
-            return `${complexDate[beginDateField] || defaultDate} - ${complexDate[endDateField] || defaultDate}`;
-         } else if (complexDate[singleDateField]) {
-            return complexDate[singleDateField];
+      const view = list && list.map(it => {
+         const format = it[formatField] || defaultFormat;
+         if (it[beginDateField] || it[endDateField]) {
+            return `${formatValue(it[beginDateField], storeFormat, format) || defaultDate} - ${formatValue(it[endDateField], storeFormat, format) || defaultDate}`;
+         } else if (it[singleDateField]) {
+            return formatValue(it[singleDateField], storeFormat, format);
          }
          return "";
       }).join(";\n");
+      return view || help || defaultHelpText;
    }
 
    render() {
@@ -72,7 +79,7 @@ class ComplexDateList extends Component {
          <div className="col-xs-12">
             { this.getComplexDateList(dateList) }
             <div className="col-xs-12">
-               <p className="col-xs-10 no-padding">
+               <p className="col-xs-10 no-padding-left padding-top-2 help-block">
                   { this.getView(dateList) }
                </p>
                <div className="col-xs-2">
@@ -99,7 +106,8 @@ ComplexDateList.propTypes = {
    beginDateField: PropTypes.string,
    endDateField: PropTypes.string,
    singleDateField: PropTypes.string,
-   formatField: PropTypes.string
+   formatField: PropTypes.string,
+   formatList: PropTypes.arrayOf(PropTypes.object)
 };
 
 ComplexDateList.defaultProps = {};

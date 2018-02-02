@@ -6,7 +6,7 @@ import DatePicker from '../date-picker/DatePicker';
 const defaultDateFormat = "DD.MM.YYYY";
 
 const DateRange = (props) => {
-   const inputProps = { placeholder: "дд.мм.гггг" };
+   const inputProps = { placeholder: props.placeholder };
    const styleInputGroupAddonBackground = { height: props.height || "34px" };
    if (props.height){
       inputProps.style = { height: props.height };
@@ -73,7 +73,8 @@ DateRange.propTypes = {
    timeFormat: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string
-   ])
+   ]),
+   placeholder: PropTypes.string
 };
 
 export default DateRange;

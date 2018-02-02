@@ -7,23 +7,10 @@ import validate from "../../../../utils/validate-utils";
 import classNames from "classnames";
 import isEmpty from "lodash/isEmpty";
 import setIn from "../../../../utils/setIn";
+import {defaultFormat, defaultStoreFormat, formatValue} from "../../../../utils/moment-utils";
 
-const formatList = [
-   { id: "DD.MM.YYYY", view: "DD.MM.YYYY", hasTime: false },
-   { id: "DD-MM-YYYY", view: "DD-MM-YYYY", hasTime: false },
-   { id: "DD/MM/YYYY", view: "DD/MM/YYYY", hasTime: false },
-   { id: "MM/YYYY", view: "MM/YYYY", hasTime: false },
-   { id: "MM.YYYY", view: "MM.YYYY", hasTime: false },
-   { id: "YYYY", view: "YYYY", hasTime: false },
-   { id: "DD.MM.YYYY HH:mm", view: "DD.MM.YYYY HH:mm", hasTime: true },
-   { id: "DD/MM/YYYY HH:mm", view: "DD/MM/YYYY HH:mm", hasTime: true }
-];
-
-const defaultFormat = "DD.MM.YYYY";
-const defaultHelpText = "Выберите формат для даты и времени";
 const notValidFormatText = "Введенная дата не соотвествует выбранному формату";
-
-const getFormatObj = (format) => ({ id: format, view: format });
+const defaultPlaceholder = { placeholder: "" };
 
 const formatInputProps = { style: { height: "32px" } };
 
@@ -43,17 +30,19 @@ class ComplexDate extends Component {
       this.validateFormat = this.validateFormat.bind(this);
       this.updateDateFormat = this.updateDateFormat.bind(this);
       this.isValid = this.isValid.bind(this);
+      this.getChangeDateHandler = this.getChangeDateHandler.bind(this);
+      this.postToggleValidate = this.postToggleValidate.bind(this);
    }
 
    componentDidMount() {
-      const { format, formatField, onChange } = this.props;
-      if (!format) {
+      const { format = {}, formatField, onChange } = this.props;
+      if (isEmpty(format)) {
          onChange && onChange(defaultFormat, formatField);
       }
    }
 
    componentWillReceiveProps(nextProps) {
-      const { hasError, isInterval } = this.state;
+      const { hasError } = this.state;
       const isValid = this.isValid();
       const nextHasError = validate(nextProps, () => !isValid || (nextProps.require && !nextProps.value), hasError, notValidFormatText);
       if (nextHasError !== this.state.hasError) {
@@ -63,26 +52,10 @@ class ComplexDate extends Component {
          });
       }
       const {
-         singleDate,
-         beginDate,
-         endDate,
          onChange,
-         singleDateField,
-         beginDateField,
-         endDateField,
-         format,
          formatField
       } = this.props;
-      const { format: newFormat } = nextProps;
-      const oldFormat = format || defaultFormat;
-      if (newFormat && format !== newFormat) {
-         if (isInterval) {
-            this.updateDateFormat(beginDate, beginDateField, oldFormat, newFormat, "isValidBeginDate");
-            this.updateDateFormat(endDate, endDateField, oldFormat, newFormat, "isValidEndDate");
-         } else {
-            this.updateDateFormat(singleDate, singleDateField, oldFormat, newFormat, "isValidSingleDate");
-         }
-      }
+      const { format: newFormat = {} } = nextProps;
       if (!newFormat) {
          onChange && onChange(defaultFormat, formatField);
       }
@@ -93,11 +66,12 @@ class ComplexDate extends Component {
       return isInterval ? isValidBeginDate && isValidEndDate : isValidSingleDate;
    }
 
-   updateDateFormat(value, field, oldFormat, newFormat, isValidField) {
+   updateDateFormat(value, field, oldFormat = {}, newFormat = {}, isValidField) {
       const { onChange } = this.props;
-      let newFormatDate = Moment(value, [oldFormat]).format(newFormat);
-      const isValid = Moment(newFormatDate, newFormat, true).isValid();
-      if (!isValid) {
+      let newFormatDate = Moment(value, [oldFormat.view]).format(newFormat.view);
+      const isEmptyValue = isEmpty(value);
+      const isValid = Moment(newFormatDate, newFormat.view, true).isValid() || isEmptyValue;
+      if (!isValid || isEmptyValue) {
          newFormatDate = value;
       }
       onChange && onChange(newFormatDate, field);
@@ -105,20 +79,66 @@ class ComplexDate extends Component {
    }
 
    toggleForm() {
-      this.setState({
-         ...this.state,
-         isInterval: !this.state.isInterval
-      });
+      const {
+         onChange,
+         singleDate,
+         beginDate,
+         singleDateField,
+         beginDateField,
+         endDateField,
+         storeFormat = defaultStoreFormat,
+         format = defaultFormat
+      } = this.props;
+      const isInterval = !this.state.isInterval;
+      this.setState((oldState) => {
+         if (onChange) {
+            if (isInterval) {
+               onChange(singleDate, beginDateField);
+               onChange(null, singleDateField);
+            } else {
+               //TODO: это временно
+               onChange(beginDate, singleDateField);
+               onChange(null, beginDateField);
+               onChange(null, endDateField);
+            }
+         }
+         return {
+            ...oldState,
+            isInterval: isInterval,
+            isValidEndDate: true
+         }
+      }, () => this.postToggleValidate(isInterval, beginDate, singleDate));
+   }
+
+   postToggleValidate(isInterval, beginDate, singleDate) {
+      const {
+         storeFormat = defaultStoreFormat,
+         format = defaultFormat
+      } = this.props;
+      if (isInterval) {
+         this.validateFormat("isValidBeginDate")(formatValue(singleDate, storeFormat, format))
+      } else {
+         this.validateFormat("isValidSingleDate")(formatValue(beginDate, storeFormat, format))
+      }
    }
 
    validateFormat(isValidField) {
       return (value) => {
-         const { format } = this.props;
-         this.setState({
-            ...this.state,
-            [isValidField]: Moment(value, format, true).isValid() || isEmpty(value)
-         });
+         const { format = defaultFormat } = this.props;
+         this.setState((oldState) => ({
+            ...oldState,
+            [isValidField]: Moment(value, format.view, true).isValid() || isEmpty(value)
+         }));
       };
+   }
+
+   getChangeDateHandler(field) {
+      const {
+         onChange,
+         storeFormat = defaultStoreFormat,
+         format = defaultFormat
+      } = this.props;
+      return (value) => onChange && onChange(formatValue(value, format, storeFormat), field);
    }
 
    render() {
@@ -134,26 +154,30 @@ class ComplexDate extends Component {
          help,
          formatPlaceholder,
          errorText,
-         format,
-         formatField
+         format = defaultFormat,
+         storeFormat = defaultStoreFormat,
+         formatField,
+         formatList
       } = this.props;
 
       let dateForm = null;
       if (isInterval) {
-         dateForm = <DateRange beginChange={ (value) => onChange && onChange(value, beginDateField) }
-                               beginDate={ beginDate }
-                               endChange={ (value) => onChange && onChange(value, endDateField) }
-                               endDate={ endDate }
-                               dateFormat={ format }
+         dateForm = <DateRange beginChange={ this.getChangeDateHandler(beginDateField) }
+                               beginDate={ formatValue(beginDate, storeFormat, format) }
+                               endChange={ this.getChangeDateHandler(endDateField) }
+                               endDate={ formatValue(endDate, storeFormat, format) }
+                               dateFormat={ format.dateFormat }
                                validateBegin={ this.validateFormat("isValidBeginDate") }
                                validateEnd={ this.validateFormat("isValidEndDate") }
-                               timeFormat={ format.hasTime } />
+                               timeFormat={ format.timeFormat || false } />
       } else {
-         dateForm = <DatePicker value={ singleDate }
-                                dateFormat={ format }
-                                onChange={ (value) => onChange && onChange(value, singleDateField) }
+         dateForm = <DatePicker value={ formatValue(singleDate, storeFormat, format) }
+                                dateFormat={ format.dateFormat }
+                                onChange={ this.getChangeDateHandler(singleDateField) }
                                 validate={ this.validateFormat("isValidSingleDate") }
-                                timeFormat={ format.hasTime } />;
+                                //требует явно указать false, если не нужно время, null и undefined воспринимает как пустой шаблон
+                                timeFormat={ format.timeFormat || false }
+                                inputProps={ defaultPlaceholder } />;
       }
 
       const showError = hasError || !this.isValid();
@@ -166,8 +190,8 @@ class ComplexDate extends Component {
                        labelKey="view"
                        inputProps={ formatInputProps }
                        clearable={ false }
-                       onChange={ (format) => onChange && onChange(format.view, formatField) }
-                       value={ getFormatObj(format) }
+                       onChange={ (format) => onChange && onChange(format, formatField) }
+                       value={ format }
                        placeholder={ formatPlaceholder || "Формат даты..." } />
             </div>
             <div className={ classNames("col-xs-6 no-padding-right no-margin-bottom form-group", showError && "has-error") }>
@@ -190,7 +214,10 @@ class ComplexDate extends Component {
                   Интервал
                </span>
             </div>
-            <p className="help-block col-xs-12 no-padding">{ help || defaultHelpText }</p>
+            {
+               help &&
+               <p className="help-block col-xs-12 no-padding">{ help }</p>
+            }
          </div>
       );
    }
@@ -217,7 +244,9 @@ ComplexDate.propTypes = {
    beginDateField: PropTypes.string,
    help: PropTypes.string,
    formatPlaceholder: PropTypes.string,
-   format: PropTypes.string,
+   format: PropTypes.object,
+   storeFormat: PropTypes.object,
+   formatList: PropTypes.arrayOf(PropTypes.object),
    formatField: PropTypes.string,
    errorText: PropTypes.string,
    showError: PropTypes.bool,
