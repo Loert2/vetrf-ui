@@ -5,11 +5,11 @@ import { Button } from "../../../../../../index";
 import isEmpty from 'lodash/isEmpty';
 import { defaultFormat, defaultStoreFormat, formatValue } from "../../../../../utils/moment-utils";
 
-const defaultItem = {
+const getDefaultItem = () => ({
    format: defaultFormat
-};
+});
 
-const defaultList = [defaultItem];
+const defaultList = [getDefaultItem()];
 const defaultDate = '...';
 const defaultHelpText = "Выберите формат для даты и времени";
 
@@ -18,7 +18,17 @@ class ComplexDateList extends Component {
       super(props, context);
       this.getComplexDateList = this.getComplexDateList.bind(this);
       this.getView = this.getView.bind(this);
+      this.addNewItem = this.addNewItem.bind(this);
+      this.deleteItem = this.deleteItem.bind(this);
    }
+
+   componentDidMount() {
+      const { list } = this.props;
+      if (isEmpty(list)) {
+         this.addNewItem();
+      }
+   }
+
 
    getComplexDateList(list) {
       const {
@@ -36,18 +46,31 @@ class ComplexDateList extends Component {
       } = this.props;
       return list && list.map(
          (it, index) =>
-            <ComplexDate key={ index }
-                         format={ it[formatField] }
-                         endDate={ it[endDateField] }
-                         beginDate={ it[beginDateField] }
-                         onChange={ onChangeDate }
-                         beginDateField={ getBeginDatePath && getBeginDatePath(index) }
-                         endDateField={ getEndDatePath && getEndDatePath(index) }
-                         singleDate={ it[singleDateField] }
-                         singleDateField={ getSingleDatePath && getSingleDatePath(index) }
-                         formatField={ getFormatPath && getFormatPath(index) }
-                         formatList={ formatList }
-                         storeFormat={ storeFormat } />
+            <div key={ index } className="col-xs-12 no-padding">
+               <div className="col-xs-11 no-padding">
+                  <ComplexDate key={ `complex-date_${index}` }
+                               format={ it[formatField] }
+                               endDate={ it[endDateField] }
+                               beginDate={ it[beginDateField] }
+                               onChange={ onChangeDate }
+                               beginDateField={ getBeginDatePath && getBeginDatePath(index) }
+                               endDateField={ getEndDatePath && getEndDatePath(index) }
+                               singleDate={ it[singleDateField] }
+                               singleDateField={ getSingleDatePath && getSingleDatePath(index) }
+                               formatField={ getFormatPath && getFormatPath(index) }
+                               formatList={ formatList }
+                               storeFormat={ storeFormat } />
+               </div>
+               {
+                  list.length > 1 &&
+                  <div className="col-xs-1 no-padding-left">
+                     <Button key={ `btn-delete_${index}` }
+                             icon="ace-icon fa fa-trash-o red bigger-160 padding-top-6 pull-right"
+                             tooltip="Удалить"
+                             onClick={ () => this.deleteItem(it) } />
+                  </div>
+               }
+            </div>
       );
    }
 
@@ -68,24 +91,38 @@ class ComplexDateList extends Component {
             return formatValue(it[singleDateField], storeFormat, format);
          }
          return "";
-      }).join(";\n");
+      }).filter(it => !isEmpty(it)).join("; ");
+
       return view || help || defaultHelpText;
    }
 
+   addNewItem() {
+      const { list, onChangeDate, listField } = this.props;
+      const newList = [ ...list ];
+      newList.push(getDefaultItem());
+      onChangeDate && onChangeDate(newList, listField);
+   }
+
+   deleteItem(item) {
+      const { list, onChangeDate, listField } = this.props;
+      const newList = [ ...list ].filter(it => it !== item);
+      onChangeDate && onChangeDate(newList, listField);
+   }
+
    render() {
-      const { list, addNewItem } = this.props;
-      const dateList = (isEmpty(list) ? defaultList : list);
+      const { list } = this.props;
+      const dateList = isEmpty(list) ? defaultList : list;
       return (
-         <div className="col-xs-12">
+         <div className="col-xs-12 no-padding">
             { this.getComplexDateList(dateList) }
-            <div className="col-xs-12">
+            <div className="col-xs-12 no-padding">
                <p className="col-xs-10 no-padding-left padding-top-2 help-block">
                   { this.getView(dateList) }
                </p>
-               <div className="col-xs-2">
+               <div className="col-xs-2 pull-right">
                   <Button text="Добавить"
                           icon="ace-icon fa fa-plus"
-                          onClick={ () => addNewItem && addNewItem(defaultItem) }
+                          onClick={ this.addNewItem }
                           className="btn btn-info btn-minier pull-right" />
                </div>
             </div>
@@ -97,6 +134,7 @@ class ComplexDateList extends Component {
 
 ComplexDateList.propTypes = {
    list: PropTypes.arrayOf(PropTypes.object),
+   listField: PropTypes.string,
    onChangeDate: PropTypes.func,
    validate: PropTypes.func,
    getBeginDatePath: PropTypes.func,

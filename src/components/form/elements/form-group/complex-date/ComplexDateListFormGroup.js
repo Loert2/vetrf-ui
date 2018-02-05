@@ -20,7 +20,8 @@ class ComplexDateListFormGroup extends Component {
          endDateField,
          singleDateField,
          formatField,
-         formatList
+         formatList,
+         listField
       } = this.props;
       return (
          <FormGroup labelText={ labelText } help={ help } additionalBlock={ additionalBlock } >
@@ -34,7 +35,8 @@ class ComplexDateListFormGroup extends Component {
                              endDateField={ endDateField }
                              singleDateField={ singleDateField }
                              formatField={ formatField }
-                             formatList={ formatList } />
+                             formatList={ formatList }
+                             listField={ listField } />
          </FormGroup>
       );
    }
@@ -54,6 +56,7 @@ ComplexDateListFormGroup.propTypes = {
    endDateField: PropTypes.string,
    singleDateField: PropTypes.string,
    formatField: PropTypes.string,
+   listField: PropTypes.string,
    list: PropTypes.arrayOf(PropTypes.object),
    formatList: PropTypes.arrayOf(PropTypes.object),
    onChangeDate: PropTypes.func

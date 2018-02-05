@@ -32,6 +32,7 @@ export { default as FormActionsPanel } from './form/actions/form-actions-panel/F
 export { default as AutocompleteFormGroup } from './form/elements/form-group/autocomplete/AutocompleteFormGroup';
 export { default as CheckboxFormGroup } from './form/elements/form-group/checkbox/CheckboxFormGroup';
 export { default as DateFormGroup } from './form/elements/form-group/date/DateFormGroup';
+export { default as ComplexDateListFormGroup } from './form/elements/form-group/complex-date/ComplexDateListFormGroup';
 export { default as FormBlock } from './form/elements/form-group/container/form-block/FormBlock';
 export { default as FormGroup } from './form/elements/form-group/container/form-group/FormGroup';
 export { default as FileUploadFormGroup } from './form/elements/form-group/file-upload/FileUploadFormGroup';
@@ -56,6 +57,8 @@ export { default as RadioBtn } from './form/elements/simple/radio/RadioBtn';
 export { default as Textarea } from './form/elements/simple/textarea/Textarea';
 export { default as DatePicker } from './form/elements/simple/date/date-picker/DatePicker';
 export { default as DateRange } from './form/elements/simple/date/date-range/DateRange';
+export { default as ComplexDateList } from './form/elements/simple/date/complex-date/list/ComplexDateList';
+export { default as ComplexDate } from './form/elements/simple/date/complex-date/ComplexDate';
 export { default as AutocompleteInput } from './form/elements/simple/input/autocomplete/AutocompleteInput';
 export { default as FileInput } from './form/elements/simple/input/file/FileInput';
 export { default as FileUpload } from './form/elements/simple/file-upload/FileUpload';

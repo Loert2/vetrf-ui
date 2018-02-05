@@ -85,9 +85,7 @@ class ComplexDate extends Component {
          beginDate,
          singleDateField,
          beginDateField,
-         endDateField,
-         storeFormat = defaultStoreFormat,
-         format = defaultFormat
+         endDateField
       } = this.props;
       const isInterval = !this.state.isInterval;
       this.setState((oldState) => {
@@ -183,7 +181,7 @@ class ComplexDate extends Component {
       const showError = hasError || !this.isValid();
 
       return (
-         <div className="col-xs-12">
+         <div className="col-xs-12 no-padding">
             <div className="col-xs-3 no-padding-left no-margin-bottom">
                <Select options={ formatList }
                        valueKey="id"

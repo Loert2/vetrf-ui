@@ -4,11 +4,6 @@ import Moment from "moment/moment";
 export const formatValue = (value, oldFormat = {}, format = {}) => {
    const formattedValue = Moment(value, oldFormat.view);
    const isValid = Moment(formattedValue, format.view, true).isValid();
-   console.log("value: ", value);
-   console.log("formattedValue: ", formattedValue);
-   console.log("formattedValue: ", formattedValue);
-   console.log("formattedValue: ", formattedValue);
-   console.log("formattedValue: ", formattedValue);
    if (!isValid || isEmpty(value)) {
       return value;
    }

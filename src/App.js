@@ -50,6 +50,7 @@ class App extends Component {
                                          getFormatPath={ (index) => `dateList[${index}].format` }
                                          onChangeDate={ this.changeDate }
                                          list={ this.state.dateList }
+                                         listField="dateList"
                                          formatField="format"
                                          singleDateField="single"
                                          beginDateField="begin"
