@@ -44,10 +44,6 @@ class App extends Component {
          <Page header="Сложная дата" breadcrumbs={ breadcrumbs }>
             <Form>
                <ComplexDateListFormGroup labelText="Комплексная дата"
-                                         getSingleDatePath={ (index) => `dateList[${index}].single` }
-                                         getEndDatePath={ (index) => `dateList[${index}].end` }
-                                         getBeginDatePath={ (index) => `dateList[${index}].begin` }
-                                         getFormatPath={ (index) => `dateList[${index}].format` }
                                          onChangeDate={ this.changeDate }
                                          list={ this.state.dateList }
                                          listField="dateList"

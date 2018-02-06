@@ -24,3 +24,14 @@ export const defaultStoreFormat = {
    view: "DD.MM.YYYY HH:mm"
 };
 
+export const defaultDate = '...';
+
+export const getFormattedComplexDateView  = (complexDate, beginDateField, endDateField, singleDateField) => {
+   const format = complexDate.format || defaultFormat;
+   if (complexDate[beginDateField] || complexDate[endDateField]) {
+      return `${formatValue(complexDate[beginDateField], defaultStoreFormat, format) || defaultDate}-${formatValue(complexDate[endDateField], defaultStoreFormat, format) || defaultDate}`;
+   } else if (complexDate[singleDateField]) {
+      return formatValue(complexDate[singleDateField], defaultStoreFormat, format);
+   }
+   return "";
+};

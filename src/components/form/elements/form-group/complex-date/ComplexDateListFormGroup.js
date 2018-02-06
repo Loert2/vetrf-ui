@@ -11,10 +11,6 @@ class ComplexDateListFormGroup extends Component {
          help,
          additionalBlock,
          list = [],
-         getBeginDatePath,
-         getEndDatePath,
-         getSingleDatePath,
-         getFormatPath,
          onChangeDate,
          beginDateField,
          endDateField,
@@ -26,11 +22,7 @@ class ComplexDateListFormGroup extends Component {
       return (
          <FormGroup labelText={ labelText } help={ help } additionalBlock={ additionalBlock } >
             <ComplexDateList list={ list }
-                             getBeginDatePath={ getBeginDatePath }
-                             getEndDatePath={ getEndDatePath }
-                             getSingleDatePath={ getSingleDatePath }
                              onChangeDate={ onChangeDate }
-                             getFormatPath={ getFormatPath }
                              beginDateField={ beginDateField }
                              endDateField={ endDateField }
                              singleDateField={ singleDateField }
@@ -48,10 +40,6 @@ ComplexDateListFormGroup.propTypes = {
    help: PropTypes.string,
    additionalBlock: PropTypes.node,
    validate: PropTypes.func,
-   getBeginDatePath: PropTypes.func,
-   getEndDatePath: PropTypes.func,
-   getSingleDatePath: PropTypes.func,
-   getFormatPath: PropTypes.func,
    beginDateField: PropTypes.string,
    endDateField: PropTypes.string,
    singleDateField: PropTypes.string,

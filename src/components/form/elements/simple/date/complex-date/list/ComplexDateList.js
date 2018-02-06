@@ -33,44 +33,51 @@ class ComplexDateList extends Component {
    getComplexDateList(list) {
       const {
          onChangeDate,
-         getBeginDatePath,
-         getEndDatePath,
-         getSingleDatePath,
-         getFormatPath,
          beginDateField,
          endDateField,
          singleDateField,
          formatField,
          formatList,
-         storeFormat = defaultStoreFormat
+         storeFormat = defaultStoreFormat,
+         listField
       } = this.props;
       return list && list.map(
-         (it, index) =>
-            <div key={ index } className="col-xs-12 no-padding">
-               <div className={ `${ list.length > 1 ? "col-xs-11" : "col-xs-12" } no-padding` }>
-                  <ComplexDate key={ `complex-date_${index}` }
-                               format={ it[formatField] }
-                               endDate={ it[endDateField] }
-                               beginDate={ it[beginDateField] }
-                               onChange={ onChangeDate }
-                               beginDateField={ getBeginDatePath && getBeginDatePath(index) }
-                               endDateField={ getEndDatePath && getEndDatePath(index) }
-                               singleDate={ it[singleDateField] }
-                               singleDateField={ getSingleDatePath && getSingleDatePath(index) }
-                               formatField={ getFormatPath && getFormatPath(index) }
-                               formatList={ formatList }
-                               storeFormat={ storeFormat } />
-               </div>
-               {
-                  list.length > 1 &&
-                  <div className="col-xs-1 no-padding-left">
-                     <Button key={ `btn-delete_${index}` }
-                             icon="ace-icon fa fa-times light-grey bigger-150 padding-top-6 pull-right"
-                             tooltip="Удалить"
-                             onClick={ () => this.deleteItem(it) } />
+         (it, index) => {
+            const itemField = `${listField}[${index}]`;
+            return (
+               <div key={ index } className="col-xs-12 no-padding">
+                  <div className={ `${ list.length > 1 ? "col-xs-11" : "col-xs-12" } no-padding` }>
+                     <ComplexDate key={ `complex-date_${index}` }
+                                  format={ it[formatField] }
+                                  endDate={ it[endDateField] }
+                                  beginDate={ it[beginDateField] }
+                                  onChange={ onChangeDate }
+                                  beginDatePath={ `${itemField}.${beginDateField}` }
+                                  endDatePath={ `${itemField}.${endDateField}` }
+                                  singleDate={ it[singleDateField] }
+                                  singleDatePath={ `${itemField}.${singleDateField}` }
+                                  formatPath={ `${itemField}.${formatField}` }
+                                  formatList={ formatList }
+                                  storeFormat={ storeFormat }
+                                  complexDate={ it }
+                                  complexDatePath={ itemField }
+                                  endDateField={ endDateField }
+                                  beginDateField={ beginDateField }
+                                  singleDateField={ singleDateField }
+                                  formatField={ formatField } />
                   </div>
-               }
-            </div>
+                  {
+                     list.length > 1 &&
+                     <div className="col-xs-1 no-padding-left">
+                        <Button key={ `btn-delete_${index}` }
+                                icon="ace-icon fa fa-times light-grey bigger-150 padding-top-6 pull-right"
+                                tooltip="Удалить"
+                                onClick={ () => this.deleteItem(it) } />
+                     </div>
+                  }
+               </div>
+            );
+         }
       );
    }
 
@@ -137,10 +144,6 @@ ComplexDateList.propTypes = {
    listField: PropTypes.string,
    onChangeDate: PropTypes.func,
    validate: PropTypes.func,
-   getBeginDatePath: PropTypes.func,
-   getEndDatePath: PropTypes.func,
-   getSingleDatePath: PropTypes.func,
-   getFormatPath: PropTypes.func,
    beginDateField: PropTypes.string,
    endDateField: PropTypes.string,
    singleDateField: PropTypes.string,

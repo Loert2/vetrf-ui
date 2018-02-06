@@ -6,8 +6,10 @@ import DateRange from "../date-range/DateRange";
 import validate from "../../../../utils/validate-utils";
 import classNames from "classnames";
 import isEmpty from "lodash/isEmpty";
-import setIn from "../../../../utils/setIn";
-import {defaultFormat, defaultStoreFormat, formatValue} from "../../../../utils/moment-utils";
+import {
+   defaultFormat, defaultStoreFormat, formatValue,
+   getFormattedComplexDateView
+} from "../../../../utils/moment-utils";
 
 const notValidFormatText = "Введенная дата не соотвествует выбранному формату";
 const defaultPlaceholder = { placeholder: "" };
@@ -32,12 +34,13 @@ class ComplexDate extends Component {
       this.isValid = this.isValid.bind(this);
       this.getChangeDateHandler = this.getChangeDateHandler.bind(this);
       this.postToggleValidate = this.postToggleValidate.bind(this);
+      this.getNewComplexDate = this.getNewComplexDate.bind(this);
    }
 
    componentDidMount() {
-      const { format = {}, formatField, onChange } = this.props;
+      const { format = {}, formatPath, onChange } = this.props;
       if (isEmpty(format)) {
-         onChange && onChange(defaultFormat, formatField);
+         onChange && onChange(defaultFormat, formatPath);
       }
    }
 
@@ -53,11 +56,11 @@ class ComplexDate extends Component {
       }
       const {
          onChange,
-         formatField
+         formatPath
       } = this.props;
       const { format: newFormat = {} } = nextProps;
       if (!newFormat) {
-         onChange && onChange(defaultFormat, formatField);
+         onChange && onChange(defaultFormat, formatPath);
       }
    }
 
@@ -66,16 +69,22 @@ class ComplexDate extends Component {
       return isInterval ? isValidBeginDate && isValidEndDate : isValidSingleDate;
    }
 
-   updateDateFormat(value, field, oldFormat = {}, newFormat = {}, isValidField) {
-      const { onChange } = this.props;
-      let newFormatDate = Moment(value, [oldFormat.view]).format(newFormat.view);
-      const isEmptyValue = isEmpty(value);
-      const isValid = Moment(newFormatDate, newFormat.view, true).isValid() || isEmptyValue;
-      if (!isValid || isEmptyValue) {
-         newFormatDate = value;
-      }
-      onChange && onChange(newFormatDate, field);
-      this.setState((oldState) => setIn(oldState, isValidField, isValid));
+   updateDateFormat(newFormat = {}) {
+      const {
+         onChange,
+         formatField,
+         singleDateField,
+         beginDateField,
+         endDateField,
+         complexDate = {},
+         complexDatePath
+      } = this.props;
+      const newComplexDate = {
+         ...complexDate,
+         [formatField]: newFormat
+      };
+      newComplexDate.view = getFormattedComplexDateView(newComplexDate, beginDateField, endDateField, singleDateField);
+      onChange && onChange(newComplexDate, complexDatePath);
    }
 
    toggleForm() {
@@ -85,20 +94,34 @@ class ComplexDate extends Component {
          beginDate,
          singleDateField,
          beginDateField,
-         endDateField
+         endDateField,
+         complexDate = {},
+         complexDatePath
       } = this.props;
+
       const isInterval = !this.state.isInterval;
       this.setState((oldState) => {
          if (onChange) {
+            let newComplexDate;
             if (isInterval) {
-               onChange(singleDate, beginDateField);
-               onChange(null, singleDateField);
+               newComplexDate = {
+                  ...complexDate,
+                  [beginDateField]: singleDate,
+                  [singleDateField]: null
+               };
             } else {
-               //TODO: это временно
-               onChange(beginDate, singleDateField);
-               onChange(null, beginDateField);
-               onChange(null, endDateField);
+               newComplexDate = {
+                  ...complexDate,
+                  [singleDateField]: beginDate,
+                  [beginDateField]: null,
+                  [endDateField]: null
+               };
             }
+            newComplexDate.view = getFormattedComplexDateView(newComplexDate, beginDateField, endDateField, singleDateField);
+            onChange(
+               newComplexDate,
+               complexDatePath
+            );
          }
          return {
             ...oldState,
@@ -133,10 +156,31 @@ class ComplexDate extends Component {
    getChangeDateHandler(field) {
       const {
          onChange,
-         storeFormat = defaultStoreFormat,
-         format = defaultFormat
+         complexDatePath
       } = this.props;
-      return (value) => onChange && onChange(formatValue(value, format, storeFormat), field);
+      return (value) => onChange && onChange(
+         this.getNewComplexDate(value, field),
+         complexDatePath
+      );
+   }
+
+   getNewComplexDate(value, field) {
+      const {
+         storeFormat = defaultStoreFormat,
+         format = defaultFormat,
+         complexDate = {},
+         singleDateField,
+         beginDateField,
+         endDateField,
+      } = this.props;
+
+      const newComplexDate = {
+         ...complexDate,
+         [field]: formatValue(value, format, storeFormat)
+      };
+      newComplexDate.view = getFormattedComplexDateView(newComplexDate, beginDateField, endDateField, singleDateField);
+
+      return newComplexDate;
    }
 
    render() {
@@ -145,7 +189,6 @@ class ComplexDate extends Component {
          singleDate,
          beginDate,
          endDate,
-         onChange,
          singleDateField,
          beginDateField,
          endDateField,
@@ -154,7 +197,6 @@ class ComplexDate extends Component {
          errorText,
          format = defaultFormat,
          storeFormat = defaultStoreFormat,
-         formatField,
          formatList
       } = this.props;
 
@@ -167,14 +209,13 @@ class ComplexDate extends Component {
                                dateFormat={ format.dateFormat }
                                validateBegin={ this.validateFormat("isValidBeginDate") }
                                validateEnd={ this.validateFormat("isValidEndDate") }
-                               timeFormat={ format.timeFormat || false } />
+                               timeFormat={ format.timeFormat } />
       } else {
          dateForm = <DatePicker value={ formatValue(singleDate, storeFormat, format) }
                                 dateFormat={ format.dateFormat }
                                 onChange={ this.getChangeDateHandler(singleDateField) }
                                 validate={ this.validateFormat("isValidSingleDate") }
-                                //требует явно указать false, если не нужно время, null и undefined воспринимает как пустой шаблон
-                                timeFormat={ format.timeFormat || false }
+                                timeFormat={ format.timeFormat }
                                 inputProps={ defaultPlaceholder } />;
       }
 
@@ -188,7 +229,7 @@ class ComplexDate extends Component {
                        labelKey="view"
                        inputProps={ formatInputProps }
                        clearable={ false }
-                       onChange={ (format) => onChange && onChange(format, formatField) }
+                       onChange={ this.updateDateFormat }
                        value={ format }
                        placeholder={ formatPlaceholder || "Формат даты..." } />
             </div>
@@ -223,6 +264,21 @@ class ComplexDate extends Component {
 }
 
 ComplexDate.propTypes = {
+   complexDate: PropTypes.shape({
+      singleDate: PropTypes.oneOfType([
+         PropTypes.object,
+         PropTypes.string
+      ]),
+      beginDate: PropTypes.oneOfType([
+         PropTypes.object,
+         PropTypes.string
+      ]),
+      endDate: PropTypes.oneOfType([
+         PropTypes.object,
+         PropTypes.string
+      ]),
+      format: PropTypes.object
+   }),
    singleDate: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string
@@ -238,17 +294,22 @@ ComplexDate.propTypes = {
    onChange: PropTypes.func,
    customValidate: PropTypes.func,
    errorHandler: PropTypes.func,
-   singleDateField: PropTypes.string,
-   beginDateField: PropTypes.string,
+   singleDatePath: PropTypes.string,
+   beginDatePath: PropTypes.string,
    help: PropTypes.string,
    formatPlaceholder: PropTypes.string,
    format: PropTypes.object,
    storeFormat: PropTypes.object,
    formatList: PropTypes.arrayOf(PropTypes.object),
-   formatField: PropTypes.string,
+   formatPath: PropTypes.string,
    errorText: PropTypes.string,
    showError: PropTypes.bool,
-   endDateField: PropTypes.string
+   endDatePath: PropTypes.string,
+   complexDatePath: PropTypes.string,
+   singleDateField: PropTypes.string,
+   beginDateField: PropTypes.string,
+   endDateField: PropTypes.string,
+   formatField: PropTypes.string
 };
 
 ComplexDate.defaultProps = {};

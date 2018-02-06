@@ -67,7 +67,7 @@ class DatePicker extends PureComponent {
                       }
                    }
                    className={ className }
-                   timeFormat={ timeFormat }
+                   timeFormat={ timeFormat || false }
                    closeOnSelect
                    onBlur={
                       () => {
