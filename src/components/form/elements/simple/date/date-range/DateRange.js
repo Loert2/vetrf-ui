@@ -19,7 +19,7 @@ const DateRange = (props) => {
                props.labelText &&
                <label className="col-sm-5 control-label no-padding-right">{ props.labelText }</label>
             }
-            <div className={ props.labelText ? "col-sm-7" : "col-xs-12"}>
+            <div className={ props.labelText ? "col-sm-7" : "col-xs-12 no-padding"}>
                <div className={ `col-xs-12 ${ props.labelText ? "col-sm-7" : ""} no-padding` } >
                   <div className="col-xs-12 no-padding">
                   <span className="col-xs-5 no-padding">

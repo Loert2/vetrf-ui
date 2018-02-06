@@ -222,8 +222,8 @@ class ComplexDate extends Component {
       const showError = hasError || !this.isValid();
 
       return (
-         <div className="col-xs-12 no-padding">
-            <div className="col-xs-3 no-padding-left no-margin-bottom">
+         <div className="complex-date">
+            <div className="complex-date__format">
                <Select options={ formatList }
                        valueKey="id"
                        labelKey="view"
@@ -233,16 +233,16 @@ class ComplexDate extends Component {
                        value={ format }
                        placeholder={ formatPlaceholder || "Формат даты..." } />
             </div>
-            <div className={ classNames("col-xs-6 no-padding-right no-margin-bottom form-group", showError && "has-error") }>
+            <div className={ classNames("form-group complex-date__date", showError && "has-error") }>
                { dateForm }
                {
                   showError &&
                   <p className="help-block has-error">{ this.isValid() ? errorText : notValidFormatText }</p>
                }
             </div>
-            <div className="col-xs-3 option-switch pull-right no-padding-right">
+            <div className="complex-date__switch">
                <span className="option-switch__element option-switch__element--text">
-                  Дата
+                  дата
                </span>&nbsp;
                <span className="option-switch__element option-switch__element--switch">
                   <Switch value={ isInterval }
@@ -250,13 +250,13 @@ class ComplexDate extends Component {
                           onChange={ this.toggleForm } />
                </span>&nbsp;
                <span className="option-switch__element option-switch__element--text">
-                  Интервал
+                  период
                </span>
             </div>
-            {
+            {/*{
                help &&
                <p className="help-block col-xs-12 no-padding">{ help }</p>
-            }
+            }*/}
          </div>
       );
    }

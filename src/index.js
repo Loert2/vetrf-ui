@@ -12,7 +12,8 @@ import './assets/css/address.css';
 import './assets/css/font-vetis.css';
 import './assets/css/irena.css';
 import './assets/css/toggle-text.css';
-import './components/form/elements/simple/date/complex-date/option-switch.css'
+import './components/form/elements/simple/date/complex-date/option-switch.css';
+import './components/form/elements/simple/date/complex-date/complex-date.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
