@@ -47,7 +47,7 @@ class ComplexDateList extends Component {
       return list && list.map(
          (it, index) =>
             <div key={ index } className="col-xs-12 no-padding">
-               <div className="col-xs-11 no-padding">
+               <div className={ `${ list.length > 1 ? "col-xs-11" : "col-xs-12" } no-padding` }>
                   <ComplexDate key={ `complex-date_${index}` }
                                format={ it[formatField] }
                                endDate={ it[endDateField] }
@@ -65,7 +65,7 @@ class ComplexDateList extends Component {
                   list.length > 1 &&
                   <div className="col-xs-1 no-padding-left">
                      <Button key={ `btn-delete_${index}` }
-                             icon="ace-icon fa fa-trash-o red bigger-160 padding-top-6 pull-right"
+                             icon="ace-icon fa fa-times light-grey bigger-150 padding-top-6 pull-right"
                              tooltip="Удалить"
                              onClick={ () => this.deleteItem(it) } />
                   </div>
@@ -86,7 +86,7 @@ class ComplexDateList extends Component {
       const view = list && list.map(it => {
          const format = it[formatField] || defaultFormat;
          if (it[beginDateField] || it[endDateField]) {
-            return `${formatValue(it[beginDateField], storeFormat, format) || defaultDate} - ${formatValue(it[endDateField], storeFormat, format) || defaultDate}`;
+            return `${formatValue(it[beginDateField], storeFormat, format) || defaultDate}-${formatValue(it[endDateField], storeFormat, format) || defaultDate}`;
          } else if (it[singleDateField]) {
             return formatValue(it[singleDateField], storeFormat, format);
          }
@@ -123,7 +123,7 @@ class ComplexDateList extends Component {
                   <Button text="Добавить"
                           icon="ace-icon fa fa-plus"
                           onClick={ this.addNewItem }
-                          className="btn btn-info btn-minier pull-right" />
+                          className="btn btn-info btn-xs pull-right" />
                </div>
             </div>
          </div>
