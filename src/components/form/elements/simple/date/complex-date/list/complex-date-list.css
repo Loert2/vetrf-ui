@@ -1,11 +1,26 @@
 .complex-date-list {
-
 }
 
-.complex-date-list__item {
-
+.complex-date-list__panel__add-button {
 }
 
-.complex-date-list__delete {
+.complex-date-list__item__date--with-delete {
+  margin-bottom: 10px;
+}
 
+.complex-date-list__item, .complex-date-list__panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.complex-date-list__item__date, .complex-date-list__panel__info {
+  flex-grow: 1;
+}
+
+.complex-date-list__item__delete {
+  width: 16px;
+  margin-left: 15px;
 }

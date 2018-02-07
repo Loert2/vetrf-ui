@@ -201,6 +201,7 @@ class ComplexDate extends Component {
       } = this.props;
 
       let dateForm = null;
+      let formClass = null;
       if (isInterval) {
          dateForm = <DateRange beginChange={ this.getChangeDateHandler(beginDateField) }
                                beginDate={ formatValue(beginDate, storeFormat, format) }
@@ -209,7 +210,8 @@ class ComplexDate extends Component {
                                dateFormat={ format.dateFormat }
                                validateBegin={ this.validateFormat("isValidBeginDate") }
                                validateEnd={ this.validateFormat("isValidEndDate") }
-                               timeFormat={ format.timeFormat } />
+                               timeFormat={ format.timeFormat } />;
+         formClass = 'complex-date__date--interval';
       } else {
          dateForm = <DatePicker value={ formatValue(singleDate, storeFormat, format) }
                                 dateFormat={ format.dateFormat }
@@ -217,13 +219,14 @@ class ComplexDate extends Component {
                                 validate={ this.validateFormat("isValidSingleDate") }
                                 timeFormat={ format.timeFormat }
                                 inputProps={ defaultPlaceholder } />;
+         formClass = 'complex-date__date--single';
       }
 
       const showError = hasError || !this.isValid();
 
       return (
          <div className="complex-date">
-            <div className="complex-date__format">
+            <div className={ `complex-date__format ${ isInterval && 'complex-date__format--interval' }` }>
                <Select options={ formatList }
                        valueKey="id"
                        labelKey="view"
@@ -233,14 +236,14 @@ class ComplexDate extends Component {
                        value={ format }
                        placeholder={ formatPlaceholder || "Формат даты..." } />
             </div>
-            <div className={ classNames("form-group complex-date__date", showError && "has-error") }>
+            <div className={ classNames(`form-group complex-date__date ${formClass}`, showError && "has-error") }>
                { dateForm }
                {
                   showError &&
                   <p className="help-block has-error">{ this.isValid() ? errorText : notValidFormatText }</p>
                }
             </div>
-            <div className="complex-date__switch">
+            <div className={ `complex-date__switch ${ isInterval && 'complex-date__switch--interval' }` }>
                <span className="option-switch__element option-switch__element--text">
                   дата
                </span>&nbsp;

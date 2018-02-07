@@ -18,8 +18,7 @@
   flex-grow: 1;
 }
 
-.form-horizontal .form-group.complex-date__date,
-.form-horizontal .form-group.complex-date__date .form-group{
+.form-horizontal .form-group.complex-date__date {
   margin: 0;
 }
 
@@ -33,23 +32,49 @@
 }
 
 
-@media (max-width: 950px) {
+@media (max-width: 916px) {
   .complex-date__format {
     order: 1;
     margin-bottom: 10px;
   }
 
-  .complex-date__date {
+  .complex-date__date--interval {
+    order: 2;
+  }
+
+  .complex-date__date--single {
     order: 3;
   }
 
-  .form-horizontal .form-group.complex-date__date,
-  .form-horizontal .form-group.complex-date__date .form-group{
+  .form-horizontal .form-group.complex-date__date {
     margin-bottom: 10px;
   }
 
   .complex-date__switch {
     order: 2;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 1073px) {
+  .complex-date__date--interval {
+    order: 3;
+  }
+
+  .complex-date__switch--interval,
+  .complex-date__format--interval,
+  .form-horizontal .form-group.complex-date__date--interval {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 1114px) {
+  .complex-date-list__item__date--with-delete .complex-date__date--interval {
+    order: 3;
+  }
+
+  .complex-date-list__item__date--with-delete .complex-date__switch--interval,
+  .complex-date-list__item__date--with-delete .complex-date__format--interval {
     margin-bottom: 10px;
   }
 }

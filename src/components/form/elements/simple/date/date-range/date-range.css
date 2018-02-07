@@ -1,0 +1,28 @@
+.date-range {
+
+}
+
+.date-range__begin {
+
+}
+
+.date-range__end {
+
+}
+
+.date-range__separator {
+
+}
+
+@media (max-width: 790px) {
+  .date-range .date-range__begin {
+    margin-bottom: 0;
+  }
+
+  .date-range .date-range__separator {
+    border: 1px solid #ccc;
+    border-top: 0;
+    border-bottom: 0;
+    width: 100%;
+  }
+}

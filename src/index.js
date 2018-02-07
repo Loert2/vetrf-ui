@@ -14,6 +14,8 @@ import './assets/css/irena.css';
 import './assets/css/toggle-text.css';
 import './components/form/elements/simple/date/complex-date/option-switch.css';
 import './components/form/elements/simple/date/complex-date/complex-date.css';
+import './components/form/elements/simple/date/complex-date/list/complex-date-list.css';
+import './components/form/elements/simple/date/date-range/date-range.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

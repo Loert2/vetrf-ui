@@ -4,6 +4,7 @@ import ComplexDate from '../ComplexDate';
 import { Button } from "../../../../../../index";
 import isEmpty from 'lodash/isEmpty';
 import { defaultFormat, defaultStoreFormat, formatValue } from "../../../../../utils/moment-utils";
+import classNames from 'classnames';
 
 const getDefaultItem = () => ({
    format: defaultFormat
@@ -45,8 +46,8 @@ class ComplexDateList extends Component {
          (it, index) => {
             const itemField = `${listField}[${index}]`;
             return (
-               <div key={ index } className="col-xs-12 no-padding">
-                  <div className={ `${ list.length > 1 ? "col-xs-11" : "col-xs-12" } no-padding` }>
+               <div key={ index } className="complex-date-list__item">
+                  <div className={ classNames("complex-date-list__item__date", list.length > 1 && "complex-date-list__item__date--with-delete") } >
                      <ComplexDate key={ `complex-date_${index}` }
                                   format={ it[formatField] }
                                   endDate={ it[endDateField] }
@@ -68,9 +69,9 @@ class ComplexDateList extends Component {
                   </div>
                   {
                      list.length > 1 &&
-                     <div className="col-xs-1 no-padding-left">
+                     <div className="complex-date-list__item__delete">
                         <Button key={ `btn-delete_${index}` }
-                                icon="ace-icon fa fa-times light-grey bigger-150 padding-top-6 pull-right"
+                                icon="ace-icon fa fa-times light-grey bigger-150"
                                 tooltip="Удалить"
                                 onClick={ () => this.deleteItem(it) } />
                      </div>
@@ -120,17 +121,17 @@ class ComplexDateList extends Component {
       const { list } = this.props;
       const dateList = isEmpty(list) ? defaultList : list;
       return (
-         <div className="col-xs-12 no-padding">
+         <div className="complex-date-list">
             { this.getComplexDateList(dateList) }
-            <div className="col-xs-12 no-padding">
-               <p className="col-xs-10 no-padding-left padding-top-2 help-block">
+            <div className="complex-date-list__panel">
+               <p className="complex-date-list__panel__info help-block">
                   { this.getView(dateList) }
                </p>
-               <div className="col-xs-2 pull-right">
+               <div className="complex-date-list__panel__add-button">
                   <Button text="Добавить"
                           icon="ace-icon fa fa-plus"
                           onClick={ this.addNewItem }
-                          className="btn btn-info btn-xs pull-right" />
+                          className="btn btn-info btn-xs" />
                </div>
             </div>
          </div>
