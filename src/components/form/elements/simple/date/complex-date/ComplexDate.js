@@ -256,10 +256,6 @@ class ComplexDate extends Component {
                   период
                </span>
             </div>
-            {/*{
-               help &&
-               <p className="help-block col-xs-12 no-padding">{ help }</p>
-            }*/}
          </div>
       );
    }

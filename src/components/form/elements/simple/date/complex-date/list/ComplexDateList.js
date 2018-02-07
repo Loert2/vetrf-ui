@@ -40,11 +40,11 @@ class ComplexDateList extends Component {
          formatField,
          formatList,
          storeFormat = defaultStoreFormat,
-         listField
+         listPath
       } = this.props;
       return list && list.map(
          (it, index) => {
-            const itemField = `${listField}[${index}]`;
+            const itemField = `${listPath}[${index}]`;
             return (
                <div key={ index } className="complex-date-list__item">
                   <div className={ classNames("complex-date-list__item__date", list.length > 1 && "complex-date-list__item__date--with-delete") } >
@@ -105,16 +105,16 @@ class ComplexDateList extends Component {
    }
 
    addNewItem() {
-      const { list, onChangeDate, listField } = this.props;
+      const { list, onChangeDate, listPath } = this.props;
       const newList = [ ...list ];
       newList.push(getDefaultItem());
-      onChangeDate && onChangeDate(newList, listField);
+      onChangeDate && onChangeDate(newList, listPath);
    }
 
    deleteItem(item) {
-      const { list, onChangeDate, listField } = this.props;
+      const { list, onChangeDate, listPath } = this.props;
       const newList = [ ...list ].filter(it => it !== item);
-      onChangeDate && onChangeDate(newList, listField);
+      onChangeDate && onChangeDate(newList, listPath);
    }
 
    render() {
@@ -145,7 +145,7 @@ class ComplexDateList extends Component {
 
 ComplexDateList.propTypes = {
    list: PropTypes.arrayOf(PropTypes.object),
-   listField: PropTypes.string,
+   listPath: PropTypes.string,
    onChangeDate: PropTypes.func,
    validate: PropTypes.func,
    beginDateField: PropTypes.string,
