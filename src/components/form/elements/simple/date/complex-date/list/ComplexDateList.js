@@ -118,7 +118,7 @@ class ComplexDateList extends Component {
    }
 
    render() {
-      const { list } = this.props;
+      const { list, maxListLength = 5 } = this.props;
       const dateList = isEmpty(list) ? defaultList : list;
       return (
          <div className="complex-date-list">
@@ -127,12 +127,15 @@ class ComplexDateList extends Component {
                <p className="complex-date-list__panel__info help-block">
                   { this.getView(dateList) }
                </p>
-               <div className="complex-date-list__panel__add-button">
-                  <Button text="Добавить"
-                          icon="ace-icon fa fa-plus"
-                          onClick={ this.addNewItem }
-                          className="btn btn-info btn-xs" />
-               </div>
+               {
+                  dateList.length < maxListLength &&
+                  <div className="complex-date-list__panel__add-button">
+                     <Button text="Добавить"
+                             icon="ace-icon fa fa-plus"
+                             onClick={ this.addNewItem }
+                             className="btn btn-info btn-xs" />
+                  </div>
+               }
             </div>
          </div>
       );
@@ -149,7 +152,8 @@ ComplexDateList.propTypes = {
    endDateField: PropTypes.string,
    singleDateField: PropTypes.string,
    formatField: PropTypes.string,
-   formatList: PropTypes.arrayOf(PropTypes.object)
+   formatList: PropTypes.arrayOf(PropTypes.object),
+   maxListLength: PropTypes.number
 };
 
 ComplexDateList.defaultProps = {};
