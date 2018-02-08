@@ -46,12 +46,9 @@ class App extends Component {
                <ComplexDateListFormGroup labelText="Комплексная дата"
                                          onChangeDate={ this.changeDate }
                                          list={ this.state.dateList }
-                                         listField="dateList"
-                                         formatField="format"
-                                         singleDateField="single"
-                                         beginDateField="begin"
-                                         endDateField="end"
-                                         formatList={ formatList } />
+                                         formatList={ formatList }
+                                         require
+                                         listPath="dateList" />
             </Form>
          </Page>
       );

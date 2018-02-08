@@ -26,12 +26,16 @@ export const defaultStoreFormat = {
 
 export const defaultDate = '...';
 
-export const getFormattedComplexDateView  = (complexDate, beginDateField, endDateField, singleDateField) => {
-   const format = complexDate.format || defaultFormat;
-   if (complexDate[beginDateField] || complexDate[endDateField]) {
-      return `${formatValue(complexDate[beginDateField], defaultStoreFormat, format) || defaultDate}-${formatValue(complexDate[endDateField], defaultStoreFormat, format) || defaultDate}`;
-   } else if (complexDate[singleDateField]) {
-      return formatValue(complexDate[singleDateField], defaultStoreFormat, format);
+export const getFormattedComplexDateView  = (complexDate = {}) => {
+   const {
+      dateInterval: { startDateTime, endDateTime } = {},
+      format = defaultFormat,
+      singleDateTime
+   } = complexDate;
+   if (startDateTime || endDateTime) {
+      return `${formatValue(startDateTime, defaultStoreFormat, format) || defaultDate}-${formatValue(endDateTime, defaultStoreFormat, format) || defaultDate}`;
+   } else if (singleDateTime) {
+      return formatValue(singleDateTime, defaultStoreFormat, format);
    }
    return "";
 };
