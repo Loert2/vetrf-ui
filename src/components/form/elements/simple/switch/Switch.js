@@ -10,7 +10,8 @@ const Switch = (props) => (
              style={ props.style }
              disabled={ props.disabled || "" }
              onChange={ props.name ? props.onChange : (e) => props.onChange && props.onChange(e.target.checked) }
-             className={ props.className || "ace ace-switch ace-switch-4" } />
+             className={ props.className || "ace ace-switch ace-switch-4" }
+             checked={ props.value } />
       <span className="lbl" data-lbl={ props.text } />
    </label>
 );

@@ -74,7 +74,10 @@ class NumberInput extends Component {
 }
 
 NumberInput.propTypes = {
-   value: PropTypes.string,
+   value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+   ]),
    name: PropTypes.string,
    id: PropTypes.string,
    placeholder: PropTypes.string,

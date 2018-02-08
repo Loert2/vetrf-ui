@@ -71,7 +71,10 @@ class NumberFormGroup extends PureComponent {
 }
 
 NumberFormGroup.propTypes = {
-   value: PropTypes.string,
+   value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+   ]),
    field: PropTypes.string,
    name: PropTypes.string,
    id: PropTypes.string,
