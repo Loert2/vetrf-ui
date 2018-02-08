@@ -18,7 +18,7 @@ const defaultPlaceholder = { placeholder: "" };
 const formatInputProps = { style: { height: "32px" } };
 
 const getIsInterval = (complexDate = {}) => {
-   return complexDate.dateInterval && (complexDate.dateInterval.startDateTime || complexDate.dateInterval.endDateTime);
+   return !!(complexDate.dateInterval && (complexDate.dateInterval.startDateTime || complexDate.dateInterval.endDateTime));
 };
 
 const singleDateTimePath = 'singleDateTime';

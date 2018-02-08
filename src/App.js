@@ -3,6 +3,7 @@ import './App.css';
 import Form from "./components/form/containers/Form";
 import ComplexDateListFormGroup from "./components/form/elements/form-group/complex-date/ComplexDateListFormGroup";
 import {Page, setIn} from "./components";
+import {defaultFormat} from "./components/form/utils/moment-utils";
 
 /**
  * Песочница
@@ -25,7 +26,11 @@ class App extends Component {
    constructor(props, context) {
       super(props, context);
       this.state = {
-         dateList: []
+         dateList: [{
+            format: defaultFormat,
+            singleDateTime: '01.01.2018',
+            view: '01.01.2018'
+         }]
       };
       this.changeDate = this.changeDate.bind(this);
    }
