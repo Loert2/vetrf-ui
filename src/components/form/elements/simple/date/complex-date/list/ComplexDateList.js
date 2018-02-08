@@ -93,7 +93,8 @@ class ComplexDateList extends Component {
 
    generateKeys() {
       const { list, onChangeDate, listPath } = this.props;
-      const newList = [ ...list ].forEach(it => it.key = uniqueId(keyPrefix));
+      const newList = [ ...list ];
+      newList.forEach(it => it.key = uniqueId(keyPrefix));
       onChangeDate && onChangeDate(newList, listPath);
    }
 
