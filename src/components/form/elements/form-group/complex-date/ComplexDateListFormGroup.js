@@ -15,21 +15,45 @@ const defaultValidate = (props = {}) => {
    return props.require && isEmptyList;
 };
 
+const getHasError = (props, count, oldHasError) => {
+   return validate(props, () => count > 0 || defaultValidate(props), oldHasError);
+};
+
 class ComplexDateListFormGroup extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         hasError: false
+         hasError: false,
+         invalidityCount: 0
       };
+
+      this.handleChangeValidity = this.handleChangeValidity.bind(this);
    }
 
    componentWillReceiveProps(nextProps) {
-      const hasError = validate(nextProps, () => defaultValidate(nextProps), this.state.hasError);
-      if (hasError !== this.state.hasError) {
+      const { hasError: oldHasError, invalidityCount } = this.state;
+
+      const hasError = getHasError(nextProps, invalidityCount, oldHasError);
+      if (hasError !== oldHasError) {
          this.setState({
+            ...this.state,
             hasError: hasError
          });
       }
+   }
+
+   handleChangeValidity(isDecrement) {
+      this.setState(oldState => {
+         const { hasError: oldHasError, invalidityCount } = oldState;
+
+         const newCount = isDecrement ? invalidityCount - 1 : invalidityCount + 1;
+         const hasError = getHasError(this.props, newCount, oldHasError);
+
+         return ({
+            hasError: hasError,
+            invalidityCount:newCount
+         })
+      });
    }
 
    render() {
@@ -46,18 +70,26 @@ class ComplexDateListFormGroup extends Component {
          maxListLength
       } = this.props;
 
+      const { hasError, invalidityCount } = this.state;
+
+      const showError = invalidityCount === 0;
+
+      const errorMassage = showError &&
+         (errorText || "Данная форма обязательна для заполнения");
+
       return (
          <FormGroup labelText={ labelText }
                     help={ help }
                     additionalBlock={ additionalBlock }
                     require={ require }
-                    hasError={ this.state.hasError }
-                    errorText={ errorText || "Не введено ни одного значения, либо дата не соответствует выбранному формату" } >
+                    hasError={ showError && hasError }
+                    errorText={ errorMassage } >
             <ComplexDateList list={ value }
                              onChangeDate={ onChangeDate }
                              formatList={ formatList }
                              listPath={ field }
-                             maxListLength={ maxListLength } />
+                             maxListLength={ maxListLength }
+                             handleChangeValidity={ this.handleChangeValidity } />
          </FormGroup>
       );
    }

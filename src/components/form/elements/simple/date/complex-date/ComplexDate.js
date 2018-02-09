@@ -113,6 +113,7 @@ class ComplexDate extends Component {
       } = complexDate;
 
       const isInterval = !this.state.isInterval;
+      const beforeToggleIsValid = this.isValid();
       this.setState((oldState) => {
          if (onChange) {
             let newComplexDate;
@@ -139,10 +140,10 @@ class ComplexDate extends Component {
             isInterval: isInterval,
             isValidEndDate: true
          }
-      }, () => this.postToggleValidate(isInterval, startDateTime, singleDateTime));
+      }, () => this.postToggleValidate(isInterval, startDateTime, singleDateTime, beforeToggleIsValid));
    }
 
-   postToggleValidate(isInterval, beginDate, singleDate) {
+   postToggleValidate(isInterval, beginDate, singleDate, beforeToggleIsValid) {
       const {
          storeFormat = defaultStoreFormat,
          complexDate: {
@@ -159,20 +160,31 @@ class ComplexDate extends Component {
          field = isValidSingleDateField;
          value = beginDate;
       }
-      this.validateFormat(field)(formatValue(value, storeFormat, format));
+      this.validateFormat(field, beforeToggleIsValid)(formatValue(value, storeFormat, format));
    }
 
-   validateFormat(isValidField) {
+   validateFormat(isValidField, beforeToggleIsValid) {
       return (value) => {
          const {
             complexDate: {
                format = defaultFormat
-            }
+            },
+            handleChangeValidity
          } = this.props;
-         this.setState((oldState) => ({
-            ...oldState,
-            [isValidField]: Moment(value, format.view, true).isValid() || isEmpty(value)
-         }));
+         const oldValid = beforeToggleIsValid !== undefined ? beforeToggleIsValid : this.isValid();
+
+         this.setState(
+            (oldState) => ({
+               ...oldState,
+               [isValidField]: Moment(value, format.view, true).isValid() || isEmpty(value)
+            }),
+            () => {
+               const newValid = this.isValid();
+               if ((oldValid !== newValid) && handleChangeValidity) {
+                  handleChangeValidity(newValid);
+               }
+            }
+         );
       };
    }
 
@@ -302,6 +314,7 @@ ComplexDate.propTypes = {
    formatPath: PropTypes.string,
    errorText: PropTypes.string,
    showError: PropTypes.bool,
+   handleChangeValidity: PropTypes.func,
    complexDatePath: PropTypes.string
 };
 

@@ -39,7 +39,8 @@ class ComplexDateList extends Component {
          onChangeDate,
          formatList,
          storeFormat = defaultStoreFormat,
-         listPath
+         listPath,
+         handleChangeValidity
       } = this.props;
       return list && list.map(
          (it, index) => {
@@ -54,7 +55,8 @@ class ComplexDateList extends Component {
                                   formatList={ formatList }
                                   storeFormat={ storeFormat }
                                   complexDate={ it }
-                                  complexDatePath={ itemField } />
+                                  complexDatePath={ itemField }
+                                  handleChangeValidity={ handleChangeValidity } />
                   </div>
                   {
                      list.length > 1 &&
@@ -133,6 +135,7 @@ ComplexDateList.propTypes = {
    onChangeDate: PropTypes.func,
    validate: PropTypes.func,
    formatList: PropTypes.arrayOf(PropTypes.object),
+   handleChangeValidity: PropTypes.func,
    maxListLength: PropTypes.number
 };
 
