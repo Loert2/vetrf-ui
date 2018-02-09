@@ -44,7 +44,7 @@ class ComplexDateList extends Component {
       return list && list.map(
          (it, index) => {
             const itemField = `${listPath}[${index}]`;
-            const key = it.key;
+            const key = it.key || index;
             return (
                <div key={ key } className="complex-date-list__item">
                   <div className={ classNames("complex-date-list__item__date", list.length > 1 && "complex-date-list__item__date--with-delete") } >

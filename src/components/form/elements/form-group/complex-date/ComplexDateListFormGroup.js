@@ -6,10 +6,10 @@ import validate from "../../../utils/validate-utils";
 import isEmpty from 'lodash/isEmpty';
 
 const defaultValidate = (props = {}) => {
-   const isEmptyList = isEmpty(props.list) ||
+   const isEmptyList = isEmpty(props.value) ||
       isEmpty(
-         props.list.filter(
-            it => !it.singleDateTime || !it.dateInterval || (!it.dateInterval.startDateTime && !it.dateInterval.endDateTime)
+         props.value.filter(
+            it => it.singleDateTime || (it.dateInterval && (it.dateInterval.startDateTime || it.dateInterval.endDateTime))
          )
       );
    return props.require && isEmptyList;
@@ -37,12 +37,12 @@ class ComplexDateListFormGroup extends Component {
          labelText,
          help,
          additionalBlock,
-         list = [],
+         value = [],
          onChangeDate,
          formatList,
          require,
          errorText,
-         listPath,
+         field,
          maxListLength
       } = this.props;
 
@@ -52,11 +52,11 @@ class ComplexDateListFormGroup extends Component {
                     additionalBlock={ additionalBlock }
                     require={ require }
                     hasError={ this.state.hasError }
-                    errorText={ errorText } >
-            <ComplexDateList list={ list }
+                    errorText={ errorText || "Не введено ни одного значения, либо дата не соответствует выбранному формату" } >
+            <ComplexDateList list={ value }
                              onChangeDate={ onChangeDate }
                              formatList={ formatList }
-                             listPath={ listPath }
+                             listPath={ field }
                              maxListLength={ maxListLength } />
          </FormGroup>
       );
@@ -68,12 +68,13 @@ ComplexDateListFormGroup.propTypes = {
    labelText: PropTypes.string,
    help: PropTypes.string,
    additionalBlock: PropTypes.node,
-   listPath: PropTypes.string,
-   list: PropTypes.arrayOf(PropTypes.object),
+   field: PropTypes.string,
+   value: PropTypes.arrayOf(PropTypes.object),
    formatList: PropTypes.arrayOf(PropTypes.object),
    require: PropTypes.bool,
    errorText: PropTypes.string,
    maxListLength: PropTypes.number,
+   errorHandler: PropTypes.func,
    onChangeDate: PropTypes.func
 };
 

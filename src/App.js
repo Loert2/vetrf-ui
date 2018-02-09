@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Form from "./components/form/containers/Form";
 import ComplexDateListFormGroup from "./components/form/elements/form-group/complex-date/ComplexDateListFormGroup";
-import {Page, setIn} from "./components";
+import {deleteIn, Page, setIn} from "./components";
 import {defaultFormat} from "./components/form/utils/moment-utils";
 
 /**
@@ -33,10 +33,29 @@ class App extends Component {
          }]
       };
       this.changeDate = this.changeDate.bind(this);
+      this.errorHandler = this.errorHandler.bind(this);
    }
 
    changeDate(value, path) {
       this.setState((oldState) => setIn(oldState, path, value));
+   }
+
+   errorHandler(hasError, field) {
+      console.log("field: ", field);
+      console.log("hasError: ", hasError);
+      this.setState((prevState) => {
+         if (hasError) {
+            return {
+               ...prevState,
+               invalidFields: setIn(prevState.invalidFields, field, hasError)
+            }
+         } else {
+            return {
+               ...prevState,
+               invalidFields: deleteIn(prevState.invalidFields, field)
+            }
+         }
+      });
    }
 
    render() {
@@ -50,10 +69,12 @@ class App extends Component {
             <Form>
                <ComplexDateListFormGroup labelText="Комплексная дата"
                                          onChangeDate={ this.changeDate }
-                                         list={ this.state.dateList }
+                                         value={ this.state.dateList }
                                          formatList={ formatList }
                                          require
-                                         listPath="dateList" />
+                                         showError={true}
+                                         field="dateList"
+                                         errorHandler={ this.errorHandler } />
             </Form>
          </Page>
       );

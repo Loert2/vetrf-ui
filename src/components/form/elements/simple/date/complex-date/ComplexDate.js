@@ -295,7 +295,6 @@ ComplexDate.propTypes = {
    }),
    onChange: PropTypes.func,
    customValidate: PropTypes.func,
-   errorHandler: PropTypes.func,
    help: PropTypes.string,
    formatPlaceholder: PropTypes.string,
    storeFormat: PropTypes.object,
