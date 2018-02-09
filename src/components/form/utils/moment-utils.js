@@ -2,12 +2,12 @@ import isEmpty from "lodash/isEmpty";
 import Moment from "moment/moment";
 
 export const formatValue = (value, oldFormat = {}, format = {}) => {
-   const formattedValue = Moment(value, oldFormat.view);
+   const formattedValue = Moment(value, oldFormat.view, true).format(format.view);
    const isValid = Moment(formattedValue, format.view, true).isValid();
    if (!isValid || isEmpty(value)) {
       return value;
    }
-   return formattedValue.format(format.view);
+   return formattedValue;
 };
 
 export const defaultFormat = {

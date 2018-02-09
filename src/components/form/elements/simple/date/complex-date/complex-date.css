@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
   align-content: space-between;
+  margin-bottom: 10px;
 }
 
 .complex-date__format {
@@ -28,7 +28,6 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: center;
 }
 
 

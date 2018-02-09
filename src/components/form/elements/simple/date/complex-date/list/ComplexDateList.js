@@ -25,17 +25,14 @@ class ComplexDateList extends Component {
       this.addNewItem = this.addNewItem.bind(this);
       this.deleteItem = this.deleteItem.bind(this);
       this.generateKeys = this.generateKeys.bind(this);
-   }
 
-   componentDidMount() {
-      const { list } = this.props;
+      const { list } = props;
       if (isEmpty(list)) {
          this.addNewItem();
       } else {
          this.generateKeys();
       }
    }
-
 
    getComplexDateList(list) {
       const {

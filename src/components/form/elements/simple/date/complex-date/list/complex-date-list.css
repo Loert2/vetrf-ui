@@ -12,7 +12,6 @@
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: nowrap;
-  align-items: center;
 }
 
 .complex-date-list__item__date, .complex-date-list__panel__info {
@@ -22,4 +21,5 @@
 .complex-date-list__item__delete {
   width: 16px;
   margin-left: 15px;
+  margin-top: 7px;
 }

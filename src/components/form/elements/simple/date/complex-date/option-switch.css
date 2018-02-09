@@ -3,16 +3,15 @@
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: nowrap;
-  align-items: center;
 }
 
 .option-switch__element {
 }
 
 .option-switch__element--text {
-
+  margin-top: 7px;
 }
 
 .option-switch__element--switch {
-  margin-top: 10px;
+  margin-top: 5px;
 }
