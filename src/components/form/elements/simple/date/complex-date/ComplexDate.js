@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {DatePicker, Select, Switch} from "../../index";
 import Moment from "moment/moment";
 import DateRange from "../date-range/DateRange";
-import validate from "../../../../utils/validate-utils";
 import classNames from "classnames";
 import isEmpty from "lodash/isEmpty";
 import {
@@ -62,20 +61,13 @@ class ComplexDate extends Component {
    }
 
    componentWillReceiveProps(nextProps) {
-      const { hasError } = this.state;
-      const isValid = this.isValid();
-      const nextHasError = validate(nextProps, () => !isValid || (nextProps.require && !nextProps.value), hasError, notValidFormatText);
-      if (nextHasError !== this.state.hasError) {
-         this.setState({
-            ...this.state,
-            hasError: nextHasError
-         });
-      }
       const {
          onChange,
          formatPath
       } = this.props;
+
       const { complexDate = {} } = nextProps;
+
       if (!complexDate.format) {
          onChange && onChange(defaultFormat, formatPath);
       }
