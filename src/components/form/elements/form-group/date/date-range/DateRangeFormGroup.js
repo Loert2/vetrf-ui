@@ -18,34 +18,48 @@ const getFormatView = (dateFormat, timeFormat, viewFormat) => {
 class DateRangeFormGroup extends Component {
    constructor(props, context) {
       super(props, context);
+
       this.validateFormat = this.validateFormat.bind(this);
+      this.getValidateFormat = this.getValidateFormat.bind(this);
+      this.isValid = this.isValid.bind(this);
+
       this.state = {
-         isValid: true,
+         isValidBeginDate: true,
+         isValidEndDate: true,
          hasError: false
       }
    }
 
    componentWillReceiveProps(nextProps) {
-      const { isValid, hasError: oldHasError } = this.state;
+      const { hasError: oldHasError } = this.state;
       const { require, dateFormat, timeFormat, viewFormat, beginDate, endDate } = nextProps;
 
       const format = getFormatView(dateFormat, timeFormat, viewFormat);
-      const defaultValidate = () => !isValid || (require && !beginDate && !endDate);
+      const defaultValidate = () => !this.isValid() || (require && !beginDate && !endDate);
 
       const hasError = validate(nextProps, defaultValidate, oldHasError, getDefaultInvalidFormatMessage(format));
       if (hasError !== oldHasError) {
          this.setState({
-            hasError: hasError,
-            isValid: isValid
+            ...this.state,
+            hasError: hasError
          });
       }
    }
 
-   validateFormat(value) {
+   validateFormat(value, validField) {
       this.setState({
          ...this.state,
-         isValid: isValidDate(value) || isEmpty(value),
+         [validField]: isValidDate(value) || isEmpty(value),
       });
+   }
+
+   getValidateFormat(validField) {
+      return (value) => this.validateFormat(value, validField);
+   }
+
+   isValid() {
+      const { isValidBeginDate, isValidEndDate } = this.state;
+      return isValidBeginDate && isValidEndDate;
    }
 
 
@@ -72,8 +86,9 @@ class DateRangeFormGroup extends Component {
          fieldClassName,
          labelClassName
       } = this.props;
-      const { isValid, hasError } = this.state;
+      const { hasError } = this.state;
       const format = getFormatView(dateFormat, timeFormat, viewFormat);
+      const isValid = this.isValid();
 
       return(
          <FormGroup labelText={ labelText }
@@ -94,7 +109,8 @@ class DateRangeFormGroup extends Component {
                        endDate={ endDate }
                        height={ height }
                        placeholder={ placeholder }
-                       validate={ this.validateFormat } />
+                       validateBegin={ this.getValidateFormat("isValidBeginDate") }
+                       validateEnd={ this.getValidateFormat("isValidEndDate") } />
          </FormGroup>
       );
    }

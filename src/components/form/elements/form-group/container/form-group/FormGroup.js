@@ -32,7 +32,7 @@ const FormGroup = (props) => {
             { additionalBlock }
             {
                hasError && errorText &&
-               <p className="help-block has-error">{ errorText }</p>
+               <p className="help-block has-error form-group__error">{ errorText }</p>
             }
          </div>
       </div>
