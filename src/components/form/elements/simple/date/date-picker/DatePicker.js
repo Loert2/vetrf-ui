@@ -84,7 +84,6 @@ class DatePicker extends PureComponent {
                          }
                       }
                    }
-                   disableOnClickOutside
                    inputProps={ inputProps || placeholderProps } />
       );
    }

@@ -1,3 +1,6 @@
 .form-group__error {
   width: 100%;
+  float: left;
+  max-width: 100%;
+  position: relative;
 }
