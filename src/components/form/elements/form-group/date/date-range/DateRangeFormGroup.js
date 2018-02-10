@@ -68,7 +68,9 @@ class DateRangeFormGroup extends Component {
          endDate,
          height,
          invalidFormatMessage,
-         placeholder
+         placeholder,
+         fieldClassName,
+         labelClassName
       } = this.props;
       const { isValid, hasError } = this.state;
       const format = getFormatView(dateFormat, timeFormat, viewFormat);
@@ -79,7 +81,9 @@ class DateRangeFormGroup extends Component {
                     help={ help }
                     additionalBlock={ additionalBlock }
                     errorText={ isValid ? errorText : (invalidFormatMessage || getDefaultInvalidFormatMessage(format)) }
-                    hasError={ !isValid || hasError } >
+                    hasError={ !isValid || hasError }
+                    fieldClassName={ fieldClassName }
+                    labelClassName={ labelClassName } >
             <DateRange id={ id }
                        className={ className }
                        dateFormat={ dateFormat }
@@ -111,6 +115,8 @@ DateRangeFormGroup.propTypes = {
    dateFormat: PropTypes.string,
    timeFormat: PropTypes.string,
    viewFormat: PropTypes.string,
+   fieldClassName: PropTypes.string,
+   labelClassName: PropTypes.string,
    invalidFormatMessage: PropTypes.string,
    beginDate: PropTypes.oneOfType([
       PropTypes.string,

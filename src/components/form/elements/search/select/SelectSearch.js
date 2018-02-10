@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Select from '../../simple/select/Select';
 
+const defaultStyleInput = { height: "30px" };
+
 const SelectSearch = (props) => (
    <div className="form-group">
       <label className="col-xs-5 control-label no-padding-right">{ props.labelText }</label>
@@ -11,7 +13,7 @@ const SelectSearch = (props) => (
                     multi={ props.multiple }
                     id={ props.id }
                     style={ props.style }
-                    styleInput={ props.styleInput }
+                    styleInput={ props.styleInput || defaultStyleInput }
                     valueKey={ props.valueKey || "id" }
                     labelKey={ props.labelKey || "name" }
                     options={ props.options }

@@ -67,7 +67,9 @@ class ComplexDateListFormGroup extends Component {
          require,
          errorText,
          field,
-         maxListLength
+         maxListLength,
+         fieldClassName,
+         labelClassName
       } = this.props;
 
       const { hasError, invalidityCount } = this.state;
@@ -83,7 +85,9 @@ class ComplexDateListFormGroup extends Component {
                     additionalBlock={ additionalBlock }
                     require={ require }
                     hasError={ showError && hasError }
-                    errorText={ errorMassage } >
+                    errorText={ errorMassage }
+                    fieldClassName={ fieldClassName }
+                    labelClassName={ labelClassName } >
             <ComplexDateList list={ value }
                              onChangeDate={ onChangeDate }
                              formatList={ formatList }
@@ -101,6 +105,8 @@ ComplexDateListFormGroup.propTypes = {
    help: PropTypes.string,
    additionalBlock: PropTypes.node,
    field: PropTypes.string,
+   fieldClassName: PropTypes.string,
+   labelClassName: PropTypes.string,
    value: PropTypes.arrayOf(PropTypes.object),
    formatList: PropTypes.arrayOf(PropTypes.object),
    require: PropTypes.bool,
