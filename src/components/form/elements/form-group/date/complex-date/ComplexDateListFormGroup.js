@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {FormGroup} from "../index";
-import {ComplexDateList} from "../../index";
-import validate from "../../../utils/validate-utils";
+import {FormGroup} from "../../index";
+import {ComplexDateList} from "../../../index";
+import validate from "../../../../utils/validate-utils";
 import isEmpty from 'lodash/isEmpty';
 
 const defaultValidate = (props = {}) => {

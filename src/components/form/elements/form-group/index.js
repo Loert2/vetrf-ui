@@ -11,3 +11,4 @@ export { default as RequireStar } from './require-star/RequireStar';
 export { default as SelectFormGroup } from './select/SelectFormGroup';
 export { default as SwitchFormGroup } from './switch/SwitchFormGroup';
 export { default as TextareaFormGroup } from './textarea/TextareaFormGroup';
+export { default as DateRangeFormGroup } from './date/date-range/DateRangeFormGroup';

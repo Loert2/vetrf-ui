@@ -30,6 +30,12 @@
   justify-content: flex-end;
 }
 
+.complex-date__error-block {
+  color: #d16e6c;
+  order: 4;
+  width: 100%;
+}
+
 
 @media (max-width: 916px) {
   .complex-date__format {

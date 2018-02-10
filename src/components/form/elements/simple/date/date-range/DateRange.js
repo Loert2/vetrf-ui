@@ -42,7 +42,6 @@ const DateRange = (props) => {
 };
 
 DateRange.propTypes = {
-   labelText: PropTypes.string,
    id: PropTypes.string,
    height: PropTypes.string,
    beginChange: PropTypes.func,

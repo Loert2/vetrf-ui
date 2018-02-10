@@ -32,7 +32,8 @@ export { default as FormActionsPanel } from './form/actions/form-actions-panel/F
 export { default as AutocompleteFormGroup } from './form/elements/form-group/autocomplete/AutocompleteFormGroup';
 export { default as CheckboxFormGroup } from './form/elements/form-group/checkbox/CheckboxFormGroup';
 export { default as DateFormGroup } from './form/elements/form-group/date/DateFormGroup';
-export { default as ComplexDateListFormGroup } from './form/elements/form-group/complex-date/ComplexDateListFormGroup';
+export { default as DateRangeFormGroup } from './form/elements/form-group/date/date-range/DateRangeFormGroup';
+export { default as ComplexDateListFormGroup } from './form/elements/form-group/date/complex-date/ComplexDateListFormGroup';
 export { default as FormBlock } from './form/elements/form-group/container/form-block/FormBlock';
 export { default as FormGroup } from './form/elements/form-group/container/form-group/FormGroup';
 export { default as FileUploadFormGroup } from './form/elements/form-group/file-upload/FileUploadFormGroup';

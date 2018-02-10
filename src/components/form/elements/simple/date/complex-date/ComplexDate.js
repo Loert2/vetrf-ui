@@ -255,10 +255,6 @@ class ComplexDate extends Component {
             </div>
             <div className={ classNames(`form-group complex-date__date ${formClass}`, showError && "has-error") }>
                { dateForm }
-               {
-                  showError &&
-                  <p className="help-block has-error">{ this.isValid() ? errorText : notValidFormatText }</p>
-               }
             </div>
             <div className={ `complex-date__switch ${ isInterval && 'complex-date__switch--interval' }` }>
                <span className="option-switch__element option-switch__element--text">
@@ -273,6 +269,12 @@ class ComplexDate extends Component {
                   период
                </span>
             </div>
+            {
+               showError &&
+               <p className="help-block has-error complex-date__error-block">
+                  { this.isValid() ? errorText : notValidFormatText }
+               </p>
+            }
          </div>
       );
    }

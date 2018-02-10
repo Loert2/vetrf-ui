@@ -1,6 +1,8 @@
 export { default as AutocompleteFormGroup } from './form-group/autocomplete/AutocompleteFormGroup';
 export { default as CheckboxFormGroup } from './form-group/checkbox/CheckboxFormGroup';
 export { default as DateFormGroup } from './form-group/date/DateFormGroup';
+export { default as ComplexDateFormGroup } from './form-group/date/complex-date/ComplexDateListFormGroup';
+export { default as DateRangeFormGroup } from './form-group/date/date-range/DateRangeFormGroup';
 export { default as FormBlock } from './form-group/container/form-block/FormBlock';
 export { default as FormGroup } from './form-group/container/form-group/FormGroup';
 export { default as InputFormGroup } from './form-group/input/InputFormGroup';
