@@ -29,7 +29,10 @@ SelectSearch.propTypes = {
    labelText: PropTypes.string,
    field: PropTypes.string,
    id: PropTypes.string,
-   value: PropTypes.object,
+   value: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.array
+   ]),
    style: PropTypes.object,
    styleInput: PropTypes.object,
    valueKey: PropTypes.string,

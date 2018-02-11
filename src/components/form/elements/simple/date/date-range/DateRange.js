@@ -6,7 +6,6 @@ import DatePicker from '../date-picker/DatePicker';
 
 const defaultDateFormat = "DD.MM.YYYY";
 
-//TODO: Сделать отдельно компоненты с label и без
 const DateRange = (props) => {
    const inputProps = { placeholder: props.placeholder };
    const styleInputGroupAddonBackground = { height: props.height || "34px" };
