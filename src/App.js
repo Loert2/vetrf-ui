@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Form from "./components/form/containers/Form";
-import ComplexDateListFormGroup from "./components/form/elements/form-group/date/complex-date/ComplexDateListFormGroup";
-import {deleteIn, Page, setIn} from "./components";
-import {defaultFormat} from "./components/form/utils/moment-utils";
+import { Page } from "./components";
 
 /**
  * Песочница

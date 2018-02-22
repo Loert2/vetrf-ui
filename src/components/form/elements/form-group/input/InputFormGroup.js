@@ -43,7 +43,9 @@ class InputFormGroup extends PureComponent {
          onChange,
          className,
          placeholder,
-         field
+         field,
+         labelClassName,
+         fieldClassName
       } = this.props;
       return (
          <FormGroup labelText={ labelText }
@@ -51,7 +53,9 @@ class InputFormGroup extends PureComponent {
                     help={ help }
                     additionalBlock={ additionalBlock }
                     hasError={ this.state.hasError }
-                    errorText={ errorText } >
+                    errorText={ errorText }
+                    labelClassName={ labelClassName }
+                    fieldClassName={ fieldClassName } >
             <Input type={ type || "text" } autocomplete="off"
                    name={ name }
                    id={ id }
@@ -95,7 +99,9 @@ InputFormGroup.propTypes = {
    ]),
    onChange: PropTypes.func,
    additionalBlock: PropTypes.node,
-   className: PropTypes.string
+   className: PropTypes.string,
+   labelClassName: PropTypes.string,
+   fieldClassName: PropTypes.string
 };
 
 export default InputFormGroup;
