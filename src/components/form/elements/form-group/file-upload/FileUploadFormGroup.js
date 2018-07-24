@@ -3,29 +3,15 @@ import PropTypes from 'prop-types';
 
 import FileUpload from '../../simple/file-upload/FileUpload';
 import FormGroup from '../container/form-group/FormGroup';
-
-import validate from '../../../utils/validate-utils';
+import withValidate from '../withValidate';
 
 import get from 'lodash/get';
 
 class FileUploadFormGroup extends PureComponent {
    constructor(props) {
       super(props);
-      this.state = {
-         hasError: false,
-         fileName: ""
-      };
+      this.state = { fileName: "" };
       this.onChangeHandler = this.onChangeHandler.bind(this);
-   }
-
-   componentWillReceiveProps(nextProps) {
-      const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
-      if (hasError !== this.state.hasError) {
-         this.setState({
-            hasError: hasError,
-            fileName: this.state.fileName
-         });
-      }
    }
 
    onChangeHandler(event) {
@@ -34,8 +20,7 @@ class FileUploadFormGroup extends PureComponent {
       const value = get(event, "target.value");
       const fileName = value ? value.replace(/.*(\/|\\)/, "") : "";
       this.setState({
-         fileName: fileName,
-         hasError: this.state.hasError
+         fileName: fileName
       });
       const file = { file: get(event, "target.files[0]"), name: fileName };
       onChange && onChange(file, field);
@@ -52,11 +37,10 @@ class FileUploadFormGroup extends PureComponent {
          dataText,
          id,
          className,
+         hasError
       } = this.props;
-      const {
-         hasError,
-         fileName
-      } = this.state;
+
+      const { fileName } = this.state;
       return (
          <FormGroup labelText={ labelText }
                     require={ require }
@@ -83,6 +67,7 @@ FileUploadFormGroup.propTypes = {
    labelText: PropTypes.string,
    help: PropTypes.node,
    errorText: PropTypes.node,
+   hasError: PropTypes.bool,
    require: PropTypes.bool,
    showError: PropTypes.bool,
    customValidate: PropTypes.func,
@@ -94,4 +79,4 @@ FileUploadFormGroup.propTypes = {
 
 FileUploadFormGroup.defaultProps = {};
 
-export default FileUploadFormGroup;
+export default withValidate(FileUploadFormGroup);

@@ -9,6 +9,7 @@ const FormGroup = (props) => {
       hasError,
       errorText,
       errorClassName,
+      errorTextClassName,
       labelText,
       require,
       help,
@@ -32,7 +33,9 @@ const FormGroup = (props) => {
             { additionalBlock }
             {
                hasError && errorText &&
-               <p className="help-block has-error form-group__error">{ errorText }</p>
+               <p className={ classNames("help-block has-error form-group__error", errorTextClassName) }>
+                  { errorText }
+               </p>
             }
          </div>
       </div>
@@ -45,6 +48,7 @@ FormGroup.propTypes = {
    require: PropTypes.bool,
    hasError: PropTypes.bool,
    errorClassName: PropTypes.string,
+   errorTextClassName: PropTypes.string,
    labelClassName: PropTypes.string,
    fieldClassName: PropTypes.string,
    errorText: PropTypes.node,

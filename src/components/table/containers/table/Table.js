@@ -34,7 +34,7 @@ const Table = (props) =>  (
                     readOnly={ props.readOnly }
                     getRowClassName={ props.getRowClassName }
                     addBtn={ props.addBtn }
-                    additionalRow={ props.additionalDataRow } />
+                    additionalDataRow={ props.additionalDataRow } />
       </table>
    </div>
 );

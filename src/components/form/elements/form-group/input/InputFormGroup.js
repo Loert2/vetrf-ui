@@ -1,78 +1,60 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
 
 import Input from '../../simple/input/Input';
 import FormGroup from '../container/form-group/FormGroup';
+import withValidate from './../withValidate';
 
-import validate from '../../../utils/validate-utils';
-
-class InputFormGroup extends PureComponent {
-   constructor(props) {
-      super(props);
-      this.state = {
-         hasError: false
-      };
-   }
-
-   componentWillReceiveProps(nextProps) {
-      const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
-      if (hasError !== this.state.hasError) {
-         this.setState({
-            hasError: hasError
-         });
-      }
-   }
-
-   render() {
-      const {
-         labelText,
-         require,
-         help,
-         additionalBlock,
-         value,
-         errorText,
-         type,
-         name,
-         id,
-         maxLength,
-         style,
-         autoFocus,
-         onFocus,
-         disabled,
-         onEnter,
-         onChange,
-         className,
-         placeholder,
-         field,
-         labelClassName,
-         fieldClassName
-      } = this.props;
-      return (
-         <FormGroup labelText={ labelText }
-                    require={ require }
-                    help={ help }
-                    additionalBlock={ additionalBlock }
-                    hasError={ this.state.hasError }
-                    errorText={ errorText }
-                    labelClassName={ labelClassName }
-                    fieldClassName={ fieldClassName } >
-            <Input type={ type || "text" } autocomplete="off"
-                   name={ name }
-                   id={ id }
-                   maxLength={ maxLength || 255 }
-                   value={ value }
-                   style={ style }
-                   autoFocus={ autoFocus }
-                   onFocus={ onFocus }
-                   disabled={ disabled }
-                   onKeyPress={ onEnter }
-                   onChange={ (value) => onChange && onChange(value, field) }
-                   className={ className || "form-control" }
-                   placeholder={ placeholder } />
-         </FormGroup>
-      );
-   }
-}
+const InputFormGroup = (props) => {
+   const {
+      labelText,
+      require,
+      help,
+      additionalBlock,
+      value,
+      errorText,
+      hasError,
+      type,
+      name,
+      id,
+      maxLength,
+      style,
+      autoFocus,
+      onFocus,
+      disabled,
+      onEnter,
+      onChange,
+      className,
+      placeholder,
+      field,
+      labelClassName,
+      fieldClassName
+   } = props;
+   return (
+      <FormGroup labelText={ labelText }
+                 require={ require }
+                 help={ help }
+                 additionalBlock={ additionalBlock }
+                 hasError={ hasError }
+                 errorText={ errorText }
+                 labelClassName={ labelClassName }
+                 fieldClassName={ fieldClassName } >
+         <Input type={ type || "text" } autocomplete="off"
+                name={ name }
+                id={ id }
+                maxLength={ maxLength || 255 }
+                value={ value }
+                style={ style }
+                autoFocus={ autoFocus }
+                onFocus={ onFocus }
+                disabled={ disabled }
+                onKeyPress={ onEnter }
+                onChange={ (value) => onChange && onChange(value, field) }
+                className={ className || "form-control" }
+                placeholder={ placeholder } />
+      </FormGroup>
+   );
+};
 
 InputFormGroup.propTypes = {
    value: PropTypes.string,
@@ -104,4 +86,4 @@ InputFormGroup.propTypes = {
    fieldClassName: PropTypes.string
 };
 
-export default InputFormGroup;
+export default withValidate(InputFormGroup);

@@ -21,6 +21,9 @@ export const onlyFloatFilter = (value, oldValid = "") => {
    return oldValid;
 };
 
-export const onlyNumbersFilter = (value, oldValid = "") => (
-   value ? value.replace(NUMBER_REGEXP, '') : oldValid
-);
+export const onlyNumbersFilter = (value, oldValid = "") => {
+   if (!value) {
+      return "";
+   }
+   return value ? value.replace(NUMBER_REGEXP, '') : oldValid
+};

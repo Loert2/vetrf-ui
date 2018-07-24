@@ -9,5 +9,5 @@ export default (props) => (
            placeholder={ props.placeholder || "" }
            style={ props.style }
            valueKey={ props.valueKey || "id" }
-           labelKey={ props.labelKey || "name" } />
+           labelKey={ props.labelKey || "name" }/>
 );

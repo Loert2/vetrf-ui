@@ -1,67 +1,49 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
 
 import Checkbox from '../../simple/checkbox/Checkbox';
-import FormGroup from '../container/form-group/FormGroup'
-
-import validate from '../../../utils/validate-utils';
+import FormGroup from '../container/form-group/FormGroup';
+import withValidate from './../withValidate';
 
 /**
 * Одиночный checkbox
 * */
-class CheckboxFormGroup extends PureComponent {
-   constructor(props) {
-      super(props);
-      this.state = {
-         hasError: false
-      };
-   }
-
-   componentWillReceiveProps(nextProps) {
-      const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
-      if (hasError !== this.state.hasError) {
-         this.setState({
-            hasError: hasError
-         });
-      }
-   }
-
-   render() {
-      const {
-         labelText,
-         require,
-         help,
-         additionalBlock,
-         value,
-         errorText,
-         name,
-         id,
-         style,
-         disabled,
-         onEnter,
-         onChange,
-         className,
-         field
-      } = this.props;
-      return(
-         <FormGroup labelText={ labelText }
-                    require={ require }
-                    help={ help }
-                    additionalBlock={ additionalBlock }
-                    hasError={ this.state.hasError }
-                    errorText={ errorText } >
-            <Checkbox name={ name }
-                      id={ id }
-                      value={ value }
-                      style={ style }
-                      disabled={ disabled }
-                      onKeyPress={ onEnter }
-                      onChange={ (value) => onChange && onChange(value, field) }
-                      className={ className || "form-control" } />
-         </FormGroup>
-      );
-   }
-}
+const CheckboxFormGroup = (props) => {
+   const {
+      labelText,
+      require,
+      help,
+      additionalBlock,
+      value,
+      errorText,
+      hasError,
+      name,
+      id,
+      style,
+      disabled,
+      onEnter,
+      onChange,
+      className,
+      field
+   } = props;
+   return(
+      <FormGroup labelText={ labelText }
+                 require={ require }
+                 help={ help }
+                 additionalBlock={ additionalBlock }
+                 hasError={ hasError }
+                 errorText={ errorText } >
+         <Checkbox name={ name }
+                   id={ id }
+                   value={ value }
+                   style={ style }
+                   disabled={ disabled }
+                   onKeyPress={ onEnter }
+                   onChange={ (value) => onChange && onChange(value, field) }
+                   className={ className || "form-control" } />
+      </FormGroup>
+   );
+};
 
 CheckboxFormGroup.propTypes = {
    value: PropTypes.string,
@@ -71,6 +53,7 @@ CheckboxFormGroup.propTypes = {
    labelText: PropTypes.string,
    errorText: PropTypes.node,
    help: PropTypes.node,
+   hasError: PropTypes.bool,
    style: PropTypes.object,
    require: PropTypes.bool,
    showError: PropTypes.bool,
@@ -86,4 +69,4 @@ CheckboxFormGroup.propTypes = {
    className: PropTypes.string
 };
 
-export default CheckboxFormGroup;
+export default withValidate(CheckboxFormGroup);

@@ -1,87 +1,69 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import FormGroup from '../container/form-group/FormGroup';
 import AutocompleteInput from '../../simple/input/autocomplete/AutocompleteInput';
+import withValidate from './../withValidate';
 
-import validate from '../../../utils/validate-utils';
+const AutocompleteFormGroup = (props) => {
+   const {
+      labelText,
+      require,
+      help,
+      additionalBlock,
+      value,
+      errorText,
+      hasError,
+      name,
+      id,
+      maxLength,
+      style,
+      onFocus,
+      disabled,
+      onAutocomplete,
+      resetAutocompleteList,
+      onEnter,
+      onChange,
+      onSelect,
+      items,
+      viewKey,
+      className,
+      searchLabel,
+      placeholder,
+      searchField,
+      selectField,
+      dpropdownClass
+   } = props;
 
-class AutocompleteFormGroup extends PureComponent {
-   constructor(props) {
-      super(props);
-      this.state = {
-         hasError: false
-      };
-   }
-
-   componentWillReceiveProps(nextProps) {
-      const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
-      if (hasError !== this.state.hasError) {
-         this.setState({
-            hasError: hasError
-         });
-      }
-   }
-
-   render() {
-      const {
-         labelText,
-         require,
-         help,
-         additionalBlock,
-         value,
-         errorText,
-         name,
-         id,
-         maxLength,
-         style,
-         onFocus,
-         disabled,
-         onAutocomplete,
-         resetAutocompleteList,
-         onEnter,
-         onChange,
-         onSelect,
-         items,
-         viewKey,
-         className,
-         searchLabel,
-         placeholder,
-         searchField,
-         selectField,
-         dpropdownClass
-      } = this.props;
-      return (
-         <FormGroup labelText={ labelText }
-                    require={ require }
-                    help={ help }
-                    additionalBlock={ additionalBlock }
-                    hasError={ this.state.hasError }
-                    errorText={ errorText } >
-            <AutocompleteInput  name={ name }
-                                id={ id }
-                                maxLength={ maxLength }
-                                value={ value }
-                                searchField={ searchField }
-                                selectField={ selectField }
-                                style={ style }
-                                onFocus={ onFocus }
-                                disabled={ disabled }
-                                onAutocomplete={ onAutocomplete }
-                                resetAutocompleteList={ resetAutocompleteList }
-                                onKeyPress={ onEnter }
-                                onChange={ (value) => onChange && onChange(value, searchField, selectField) }
-                                onSelect={ onSelect }
-                                items={ items }
-                                viewKey={ viewKey }
-                                className={ className ||  "form-control" }
-                                dpropdownClass={ dpropdownClass }
-                                searchLabel={ searchLabel }
-                                placeholder={ placeholder } />
-         </FormGroup>
-      );
-   }
-
+   return (
+      <FormGroup labelText={ labelText }
+                 require={ require }
+                 help={ help }
+                 additionalBlock={ additionalBlock }
+                 hasError={ hasError }
+                 errorText={ errorText } >
+         <AutocompleteInput  name={ name }
+                             id={ id }
+                             maxLength={ maxLength }
+                             value={ value }
+                             searchField={ searchField }
+                             selectField={ selectField }
+                             style={ style }
+                             onFocus={ onFocus }
+                             disabled={ disabled }
+                             onAutocomplete={ onAutocomplete }
+                             resetAutocompleteList={ resetAutocompleteList }
+                             onKeyPress={ onEnter }
+                             onChange={ (value) => onChange && onChange(value, searchField, selectField) }
+                             onSelect={ onSelect }
+                             items={ items }
+                             viewKey={ viewKey }
+                             className={ className ||  "form-control" }
+                             dpropdownClass={ dpropdownClass }
+                             searchLabel={ searchLabel }
+                             placeholder={ placeholder } />
+      </FormGroup>
+   );
 };
 
 AutocompleteFormGroup.propTypes = {
@@ -118,4 +100,4 @@ AutocompleteFormGroup.propTypes = {
    items: PropTypes.array
 };
 
-export default AutocompleteFormGroup;
+export default withValidate(AutocompleteFormGroup);

@@ -14,7 +14,10 @@ export { default as Input } from './input/Input';
 export { default as NumberInput } from './input/number/NumberInput';
 
 export { default as Select } from './select/Select';
+export { default as AsyncSelect } from './select/async/AsyncSelect';
 export { default as SimpleSelect } from './select/simple/SimpleSelect';
 
 export { default as Switch } from './switch/Switch';
 export { default as SwitchText } from './switch/text/SwitchText';
+
+export { default as IkarAddress } from './ikar-address/IkarAddress';

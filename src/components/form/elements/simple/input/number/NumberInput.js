@@ -11,11 +11,11 @@ import Input from '../Input';
 class NumberInput extends Component {
    constructor(props, context) {
       super(props, context);
-      this.getOnChangeHandler = this.getOnChangeHandler.bind(this);
-      this.state ={
+      this.state = {
          validValue: props.value || ""
       };
-      this.onChangeHandler = this.getOnChangeHandler();
+
+      this.getOnChangeHandler = this.getOnChangeHandler.bind(this);
       this.setValidValue = this.setValidValue.bind(this);
    }
 
@@ -66,7 +66,7 @@ class NumberInput extends Component {
                 onFocus={ onFocus }
                 disabled={ disabled || "" }
                 onKeyPress={ onEnter }
-                onChange={ this.onChangeHandler.bind(this) }
+                onChange={ this.getOnChangeHandler() }
                 className={ className }
                 placeholder={ placeholder } />
       )

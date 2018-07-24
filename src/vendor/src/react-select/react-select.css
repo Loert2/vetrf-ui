@@ -147,13 +147,22 @@
   width: 16px;
   height: 16px;
   box-sizing: border-box;
-  border-radius: 0;
-  border: 2px solid #ccc;
-  border-right-color: #333;
   display: inline-block;
   position: relative;
   vertical-align: middle;
 }
+
+.Select-loading:before{
+    display: inline-block;
+    font: normal normal normal 15px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content:"\f110";
+    color: #4690cb;
+}
+
 .Select-clear-zone {
   -webkit-animation: Select-animation-fadeIn 200ms;
   -o-animation: Select-animation-fadeIn 200ms;

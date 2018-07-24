@@ -1,79 +1,60 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import FormGroup from '../container/form-group/FormGroup';
 import RadioBtn from '../../simple/radio/RadioBtn';
-
-import validate from '../../../utils/validate-utils';
+import withValidate from './../withValidate';
 
 /**
 * Компонент-переключатель из двух радио-кнопок - true или false, по умолчанию не выбрано ничего.
 * */
-class RadioBtnSwitchFormGroup extends PureComponent {
-   constructor(props) {
-      super(props);
-      this.state = {
-         hasError: false
-      };
-   }
-
-   componentWillReceiveProps(nextProps) {
-      const hasError = validate(nextProps, () => nextProps.require && nextProps.value !== undefined, this.state.hasError);
-      if (hasError !== this.state.hasError) {
-         this.setState({
-            hasError: hasError
-         });
-      }
-   }
-
-   render() {
-      const {
-         additionalBlock,
-         labelText,
-         require,
-         help,
-         itemTrue,
-         itemFalse,
-         value, //выбранное значение
-         name,
-         onChange,
-         errorText,
-         field,
-         disabled,
-         id
-      } = this.props;
-      return (
-         <FormGroup labelText={ labelText }
-                    require={ require }
-                    help={ help }
-                    additionalBlock={ additionalBlock }
-                    hasError={ this.state.hasError }
-                    errorText={ errorText } >
-            <div>
-               <RadioBtn id={ itemTrue.id || (id && `${ id }_true`) }
-                         name={ name }
-                         value="true"
-                         onChange={ () => onChange && onChange(true, field) }
-                         className={ itemTrue.className || "ace form-control" }
-                         text={ itemTrue.text || "Да" }
-                         checked={ value === true }
-                         disabled={ disabled } />
-            </div>
-            <div>
-               <RadioBtn id={ itemFalse.id || (id && `${ id }_false`) }
-                         name={ name }
-                         value="false"
-                         onChange={ () => onChange && onChange(false, field) }
-                         className={ itemFalse.className || "ace form-control" }
-                         text={ itemFalse.text || "Нет" }
-                         checked={ value === false }
-                         disabled={ disabled } />
-            </div>
-         </FormGroup>
-      );
-   }
-
-}
+const RadioBtnSwitchFormGroup = (props) => {
+   const {
+      additionalBlock,
+      labelText,
+      require,
+      help,
+      itemTrue,
+      itemFalse,
+      value, //выбранное значение
+      name,
+      onChange,
+      errorText,
+      hasError,
+      field,
+      disabled,
+      id
+   } = props;
+   return (
+      <FormGroup labelText={ labelText }
+                 require={ require }
+                 help={ help }
+                 additionalBlock={ additionalBlock }
+                 hasError={ hasError }
+                 errorText={ errorText } >
+         <div>
+            <RadioBtn id={ itemTrue.id || (id && `${ id }_true`) }
+                      name={ name }
+                      value="true"
+                      onChange={ () => onChange && onChange(true, field) }
+                      className={ itemTrue.className || "ace form-control" }
+                      text={ itemTrue.text || "Да" }
+                      checked={ value === true }
+                      disabled={ disabled } />
+         </div>
+         <div>
+            <RadioBtn id={ itemFalse.id || (id && `${ id }_false`) }
+                      name={ name }
+                      value="false"
+                      onChange={ () => onChange && onChange(false, field) }
+                      className={ itemFalse.className || "ace form-control" }
+                      text={ itemFalse.text || "Нет" }
+                      checked={ value === false }
+                      disabled={ disabled } />
+         </div>
+      </FormGroup>
+   );
+};
 
 RadioBtnSwitchFormGroup.propTypes = {
    itemTrue: PropTypes.shape({
@@ -98,11 +79,13 @@ RadioBtnSwitchFormGroup.propTypes = {
    additionalBlock: PropTypes.node,
    showError: PropTypes.bool,
    disabled: PropTypes.bool,
+   hasError: PropTypes.bool,
    require: PropTypes.bool
 };
 
 RadioBtnSwitchFormGroup.defaultProps = {
-   itemTrue: {}, itemFalse: {}
+   itemTrue: {},
+   itemFalse: {}
 };
 
-export default RadioBtnSwitchFormGroup;
+export default withValidate(RadioBtnSwitchFormGroup);

@@ -1,0 +1,48 @@
+.ikar-address--address-view {
+    text-align: center;
+    font-size: larger;
+    margin-top: 10px
+}
+
+.ikar-address-form--visability--shown {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    -moz-transition: opacity .5s ease-in-out, max-height .5s ease-in-out;
+    -ms-transition: opacity .5s ease-in-out, max-height .5s ease-in-out;
+    transition: opacity .5s ease-in-out, max-height .5s ease-in-out;
+}
+
+.ikar-address-form--county--russia {
+    max-height: 1000px;
+    opacity: 1;
+    animation-name: delay-overflow;
+    animation-duration:  1s;
+    animation-fill-mode: forwards;
+}
+
+.ikar-address-form--country--foreign {
+    max-height: 300px;
+    opacity: 1;
+}
+
+@keyframes delay-overflow {
+    from { overflow: hidden; }
+    to { overflow: visible; }
+}
+
+.ikar-address-form--animation--slide {
+    animation-name: delay-overflow;
+    animation-duration:  1s;
+    animation-fill-mode: forwards;
+}
+
+.form-group__ikar-address--error-text {
+    text-align: center;
+    font-size: larger;
+    margin-top: 10px
+}
+
+.ikar-address-form--overflow--visible {
+    overflow: visible;
+}

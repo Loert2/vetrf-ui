@@ -1,6 +1,7 @@
 export { default as AutocompleteFormGroup } from './form-group/autocomplete/AutocompleteFormGroup';
 export { default as CheckboxFormGroup } from './form-group/checkbox/CheckboxFormGroup';
 export { default as DateFormGroup } from './form-group/date/DateFormGroup';
+export { default as IkarAddressFormGroup } from './form-group/ikar-address/IkarAddressFormGroup';
 export { default as ComplexDateListFormGroup } from './form-group/date/complex-date/ComplexDateListFormGroup';
 export { default as DateRangeFormGroup } from './form-group/date/date-range/DateRangeFormGroup';
 export { default as FormBlock } from './form-group/container/form-block/FormBlock';
@@ -11,9 +12,11 @@ export { default as NumberFormGroup } from './form-group/number/NumberFormGroup'
 export { default as RadioBtnFormGroup } from './form-group/radio/RadioBtnFormGroup';
 export { default as RequireStar } from './form-group/require-star/RequireStar';
 export { default as SelectFormGroup } from './form-group/select/SelectFormGroup';
+export { default as AsyncSelectFormGroup } from './form-group/select/async/AsyncSelectFormGroup';
 export { default as SwitchFormGroup } from './form-group/switch/SwitchFormGroup';
 export { default as TextareaFormGroup } from './form-group/textarea/TextareaFormGroup';
 export { default as AutocompleteInputSearch } from './search/autocomplete-input/AutocompleteInputSearch';
+export { default as withValidate } from './form-group/withValidate';
 
 export { default as InputSearch } from './search/input/InputSearch';
 export { default as InputSelectSearch } from './search/input-select/InputSelectSearch';
@@ -32,6 +35,8 @@ export { default as FileInput } from './simple/input/file/FileInput';
 export { default as Input } from './simple/input/Input';
 export { default as NumberInput } from './simple/input/number/NumberInput';
 export { default as Select } from './simple/select/Select';
+export { default as AsyncSelect } from './simple/select/async/AsyncSelect';
 export { default as SimpleSelect } from './simple/select/simple/SimpleSelect';
 export { default as Switch } from './simple/switch/Switch';
 export { default as SwitchText } from './simple/switch/text/SwitchText';
+export { default as IkarAddress } from './simple/ikar-address/IkarAddress';

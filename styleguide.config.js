@@ -139,7 +139,8 @@ module.exports = {
       path.join(__dirname, './src/assets/css/irena.css'),
       path.join(__dirname, './src/assets/css/font-vetis.css'),
       path.join(__dirname, './src/assets/css/address.css'),
-      path.join(__dirname, './src/assets/css/toggle-text.css')
+      path.join(__dirname, './src/assets/css/toggle-text.css'),
+      path.join(__dirname, './src/components/form/elements/simple/ikar-address/IkarAddress.css')
    ],
 
    styleguideComponents: {

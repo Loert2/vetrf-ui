@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint src/",
-    "compile": "npm run lint && babel --presets react,env --plugins transform-object-rest-spread  -d lib/ src/components",
+    "compile": "npm run lint && babel --presets react,env --plugins transform-object-rest-spread,transform-class-properties  -d lib/ src/components --ignore '**/*.test.js'",
     "styleguide-server": "styleguidist server",
     "styleguide-build": "styleguidist build",
     "stlg": "npm run styleguide-build && npm run styleguide-server",
@@ -27,21 +27,21 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "classnames": "^2.2.5",
-    "lodash": "^4.17.4",
-    "moment": "^2.20.1",
-    "prop-types": "^15.6.0",
-    "react": "^16.1.1",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
     "react-datetime": "^2.12.0",
     "react-document-title": "^2.0.3",
-    "react-dom": "^16.1.1",
-    "react-router-dom": "^4.2.2",
+    "react-dom": "^16.4.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^1.1.4",
     "react-select": "^1.0.0-rc.10",
-    "react-tooltip": "^3.4.0",
-    "react-scripts": "^1.0.17"
+    "react-tooltip": "^3.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "react-styleguidist": "^6.2.2"
+    "react-styleguidist": "^7.0.17"
   }
 }

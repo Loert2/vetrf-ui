@@ -32,6 +32,7 @@ export { default as FormActionsPanel } from './form/actions/form-actions-panel/F
 export { default as AutocompleteFormGroup } from './form/elements/form-group/autocomplete/AutocompleteFormGroup';
 export { default as CheckboxFormGroup } from './form/elements/form-group/checkbox/CheckboxFormGroup';
 export { default as DateFormGroup } from './form/elements/form-group/date/DateFormGroup';
+export { default as IkarAddressFormGroup } from './form/elements/form-group/ikar-address/IkarAddressFormGroup';
 export { default as DateRangeFormGroup } from './form/elements/form-group/date/date-range/DateRangeFormGroup';
 export { default as ComplexDateListFormGroup } from './form/elements/form-group/date/complex-date/ComplexDateListFormGroup';
 export { default as FormBlock } from './form/elements/form-group/container/form-block/FormBlock';
@@ -44,9 +45,11 @@ export { default as RadioBtnFormGroup } from './form/elements/form-group/radio/R
 export { default as RadioBtnSwitchFormGroup } from './form/elements/form-group/radio-switch/RadioBtnSwitchFormGroup';
 export { default as RequireStar } from './form/elements/form-group/require-star/RequireStar';
 export { default as SelectFormGroup } from './form/elements/form-group/select/SelectFormGroup';
+export { default as AsyncSelectFormGroup } from './form/elements/form-group/select/async/AsyncSelectFormGroup';
 export { default as SwitchFormGroup } from './form/elements/form-group/switch/SwitchFormGroup';
 export { default as TextareaFormGroup } from './form/elements/form-group/textarea/TextareaFormGroup';
 export { default as AutocompleteInputSearch } from './form/elements/search/autocomplete-input/AutocompleteInputSearch';
+export { default as withValidate } from './form/elements/form-group/withValidate';
 
 export { default as InputSearch } from './form/elements/search/input/InputSearch';
 export { default as InputSelectSearch } from './form/elements/search/input-select/InputSelectSearch';
@@ -66,9 +69,11 @@ export { default as FileUpload } from './form/elements/simple/file-upload/FileUp
 export { default as Input } from './form/elements/simple/input/Input';
 export { default as NumberInput } from './form/elements/simple/input/number/NumberInput';
 export { default as Select } from './form/elements/simple/select/Select';
+export { default as AsyncSelect } from './form/elements/simple/select/async/AsyncSelect';
 export { default as SimpleSelect } from './form/elements/simple/select/simple/SimpleSelect';
 export { default as Switch } from './form/elements/simple/switch/Switch';
 export { default as SwitchText } from './form/elements/simple/switch/text/SwitchText';
+export { default as IkarAddress } from './form/elements/simple/ikar-address/IkarAddress';
 // Модальные окна
 export { default as ConfirmModal } from './modal/containers/confirm-modal/ConfirmModal';
 export { default as ModalDialog } from './modal/containers/modal-dialog/ModalDialog';

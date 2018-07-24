@@ -1,68 +1,49 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import uniqueId from 'lodash/uniqueId';
 
 import FormGroup from '../container/form-group/FormGroup';
 import RadioBtn from '../../simple/radio/RadioBtn';
-import uniqueId from 'lodash/uniqueId';
+import withValidate from './../withValidate';
 
-import validate from '../../../utils/validate-utils';
-
-class RadioBtnFormGroup extends PureComponent {
-   constructor(props) {
-      super(props);
-      this.state = {
-         hasError: false
-      };
-   }
-
-   componentWillReceiveProps(nextProps) {
-      const hasError = validate(nextProps, () => nextProps.require && !nextProps.value, this.state.hasError);
-      if (hasError !== this.state.hasError) {
-         this.setState({
-            hasError: hasError
-         });
-      }
-   }
-
-   render() {
-      const {
-         additionalBlock,
-         labelText,
-         require,
-         help,
-         options,
-         value, //выбранное значение
-         name,
-         onChange,
-         errorText,
-         field
-      } = this.props;
-      const radioBtnGroup = options.map(
-         (item) =>
-            <div key={ uniqueId() } >
-               <RadioBtn id={ item.id }
-                         name={ name }
-                         value={ item.value }
-                         onChange={ (value) => onChange && onChange(value, field) }
-                         className={ item.className }
-                         text={ item.text }
-                         checked={ value === item.value }
-                         disabled={ item.disabled } />
-            </div>
-      );
-      return (
-         <FormGroup labelText={ labelText }
-                    require={ require }
-                    help={ help }
-                    additionalBlock={ additionalBlock }
-                    hasError={ this.state.hasError }
-                    errorText={ errorText } >
-            { radioBtnGroup }
-         </FormGroup>
-      );
-   }
-
-}
+const RadioBtnFormGroup = (props) => {
+   const {
+      additionalBlock,
+      labelText,
+      require,
+      help,
+      options,
+      value, //выбранное значение
+      name,
+      onChange,
+      errorText,
+      hasError,
+      field
+   } = props;
+   const radioBtnGroup = options.map(
+      (item) =>
+         <div key={ uniqueId() } >
+            <RadioBtn id={ item.id }
+                      name={ name }
+                      value={ item.value }
+                      onChange={ (value) => onChange && onChange(value, field) }
+                      className={ item.className }
+                      text={ item.text }
+                      checked={ value === item.value }
+                      disabled={ item.disabled } />
+         </div>
+   );
+   return (
+      <FormGroup labelText={ labelText }
+                 require={ require }
+                 help={ help }
+                 additionalBlock={ additionalBlock }
+                 hasError={ hasError }
+                 errorText={ errorText } >
+         { radioBtnGroup }
+      </FormGroup>
+   );
+};
 
 RadioBtnFormGroup.propTypes = {
    options: PropTypes.arrayOf(PropTypes.shape({
@@ -84,15 +65,16 @@ RadioBtnFormGroup.propTypes = {
       PropTypes.bool,
       PropTypes.string
    ]),
-   help: PropTypes.node,
-   labelText: PropTypes.string,
-   errorText: PropTypes.node,
    onChange: PropTypes.func,
+   labelText: PropTypes.string,
+   help: PropTypes.node,
+   errorText: PropTypes.node,
+   hasError: PropTypes.bool,
+   showError: PropTypes.bool,
+   require: PropTypes.bool,
    customValidate: PropTypes.func,
    errorHandler: PropTypes.func,
-   additionalBlock: PropTypes.node,
-   showError: PropTypes.bool,
-   require: PropTypes.bool
+   additionalBlock: PropTypes.node
 };
 
-export default RadioBtnFormGroup;
+export default withValidate(RadioBtnFormGroup);
