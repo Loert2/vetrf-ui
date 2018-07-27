@@ -7,25 +7,23 @@ import CoordinateTableRow from '../coordinate-table-row/CoordinateTableRow';
 const CoordinateTableBody = ({ rows, columns, readOnly }) => {
    const tableRows = [];
 
-   if (rows && rows.length > 0){
-      for (let i = 0; i < rows.length; i++){
+   if (rows && rows.length > 0) {
+      for (let i = 0; i < rows.length; i++) {
          const key = rows[i].header.key || uniqueId();
          tableRows.push(
-            <CoordinateTableRow key={ key }
-                                rowKey={ key }
-                                readOnly={ readOnly }
-                                header={ rows[i].header }
-                                columns={ columns }
-                                item={ rows[i].item } />
+            <CoordinateTableRow
+               key={key}
+               rowKey={key}
+               readOnly={readOnly}
+               header={rows[i].header}
+               columns={columns}
+               item={rows[i].item}
+            />
          );
       }
    }
 
-   return (
-      <tbody className="font-weight-normal">
-         { tableRows }
-      </tbody>
-   );
+   return <tbody className="font-weight-normal">{tableRows}</tbody>;
 };
 
 CoordinateTableBody.propTypes = {
@@ -36,7 +34,7 @@ CoordinateTableBody.propTypes = {
             key: PropTypes.string,
             title: PropTypes.string,
             headerColumnClassName: PropTypes.string,
-            width: PropTypes.string,
+            width: PropTypes.string
          }),
          item: PropTypes.array
       })

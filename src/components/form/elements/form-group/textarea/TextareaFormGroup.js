@@ -23,22 +23,24 @@ const TextareaFormGroup = (props) => {
       placeholder,
       field
    } = props;
-   return(
-      <FormGroup labelText={ labelText }
-                 require={ require }
-                 help={ help }
-                 additionalBlock={ additionalBlock }
-                 hasError={ hasError }
-                 errorText={ errorText } >
-            <Textarea value={ value }
-                      id={ id }
-                      name={ name }
-                      style={ style }
-                      disabled={ disabled }
-                      onChange={ (value) => onChange && onChange(value, field) }
-                      className={ className || "form-control" }
-                      placeholder={ placeholder }
-            />
+   return (
+      <FormGroup
+         labelText={labelText}
+         require={require}
+         help={help}
+         additionalBlock={additionalBlock}
+         hasError={hasError}
+         errorText={errorText}>
+         <Textarea
+            value={value}
+            id={id}
+            name={name}
+            style={style}
+            disabled={disabled}
+            onChange={(value) => onChange && onChange(value, field)}
+            className={className || 'form-control'}
+            placeholder={placeholder}
+         />
       </FormGroup>
    );
 };
@@ -49,10 +51,7 @@ TextareaFormGroup.propTypes = {
    name: PropTypes.string,
    labelText: PropTypes.string,
    style: PropTypes.object,
-   disabled: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ]),
+   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
    onChange: PropTypes.func,
    className: PropTypes.string,
    id: PropTypes.string,

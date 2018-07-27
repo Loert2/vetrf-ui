@@ -6,9 +6,13 @@ export { default as NavSearch } from './nav-search/NavSearch';
 export { default as DatePicker } from './date/date-picker/DatePicker';
 export { default as DateRange } from './date/date-range/DateRange';
 export { default as ComplexDate } from './date/complex-date/ComplexDate';
-export { default as ComplexDateList } from './date/complex-date/list/ComplexDateList';
+export {
+   default as ComplexDateList
+} from './date/complex-date/list/ComplexDateList';
 
-export { default as AutocompleteInput } from './input/autocomplete/AutocompleteInput';
+export {
+   default as AutocompleteInput
+} from './input/autocomplete/AutocompleteInput';
 export { default as FileInput } from './input/file/FileInput';
 export { default as Input } from './input/Input';
 export { default as NumberInput } from './input/number/NumberInput';

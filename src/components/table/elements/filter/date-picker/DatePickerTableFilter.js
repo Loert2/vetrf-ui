@@ -25,18 +25,15 @@ class DatePickerTableFilter extends Component {
    }
 
    validateDate(date) {
-      return date === "" || Moment(date, "DD.MM.YYYY", true).isValid();
-   };
+      return date === '' || Moment(date, 'DD.MM.YYYY', true).isValid();
+   }
 
    filter(value) {
       this.request(value);
-   };
+   }
 
    validateDateAndOnChange(value) {
-      const {
-         value: valueFromState,
-         validValue
-      } = this.state;
+      const { value: valueFromState, validValue } = this.state;
 
       if (!this.validate(value)) {
          return;
@@ -52,7 +49,7 @@ class DatePickerTableFilter extends Component {
          hasError: false,
          validValue: value
       });
-   };
+   }
 
    validate(date) {
       if (this.validateDate(date)) {
@@ -66,7 +63,7 @@ class DatePickerTableFilter extends Component {
          validValue: validValue
       });
       return false;
-   };
+   }
 
    render() {
       const {
@@ -80,42 +77,43 @@ class DatePickerTableFilter extends Component {
       const { value, hasError } = this.state;
 
       return (
-         <div className={ classNames("table-filter table-filter_date", hasError ? (errorClassName || "has-error") : "") }>
-            <DatePicker id={ id }
-                        value={ value }
-                        onChange={ this.filter }
-                        className={ className }
-                        inputProps={ inputProps }
-                        validate={ this.validateDate }/>
-            {
-               hasError &&
-               <p className="help-block has-error"
-                  style={ errorFontSize }>
-                  { errorText || "Не соответствует формату - ДД.ММ.ГГГГ" }
+         <div
+            className={classNames(
+               'table-filter table-filter_date',
+               hasError ? errorClassName || 'has-error' : ''
+            )}>
+            <DatePicker
+               id={id}
+               value={value}
+               onChange={this.filter}
+               className={className}
+               inputProps={inputProps}
+               validate={this.validateDate}
+            />
+            {hasError && (
+               <p className="help-block has-error" style={errorFontSize}>
+                  {errorText || 'Не соответствует формату - ДД.ММ.ГГГГ'}
                </p>
-            }
+            )}
          </div>
       );
    }
 }
 
 DatePickerTableFilter.defaultProps = {
-   value: "",
-   validValue: ""
+   value: '',
+   validValue: ''
 };
 
 DatePickerTableFilter.propTypes = {
    className: PropTypes.string,
    id: PropTypes.string,
    onChange: PropTypes.func.isRequired,
-   value: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string
-   ]),
+   value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
    inputProps: PropTypes.object,
    delay: PropTypes.number,
    errorClassName: PropTypes.string,
-   errorText: PropTypes.node,
+   errorText: PropTypes.node
 };
 
 export default DatePickerTableFilter;

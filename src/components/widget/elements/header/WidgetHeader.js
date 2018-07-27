@@ -6,19 +6,15 @@ import WidgetToolbar from './toolbar/WidgetToolbar';
 import isEmpty from 'lodash/isEmpty';
 
 const WidgetHeader = ({ className, title, toolbar }) => (
-   <div className={ classNames("widget-header", className) } >
-      {
-         !isEmpty(title) &&
-         <WidgetTitle className={ title.className } >
-            { title.content }
-         </WidgetTitle>
-      }
-      {
-         !isEmpty(toolbar) &&
-         <WidgetToolbar className={ toolbar.className } >
-            { toolbar.content }
+   <div className={classNames('widget-header', className)}>
+      {!isEmpty(title) && (
+         <WidgetTitle className={title.className}>{title.content}</WidgetTitle>
+      )}
+      {!isEmpty(toolbar) && (
+         <WidgetToolbar className={toolbar.className}>
+            {toolbar.content}
          </WidgetToolbar>
-      }
+      )}
    </div>
 );
 

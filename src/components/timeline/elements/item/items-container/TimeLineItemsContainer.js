@@ -5,27 +5,23 @@ import uniqueId from 'lodash/uniqueId';
 import TimeLineItem from '../item/TimeLineItem';
 
 const TimeLineItemsContainer = ({ timelineItems }) => {
-   const timeline = timelineItems.map(
-      (item, index) =>
-         <TimeLineItem key={ item.key || uniqueId() }
-                       info={{
-                          indicator: {
-                             ...(item.indicator || {}),
-                             text: (item.indicator && item.indicator.text) || ++index
-                          },
-                          className: item.infoClassName
-                       }}
-                       className={ item.className }
-                       date={ item.date }
-                       widgetMetaData={ item.widgetMetaData }>
-            { item.content }
-         </TimeLineItem>
-   );
-   return (
-      <div className="timeline-items">
-         { timeline }
-      </div>
-   );
+   const timeline = timelineItems.map((item, index) => (
+      <TimeLineItem
+         key={item.key || uniqueId()}
+         info={{
+            indicator: {
+               ...(item.indicator || {}),
+               text: (item.indicator && item.indicator.text) || ++index
+            },
+            className: item.infoClassName
+         }}
+         className={item.className}
+         date={item.date}
+         widgetMetaData={item.widgetMetaData}>
+         {item.content}
+      </TimeLineItem>
+   ));
+   return <div className="timeline-items">{timeline}</div>;
 };
 
 TimeLineItemsContainer.propTypes = {

@@ -5,13 +5,14 @@ import CoordinateTableBody from '../../elements/common/coordinate-table-body/Coo
 import TableHeader from '../../elements/common/table-header/TableHeader';
 
 const CoordinateTable = ({ id, tableClassName, columns, rows, readOnly }) => (
-   <table id={ id }
-          className={ tableClassName || "table table-striped table-bordered table-hover font-weight-normal" } >
-      <TableHeader columns={ columns } />
-      <CoordinateTableBody rows={ rows }
-                           columns={ columns }
-                           readOnly={ readOnly }
-      />
+   <table
+      id={id}
+      className={
+         tableClassName ||
+         'table table-striped table-bordered table-hover font-weight-normal'
+      }>
+      <TableHeader columns={columns} />
+      <CoordinateTableBody rows={rows} columns={columns} readOnly={readOnly} />
    </table>
 );
 
@@ -25,7 +26,7 @@ CoordinateTable.propTypes = {
             key: PropTypes.string,
             title: PropTypes.string,
             headerColumnClassName: PropTypes.string,
-            width: PropTypes.string,
+            width: PropTypes.string
          }),
          item: PropTypes.array
       })

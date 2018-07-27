@@ -5,16 +5,13 @@ import './App.css';
  * Песочница
  * */
 class App extends Component {
-   constructor(props){
+   constructor(props) {
       super(props);
-      this.state = {
-      }
+      this.state = {};
    }
 
    render() {
-      return (
-         null
-      );
+      return null;
    }
 }
 

@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 
 const Form = ({ children, name, className, action }) => {
    return (
-      <form name={ name } className={ className || "form-horizontal css-form" } action={ action } >
-         { children }
+      <form
+         name={name}
+         className={className || 'form-horizontal css-form'}
+         action={action}>
+         {children}
       </form>
    );
 };

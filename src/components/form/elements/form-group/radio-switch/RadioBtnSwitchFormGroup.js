@@ -6,8 +6,8 @@ import RadioBtn from '../../simple/radio/RadioBtn';
 import withValidate from './../withValidate';
 
 /**
-* Компонент-переключатель из двух радио-кнопок - true или false, по умолчанию не выбрано ничего.
-* */
+ * Компонент-переключатель из двух радио-кнопок - true или false, по умолчанию не выбрано ничего.
+ * */
 const RadioBtnSwitchFormGroup = (props) => {
    const {
       additionalBlock,
@@ -26,31 +26,36 @@ const RadioBtnSwitchFormGroup = (props) => {
       id
    } = props;
    return (
-      <FormGroup labelText={ labelText }
-                 require={ require }
-                 help={ help }
-                 additionalBlock={ additionalBlock }
-                 hasError={ hasError }
-                 errorText={ errorText } >
+      <FormGroup
+         labelText={labelText}
+         require={require}
+         help={help}
+         additionalBlock={additionalBlock}
+         hasError={hasError}
+         errorText={errorText}>
          <div>
-            <RadioBtn id={ itemTrue.id || (id && `${ id }_true`) }
-                      name={ name }
-                      value="true"
-                      onChange={ () => onChange && onChange(true, field) }
-                      className={ itemTrue.className || "ace form-control" }
-                      text={ itemTrue.text || "Да" }
-                      checked={ value === true }
-                      disabled={ disabled } />
+            <RadioBtn
+               id={itemTrue.id || (id && `${id}_true`)}
+               name={name}
+               value="true"
+               onChange={() => onChange && onChange(true, field)}
+               className={itemTrue.className || 'ace form-control'}
+               text={itemTrue.text || 'Да'}
+               checked={value === true}
+               disabled={disabled}
+            />
          </div>
          <div>
-            <RadioBtn id={ itemFalse.id || (id && `${ id }_false`) }
-                      name={ name }
-                      value="false"
-                      onChange={ () => onChange && onChange(false, field) }
-                      className={ itemFalse.className || "ace form-control" }
-                      text={ itemFalse.text || "Нет" }
-                      checked={ value === false }
-                      disabled={ disabled } />
+            <RadioBtn
+               id={itemFalse.id || (id && `${id}_false`)}
+               name={name}
+               value="false"
+               onChange={() => onChange && onChange(false, field)}
+               className={itemFalse.className || 'ace form-control'}
+               text={itemFalse.text || 'Нет'}
+               checked={value === false}
+               disabled={disabled}
+            />
          </div>
       </FormGroup>
    );
@@ -69,7 +74,7 @@ RadioBtnSwitchFormGroup.propTypes = {
    }),
    name: PropTypes.string,
    field: PropTypes.string,
-   value:  PropTypes.bool,
+   value: PropTypes.bool,
    help: PropTypes.node,
    labelText: PropTypes.string,
    errorText: PropTypes.node,

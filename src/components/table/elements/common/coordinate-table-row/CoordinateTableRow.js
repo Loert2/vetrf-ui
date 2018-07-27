@@ -8,22 +8,27 @@ import HeaderColumn from '../header-column/HeaderColumn';
 const CoordinateTableRow = ({ header, columns, item, rowKey, readOnly }) => {
    const cells = [];
    cells.push(
-      <HeaderColumn key={ header.key }
-                    className={ header.headerColumnClassName }
-                    width={ header.width }
-                    title={ header.title } />
+      <HeaderColumn
+         key={header.key}
+         className={header.headerColumnClassName}
+         width={header.width}
+         title={header.title}
+      />
    );
-   for (let i = 1; i < columns.length; i++){
+   for (let i = 1; i < columns.length; i++) {
       const key = columns[i].key || uniqueId();
       cells.push(
-         <TableCell key={ key }
-                    className={ columns[i].cellClassName }
-                    data={ columns[i].dataFormatter && columns[i].dataFormatter(item, key, rowKey, readOnly) } />
+         <TableCell
+            key={key}
+            className={columns[i].cellClassName}
+            data={
+               columns[i].dataFormatter &&
+               columns[i].dataFormatter(item, key, rowKey, readOnly)
+            }
+         />
       );
    }
-   return (
-      <tr>{ cells }</tr>
-   );
+   return <tr>{cells}</tr>;
 };
 
 CoordinateTableRow.propTypes = {

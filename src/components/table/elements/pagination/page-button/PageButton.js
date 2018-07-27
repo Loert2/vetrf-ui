@@ -4,15 +4,20 @@ import classSet from 'classnames';
 
 const PageButton = ({ active, disable, hidden, changePage, children }) => {
    const classes = classSet({
-      "active": active,
-      "disabled": disable,
-      "hidden": hidden,
-      "page-item": true
+      active: active,
+      disabled: disable,
+      hidden: hidden,
+      'page-item': true
    });
    return (
-      <li className={ classes }>
-         <a onClick={ (e) => { e.preventDefault(); changePage(e.currentTarget.textContent); } } className="page-link">
-            { children }
+      <li className={classes}>
+         <a
+            onClick={(e) => {
+               e.preventDefault();
+               changePage(e.currentTarget.textContent);
+            }}
+            className="page-link">
+            {children}
          </a>
       </li>
    );
@@ -23,10 +28,7 @@ PageButton.propTypes = {
    disable: PropTypes.bool,
    hidden: PropTypes.bool,
    changePage: PropTypes.func,
-   children: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string
-   ])
+   children: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 export default PageButton;

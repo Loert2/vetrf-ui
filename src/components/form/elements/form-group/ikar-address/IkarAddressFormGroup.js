@@ -54,56 +54,59 @@ const IkarAddressFormGroup = (props) => {
    } = props;
 
    return (
-      <FormGroup labelText={ labelText }
-                 hasError={ hasError }
-                 errorClassName={ formGroupErrorClassName }
-                 errorTextClassName={ formGroupErrorTextClassName }
-                 errorText={ formGroupErrorText }
-                 labelClassName={ formGroupLabelClassName }
-                 fieldClassName={ formGroupFieldClassName }
-                 require={ require }
-                 help={ help }
-                 additionalBlock={ additionalBlock } >
-         <IkarAddress address={ address }
-                      countryOptions={ countryOptions }
-                      regionOptions={ regionOptions }
-                      districtOptions={ districtOptions }
-                      localityOptions={ localityOptions }
-                      subLocalityOptions={ subLocalityOptions }
-                      streetOptions={ streetOptions }
-                      houseOptions={ houseOptions }
-                      buildingOptions={ buildingOptions }
-                      roomOptions={ roomOptions }
-                      postIndexOptions={ postIndexOptions }
-                      postBoxOptions={ postBoxOptions }
-                      additionalInfoOptions={ additionalInfoOptions }
-                      foreignAddressOptions={ foreignAddressOptions }
-                      onChange={ onChange }
-                      countries={ countries }
-                      loadCountries={ loadCountries }
-                      findRegion={ findRegion }
-                      findDistrict={ findDistrict }
-                      findLocality={ findLocality }
-                      findSubLocality={ findSubLocality }
-                      findStreet={ findStreet }
-                      formClassName={ formClassName }
-                      selectClassName={ selectClassName }
-                      inputClassName={ inputClassName }
-                      isShownForm={ isShownForm }
-                      isShowAddressView={ isShowAddressView }
-                      russianAddressViewOptions={ russianAddressViewOptions }
-                      asyncSelectIgnoreCase={ asyncSelectIgnoreCase }
-                      addressPath={ addressPath }
-                      formGroupLabelClassName={ componentFormGroupLabelClassName }
-                      formGroupFieldClassName={ componentFormGroupFieldClassName }
-                      showError={ showError }/>
+      <FormGroup
+         labelText={labelText}
+         hasError={hasError}
+         errorClassName={formGroupErrorClassName}
+         errorTextClassName={formGroupErrorTextClassName}
+         errorText={formGroupErrorText}
+         labelClassName={formGroupLabelClassName}
+         fieldClassName={formGroupFieldClassName}
+         require={require}
+         help={help}
+         additionalBlock={additionalBlock}>
+         <IkarAddress
+            address={address}
+            countryOptions={countryOptions}
+            regionOptions={regionOptions}
+            districtOptions={districtOptions}
+            localityOptions={localityOptions}
+            subLocalityOptions={subLocalityOptions}
+            streetOptions={streetOptions}
+            houseOptions={houseOptions}
+            buildingOptions={buildingOptions}
+            roomOptions={roomOptions}
+            postIndexOptions={postIndexOptions}
+            postBoxOptions={postBoxOptions}
+            additionalInfoOptions={additionalInfoOptions}
+            foreignAddressOptions={foreignAddressOptions}
+            onChange={onChange}
+            countries={countries}
+            loadCountries={loadCountries}
+            findRegion={findRegion}
+            findDistrict={findDistrict}
+            findLocality={findLocality}
+            findSubLocality={findSubLocality}
+            findStreet={findStreet}
+            formClassName={formClassName}
+            selectClassName={selectClassName}
+            inputClassName={inputClassName}
+            isShownForm={isShownForm}
+            isShowAddressView={isShowAddressView}
+            russianAddressViewOptions={russianAddressViewOptions}
+            asyncSelectIgnoreCase={asyncSelectIgnoreCase}
+            addressPath={addressPath}
+            formGroupLabelClassName={componentFormGroupLabelClassName}
+            formGroupFieldClassName={componentFormGroupFieldClassName}
+            showError={showError}
+         />
       </FormGroup>
    );
 };
 
 IkarAddressFormGroup.defaultProps = {
-   formGroupErrorTextClassName: "form-group__ikar-address--error-text",
-   formGroupErrorText: "Данная форма должна быть заполнена",
+   formGroupErrorTextClassName: 'form-group__ikar-address--error-text',
+   formGroupErrorText: 'Данная форма должна быть заполнена',
    showError: false
 };
 
@@ -117,7 +120,7 @@ IkarAddressFormGroup.propTypes = {
    formGroupErrorText: PropTypes.string,
    formGroupLabelClassName: PropTypes.string,
    formGroupFieldClassName: PropTypes.string,
-   address : PropTypes.shape({
+   address: PropTypes.shape({
       country: PropTypes.object,
       region: PropTypes.object,
       district: PropTypes.object,
@@ -138,7 +141,8 @@ IkarAddressFormGroup.propTypes = {
       PropTypes.shape({
          guid: PropTypes.string,
          name: PropTypes.string
-      })),
+      })
+   ),
    loadCountries: PropTypes.func,
    findRegion: PropTypes.func,
    findDistrict: PropTypes.func,
@@ -292,12 +296,13 @@ IkarAddressFormGroup.propTypes = {
    russianAddressViewOptions: PropTypes.shape({
       house: PropTypes.string,
       building: PropTypes.string,
-      postBox: PropTypes.string,
+      postBox: PropTypes.string
    }),
    showError: PropTypes.bool
 };
 
 export default withValidate(
    IkarAddressFormGroup,
-   (props) => props.require && props.address && isEmpty(props.address.addressView)
+   (props) =>
+      props.require && props.address && isEmpty(props.address.addressView)
 );

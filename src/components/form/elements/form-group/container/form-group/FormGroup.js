@@ -18,28 +18,37 @@ const FormGroup = (props) => {
       labelClassName,
       fieldClassName
    } = props;
-   return(
-      <div className={ classNames("form-group", hasError ? (errorClassName || "has-error") : "" ) }>
-         <label className={ labelClassName || "col-sm-3 control-label no-padding-right" }>
-            { labelText }
-            { require && <RequireStar /> }
+   return (
+      <div
+         className={classNames(
+            'form-group',
+            hasError ? errorClassName || 'has-error' : ''
+         )}>
+         <label
+            className={
+               labelClassName || 'col-sm-3 control-label no-padding-right'
+            }>
+            {labelText}
+            {require && <RequireStar />}
          </label>
-         <div className={ fieldClassName || "col-sm-9" }><span className="block input-icon input-icon-right"/>
-            { children }
-            {
-               help &&
-               <p className="help-block">{ help }</p>
-            }
-            { additionalBlock }
-            {
-               hasError && errorText &&
-               <p className={ classNames("help-block has-error form-group__error", errorTextClassName) }>
-                  { errorText }
-               </p>
-            }
+         <div className={fieldClassName || 'col-sm-9'}>
+            <span className="block input-icon input-icon-right" />
+            {children}
+            {help && <p className="help-block">{help}</p>}
+            {additionalBlock}
+            {hasError &&
+               errorText && (
+                  <p
+                     className={classNames(
+                        'help-block has-error form-group__error',
+                        errorTextClassName
+                     )}>
+                     {errorText}
+                  </p>
+               )}
          </div>
       </div>
-   )
+   );
 };
 
 FormGroup.propTypes = {

@@ -6,21 +6,17 @@ import isEmpty from 'lodash/isEmpty';
 
 const WidgetBody = ({ className, children, toolbox, footer }) => (
    <div className="widget-body">
-      {
-         !isEmpty(toolbox) &&
-         <WidgetToolbox className={ toolbox.className }>
-            { toolbox.content }
+      {!isEmpty(toolbox) && (
+         <WidgetToolbox className={toolbox.className}>
+            {toolbox.content}
          </WidgetToolbox>
-      }
-      <WidgetMain className={ className }>
-         { children }
-      </WidgetMain>
-      {
-         !isEmpty(footer) &&
-         <WidgetToolbox className={ footer.className }>
-            { footer.content }
+      )}
+      <WidgetMain className={className}>{children}</WidgetMain>
+      {!isEmpty(footer) && (
+         <WidgetToolbox className={footer.className}>
+            {footer.content}
          </WidgetToolbox>
-      }
+      )}
    </div>
 );
 

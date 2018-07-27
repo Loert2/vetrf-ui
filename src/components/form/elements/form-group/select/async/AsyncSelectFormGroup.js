@@ -36,33 +36,36 @@ const AsyncSelectFormGroup = (props) => {
       selectCache
    } = props;
 
-   return(
-      <FormGroup labelText={ labelText }
-                 require={ require }
-                 help={ help }
-                 hasError={ hasError }
-                 errorClassName={ errorClassName }
-                 additionalBlock={ additionalBlock }
-                 errorText={ errorText }
-                 labelClassName={ labelClassName }
-                 fieldClassName={ fieldClassName }>
-         <AsyncSelect multi={ multiple }
-                      value={ value }
-                      name={ name }
-                      id={ id }
-                      style={ style }
-                      styleInput={ styleInput }
-                      options={ options }
-                      onChange={ (value) => onChange && onChange(value, field) }
-                      valueKey={ valueKey }
-                      labelKey={ labelKey }
-                      className={ className }
-                      placeholder={ placeholder }
-                      loadOptions={ loadOptions }
-                      ignoreCase={ ignoreCase }
-                      searchPromptText={ searchPromptText }
-                      loadingPlaceholder={ loadingPlaceholder }
-                      cache={ selectCache }/>
+   return (
+      <FormGroup
+         labelText={labelText}
+         require={require}
+         help={help}
+         hasError={hasError}
+         errorClassName={errorClassName}
+         additionalBlock={additionalBlock}
+         errorText={errorText}
+         labelClassName={labelClassName}
+         fieldClassName={fieldClassName}>
+         <AsyncSelect
+            multi={multiple}
+            value={value}
+            name={name}
+            id={id}
+            style={style}
+            styleInput={styleInput}
+            options={options}
+            onChange={(value) => onChange && onChange(value, field)}
+            valueKey={valueKey}
+            labelKey={labelKey}
+            className={className}
+            placeholder={placeholder}
+            loadOptions={loadOptions}
+            ignoreCase={ignoreCase}
+            searchPromptText={searchPromptText}
+            loadingPlaceholder={loadingPlaceholder}
+            cache={selectCache}
+         />
       </FormGroup>
    );
 };
@@ -81,10 +84,7 @@ AsyncSelectFormGroup.propTypes = {
    require: PropTypes.bool,
    multiple: PropTypes.bool,
    validate: PropTypes.bool,
-   value: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.object
-   ]),
+   value: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
    field: PropTypes.string,
    style: PropTypes.object,
    styleInput: PropTypes.object,

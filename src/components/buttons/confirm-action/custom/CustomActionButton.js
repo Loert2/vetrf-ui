@@ -13,11 +13,11 @@ class CustomActionButton extends Component {
       this.toggleModal = this.toggleModal.bind(this);
    }
 
-   toggleModal () {
+   toggleModal() {
       this.setState({ showModal: !this.state.showModal });
-   };
+   }
 
-   render () {
+   render() {
       const {
          id,
          className,
@@ -38,34 +38,37 @@ class CustomActionButton extends Component {
       } = this.props;
 
       return (
-         <div className="inline" >
-            <Button id={ id }
-                    className={ className }
-                    onClick={ this.toggleModal }
-                    icon={ icon }
-                    text={ buttonText }
-                    disabled={ disabled }
-                    tooltip={ tooltip } />
-            {
-               this.state.showModal &&
-               <ConfirmModal onClose={ this.toggleModal }
-                             header={ confirmHeaderText || "Подтверждение" }
-                             bodyText={ confirmBodyText || "Вы уверены?" }
-                             body={ body }
-                             confirmBtn={{
-                                action: onConfirm,
-                                disabled: disabledConfirmBtn,
-                                className: confirmBtnClass || "btn btn-danger",
-                                text: confirmBtnText || "Удалить",
-                                icon: confirmBtnIcon
-                             }}
-                             cancelBtn={{
-                                text: cancelBtnText || "Отмена",
-                                icon: cancelBtnIcon
-                             }} />
-            }
+         <div className="inline">
+            <Button
+               id={id}
+               className={className}
+               onClick={this.toggleModal}
+               icon={icon}
+               text={buttonText}
+               disabled={disabled}
+               tooltip={tooltip}
+            />
+            {this.state.showModal && (
+               <ConfirmModal
+                  onClose={this.toggleModal}
+                  header={confirmHeaderText || 'Подтверждение'}
+                  bodyText={confirmBodyText || 'Вы уверены?'}
+                  body={body}
+                  confirmBtn={{
+                     action: onConfirm,
+                     disabled: disabledConfirmBtn,
+                     className: confirmBtnClass || 'btn btn-danger',
+                     text: confirmBtnText || 'Удалить',
+                     icon: confirmBtnIcon
+                  }}
+                  cancelBtn={{
+                     text: cancelBtnText || 'Отмена',
+                     icon: cancelBtnIcon
+                  }}
+               />
+            )}
          </div>
-      )
+      );
    }
 }
 
@@ -75,19 +78,13 @@ CustomActionButton.propTypes = {
    buttonText: PropTypes.string,
    icon: PropTypes.string,
    body: PropTypes.node,
-   disabled: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ]),
+   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
    tooltip: PropTypes.string,
    confirmHeaderText: PropTypes.string,
    confirmBodyText: PropTypes.string,
    confirmBtnClass: PropTypes.string,
    confirmBtnIcon: PropTypes.string,
-   disabledConfirmBtn: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ]),
+   disabledConfirmBtn: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
    cancelBtnIcon: PropTypes.string,
    confirmBtnText: PropTypes.string,
    cancelBtnText: PropTypes.string,

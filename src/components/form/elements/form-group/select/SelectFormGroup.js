@@ -32,29 +32,32 @@ const SelectFormGroup = (props) => {
       field
    } = props;
 
-   return(
-      <FormGroup labelText={ labelText }
-                 require={ require }
-                 help={ help }
-                 hasError={ hasError }
-                 errorClassName={ errorClassName }
-                 additionalBlock={ additionalBlock }
-                 errorText={ errorText }
-                 labelClassName={ labelClassName }
-                 fieldClassName={ fieldClassName }>
-         <Select multi={ multiple }
-                 value={ value }
-                 name={ name }
-                 id={ id }
-                 style={ style }
-                 styleInput={ styleInput }
-                 options={ options }
-                 onChange={ (value) => onChange && onChange(value, field) }
-                 valueKey={ valueKey }
-                 labelKey={ labelKey }
-                 className={ className }
-                 disabled={ disabled }
-                 placeholder={ placeholder }/>
+   return (
+      <FormGroup
+         labelText={labelText}
+         require={require}
+         help={help}
+         hasError={hasError}
+         errorClassName={errorClassName}
+         additionalBlock={additionalBlock}
+         errorText={errorText}
+         labelClassName={labelClassName}
+         fieldClassName={fieldClassName}>
+         <Select
+            multi={multiple}
+            value={value}
+            name={name}
+            id={id}
+            style={style}
+            styleInput={styleInput}
+            options={options}
+            onChange={(value) => onChange && onChange(value, field)}
+            valueKey={valueKey}
+            labelKey={labelKey}
+            className={className}
+            disabled={disabled}
+            placeholder={placeholder}
+         />
       </FormGroup>
    );
 };
@@ -74,10 +77,7 @@ SelectFormGroup.propTypes = {
    disabled: PropTypes.bool,
    multiple: PropTypes.bool,
    validate: PropTypes.bool,
-   value: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.object
-   ]),
+   value: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
    field: PropTypes.string,
    style: PropTypes.object,
    styleInput: PropTypes.object,

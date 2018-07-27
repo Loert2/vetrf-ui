@@ -12,14 +12,14 @@ class NumberInput extends Component {
    constructor(props, context) {
       super(props, context);
       this.state = {
-         validValue: props.value || ""
+         validValue: props.value || ''
       };
 
       this.getOnChangeHandler = this.getOnChangeHandler.bind(this);
       this.setValidValue = this.setValidValue.bind(this);
    }
 
-   setValidValue(value){
+   setValidValue(value) {
       this.setState({ validValue: value });
    }
 
@@ -33,11 +33,11 @@ class NumberInput extends Component {
             onChange && onChange(e);
          };
       } else {
-         return (value) =>  {
+         return (value) => {
             const val = filter(value, this.state.validValue);
             this.setValidValue(val);
             onChange && onChange(val);
-         }
+         };
       }
    }
 
@@ -56,28 +56,27 @@ class NumberInput extends Component {
          placeholder
       } = this.props;
       return (
-         <Input type="text"
-                id={ id }
-                name={ name }
-                maxLength={ maxLength || 255 }
-                value={ value || "" }
-                style={ style }
-                autoFocus={ autoFocus }
-                onFocus={ onFocus }
-                disabled={ disabled || "" }
-                onKeyPress={ onEnter }
-                onChange={ this.getOnChangeHandler() }
-                className={ className }
-                placeholder={ placeholder } />
-      )
+         <Input
+            type="text"
+            id={id}
+            name={name}
+            maxLength={maxLength || 255}
+            value={value || ''}
+            style={style}
+            autoFocus={autoFocus}
+            onFocus={onFocus}
+            disabled={disabled || ''}
+            onKeyPress={onEnter}
+            onChange={this.getOnChangeHandler()}
+            className={className}
+            placeholder={placeholder}
+         />
+      );
    }
 }
 
 NumberInput.propTypes = {
-   value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-   ]),
+   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
    name: PropTypes.string,
    id: PropTypes.string,
    placeholder: PropTypes.string,
@@ -87,10 +86,7 @@ NumberInput.propTypes = {
    float: PropTypes.bool,
    onFocus: PropTypes.func,
    onEnter: PropTypes.func,
-   disabled: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ]),
+   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
    onChange: PropTypes.func,
    className: PropTypes.string
 };

@@ -14,7 +14,7 @@ class ConfirmActionButton extends Component {
       this.handleClick = this.handleClick.bind(this);
    }
 
-   toggleModal(){
+   toggleModal() {
       this.setState({ showModal: !this.state.showModal });
    }
 
@@ -27,7 +27,7 @@ class ConfirmActionButton extends Component {
       }
    }
 
-   render () {
+   render() {
       const {
          id,
          className,
@@ -47,33 +47,36 @@ class ConfirmActionButton extends Component {
       } = this.props;
 
       return (
-         <div className="inline" >
-            <Button id={ id }
-                    className={ className }
-                    onClick={ this.handleClick }
-                    icon={ icon }
-                    text={ buttonText }
-                    disabled={ disabled }
-                    tooltip={ tooltip } />
-            {
-               this.state.showModal &&
-               <ConfirmModal onClose={ this.toggleModal }
-                             header={ confirmHeaderText || "Подтверждение" }
-                             bodyText={ confirmBodyText || "Вы уверены?" }
-                             confirmBtn={{
-                                action: onConfirm,
-                                className: confirmBtnClass || "btn btn-danger",
-                                text: confirmBtnText || "Удалить",
-                                icon: confirmBtnIcon,
-                                disabled: confirmBtnDisabled
-                             }}
-                             cancelBtn={{
-                                text: cancelBtnText || "Отмена",
-                                icon: cancelBtnIcon
-                             }} />
-            }
+         <div className="inline">
+            <Button
+               id={id}
+               className={className}
+               onClick={this.handleClick}
+               icon={icon}
+               text={buttonText}
+               disabled={disabled}
+               tooltip={tooltip}
+            />
+            {this.state.showModal && (
+               <ConfirmModal
+                  onClose={this.toggleModal}
+                  header={confirmHeaderText || 'Подтверждение'}
+                  bodyText={confirmBodyText || 'Вы уверены?'}
+                  confirmBtn={{
+                     action: onConfirm,
+                     className: confirmBtnClass || 'btn btn-danger',
+                     text: confirmBtnText || 'Удалить',
+                     icon: confirmBtnIcon,
+                     disabled: confirmBtnDisabled
+                  }}
+                  cancelBtn={{
+                     text: cancelBtnText || 'Отмена',
+                     icon: cancelBtnIcon
+                  }}
+               />
+            )}
          </div>
-      )
+      );
    }
 }
 
@@ -81,19 +84,13 @@ ConfirmActionButton.propTypes = {
    id: PropTypes.string,
    className: PropTypes.string,
    buttonText: PropTypes.string,
-   disabled: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ]),
+   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
    tooltip: PropTypes.string,
    confirmHeaderText: PropTypes.string,
    confirmBodyText: PropTypes.string,
    confirmBtnClass: PropTypes.string,
    confirmBtnIcon: PropTypes.string,
-   confirmBtnDisabled: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ]),
+   confirmBtnDisabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
    cancelBtnIcon: PropTypes.string,
    confirmBtnText: PropTypes.string,
    cancelBtnText: PropTypes.string,

@@ -3,9 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 const Badge = ({ colorClass, children }) => (
-   <span className={ classNames("badge", colorClass) }>
-      { children }
-   </span>
+   <span className={classNames('badge', colorClass)}>{children}</span>
 );
 
 Badge.propTypes = {

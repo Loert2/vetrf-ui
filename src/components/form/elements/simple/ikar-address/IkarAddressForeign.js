@@ -25,67 +25,82 @@ const IkarAddressForeign = (props) => {
       },
       countries,
       regions,
-      address: {
-         country,
-         region,
-         foreignAddress
-      },
+      address: { country, region, foreignAddress },
       showError
    } = props;
 
-   return(
-      <div className={ formClassName }>
-         {
-            countryOptions && !countryOptions.isHidden &&
-            <SelectFormGroup id="ikarAddressSelectCountry"
-                             onChange={ getChangeHandlerByField(COUNTRY_FIELD) }
-                             labelText={ countryOptions.label || "Страна" }
-                             require={ countryOptions.isRequiredField }
-                             value={ country }
-                             valueKey={ countryOptions.selectOptionValueKey || "guid" }
-                             labelKey={ countryOptions.selectOptionLabelKey || "name" }
-                             options={ countries }
-                             className={ selectClassName }
-                             placeholder={ countryOptions.placeholder || "Выберите страну..." }
-                             help={ countryOptions.help }
-                             showError={ showError }
-                             errorText={ countryOptions.errorText || THIS_FIELD_MUST_BE_FILLED }
-                             labelClassName={ formGroupLabelClassName }
-                             fieldClassName={ formGroupFieldClassName } />
-         }
-         {
-            regionOptions && !regionOptions.isHidden &&
-            <SelectFormGroup id="ikarAddressSelectRegion"
-                             onChange={ getChangeHandlerByField(REGION_FIELD) }
-                             labelText={ regionOptions.label || "Регион" }
-                             require={ regionOptions.isRequiredField }
-                             value={ region }
-                             valueKey={ regionOptions.selectOptionValueKey || "guid" }
-                             labelKey={ regionOptions.selectOptionLabelKey || "view" }
-                             options={ regions }
-                             className={ selectClassName }
-                             placeholder={ regionOptions.placeholder || "Выберите регион..." }
-                             help={ regionOptions.help }
-                             showError={ showError }
-                             errorText={ regionOptions.errorText || THIS_FIELD_MUST_BE_FILLED }
-                             labelClassName={ formGroupLabelClassName }
-                             fieldClassName={ formGroupFieldClassName } />
-         }
-         {
-            foreignAddressOptions && !foreignAddressOptions.isHidden &&
-            <InputFormGroup id="ikarAddressInputForeignAddress"
-                            onChange={ getChangeHandlerByField(FOREIGN_ADDRESS_FIELD) }
-                            labelText={ foreignAddressOptions.label || "Адрес" }
-                            require={ foreignAddressOptions.isRequiredField }
-                            value={ foreignAddress }
-                            className={ inputClassName }
-                            placeholder={ foreignAddressOptions.placeholder || "Введите адрес..." }
-                            help={ foreignAddressOptions.help }
-                            showError={ showError }
-                            errorText={ foreignAddressOptions.errorText || THIS_FIELD_MUST_BE_FILLED }
-                            labelClassName={ formGroupLabelClassName }
-                            fieldClassName={ formGroupFieldClassName } />
-         }
+   return (
+      <div className={formClassName}>
+         {countryOptions &&
+            !countryOptions.isHidden && (
+               <SelectFormGroup
+                  id="ikarAddressSelectCountry"
+                  onChange={getChangeHandlerByField(COUNTRY_FIELD)}
+                  labelText={countryOptions.label || 'Страна'}
+                  require={countryOptions.isRequiredField}
+                  value={country}
+                  valueKey={countryOptions.selectOptionValueKey || 'guid'}
+                  labelKey={countryOptions.selectOptionLabelKey || 'name'}
+                  options={countries}
+                  className={selectClassName}
+                  placeholder={
+                     countryOptions.placeholder || 'Выберите страну...'
+                  }
+                  help={countryOptions.help}
+                  showError={showError}
+                  errorText={
+                     countryOptions.errorText || THIS_FIELD_MUST_BE_FILLED
+                  }
+                  labelClassName={formGroupLabelClassName}
+                  fieldClassName={formGroupFieldClassName}
+               />
+            )}
+         {regionOptions &&
+            !regionOptions.isHidden && (
+               <SelectFormGroup
+                  id="ikarAddressSelectRegion"
+                  onChange={getChangeHandlerByField(REGION_FIELD)}
+                  labelText={regionOptions.label || 'Регион'}
+                  require={regionOptions.isRequiredField}
+                  value={region}
+                  valueKey={regionOptions.selectOptionValueKey || 'guid'}
+                  labelKey={regionOptions.selectOptionLabelKey || 'view'}
+                  options={regions}
+                  className={selectClassName}
+                  placeholder={
+                     regionOptions.placeholder || 'Выберите регион...'
+                  }
+                  help={regionOptions.help}
+                  showError={showError}
+                  errorText={
+                     regionOptions.errorText || THIS_FIELD_MUST_BE_FILLED
+                  }
+                  labelClassName={formGroupLabelClassName}
+                  fieldClassName={formGroupFieldClassName}
+               />
+            )}
+         {foreignAddressOptions &&
+            !foreignAddressOptions.isHidden && (
+               <InputFormGroup
+                  id="ikarAddressInputForeignAddress"
+                  onChange={getChangeHandlerByField(FOREIGN_ADDRESS_FIELD)}
+                  labelText={foreignAddressOptions.label || 'Адрес'}
+                  require={foreignAddressOptions.isRequiredField}
+                  value={foreignAddress}
+                  className={inputClassName}
+                  placeholder={
+                     foreignAddressOptions.placeholder || 'Введите адрес...'
+                  }
+                  help={foreignAddressOptions.help}
+                  showError={showError}
+                  errorText={
+                     foreignAddressOptions.errorText ||
+                     THIS_FIELD_MUST_BE_FILLED
+                  }
+                  labelClassName={formGroupLabelClassName}
+                  fieldClassName={formGroupFieldClassName}
+               />
+            )}
       </div>
    );
 };
@@ -95,7 +110,8 @@ IkarAddressForeign.propTypes = {
       PropTypes.shape({
          guid: PropTypes.string,
          name: PropTypes.string
-      })).isRequired,
+      })
+   ).isRequired,
    regions: PropTypes.array,
    address: PropTypes.shape({
       country: PropTypes.object,

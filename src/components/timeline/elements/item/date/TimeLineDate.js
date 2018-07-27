@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const TimeLineDate = ({ date, className }) => (
-   <div className={ classNames("timeline-date", className) }>
-      { date }
-   </div>
+   <div className={classNames('timeline-date', className)}>{date}</div>
 );
 
 TimeLineDate.propTypes = {

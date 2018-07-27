@@ -17,7 +17,7 @@ class InputTableFilter extends Component {
    filter(event) {
       let filter;
       const { onChange, delay, name } = this.props;
-      if (name){
+      if (name) {
          event.persist();
          filter = { [event.target.name]: event.target.value };
       } else {
@@ -26,19 +26,21 @@ class InputTableFilter extends Component {
       this.timeout && clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
          onChange(filter);
-      },  delay || Const.FILTER_DELAY);
+      }, delay || Const.FILTER_DELAY);
    }
 
-   render () {
+   render() {
       const { placeholder, name, style, onEnter, className } = this.props;
       return (
-         <input placeholder={ placeholder }
-                name={ name }
-                type="text"
-                style={ style }
-                onKeyPress={ onEnter }
-                onChange={ this.filter }
-                className={ className || "input-filter form-control" } />
+         <input
+            placeholder={placeholder}
+            name={name}
+            type="text"
+            style={style}
+            onKeyPress={onEnter}
+            onChange={this.filter}
+            className={className || 'input-filter form-control'}
+         />
       );
    }
 }

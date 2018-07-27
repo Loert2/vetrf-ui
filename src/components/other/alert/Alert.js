@@ -18,14 +18,16 @@ class Alert extends React.PureComponent {
       const { id, className, closeButton, children } = this.props;
       if (this.state.showAlert) {
          return (
-            <div id={ id } className={ className || "alert alert-info" }>
-               {
-                  closeButton &&
-                  <button type="button" className="close" onClick={ this.closeAlert }>
-                     <i className="ace-icon fa fa-times"/>
+            <div id={id} className={className || 'alert alert-info'}>
+               {closeButton && (
+                  <button
+                     type="button"
+                     className="close"
+                     onClick={this.closeAlert}>
+                     <i className="ace-icon fa fa-times" />
                   </button>
-               }
-               { children }
+               )}
+               {children}
             </div>
          );
       } else {

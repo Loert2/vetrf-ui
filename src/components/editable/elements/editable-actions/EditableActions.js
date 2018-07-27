@@ -15,7 +15,7 @@ class EditableActions extends Component {
    }
 
    componentWillReceiveProps(nextProps) {
-      if (nextProps.editId !== nextProps.id){
+      if (nextProps.editId !== nextProps.id) {
          this.setState({ edit: false });
       } else {
          this.setState({ edit: true });
@@ -28,7 +28,7 @@ class EditableActions extends Component {
    }
 
    cancel() {
-      if (this.state.edit){
+      if (this.state.edit) {
          this.setState({ edit: !this.state.edit });
          this.props.cancel && this.props.cancel();
       }
@@ -40,24 +40,26 @@ class EditableActions extends Component {
    }
 
    render() {
-      if (this.state.edit){
-         const nowrap = { whiteSpace: "nowrap" };
-         const marginLeft = { marginLeft: "5px" };
-         const btnPadding = { padding: "1px 7px" };
+      if (this.state.edit) {
+         const nowrap = { whiteSpace: 'nowrap' };
+         const marginLeft = { marginLeft: '5px' };
+         const btnPadding = { padding: '1px 7px' };
          return (
-            <span style={ nowrap }>
+            <span style={nowrap}>
                <span>
-                  <button type="button"
-                          onClick={ this.props.save }
-                          className="btn btn-primary btn-xs">
-                     <i className="fa fa-check"/>
+                  <button
+                     type="button"
+                     onClick={this.props.save}
+                     className="btn btn-primary btn-xs">
+                     <i className="fa fa-check" />
                   </button>
                </span>
-               <span style={ marginLeft }>
-                  <button type="button"
-                          onClick={ this.cancel }
-                          className="btn btn-default btn-xs"
-                          style={ btnPadding }>
+               <span style={marginLeft}>
+                  <button
+                     type="button"
+                     onClick={this.cancel}
+                     className="btn btn-default btn-xs"
+                     style={btnPadding}>
                      <i className="fa fa-times" />
                   </button>
                </span>
@@ -65,10 +67,12 @@ class EditableActions extends Component {
          );
       } else {
          return (
-            <Button tooltip="Редактировать"
-                    onClick={ this.toggleEdit }
-                    icon="fa fa-pencil bigger-130 no-padding-right"
-                    className="blue" />
+            <Button
+               tooltip="Редактировать"
+               onClick={this.toggleEdit}
+               icon="fa fa-pencil bigger-130 no-padding-right"
+               className="blue"
+            />
          );
       }
    }

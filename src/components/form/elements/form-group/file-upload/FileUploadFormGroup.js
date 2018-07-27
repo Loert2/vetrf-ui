@@ -10,19 +10,19 @@ import get from 'lodash/get';
 class FileUploadFormGroup extends PureComponent {
    constructor(props) {
       super(props);
-      this.state = { fileName: "" };
+      this.state = { fileName: '' };
       this.onChangeHandler = this.onChangeHandler.bind(this);
    }
 
    onChangeHandler(event) {
       const { onChange, field } = this.props;
       event.persist();
-      const value = get(event, "target.value");
-      const fileName = value ? value.replace(/.*(\/|\\)/, "") : "";
+      const value = get(event, 'target.value');
+      const fileName = value ? value.replace(/.*(\/|\\)/, '') : '';
       this.setState({
          fileName: fileName
       });
-      const file = { file: get(event, "target.files[0]"), name: fileName };
+      const file = { file: get(event, 'target.files[0]'), name: fileName };
       onChange && onChange(file, field);
    }
 
@@ -42,21 +42,23 @@ class FileUploadFormGroup extends PureComponent {
 
       const { fileName } = this.state;
       return (
-         <FormGroup labelText={ labelText }
-                    require={ require }
-                    help={ help }
-                    additionalBlock={ additionalBlock }
-                    hasError={ hasError }
-                    errorText={ errorText } >
-            <FileUpload id={ id }
-                        dataText={ dataText || fileName }
-                        value={ value }
-                        className={ className }
-                        onChange={ this.onChangeHandler } />
+         <FormGroup
+            labelText={labelText}
+            require={require}
+            help={help}
+            additionalBlock={additionalBlock}
+            hasError={hasError}
+            errorText={errorText}>
+            <FileUpload
+               id={id}
+               dataText={dataText || fileName}
+               value={value}
+               className={className}
+               onChange={this.onChangeHandler}
+            />
          </FormGroup>
       );
    }
-
 }
 
 FileUploadFormGroup.propTypes = {

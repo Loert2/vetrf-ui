@@ -6,12 +6,9 @@ import TimeLineItemsContainer from '../../elements/item/items-container/TimeLine
 
 const TimeLineContainer = ({ timeline, className }) => {
    return (
-      <div className={ classNames("timeline-container", className) }>
-         {
-            timeline.label &&
-            <TimeLineLabelContainer label={ timeline.label }/>
-         }
-         <TimeLineItemsContainer timelineItems={ timeline.items } />
+      <div className={classNames('timeline-container', className)}>
+         {timeline.label && <TimeLineLabelContainer label={timeline.label} />}
+         <TimeLineItemsContainer timelineItems={timeline.items} />
       </div>
    );
 };

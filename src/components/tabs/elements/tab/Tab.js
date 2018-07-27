@@ -1,12 +1,9 @@
 import PropTypes from 'prop-types';
-import React   from 'react';
+import React from 'react';
 
 const Tab = ({ name, selected, onSelect, label }) => (
-   <li name={ name }
-       className={ selected ? "active" : "" } >
-      <a onClick={ () => onSelect && onSelect(name)  } >
-         { label }
-      </a>
+   <li name={name} className={selected ? 'active' : ''}>
+      <a onClick={() => onSelect && onSelect(name)}>{label}</a>
    </li>
 );
 

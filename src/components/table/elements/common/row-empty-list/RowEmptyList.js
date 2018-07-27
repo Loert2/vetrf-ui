@@ -3,9 +3,7 @@ import React from 'react';
 
 const RowEmptyList = ({ columnsLength, text }) => (
    <tr>
-      <td colSpan={ columnsLength }>
-         { text || "Нет записей" }
-      </td>
+      <td colSpan={columnsLength}>{text || 'Нет записей'}</td>
    </tr>
 );
 

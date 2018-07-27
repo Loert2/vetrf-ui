@@ -3,47 +3,44 @@ import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 
 import HeaderColumn from '../header-column/HeaderColumn';
-import FilterCell from '../../filter/cell/FilterCell'
+import FilterCell from '../../filter/cell/FilterCell';
 
 const TableHeader = ({ columns, sortedId, filterableTable }) => {
    const headerColumns = [];
    const filterColumns = [];
 
-   for (let i = 0; i < columns.length; i++){
+   for (let i = 0; i < columns.length; i++) {
       const key = columns[i].key || uniqueId();
       headerColumns.push(
-         <HeaderColumn key={ key  }
-                       id={ key  }
-                       sortedId={ sortedId }
-                       width={ columns[i].width }
-                       sortable={ columns[i].sortable }
-                       onSort={ columns[i].onSort }
-                       title={ columns[i].title }/>
+         <HeaderColumn
+            key={key}
+            id={key}
+            sortedId={sortedId}
+            width={columns[i].width}
+            sortable={columns[i].sortable}
+            onSort={columns[i].onSort}
+            title={columns[i].title}
+         />
       );
    }
 
-   if (filterableTable){
-      for (let i = 0; i < columns.length; i++){
+   if (filterableTable) {
+      for (let i = 0; i < columns.length; i++) {
          filterColumns.push(
-            <FilterCell key={ columns[i].key || uniqueId() }
-                        filter={ columns[i].filter }/>
+            <FilterCell
+               key={columns[i].key || uniqueId()}
+               filter={columns[i].filter}
+            />
          );
       }
    }
 
    return (
       <thead>
-         <tr>
-            { headerColumns }
-         </tr>
-         {
-            filterableTable &&
-            <tr className="filters">
-               { filterColumns }
-            </tr>
-         }
+         <tr>{headerColumns}</tr>
+         {filterableTable && <tr className="filters">{filterColumns}</tr>}
       </thead>
-   )
+   );
 };
 
 TableHeader.propTypes = {

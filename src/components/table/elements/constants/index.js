@@ -9,7 +9,12 @@ const CONST_VAR = {
    FIRST_PAGE: '1',
    DELIMITER_PAGINATION: '\u2026',
    PAGE_START_INDEX: 1,
-   SIZE_PER_PAGE_LIST: [{ id: 10, name: 10 }, { id: 25, name: 25 }, { id: 50, name: 50 }, { id: 100, name: 100 }],
+   SIZE_PER_PAGE_LIST: [
+      { id: 10, name: 10 },
+      { id: 25, name: 25 },
+      { id: 50, name: 50 },
+      { id: 100, name: 100 }
+   ],
    PAGINATION_SIZE: 7,
    FILTER_DELAY: 800,
    FILTER_TYPE: {

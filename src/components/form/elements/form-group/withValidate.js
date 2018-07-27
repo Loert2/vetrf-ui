@@ -24,7 +24,9 @@ const withValidate = (WrappedComponent, customValidate) =>
       componentWillReceiveProps(nextProps) {
          const hasError = this.validate(
             nextProps,
-            isFunction(customValidate) ? (() => customValidate(nextProps)) : (() => nextProps.require && !nextProps.value),
+            isFunction(customValidate)
+               ? () => customValidate(nextProps)
+               : () => nextProps.require && !nextProps.value,
             this.state.hasError
          );
          if (hasError !== this.state.hasError) {
@@ -44,16 +46,26 @@ const withValidate = (WrappedComponent, customValidate) =>
             labelText,
             errorText
          } = props;
-         const hasError = showError && (customValidate ? customValidate(value) : defaultValidate && defaultValidate(value));
-         if ((oldHasError !== hasError) && errorHandler) {
-            errorHandler(hasError, field, labelText, errorText || defaultErrorText);
+         const hasError =
+            showError &&
+            (customValidate
+               ? customValidate(value)
+               : defaultValidate && defaultValidate(value));
+         if (oldHasError !== hasError && errorHandler) {
+            errorHandler(
+               hasError,
+               field,
+               labelText,
+               errorText || defaultErrorText
+            );
          }
          return hasError;
       }
 
       render() {
-         return <WrappedComponent {...this.props}
-                                  hasError={ this.state.hasError }/>;
+         return (
+            <WrappedComponent {...this.props} hasError={this.state.hasError} />
+         );
       }
    };
 

@@ -6,12 +6,12 @@ import 'moment/locale/ru';
 import debounce from 'lodash/debounce';
 import isEmpty from 'lodash/isEmpty';
 
-const placeholderProps = { placeholder: "дд.мм.гггг" };
-const defaultDateFormat = "DD.MM.YYYY";
+const placeholderProps = { placeholder: 'дд.мм.гггг' };
+const defaultDateFormat = 'DD.MM.YYYY';
 
 /**
-* Компонент-обертка для Datetime из react-datetime: https://github.com/YouCanBookMe/react-datetime
-* */
+ * Компонент-обертка для Datetime из react-datetime: https://github.com/YouCanBookMe/react-datetime
+ * */
 const getValue = (value, format) => {
    if (!isEmpty(value)) {
       let newValue = Moment(value, format, true);
@@ -26,12 +26,18 @@ const getValue = (value, format) => {
 class DatePicker extends PureComponent {
    constructor(props, context) {
       super(props, context);
-      this.validateFormat = props.validate ? debounce(props.validate, 600) : null;
+      this.validateFormat = props.validate
+         ? debounce(props.validate, 600)
+         : null;
       this.getFormat = this.getFormat.bind(this);
    }
 
    getFormat() {
-      const { dateFormat = defaultDateFormat, timeFormat, fullFormat } = this.props;
+      const {
+         dateFormat = defaultDateFormat,
+         timeFormat,
+         fullFormat
+      } = this.props;
       if (fullFormat) {
          return fullFormat;
       }
@@ -52,39 +58,38 @@ class DatePicker extends PureComponent {
 
       const format = this.getFormat();
 
-      return(
-         <Datetime dateFormat={ dateFormat }
-                   id={ id }
-                   locale="ru"
-                   value={ getValue(value, format) }
-                   onChange={
-                      (m) => {
-                         const val = m && m.format ? m.format(format) : m;
-                         onChange && onChange(val);
-                         if (validate) {
-                            this.validateFormat(val);
-                         }
-                      }
-                   }
-                   className={ className }
-                   timeFormat={ timeFormat || false }
-                   closeOnSelect
-                   onBlur={
-                      () => {
-                         if (validate) {
-                            validate(value);
-                         } else {
-                            Moment.locale("ru");
-                            const formats = ["DD-MM-YYYY", "DD/MM/YYYY", "DD.MM.YYYY"];
-                            if (Moment(value, formats, true).isValid()) {
-                               onChange && onChange(Moment(value, formats).format("DD.MM.YYYY"));
-                            } else {
-                               onChange && onChange(Moment().format("DD.MM.YYYY"));
-                            }
-                         }
-                      }
-                   }
-                   inputProps={ inputProps || placeholderProps } />
+      return (
+         <Datetime
+            dateFormat={dateFormat}
+            id={id}
+            locale="ru"
+            value={getValue(value, format)}
+            onChange={(m) => {
+               const val = m && m.format ? m.format(format) : m;
+               onChange && onChange(val);
+               if (validate) {
+                  this.validateFormat(val);
+               }
+            }}
+            className={className}
+            timeFormat={timeFormat || false}
+            closeOnSelect
+            onBlur={() => {
+               if (validate) {
+                  validate(value);
+               } else {
+                  Moment.locale('ru');
+                  const formats = ['DD-MM-YYYY', 'DD/MM/YYYY', 'DD.MM.YYYY'];
+                  if (Moment(value, formats, true).isValid()) {
+                     onChange &&
+                        onChange(Moment(value, formats).format('DD.MM.YYYY'));
+                  } else {
+                     onChange && onChange(Moment().format('DD.MM.YYYY'));
+                  }
+               }
+            }}
+            inputProps={inputProps || placeholderProps}
+         />
       );
    }
 }
@@ -95,16 +100,10 @@ DatePicker.propTypes = {
    dateFormat: PropTypes.string,
    fullFormat: PropTypes.string,
    onChange: PropTypes.func,
-   value: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string
-   ]),
+   value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
    validate: PropTypes.func,
    inputProps: PropTypes.object,
-   timeFormat: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ])
+   timeFormat: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
 
 export default DatePicker;

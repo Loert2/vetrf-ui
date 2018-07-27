@@ -4,12 +4,14 @@ import Button from '../../../../buttons/button/Button';
 
 const AddInfoRow = ({ columnsLength, href, btnClassName, addAction, text }) => (
    <tr>
-      <td colSpan={ columnsLength }>
-         <Button href={ href }
-                 className={ btnClassName || "btn btn-minier btn-info" }
-                 onClick={ addAction }
-                 icon="fa fa-plus"
-                 text={ text || "Добавить информацию" } />
+      <td colSpan={columnsLength}>
+         <Button
+            href={href}
+            className={btnClassName || 'btn btn-minier btn-info'}
+            onClick={addAction}
+            icon="fa fa-plus"
+            text={text || 'Добавить информацию'}
+         />
       </td>
    </tr>
 );

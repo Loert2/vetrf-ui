@@ -36,32 +36,37 @@ const AutocompleteFormGroup = (props) => {
    } = props;
 
    return (
-      <FormGroup labelText={ labelText }
-                 require={ require }
-                 help={ help }
-                 additionalBlock={ additionalBlock }
-                 hasError={ hasError }
-                 errorText={ errorText } >
-         <AutocompleteInput  name={ name }
-                             id={ id }
-                             maxLength={ maxLength }
-                             value={ value }
-                             searchField={ searchField }
-                             selectField={ selectField }
-                             style={ style }
-                             onFocus={ onFocus }
-                             disabled={ disabled }
-                             onAutocomplete={ onAutocomplete }
-                             resetAutocompleteList={ resetAutocompleteList }
-                             onKeyPress={ onEnter }
-                             onChange={ (value) => onChange && onChange(value, searchField, selectField) }
-                             onSelect={ onSelect }
-                             items={ items }
-                             viewKey={ viewKey }
-                             className={ className ||  "form-control" }
-                             dpropdownClass={ dpropdownClass }
-                             searchLabel={ searchLabel }
-                             placeholder={ placeholder } />
+      <FormGroup
+         labelText={labelText}
+         require={require}
+         help={help}
+         additionalBlock={additionalBlock}
+         hasError={hasError}
+         errorText={errorText}>
+         <AutocompleteInput
+            name={name}
+            id={id}
+            maxLength={maxLength}
+            value={value}
+            searchField={searchField}
+            selectField={selectField}
+            style={style}
+            onFocus={onFocus}
+            disabled={disabled}
+            onAutocomplete={onAutocomplete}
+            resetAutocompleteList={resetAutocompleteList}
+            onKeyPress={onEnter}
+            onChange={(value) =>
+               onChange && onChange(value, searchField, selectField)
+            }
+            onSelect={onSelect}
+            items={items}
+            viewKey={viewKey}
+            className={className || 'form-control'}
+            dpropdownClass={dpropdownClass}
+            searchLabel={searchLabel}
+            placeholder={placeholder}
+         />
       </FormGroup>
    );
 };
@@ -79,10 +84,7 @@ AutocompleteFormGroup.propTypes = {
    maxLength: PropTypes.number,
    style: PropTypes.object,
    onFocus: PropTypes.func,
-   disabled: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ]),
+   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
    onChange: PropTypes.func,
    onClick: PropTypes.func,
    onSelect: PropTypes.func,

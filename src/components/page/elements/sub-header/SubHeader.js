@@ -4,16 +4,18 @@ import classNames from 'classnames';
 
 const SubHeader = (props) => (
    <div>
-      <div className={ classNames("widget-header-my", props.underline && "header blue") }>
-         <h4 className={ props.className || "lighter" } >
-            <i className={ props.icon } />
-            &nbsp;{ props.header }
+      <div
+         className={classNames(
+            'widget-header-my',
+            props.underline && 'header blue'
+         )}>
+         <h4 className={props.className || 'lighter'}>
+            <i className={props.icon} />
+            &nbsp;{props.header}
          </h4>&nbsp;
-         { props.toolbar }
+         {props.toolbar}
       </div>
-      {
-         props.description && <p>{ props.description }</p>
-      }
+      {props.description && <p>{props.description}</p>}
    </div>
 );
 

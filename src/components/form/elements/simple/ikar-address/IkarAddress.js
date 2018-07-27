@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { isEmpty, isFunction, debounce} from 'lodash';
+import { isEmpty, isFunction, debounce } from 'lodash';
 
-import IkarAddressRussia from "./IkarAddressRussia";
-import IkarAddressForeign from "./IkarAddressForeign";
+import IkarAddressRussia from './IkarAddressRussia';
+import IkarAddressForeign from './IkarAddressForeign';
 import Button from '../../../../buttons/button/Button';
 import Form from '../../../containers/Form';
 import {
@@ -32,21 +32,36 @@ const getAddressViewLabels = (props) => {
    } = props;
 
    return {
-      [COUNTRY_FIELD]: (countryOptions && countryOptions.selectOptionLabelKey) || "name",
-      [REGION_FIELD]: (regionOptions && regionOptions.selectOptionLabelKey) || "view",
-      [DISTRICT_FIELD]: (districtOptions && districtOptions.selectOptionLabelKey) || "view",
-      [LOCALITY_FIELD]: (localityOptions && localityOptions.selectOptionLabelKey) || "view",
-      [SUB_LOCALITY_FIELD]: (subLocalityOptions && subLocalityOptions.selectOptionLabelKey) || "view",
-      [STREET_FIELD]: (streetOptions && streetOptions.selectOptionLabelKey) || "view"
+      [COUNTRY_FIELD]:
+         (countryOptions && countryOptions.selectOptionLabelKey) || 'name',
+      [REGION_FIELD]:
+         (regionOptions && regionOptions.selectOptionLabelKey) || 'view',
+      [DISTRICT_FIELD]:
+         (districtOptions && districtOptions.selectOptionLabelKey) || 'view',
+      [LOCALITY_FIELD]:
+         (localityOptions && localityOptions.selectOptionLabelKey) || 'view',
+      [SUB_LOCALITY_FIELD]:
+         (subLocalityOptions && subLocalityOptions.selectOptionLabelKey) ||
+         'view',
+      [STREET_FIELD]:
+         (streetOptions && streetOptions.selectOptionLabelKey) || 'view'
    };
 };
 
 const notEmpty = (addressElement, pattern, func) =>
-(pattern && pattern.length > 1) && !isEmpty(addressElement) && isFunction(func);
+   pattern &&
+   pattern.length > 1 &&
+   !isEmpty(addressElement) &&
+   isFunction(func);
 
-const isRussia = (country) => isEmpty(country) || country.guid === COUNTRY_RUSSIA_GUID;
+const isRussia = (country) =>
+   isEmpty(country) || country.guid === COUNTRY_RUSSIA_GUID;
 
-const getToggleBtnOptions = (hideFormTooltip = "Скрыть форму", showFormTooltip = "Показать форму", isShownForm) => {
+const getToggleBtnOptions = (
+   hideFormTooltip = 'Скрыть форму',
+   showFormTooltip = 'Показать форму',
+   isShownForm
+) => {
    if (isShownForm) {
       return {
          tooltip: hideFormTooltip,
@@ -96,7 +111,9 @@ class IkarAddress extends Component {
       this.findStreet = this.findStreet.bind(this);
       this.toggleShowForm = this.toggleShowForm.bind(this);
       this.formAndChangeAddress = this.formAndChangeAddress.bind(this);
-      this.setStateFromRequestResult = this.setStateFromRequestResult.bind(this);
+      this.setStateFromRequestResult = this.setStateFromRequestResult.bind(
+         this
+      );
 
       this.addressViewLabels = getAddressViewLabels(this.props);
    }
@@ -115,22 +132,31 @@ class IkarAddress extends Component {
             this.handleChange({
                ...address,
                addressView: this.getAddressView(address)
-            })
+            });
          }
       }
       isEmpty(countryList) && loadCountries && loadCountries();
    }
 
    loadRegionsAndDistricts(props) {
-      const { findRegion, findDistrict, address : { country, region } } = props;
-      let regionsRequest = null, districtsRequest = null;
+      const {
+         findRegion,
+         findDistrict,
+         address: { country, region }
+      } = props;
+      let regionsRequest = null,
+         districtsRequest = null;
       if (country && findRegion) {
          regionsRequest = findRegion(country);
          this.setStateFromRequestResult(regionsRequest, this.state, 'regions');
       }
       if (findDistrict && isRussia(country) && region) {
          districtsRequest = findDistrict(region);
-         this.setStateFromRequestResult(districtsRequest, this.state, 'districts');
+         this.setStateFromRequestResult(
+            districtsRequest,
+            this.state,
+            'districts'
+         );
       }
    }
 
@@ -139,13 +165,13 @@ class IkarAddress extends Component {
          request.then((result) =>
             this.setState({
                ...state,
-               [ field ]: result
+               [field]: result
             })
-         )
+         );
       } else {
          this.setState({
             ...state,
-            [ field ]: request
+            [field]: request
          });
       }
    }
@@ -153,20 +179,24 @@ class IkarAddress extends Component {
    getAddressView(address) {
       const { russianAddressViewOptions } = this.props;
       if (isRussia(address.country)) {
-         return getRussianAddressView(address, this.addressViewLabels, russianAddressViewOptions);
+         return getRussianAddressView(
+            address,
+            this.addressViewLabels,
+            russianAddressViewOptions
+         );
       }
       return getForeignAddressView(address, this.addressViewLabels);
    }
 
    getChangeHandlerByField(field) {
       const { regions } = this.state;
-      switch (field){
+      switch (field) {
          case COUNTRY_FIELD:
             return (country) => {
                const newState = {
                   ...this.state,
                   regions: [],
-                  districts:[],
+                  districts: []
                };
 
                let address = {
@@ -183,10 +213,14 @@ class IkarAddress extends Component {
                if (!isEmpty(country)) {
                   const { findRegion } = this.props;
                   const regionsRequest = findRegion && findRegion(country);
-                  this.setStateFromRequestResult(regionsRequest, newState, 'regions');
+                  this.setStateFromRequestResult(
+                     regionsRequest,
+                     newState,
+                     'regions'
+                  );
                   address = {
                      ...address,
-                     country: country,
+                     country: country
                   };
                } else {
                   this.setState(newState);
@@ -200,7 +234,7 @@ class IkarAddress extends Component {
                const newState = {
                   ...this.state,
                   regions: regions,
-                  districts:[]
+                  districts: []
                };
                let address = {
                   ...this.props.address,
@@ -208,20 +242,22 @@ class IkarAddress extends Component {
                   district: null,
                   locality: null,
                   subLocality: null,
-                  street: null,
+                  street: null
                };
                if (!isEmpty(region)) {
-
                   const { findDistrict } = this.props;
                   if (findDistrict && isRussia(address.country)) {
-                     const districtsRequest =  findDistrict(region);
-                     this.setStateFromRequestResult(districtsRequest, newState, 'districts');
+                     const districtsRequest = findDistrict(region);
+                     this.setStateFromRequestResult(
+                        districtsRequest,
+                        newState,
+                        'districts'
+                     );
                   }
                   address = {
                      ...address,
-                     region: region,
+                     region: region
                   };
-
                } else {
                   this.setState(newState);
                }
@@ -235,7 +271,7 @@ class IkarAddress extends Component {
                   district: null,
                   locality: null,
                   subLocality: null,
-                  street: null,
+                  street: null
                };
                this.formAndChangeAddress(address, district, DISTRICT_FIELD);
             };
@@ -246,7 +282,7 @@ class IkarAddress extends Component {
                   ...this.props.address,
                   locality: null,
                   subLocality: null,
-                  street: null,
+                  street: null
                };
                this.formAndChangeAddress(address, locality, LOCALITY_FIELD);
             };
@@ -256,16 +292,20 @@ class IkarAddress extends Component {
                let address = {
                   ...this.props.address,
                   subLocality: null,
-                  street: null,
+                  street: null
                };
-               this.formAndChangeAddress(address, subLocality, SUB_LOCALITY_FIELD);
+               this.formAndChangeAddress(
+                  address,
+                  subLocality,
+                  SUB_LOCALITY_FIELD
+               );
             };
 
          case STREET_FIELD:
             return (street) => {
                let address = {
                   ...this.props.address,
-                  street: street,
+                  street: street
                };
                this.handleChange(address);
             };
@@ -308,22 +348,28 @@ class IkarAddress extends Component {
    }
 
    findLocality(pattern, callback) {
-      const { findLocality, address: { region, district } } = this.props;
-      const parent = (!isEmpty(district)) ? district : region;
+      const {
+         findLocality,
+         address: { region, district }
+      } = this.props;
+      const parent = !isEmpty(district) ? district : region;
 
       if (notEmpty(parent, pattern, findLocality)) {
          return this.getLocality(parent, pattern, callback);
       } else {
-         callback(null, emptySelectOptions)
+         callback(null, emptySelectOptions);
       }
    }
 
    findSubLocality(pattern, callback) {
-      const { findSubLocality, address: { locality } } = this.props;
+      const {
+         findSubLocality,
+         address: { locality }
+      } = this.props;
       if (notEmpty(locality, pattern, findSubLocality)) {
          return this.getSubLocality(locality, pattern, callback);
       } else {
-         callback(null, emptySelectOptions)
+         callback(null, emptySelectOptions);
       }
    }
 
@@ -344,16 +390,15 @@ class IkarAddress extends Component {
       if (notEmpty(parent, pattern, findStreet)) {
          return this.getStreet(parent, pattern, callback);
       } else {
-         callback(null, emptySelectOptions)
+         callback(null, emptySelectOptions);
       }
    }
 
    toggleShowForm() {
       this.setState((prevState) => ({
-            ...prevState,
-            isShownForm: !prevState.isShownForm
-         })
-      )
+         ...prevState,
+         isShownForm: !prevState.isShownForm
+      }));
    }
 
    render() {
@@ -391,7 +436,8 @@ class IkarAddress extends Component {
       let form = null;
       let formClassNameCountry = null;
       if (isRussia(country)) {
-         formClassNameCountry = 'ikar-address-form--county--russia ikar-address-form--animation--slide';
+         formClassNameCountry =
+            'ikar-address-form--county--russia ikar-address-form--animation--slide';
          const ikarAddressOptions = {
             countryOptions,
             regionOptions,
@@ -406,59 +452,77 @@ class IkarAddress extends Component {
             postBoxOptions,
             additionalInfoOptions
          };
-         form = <IkarAddressRussia ikarAddressOptions={ ikarAddressOptions }
-                                   countries={ countries }
-                                   regions={ regions }
-                                   districts={ districts }
-                                   address={ address }
-                                   getChangeHandlerByField={ this.getChangeHandlerByField }
-                                   findLocality={ this.findLocality}
-                                   findSubLocality={ this.findSubLocality}
-                                   findStreet={ this.findStreet }
-                                   inputClassName={ inputClassName }
-                                   selectClassName={ selectClassName }
-                                   formClassName={ formClassName }
-                                   formGroupLabelClassName={ formGroupLabelClassName }
-                                   formGroupFieldClassName={ formGroupFieldClassName }
-                                   asyncSelectIgnoreCase={ asyncSelectIgnoreCase }
-                                   showError={ showError }/>;
-      }  else {
-         formClassNameCountry = 'ikar-address-form--country--foreign ikar-address-form--animation--slide';
+         form = (
+            <IkarAddressRussia
+               ikarAddressOptions={ikarAddressOptions}
+               countries={countries}
+               regions={regions}
+               districts={districts}
+               address={address}
+               getChangeHandlerByField={this.getChangeHandlerByField}
+               findLocality={this.findLocality}
+               findSubLocality={this.findSubLocality}
+               findStreet={this.findStreet}
+               inputClassName={inputClassName}
+               selectClassName={selectClassName}
+               formClassName={formClassName}
+               formGroupLabelClassName={formGroupLabelClassName}
+               formGroupFieldClassName={formGroupFieldClassName}
+               asyncSelectIgnoreCase={asyncSelectIgnoreCase}
+               showError={showError}
+            />
+         );
+      } else {
+         formClassNameCountry =
+            'ikar-address-form--country--foreign ikar-address-form--animation--slide';
          const ikarAddressOptions = {
             countryOptions,
             regionOptions,
             foreignAddressOptions
          };
-         form = <IkarAddressForeign ikarAddressOptions={ ikarAddressOptions }
-                                    countries={ countries }
-                                    regions={ regions }
-                                    address={ address }
-                                    getChangeHandlerByField={ this.getChangeHandlerByField }
-                                    inputClassName={ inputClassName }
-                                    selectClassName={ selectClassName }
-                                    formGroupLabelClassName={ formGroupLabelClassName }
-                                    formGroupFieldClassName={ formGroupFieldClassName }
-                                    formClassName={ formClassName }
-                                    showError={ showError } />;
+         form = (
+            <IkarAddressForeign
+               ikarAddressOptions={ikarAddressOptions}
+               countries={countries}
+               regions={regions}
+               address={address}
+               getChangeHandlerByField={this.getChangeHandlerByField}
+               inputClassName={inputClassName}
+               selectClassName={selectClassName}
+               formGroupLabelClassName={formGroupLabelClassName}
+               formGroupFieldClassName={formGroupFieldClassName}
+               formClassName={formClassName}
+               showError={showError}
+            />
+         );
       }
 
-      const toggleBtnOptions = getToggleBtnOptions(hideFormOptionTooltip, showFormOptionTooltip, isShownForm);
+      const toggleBtnOptions = getToggleBtnOptions(
+         hideFormOptionTooltip,
+         showFormOptionTooltip,
+         isShownForm
+      );
       return (
          <div>
-            <Form className={ classNames("form-horizontal css-form ikar-address-form--visability--shown", isShownForm && formClassNameCountry) }>
-               { form }
+            <Form
+               className={classNames(
+                  'form-horizontal css-form ikar-address-form--visability--shown',
+                  isShownForm && formClassNameCountry
+               )}>
+               {form}
             </Form>
-            {
-               isShowAddressView &&
+            {isShowAddressView && (
                <div className="text-muted ikar-address--address-view">
-                  { addressView }&nbsp;<Button onClick={ this.toggleShowForm }
-                                               tooltip={ toggleBtnOptions.tooltip }
-                                               icon={ toggleBtnOptions.icon }/>
+                  {addressView}&nbsp;<Button
+                     onClick={this.toggleShowForm}
+                     tooltip={toggleBtnOptions.tooltip}
+                     icon={toggleBtnOptions.icon}
+                  />
                </div>
-            }
+            )}
          </div>
       );
-   };
+   }
 }
 
 IkarAddress.defaultProps = {
@@ -479,13 +543,13 @@ IkarAddress.defaultProps = {
    isShownForm: true,
    isShowAddressView: true,
    asyncSelectDelay: 800,
-   hideFormOptionTooltip: "Скрыть форму",
-   showFormOptionTooltip: "Показать форму",
-   showError: false,
+   hideFormOptionTooltip: 'Скрыть форму',
+   showFormOptionTooltip: 'Показать форму',
+   showError: false
 };
 
 IkarAddress.propTypes = {
-   address : PropTypes.shape({
+   address: PropTypes.shape({
       country: PropTypes.object,
       region: PropTypes.object,
       district: PropTypes.object,
@@ -506,7 +570,8 @@ IkarAddress.propTypes = {
       PropTypes.shape({
          guid: PropTypes.string,
          name: PropTypes.string
-      })),
+      })
+   ),
    loadCountries: PropTypes.func,
    findRegion: PropTypes.func,
    findDistrict: PropTypes.func,
@@ -646,7 +711,7 @@ IkarAddress.propTypes = {
    russianAddressViewOptions: PropTypes.shape({
       house: PropTypes.string,
       building: PropTypes.string,
-      postBox: PropTypes.string,
+      postBox: PropTypes.string
    }),
    formGroupLabelClassName: PropTypes.string,
    formGroupFieldClassName: PropTypes.string,

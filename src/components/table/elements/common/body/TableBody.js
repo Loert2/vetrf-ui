@@ -21,54 +21,56 @@ const TableBody = (props) => {
       selectOptions,
       getRowClassName
    } = props;
-   const addInfoRow = addBtn && <AddInfoRow addAction={ addBtn.action }
-                                            btnClassName={ addBtn.className }
-                                            text={ addBtn.text }
-                                            columnsLength={ columns.length } />;
-   if (dataList && dataList.length){
-      for (let i = 0; i < dataList.length; i++){
+   const addInfoRow = addBtn && (
+      <AddInfoRow
+         addAction={addBtn.action}
+         btnClassName={addBtn.className}
+         text={addBtn.text}
+         columnsLength={columns.length}
+      />
+   );
+   if (dataList && dataList.length) {
+      for (let i = 0; i < dataList.length; i++) {
          rows.push(
-            <TableRow key={ (keyFunction && keyFunction(dataList[i])) || dataList[i].id || uniqueId() } //TODO: Убрать uniqueId, постараться его не использовать.
-                      columns={ columns }
-                      onClick={ onClickRow }
-                      getRowClassName={ getRowClassName }
-                      selectOptions={ selectOptions }
-                      item={ dataList[i] } />
+            <TableRow
+               key={
+                  (keyFunction && keyFunction(dataList[i])) ||
+                  dataList[i].id ||
+                  uniqueId()
+               } //TODO: Убрать uniqueId, постараться его не использовать.
+               columns={columns}
+               onClick={onClickRow}
+               getRowClassName={getRowClassName}
+               selectOptions={selectOptions}
+               item={dataList[i]}
+            />
          );
       }
       return (
          <tbody>
-            { rows }
-            {
-               additionalDataRow &&
-               <TableRow key="additionalRow"
-                         columns={ additionalDataRow.additionalMetadata }
-                         item={ additionalDataRow.additionalData } />
-            }
-            {
-               paginationRow &&
+            {rows}
+            {additionalDataRow && (
+               <TableRow
+                  key="additionalRow"
+                  columns={additionalDataRow.additionalMetadata}
+                  item={additionalDataRow.additionalData}
+               />
+            )}
+            {paginationRow && (
                <tr key="pagination">
-                  <td colSpan={ columns.length }>
-                     { paginationRow }
-                  </td>
+                  <td colSpan={columns.length}>{paginationRow}</td>
                </tr>
-            }
-            {
-               addBtn && !readOnly && addInfoRow
-            }
+            )}
+            {addBtn && !readOnly && addInfoRow}
          </tbody>
       );
    }
-   if (addBtn  && !readOnly){
-      return (
-         <tbody>
-            { addInfoRow }
-         </tbody>
-      );
+   if (addBtn && !readOnly) {
+      return <tbody>{addInfoRow}</tbody>;
    } else {
       return (
          <tbody>
-            <RowEmptyList columnsLength={ columns.length } text={ emptyText } />
+            <RowEmptyList columnsLength={columns.length} text={emptyText} />
          </tbody>
       );
    }
@@ -112,7 +114,7 @@ TableBody.propTypes = {
          filter: PropTypes.node,
          sortable: PropTypes.bool,
          onSort: PropTypes.func,
-         getClassName: PropTypes.func,
+         getClassName: PropTypes.func
       })
    )
 };

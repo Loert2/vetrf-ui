@@ -31,27 +31,31 @@ const InputFormGroup = (props) => {
       fieldClassName
    } = props;
    return (
-      <FormGroup labelText={ labelText }
-                 require={ require }
-                 help={ help }
-                 additionalBlock={ additionalBlock }
-                 hasError={ hasError }
-                 errorText={ errorText }
-                 labelClassName={ labelClassName }
-                 fieldClassName={ fieldClassName } >
-         <Input type={ type || "text" } autocomplete="off"
-                name={ name }
-                id={ id }
-                maxLength={ maxLength || 255 }
-                value={ value }
-                style={ style }
-                autoFocus={ autoFocus }
-                onFocus={ onFocus }
-                disabled={ disabled }
-                onKeyPress={ onEnter }
-                onChange={ (value) => onChange && onChange(value, field) }
-                className={ className || "form-control" }
-                placeholder={ placeholder } />
+      <FormGroup
+         labelText={labelText}
+         require={require}
+         help={help}
+         additionalBlock={additionalBlock}
+         hasError={hasError}
+         errorText={errorText}
+         labelClassName={labelClassName}
+         fieldClassName={fieldClassName}>
+         <Input
+            type={type || 'text'}
+            autocomplete="off"
+            name={name}
+            id={id}
+            maxLength={maxLength || 255}
+            value={value}
+            style={style}
+            autoFocus={autoFocus}
+            onFocus={onFocus}
+            disabled={disabled}
+            onKeyPress={onEnter}
+            onChange={(value) => onChange && onChange(value, field)}
+            className={className || 'form-control'}
+            placeholder={placeholder}
+         />
       </FormGroup>
    );
 };
@@ -75,10 +79,7 @@ InputFormGroup.propTypes = {
    onEnter: PropTypes.func,
    customValidate: PropTypes.func,
    errorHandler: PropTypes.func,
-   disabled: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ]),
+   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
    onChange: PropTypes.func,
    additionalBlock: PropTypes.node,
    className: PropTypes.string,

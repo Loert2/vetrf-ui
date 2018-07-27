@@ -6,28 +6,33 @@ import ProfileTableRow from '../../elements/common/profile-table-row/ProfileTabl
 
 const ProfileTable = ({ rows, itemList, tableClassName }) => {
    const tableRows = [];
-   if (rows && rows.length){
-      for (let i = 0; i < rows.length; i++){
+   if (rows && rows.length) {
+      for (let i = 0; i < rows.length; i++) {
          tableRows.push(
-            <ProfileTableRow key={ rows[i].header.key || uniqueId() }
-                             first={ i === 0 ? "border-top-solid-profile-table" : "" }
-                             header={ rows[i].header }
-                             dataFormatter={ rows[i].dataFormatter }
-                             getCellClass={ rows[i].getCellClass }
-                             field={ rows[i].field }
-                             itemList={ itemList } />
+            <ProfileTableRow
+               key={rows[i].header.key || uniqueId()}
+               first={i === 0 ? 'border-top-solid-profile-table' : ''}
+               header={rows[i].header}
+               dataFormatter={rows[i].dataFormatter}
+               getCellClass={rows[i].getCellClass}
+               field={rows[i].field}
+               itemList={itemList}
+            />
          );
       }
    }
 
    return (
-      <table className={ tableClassName || "table color-table-border font-weight-normal" } >
-         <thead/>
+      <table
+         className={
+            tableClassName || 'table color-table-border font-weight-normal'
+         }>
+         <thead />
          <tbody className="font-weight-normal color-table-border">
-            { tableRows }
+            {tableRows}
          </tbody>
       </table>
-   )
+   );
 };
 
 ProfileTable.propTypes = {
@@ -45,7 +50,7 @@ ProfileTable.propTypes = {
             key: PropTypes.string,
             title: PropTypes.string,
             headerClassName: PropTypes.string,
-            width: PropTypes.string,
+            width: PropTypes.string
          }),
          field: PropTypes.string,
          dataFormatter: PropTypes.func,

@@ -14,34 +14,34 @@ class TextareaEditable extends Component {
       this.setState({ edit: nextProps.editId === nextProps.id });
    }
 
-   onChangeTextarea(e){
+   onChangeTextarea(e) {
       const val = e.target.value;
       const { onChange } = this.props;
       onChange && onChange(val);
    }
 
-   render () {
+   render() {
       let { edit } = this.state;
       const { viewFormatter, value } = this.props;
-      const fullWidth = { width: "100%" };
-      if (edit){
+      const fullWidth = { width: '100%' };
+      if (edit) {
          return (
-            <div className="editable-wrap editable-textarea" style={ fullWidth }>
+            <div className="editable-wrap editable-textarea" style={fullWidth}>
                <div className="editable-controls form-group">
-                  <textarea className="form-control"
-                            value={ value }
-                            onChange={ this.onChangeTextarea }/>
+                  <textarea
+                     className="form-control"
+                     value={value}
+                     onChange={this.onChangeTextarea}
+                  />
                </div>
             </div>
          );
       } else {
-         let val = value ? value : "";
-         if (viewFormatter){
-            return ( viewFormatter(val) );
+         let val = value ? value : '';
+         if (viewFormatter) {
+            return viewFormatter(val);
          } else {
-            return (
-               <p>{ val }</p>
-            );
+            return <p>{val}</p>;
          }
       }
    }

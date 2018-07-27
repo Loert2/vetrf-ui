@@ -6,21 +6,19 @@ import Tab from '../tab/Tab';
 
 const TabList = ({ tabs, selectedName, onSelect }) => {
    const tabList = [];
-   for (let i = 0; i < tabs.length; i++){
+   for (let i = 0; i < tabs.length; i++) {
       tabList.push(
-         <Tab key={ tabs[i].name || uniqueId() }
-              name={ tabs[i].name }
-              onSelect={ onSelect }
-              label={ tabs[i].label }
-              selected={ selectedName === tabs[i].name } />
+         <Tab
+            key={tabs[i].name || uniqueId()}
+            name={tabs[i].name}
+            onSelect={onSelect}
+            label={tabs[i].label}
+            selected={selectedName === tabs[i].name}
+         />
       );
    }
 
-   return (
-      <ul className="nav nav-tabs nav-justified">
-         { tabList }
-      </ul>
-   );
+   return <ul className="nav nav-tabs nav-justified">{tabList}</ul>;
 };
 
 TabList.propTypes = {

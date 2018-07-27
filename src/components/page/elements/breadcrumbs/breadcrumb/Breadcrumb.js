@@ -4,12 +4,8 @@ import { Link } from 'react-router-dom';
 import uniqueId from 'lodash/uniqueId';
 
 const Breadcrumb = ({ elem: { active, text, link } }) => (
-   <li key={ uniqueId() } className={ active ? 'active' : ''}>
-      {
-         link
-            ? ( <Link to={ link } > { text } </Link> )
-            : ( <span> { text } </span> )
-      }
+   <li key={uniqueId()} className={active ? 'active' : ''}>
+      {link ? <Link to={link}> {text} </Link> : <span> {text} </span>}
    </li>
 );
 

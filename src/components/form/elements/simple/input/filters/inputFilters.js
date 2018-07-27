@@ -1,13 +1,13 @@
 const FLOAT_REGEXP_1 = /^\$?\d+.(\d{3})*(,\d*)$/; //Numbers like: 1.123,56
 const FLOAT_REGEXP_2 = /^\$?\d+,(\d{3})*(\.\d*)$/; //Numbers like: 1,123.56
-const FLOAT_REGEXP_3 = /^\$?\d+(\.\d*)?$/;         //Numbers like: 1123.56
-const FLOAT_REGEXP_4 = /^\$?\d+(,\d*)?$/;         //Numbers like: 1123,56
+const FLOAT_REGEXP_3 = /^\$?\d+(\.\d*)?$/; //Numbers like: 1123.56
+const FLOAT_REGEXP_4 = /^\$?\d+(,\d*)?$/; //Numbers like: 1123,56
 
 const NUMBER_REGEXP = /[^0-9]/g;
 
-export const onlyFloatFilter = (value, oldValid = "") => {
+export const onlyFloatFilter = (value, oldValid = '') => {
    if (!value) {
-      return "";
+      return '';
    }
    if (FLOAT_REGEXP_1.test(value)) {
       return value.replace('.', '').replace(',', '.');
@@ -21,9 +21,9 @@ export const onlyFloatFilter = (value, oldValid = "") => {
    return oldValid;
 };
 
-export const onlyNumbersFilter = (value, oldValid = "") => {
+export const onlyNumbersFilter = (value, oldValid = '') => {
    if (!value) {
-      return "";
+      return '';
    }
-   return value ? value.replace(NUMBER_REGEXP, '') : oldValid
+   return value ? value.replace(NUMBER_REGEXP, '') : oldValid;
 };

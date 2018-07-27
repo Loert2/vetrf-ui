@@ -1,24 +1,22 @@
 import PropTypes from 'prop-types';
-import React   from 'react';
+import React from 'react';
 import uniqueId from 'lodash/uniqueId';
 
 import TabContent from '../content/TabContent';
 
-const TabContentList = ({ tabs, selectedName }) =>{
+const TabContentList = ({ tabs, selectedName }) => {
    const tabContentList = [];
-   for (let i = 0; i < tabs.length; i++){
+   for (let i = 0; i < tabs.length; i++) {
       tabContentList.push(
-         <TabContent key={ tabs[i].name || uniqueId() }
-                     content={ tabs[i].content }
-                     selected={ selectedName === tabs[i].name } />
+         <TabContent
+            key={tabs[i].name || uniqueId()}
+            content={tabs[i].content}
+            selected={selectedName === tabs[i].name}
+         />
       );
    }
 
-   return (
-      <div className="tab-content">
-         { tabContentList }
-      </div>
-   )
+   return <div className="tab-content">{tabContentList}</div>;
 };
 
 TabContentList.propTypes = {

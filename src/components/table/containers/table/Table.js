@@ -5,36 +5,37 @@ import TableHeader from '../../elements/common/table-header/TableHeader';
 import TableBody from '../../elements/common/body/TableBody';
 import TableLoadingBlock from '../../elements/common/loading-block/TableLoadingBlock';
 
-const Table = (props) =>  (
+const Table = (props) => (
    <div>
-      {
-         props.loading &&
-         <TableLoadingBlock/>
-      }
-      <table id={ props.id }
-             className={
-                props.loading ?
-                   "table table-bordered blur"
-                   :
-                   props.className || "table table-striped table-bordered table-hover"
-             } >
-         {
-            !props.hideHeader &&
-            <TableHeader columns={ props.columns }
-                         sortedId={ props.sortedId }
-                         filterableTable={ props.filterableTable } />
-         }
-         <TableBody dataList={ props.dataList }
-                    keyFunction={props.keyFunction}
-                    onClickRow={ props.onClickRow }
-                    selectOptions={ props.selectOptions }
-                    emptyText={ props.emptyText }
-                    paginationRow={ props.paginationRow }
-                    columns={ props.columns }
-                    readOnly={ props.readOnly }
-                    getRowClassName={ props.getRowClassName }
-                    addBtn={ props.addBtn }
-                    additionalDataRow={ props.additionalDataRow } />
+      {props.loading && <TableLoadingBlock />}
+      <table
+         id={props.id}
+         className={
+            props.loading
+               ? 'table table-bordered blur'
+               : props.className ||
+                 'table table-striped table-bordered table-hover'
+         }>
+         {!props.hideHeader && (
+            <TableHeader
+               columns={props.columns}
+               sortedId={props.sortedId}
+               filterableTable={props.filterableTable}
+            />
+         )}
+         <TableBody
+            dataList={props.dataList}
+            keyFunction={props.keyFunction}
+            onClickRow={props.onClickRow}
+            selectOptions={props.selectOptions}
+            emptyText={props.emptyText}
+            paginationRow={props.paginationRow}
+            columns={props.columns}
+            readOnly={props.readOnly}
+            getRowClassName={props.getRowClassName}
+            addBtn={props.addBtn}
+            additionalDataRow={props.additionalDataRow}
+         />
       </table>
    </div>
 );
@@ -83,7 +84,7 @@ Table.propTypes = {
          filter: PropTypes.node,
          sortable: PropTypes.bool,
          onSort: PropTypes.func,
-         getClassName: PropTypes.func,
+         getClassName: PropTypes.func
       })
    )
 };

@@ -14,11 +14,16 @@ class DateFormGroup extends PureComponent {
       this.state = {
          isValid: true,
          hasError: false
-      }
+      };
    }
 
    componentWillReceiveProps(nextProps) {
-      const hasError = validate(nextProps, () => !this.state.isValid || (nextProps.require && !nextProps.value), this.state.hasError, "Введенная дата не соотвествует формату - ДД.ММ.ГГГГ");
+      const hasError = validate(
+         nextProps,
+         () => !this.state.isValid || (nextProps.require && !nextProps.value),
+         this.state.hasError,
+         'Введенная дата не соотвествует формату - ДД.ММ.ГГГГ'
+      );
       if (hasError !== this.state.hasError) {
          this.setState({
             hasError: hasError,
@@ -50,18 +55,25 @@ class DateFormGroup extends PureComponent {
          validateDateFormat
       } = this.props;
       const { isValid, hasError } = this.state;
-      return(
-         <FormGroup labelText={ labelText }
-                    require={ require }
-                    help={ help }
-                    additionalBlock={ additionalBlock }
-                    errorText={ isValid ? errorText : "Введенная дата не соотвествует формату - ДД.ММ.ГГГГ" }
-                    hasError={ !isValid || hasError } >
-            <DatePicker value={ value }
-                        id={ id }
-                        onChange={ (value) => onChange && onChange(value, field) }
-                        className={ className }
-                        validate={ validateDateFormat && this.validateFormat } />
+      return (
+         <FormGroup
+            labelText={labelText}
+            require={require}
+            help={help}
+            additionalBlock={additionalBlock}
+            errorText={
+               isValid
+                  ? errorText
+                  : 'Введенная дата не соотвествует формату - ДД.ММ.ГГГГ'
+            }
+            hasError={!isValid || hasError}>
+            <DatePicker
+               value={value}
+               id={id}
+               onChange={(value) => onChange && onChange(value, field)}
+               className={className}
+               validate={validateDateFormat && this.validateFormat}
+            />
          </FormGroup>
       );
    }

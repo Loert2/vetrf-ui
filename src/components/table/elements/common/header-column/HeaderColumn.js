@@ -7,17 +7,17 @@ import Const from '../../constants/index';
 const getIconClass = (sortType) => {
    switch (sortType) {
       case Const.SORT_ASC:
-         return "fa-sort-asc";
+         return 'fa-sort-asc';
       case Const.SORT_DESC:
-         return "fa-sort-desc";
+         return 'fa-sort-desc';
       default:
-         return "fa-sort";
+         return 'fa-sort';
    }
 };
 
 const initialState = {
    sort: Const.SORT_UNDEFINED,
-   sortIcon: "fa-sort"
+   sortIcon: 'fa-sort'
 };
 
 export default class HeaderColumn extends Component {
@@ -53,7 +53,7 @@ export default class HeaderColumn extends Component {
       const nextSort = this.changeSort();
       const promise = new Promise((resolve, reject) => {
          this.setState({
-            sort: nextSort ,
+            sort: nextSort,
             sortIcon: getIconClass(nextSort)
          });
          resolve();
@@ -61,22 +61,28 @@ export default class HeaderColumn extends Component {
       promise.then(() => onSort && onSort(nextSort, id));
    }
 
-   render () {
+   render() {
       const { width, title, sortable, onSort, className } = this.props;
       return (
-         <th style={{ width: width, minWidth: width, maxWidth: width }}
-             className={ className || "header text-align-center" }>
+         <th
+            style={{ width: width, minWidth: width, maxWidth: width }}
+            className={className || 'header text-align-center'}>
             <span>
-               { title }
+               {title}
                &nbsp;
-               {
-                  sortable && onSort &&
-                  <i className={ classNames("sort-caret fa", this.state.sortIcon || "fa-sort" ) }
-                     onClick={ this.onClickHandler }/>
-               }
+               {sortable &&
+                  onSort && (
+                     <i
+                        className={classNames(
+                           'sort-caret fa',
+                           this.state.sortIcon || 'fa-sort'
+                        )}
+                        onClick={this.onClickHandler}
+                     />
+                  )}
             </span>
          </th>
-      )
+      );
    }
 }
 

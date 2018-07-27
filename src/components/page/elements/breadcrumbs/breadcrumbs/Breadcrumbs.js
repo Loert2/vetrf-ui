@@ -6,7 +6,9 @@ import uniqueId from 'lodash/uniqueId';
 const Breadcrumbs = ({ breadcrumbs, search }) => (
    <div className="breadcrumbs">
       <ul className="breadcrumb">
-         { breadcrumbs.map((elem, index) => <Breadcrumb key={ uniqueId() } elem={ elem } />) }
+         {breadcrumbs.map((elem, index) => (
+            <Breadcrumb key={uniqueId()} elem={elem} />
+         ))}
       </ul>
    </div>
 );

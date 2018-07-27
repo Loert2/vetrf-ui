@@ -48,18 +48,27 @@ class AutocompleteInput extends PureComponent {
    }
 
    changeHandler(value) {
-      const { onChange, name, searchField, items, resetAutocompleteList } = this.props;
+      const {
+         onChange,
+         name,
+         searchField,
+         items,
+         resetAutocompleteList
+      } = this.props;
       onChange && onChange(value);
       if (name || searchField) {
          if (value && value.length > 2) {
-            this.requestAutocompleteList(name ? { [name]: value } : value, name || searchField);
+            this.requestAutocompleteList(
+               name ? { [name]: value } : value,
+               name || searchField
+            );
          } else if (!isEmpty(items)) {
             resetAutocompleteList && resetAutocompleteList();
          }
       }
    }
 
-   render () {
+   render() {
       const {
          name,
          id,
@@ -79,51 +88,70 @@ class AutocompleteInput extends PureComponent {
          selectField,
          dpropdownClass
       } = this.props;
-      const spliceItems = (!isEmpty(items) && items.length > 10) ? items.slice(0, 10) : items || [];
+      const spliceItems =
+         !isEmpty(items) && items.length > 10
+            ? items.slice(0, 10)
+            : items || [];
       const field = name || selectField || searchField;
-      const dpropdownClassName = dpropdownClass || "autocomplete-dropdown-content";
+      const dpropdownClassName =
+         dpropdownClass || 'autocomplete-dropdown-content';
       const itemList = spliceItems.map((item, index) => (
-         <li key={ uniqueId() }
-             onClick={ () => { this.hideHelp(); onSelect && onSelect(item, field); } }>
-            { isObject(item) ? item[viewKey || "name"] : item }
+         <li
+            key={uniqueId()}
+            onClick={() => {
+               this.hideHelp();
+               onSelect && onSelect(item, field);
+            }}>
+            {isObject(item) ? item[viewKey || 'name'] : item}
          </li>
       ));
-      const label = searchLabel &&
+      const label = searchLabel && (
          <span className="input-group-addon">
-            <i className="fa fa-search"/>
-         </span>;
-      const btn = !isEmpty(button) &&
+            <i className="fa fa-search" />
+         </span>
+      );
+      const btn = !isEmpty(button) && (
          <span className="input-group-btn">
-            <Button id={ button.id }
-                    disabled={ button.disabled }
-                    className={ button.className }
-                    text={ button.text }
-                    tooltip={ button.tooltip }
-                    icon={ button.icon }
-                    onClick={ button.handleClick }
-                    href={ button.href }/>
-         </span>;
+            <Button
+               id={button.id}
+               disabled={button.disabled}
+               className={button.className}
+               text={button.text}
+               tooltip={button.tooltip}
+               icon={button.icon}
+               onClick={button.handleClick}
+               href={button.href}
+            />
+         </span>
+      );
       return (
          <div className="autocomplete-dropdown col-xs-12 no-padding">
-            <span className={ (label || btn) && "input-group" }>
-            { label }
-            <Input type="text"
-                   id={ id }
-                   name={ name }
-                   maxLength={ maxLength }
-                   value={ value }
-                   style={ style }
-                   onFocus={ onFocus }
-                   disabled={ disabled }
-                   onClick={ this.showHelp }
-                   className={ className }
-                   placeholder={ placeholder }
-                   onChange={ this.changeHandler } />
-            { btn }
+            <span className={(label || btn) && 'input-group'}>
+               {label}
+               <Input
+                  type="text"
+                  id={id}
+                  name={name}
+                  maxLength={maxLength}
+                  value={value}
+                  style={style}
+                  onFocus={onFocus}
+                  disabled={disabled}
+                  onClick={this.showHelp}
+                  className={className}
+                  placeholder={placeholder}
+                  onChange={this.changeHandler}
+               />
+               {btn}
             </span>
-            <ul className={ dpropdownClassName }
-                style={ (!isEmpty(items) && this.state.helpVisible && value) ? { display: "block" } : { display: "none" } }>
-               { itemList }
+            <ul
+               className={dpropdownClassName}
+               style={
+                  !isEmpty(items) && this.state.helpVisible && value
+                     ? { display: 'block' }
+                     : { display: 'none' }
+               }>
+               {itemList}
             </ul>
          </div>
       );
@@ -141,10 +169,7 @@ AutocompleteInput.propTypes = {
    maxLength: PropTypes.number,
    style: PropTypes.object,
    onFocus: PropTypes.func,
-   disabled: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ]),
+   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
    onChange: PropTypes.func,
    onClick: PropTypes.func,
    onSelect: PropTypes.func,
@@ -156,10 +181,7 @@ AutocompleteInput.propTypes = {
    items: PropTypes.array,
    button: PropTypes.shape({
       id: PropTypes.string,
-      disabled: PropTypes.oneOfType([
-         PropTypes.bool,
-         PropTypes.string
-      ]),
+      disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
       className: PropTypes.string,
       text: PropTypes.string,
       tooltip: PropTypes.string,
@@ -171,7 +193,7 @@ AutocompleteInput.propTypes = {
 
 AutocompleteInput.defaultProps = {
    maxLength: 255,
-   value: "",
+   value: '',
    items: [],
    button: {}
 };

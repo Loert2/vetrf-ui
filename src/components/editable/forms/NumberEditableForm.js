@@ -38,7 +38,7 @@ class NumberEditableForm extends Component {
       this.props.onChange && this.props.onChange();
    }
 
-   cancel(){
+   cancel() {
       this.setState({
          value: this.props.value,
          edit: !this.state.edit
@@ -62,31 +62,41 @@ class NumberEditableForm extends Component {
       this.props.save && this.props.save(this.state.value);
    }
 
-   render () {
+   render() {
       const { edit, value } = this.state;
       const { viewReadOnlyFormatter } = this.props;
-      if (edit){
+      if (edit) {
          return (
             <div className="editable-input">
-               <form className="form-inline editable-wrap editable-number" role="form">
+               <form
+                  className="form-inline editable-wrap editable-number"
+                  role="form">
                   <div className="editable-controls form-group">
-                     <input type="number"
-                            value={ value ? value : 0 }
-                            onChange={ this.onChangeInput }
-                            ref={ (input) => { this.input = input; input && input.focus(); } }
-                            onBlur={ this.onBlurHandler }
-                            className="editable-has-buttons editable-input form-control input-sm" min="0"/>
+                     <input
+                        type="number"
+                        value={value ? value : 0}
+                        onChange={this.onChangeInput}
+                        ref={(input) => {
+                           this.input = input;
+                           input && input.focus();
+                        }}
+                        onBlur={this.onBlurHandler}
+                        className="editable-has-buttons editable-input form-control input-sm"
+                        min="0"
+                     />
                      <span className="editable-buttons">
-                        <button id="saveBtn"
-                                type="button"
-                                className="btn btn-primary btn-sm"
-                                onClick={ this.saveHandler }>
-                           <i className="fa fa-check"/>
+                        <button
+                           id="saveBtn"
+                           type="button"
+                           className="btn btn-primary btn-sm"
+                           onClick={this.saveHandler}>
+                           <i className="fa fa-check" />
                         </button>
-                        <button type="button"
-                                className="btn btn-default btn-sm"
-                                onClick={ this.cancel } >
-                           <i className="fa fa-times"/>
+                        <button
+                           type="button"
+                           className="btn btn-default btn-sm"
+                           onClick={this.cancel}>
+                           <i className="fa fa-times" />
                         </button>
                      </span>
                   </div>
@@ -94,30 +104,26 @@ class NumberEditableForm extends Component {
             </div>
          );
       } else {
-         const val = value ? value : "";
-         if (this.props.readOnly){
-            return (
-               viewReadOnlyFormatter && viewReadOnlyFormatter(val)
-            );
+         const val = value ? value : '';
+         if (this.props.readOnly) {
+            return viewReadOnlyFormatter && viewReadOnlyFormatter(val);
          } else {
             return (
                <div className="editable-input">
-                  <a onClick={ this.toggleEdit } className="editable editable-click" >
-                     <span>&nbsp;&nbsp;&nbsp;{ val }&nbsp;&nbsp;&nbsp;</span>
+                  <a
+                     onClick={this.toggleEdit}
+                     className="editable editable-click">
+                     <span>&nbsp;&nbsp;&nbsp;{val}&nbsp;&nbsp;&nbsp;</span>
                   </a>
                </div>
             );
          }
       }
-
    }
 }
 
 NumberEditableForm.propTypes = {
-   value: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string
-   ]),
+   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
    edit: PropTypes.bool,
    readOnly: PropTypes.bool,
    onChange: PropTypes.func,

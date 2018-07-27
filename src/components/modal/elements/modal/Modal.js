@@ -3,14 +3,12 @@ import React from 'react';
 
 const Modal = ({ style, children, width }) => (
    <div>
-      <div style={ style } className="bootbox modal fade bootbox-prompt in">
+      <div style={style} className="bootbox modal fade bootbox-prompt in">
          <div className="modal-dialog" style={{ width: width }}>
-            <div className="modal-content">
-               { children }
-            </div>
+            <div className="modal-content">{children}</div>
          </div>
       </div>
-      <div className="modal-backdrop fade in"/>
+      <div className="modal-backdrop fade in" />
    </div>
 );
 

@@ -4,21 +4,26 @@ import isEmpty from 'lodash/isEmpty';
 
 import WidgetBox from '../elements/box/WidgetBox';
 import WidgetHeader from '../elements/header/WidgetHeader';
-import WidgetBody from  '../elements/body/WidgetBody';
+import WidgetBody from '../elements/body/WidgetBody';
 
 const Widget = ({ className, header, body, children }) => (
-   <WidgetBox className={ className }>
-      {
-         !isEmpty(header) &&
-         <WidgetHeader className={ header.className } title={ header.title } toolbar={ header.toolbar } />
-      }
+   <WidgetBox className={className}>
+      {!isEmpty(header) && (
+         <WidgetHeader
+            className={header.className}
+            title={header.title}
+            toolbar={header.toolbar}
+         />
+      )}
 
-      {
-         !body.invisible &&
-         <WidgetBody className={ body.className } toolbox={ body.toolbox } footer={ body.footer }>
-            { children }
+      {!body.invisible && (
+         <WidgetBody
+            className={body.className}
+            toolbox={body.toolbox}
+            footer={body.footer}>
+            {children}
          </WidgetBody>
-      }
+      )}
    </WidgetBox>
 );
 

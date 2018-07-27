@@ -3,16 +3,27 @@ import PropTypes from 'prop-types';
 
 const FileInput = (props) => {
    return (
-      <input type="file" autoComplete="off"
-             name={ props.name }
-             id={ props.id }
-             value={ props.value }
-             style={ props.style }
-             disabled={ props.disabled || "" }
-             onKeyPress={ e => (e.which === 10 || e.which === 13) && props.onEnter && props.onEnter() }
-             onChange={ props.name ? props.onChange : (e) => props.onChange && props.onChange(e.target.files[0]) }
-             className={ props.className }
-             placeholder={ props.placeholder }/>
+      <input
+         type="file"
+         autoComplete="off"
+         name={props.name}
+         id={props.id}
+         value={props.value}
+         style={props.style}
+         disabled={props.disabled || ''}
+         onKeyPress={(e) =>
+            (e.which === 10 || e.which === 13) &&
+            props.onEnter &&
+            props.onEnter()
+         }
+         onChange={
+            props.name
+               ? props.onChange
+               : (e) => props.onChange && props.onChange(e.target.files[0])
+         }
+         className={props.className}
+         placeholder={props.placeholder}
+      />
    );
 };
 
@@ -25,10 +36,7 @@ FileInput.propTypes = {
    maxLength: PropTypes.number,
    style: PropTypes.object,
    onEnter: PropTypes.func,
-   disabled: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string
-   ]),
+   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
    onChange: PropTypes.func,
    className: PropTypes.string
 };

@@ -18,16 +18,20 @@ const CheckboxSearch = (props) => {
    } = props;
    return (
       <div className="form-group">
-         <label className="col-xs-5 control-label no-padding-right">{ labelText }</label>
+         <label className="col-xs-5 control-label no-padding-right">
+            {labelText}
+         </label>
          <div className="col-xs-7">
-            <Checkbox name={ name }
-                      id={ id }
-                      value={ value }
-                      style={ style }
-                      disabled={ disabled }
-                      onKeyPress={ onEnter }
-                      onChange={ (value) => onChange && onChange(value, field) }
-                      className={ className } />
+            <Checkbox
+               name={name}
+               id={id}
+               value={value}
+               style={style}
+               disabled={disabled}
+               onKeyPress={onEnter}
+               onChange={(value) => onChange && onChange(value, field)}
+               className={className}
+            />
          </div>
       </div>
    );

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import SimpleSelect from "../../../../form/elements/simple/select/simple/SimpleSelect";
+import SimpleSelect from '../../../../form/elements/simple/select/simple/SimpleSelect';
 
 class SelectTableFilter extends Component {
    constructor(props, context) {
@@ -8,14 +8,14 @@ class SelectTableFilter extends Component {
       this.filter = this.filter.bind(this);
    }
 
-   filter (value) {
+   filter(value) {
       const { onChange } = this.props;
-      if (onChange && (value || value === "")) {
+      if (onChange && (value || value === '')) {
          onChange(value);
       }
-   };
+   }
 
-   render () {
+   render() {
       const {
          id,
          className,
@@ -26,13 +26,15 @@ class SelectTableFilter extends Component {
       } = this.props;
 
       return (
-         <SimpleSelect className={ className || "input-filter form-control" }
-                       placeholder={ placeholder || "Выберите статус из списка..." }
-                       options={ optionList }
-                       idType={ idType }
-                       valueType={ valueType }
-                       onChange={ this.filter }
-                       id={ id } />
+         <SimpleSelect
+            className={className || 'input-filter form-control'}
+            placeholder={placeholder || 'Выберите статус из списка...'}
+            options={optionList}
+            idType={idType}
+            valueType={valueType}
+            onChange={this.filter}
+            id={id}
+         />
       );
    }
 }
@@ -42,7 +44,8 @@ SelectTableFilter.propTypes = {
       PropTypes.shape({
          idType: PropTypes.string,
          valueType: PropTypes.string
-      })),
+      })
+   ),
    id: PropTypes.string,
    className: PropTypes.string,
    placeholder: PropTypes.string,

@@ -6,13 +6,25 @@ import classNames from 'classnames';
 
 import TableCell from '../cell/TableCell';
 
-const TableRow = ({ columns, item, onClick, selectOptions, getRowClassName }) => {
+const TableRow = ({
+   columns,
+   item,
+   onClick,
+   selectOptions,
+   getRowClassName
+}) => {
    const cells = [];
-   for (let i = 0; i < columns.length; i++){
+   for (let i = 0; i < columns.length; i++) {
       cells.push(
-         <TableCell key={ columns[i].key || uniqueId() }
-                    className={ columns[i].getClassName ? columns[i].getClassName(item) : columns[i].className }
-                    data={ columns[i].dataFormatter && columns[i].dataFormatter(item) } />
+         <TableCell
+            key={columns[i].key || uniqueId()}
+            className={
+               columns[i].getClassName
+                  ? columns[i].getClassName(item)
+                  : columns[i].className
+            }
+            data={columns[i].dataFormatter && columns[i].dataFormatter(item)}
+         />
       );
    }
 
@@ -22,22 +34,28 @@ const TableRow = ({ columns, item, onClick, selectOptions, getRowClassName }) =>
 
    const isSelected = () => {
       const { selectedItems, compare } = selectOptions;
-      return compare ? compare(selectedItems, item) : !!(selectedItems && item && some(selectedItems, ['id', item.id]));
+      return compare
+         ? compare(selectedItems, item)
+         : !!(selectedItems && item && some(selectedItems, ['id', item.id]));
    };
 
    const getSelectedClassName = () => {
       const { selectedClassName } = selectOptions;
-      return isSelected() ? selectedClassName || "success" : "";
+      return isSelected() ? selectedClassName || 'success' : '';
    };
 
    return (
-      <tr onClick={ selectOptions && onSelect }
-          className={
-             classNames( selectOptions ? "cur-pointer" : "", selectOptions ? getSelectedClassName() : getRowClassName && getRowClassName(item) )
-          } >
-         { cells }
+      <tr
+         onClick={selectOptions && onSelect}
+         className={classNames(
+            selectOptions ? 'cur-pointer' : '',
+            selectOptions
+               ? getSelectedClassName()
+               : getRowClassName && getRowClassName(item)
+         )}>
+         {cells}
       </tr>
-   )
+   );
 };
 
 TableRow.propTypes = {
@@ -59,7 +77,7 @@ TableRow.propTypes = {
          filter: PropTypes.node,
          sortable: PropTypes.bool,
          onSort: PropTypes.func,
-         getClassName: PropTypes.func,
+         getClassName: PropTypes.func
       })
    )
 };

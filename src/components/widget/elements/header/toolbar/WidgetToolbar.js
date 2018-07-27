@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const WidgetToolbar = ({ className, children }) => (
-   <span className={ classNames("widget-toolbar", className) }>
-      { children }
-   </span>
+   <span className={classNames('widget-toolbar', className)}>{children}</span>
 );
 
 WidgetToolbar.propTypes = {

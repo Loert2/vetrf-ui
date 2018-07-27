@@ -19,7 +19,7 @@ class ConfirmModal extends Component {
       this.setState({ show: false });
    }
 
-   render () {
+   render() {
       const {
          header,
          body,
@@ -30,21 +30,31 @@ class ConfirmModal extends Component {
       } = this.props;
 
       return (
-         <Modal style={{ display: this.state.show ? "block" : "none"}} >
-            <HeaderModal title={ header }
-                         onClose={ () => { this.hide(); onClose && onClose(); } } />
+         <Modal style={{ display: this.state.show ? 'block' : 'none' }}>
+            <HeaderModal
+               title={header}
+               onClose={() => {
+                  this.hide();
+                  onClose && onClose();
+               }}
+            />
             <BodyModal>
-               <p style={{ whiteSpace: "normal" }} >{ bodyText }</p>
-               { body }
+               <p style={{ whiteSpace: 'normal' }}>{bodyText}</p>
+               {body}
             </BodyModal>
-            <ConfirmFooterModal confirmBtn={ confirmBtn }
-                                cancelBtn={{
-                                   action: () => { this.hide(); onClose && onClose(); },
-                                   text: cancelBtn && cancelBtn.text,
-                                   icon: cancelBtn && cancelBtn.icon
-                                }} />
+            <ConfirmFooterModal
+               confirmBtn={confirmBtn}
+               cancelBtn={{
+                  action: () => {
+                     this.hide();
+                     onClose && onClose();
+                  },
+                  text: cancelBtn && cancelBtn.text,
+                  icon: cancelBtn && cancelBtn.icon
+               }}
+            />
          </Modal>
-      )
+      );
    }
 }
 
@@ -54,10 +64,7 @@ ConfirmFooterModal.propTypes = {
    body: PropTypes.node,
    onClose: PropTypes.func,
    confirmBtn: PropTypes.shape({
-      disabled: PropTypes.oneOfType([
-         PropTypes.bool,
-         PropTypes.string
-      ]),
+      disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
       action: PropTypes.func,
       className: PropTypes.string,
       text: PropTypes.string,

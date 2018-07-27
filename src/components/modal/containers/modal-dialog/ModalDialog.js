@@ -18,7 +18,7 @@ class ModalDialog extends Component {
       this.setState({ show: false });
    }
 
-   render () {
+   render() {
       const {
          headerClass,
          header,
@@ -33,29 +33,38 @@ class ModalDialog extends Component {
       } = this.props;
 
       return (
-         <Modal style={{ display: this.state.show ? "block" : "none"}} width={ width } >
-            <HeaderModal className={ headerClass }
-                         title={ header }
-                         onClose={ () => { this.hide(); onClose && onClose(); } } />
-            <BodyModal style={ bodyStyle } >
-               { children }
-            </BodyModal>
-            {
-               footer ?
-                  <CustomFooterModal className={ footerClass } >
-                     { footer }
-                  </CustomFooterModal>
-                  :
-                  <ConfirmFooterModal confirmBtn={ confirmBtn }
-                                      cancelBtn={{
-                                         action: () => { this.hide(); onClose && onClose(); },
-                                         text: cancelBtn && cancelBtn.text,
-                                         icon: cancelBtn && cancelBtn.icon
-                                      }}
-                                      className={ footerClass } />
-            }
+         <Modal
+            style={{ display: this.state.show ? 'block' : 'none' }}
+            width={width}>
+            <HeaderModal
+               className={headerClass}
+               title={header}
+               onClose={() => {
+                  this.hide();
+                  onClose && onClose();
+               }}
+            />
+            <BodyModal style={bodyStyle}>{children}</BodyModal>
+            {footer ? (
+               <CustomFooterModal className={footerClass}>
+                  {footer}
+               </CustomFooterModal>
+            ) : (
+               <ConfirmFooterModal
+                  confirmBtn={confirmBtn}
+                  cancelBtn={{
+                     action: () => {
+                        this.hide();
+                        onClose && onClose();
+                     },
+                     text: cancelBtn && cancelBtn.text,
+                     icon: cancelBtn && cancelBtn.icon
+                  }}
+                  className={footerClass}
+               />
+            )}
          </Modal>
-      )
+      );
    }
 }
 
@@ -69,10 +78,7 @@ ModalDialog.propTypes = {
    children: PropTypes.node,
    onClose: PropTypes.func,
    confirmBtn: PropTypes.shape({
-      disabled: PropTypes.oneOfType([
-         PropTypes.bool,
-         PropTypes.string
-      ]),
+      disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
       action: PropTypes.func,
       className: PropTypes.string,
       text: PropTypes.string,

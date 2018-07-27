@@ -19,59 +19,72 @@ const InputSelectFormGroup = (props) => {
       hasError
    } = props;
 
-   return(
-      <FormGroup labelText={ labelText }
-                 hasError={ hasError }
-                 require={ require }
-                 help={ help }
-                 additionalBlock={ additionalBlock }
-                 errorText={ errorText }>
+   return (
+      <FormGroup
+         labelText={labelText}
+         hasError={hasError}
+         require={require}
+         help={help}
+         additionalBlock={additionalBlock}
+         errorText={errorText}>
          <div className="form-group row">
             <div className="col-md-12 no-padding">
                <span className="col-md-6">
-                  {
-                     input.number || input.float ?
-                        <NumberInput name={ input.name }
-                                     id={ input.id }
-                                     maxLength={ input.maxLength || 255 }
-                                     value={ input.value }
-                                     style={ input.style }
-                                     autoFocus={ input.autoFocus }
-                                     onFocus={ input.onFocus }
-                                     disabled={ input.disabled }
-                                     onKeyPress={ input.onEnter }
-                                     onChange={ (value) => input.onChange && input.onChange(value, input.field) }
-                                     className={ input.className || "form-control" }
-                                     placeholder={ input.placeholder }
-                                     float={ input.float }/>
-                        :
-                        <Input type={ input.type || "text" } autocomplete="off"
-                               name={ input.name }
-                               id={ input.id }
-                               maxLength={ input.maxLength || 255 }
-                               value={ input.value || "" }
-                               style={ input.style }
-                               autoFocus={ input.autoFocus }
-                               onFocus={ input.onFocus }
-                               disabled={ input.disabled || "" }
-                               onKeyPress={ input.onEnter }
-                               onChange={ (value) => input.onChange && input.onChange(value, input.field) }
-                               className={ input.className || "form-control" }
-                               placeholder={ input.placeholder }/>
-                  }
+                  {input.number || input.float ? (
+                     <NumberInput
+                        name={input.name}
+                        id={input.id}
+                        maxLength={input.maxLength || 255}
+                        value={input.value}
+                        style={input.style}
+                        autoFocus={input.autoFocus}
+                        onFocus={input.onFocus}
+                        disabled={input.disabled}
+                        onKeyPress={input.onEnter}
+                        onChange={(value) =>
+                           input.onChange && input.onChange(value, input.field)
+                        }
+                        className={input.className || 'form-control'}
+                        placeholder={input.placeholder}
+                        float={input.float}
+                     />
+                  ) : (
+                     <Input
+                        type={input.type || 'text'}
+                        autocomplete="off"
+                        name={input.name}
+                        id={input.id}
+                        maxLength={input.maxLength || 255}
+                        value={input.value || ''}
+                        style={input.style}
+                        autoFocus={input.autoFocus}
+                        onFocus={input.onFocus}
+                        disabled={input.disabled || ''}
+                        onKeyPress={input.onEnter}
+                        onChange={(value) =>
+                           input.onChange && input.onChange(value, input.field)
+                        }
+                        className={input.className || 'form-control'}
+                        placeholder={input.placeholder}
+                     />
+                  )}
                </span>
                <span className="col-md-6">
-                  <Select value={ select.value }
-                          name={ select.name }
-                          id={ select.id }
-                          style={ select.style }
-                          styleInput={ select.styleInput }
-                          options={ select.options }
-                          onChange={ (value) => select.onChange && select.onChange(value, select.field) }
-                          valueKey={ select.valueKey }
-                          labelKey={ select.labelKey }
-                          className={ select.className }
-                          placeholder={ select.placeholder }/>
+                  <Select
+                     value={select.value}
+                     name={select.name}
+                     id={select.id}
+                     style={select.style}
+                     styleInput={select.styleInput}
+                     options={select.options}
+                     onChange={(value) =>
+                        select.onChange && select.onChange(value, select.field)
+                     }
+                     valueKey={select.valueKey}
+                     labelKey={select.labelKey}
+                     className={select.className}
+                     placeholder={select.placeholder}
+                  />
                </span>
             </div>
          </div>
@@ -103,10 +116,7 @@ InputSelectFormGroup.propTypes = {
       float: PropTypes.bool,
       onFocus: PropTypes.func,
       onEnter: PropTypes.func,
-      disabled: PropTypes.oneOfType([
-         PropTypes.bool,
-         PropTypes.string
-      ]),
+      disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
       onChange: PropTypes.func
    }),
    select: PropTypes.shape({
