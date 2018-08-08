@@ -2,31 +2,27 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Const from '../../constants/index';
+import debounce from 'lodash/debounce';
 
 class InputTableFilter extends Component {
    constructor(props, context) {
       super(props, context);
-      this.filter = this.filter.bind(this);
-      this.timeout = null;
-   }
 
-   componentWillUnmount() {
-      this.timeout && clearTimeout(this.timeout);
+      this.filter = this.filter.bind(this);
+
+      const { onChange, delay } = props;
+      this.onFilter = debounce(onChange, delay || Const.FILTER_DELAY);
    }
 
    filter(event) {
       let filter;
-      const { onChange, delay, name } = this.props;
-      if (name) {
+      if (this.props.name) {
          event.persist();
          filter = { [event.target.name]: event.target.value };
       } else {
          filter = event;
       }
-      this.timeout && clearTimeout(this.timeout);
-      this.timeout = setTimeout(() => {
-         onChange(filter);
-      }, delay || Const.FILTER_DELAY);
+      this.onFilter(filter);
    }
 
    render() {
@@ -36,7 +32,7 @@ class InputTableFilter extends Component {
          style,
          onEnter,
          className,
-         value
+         value = ''
       } = this.props;
       return (
          <input
@@ -61,7 +57,7 @@ InputTableFilter.propTypes = {
    style: PropTypes.object,
    delay: PropTypes.number,
    onEnter: PropTypes.func,
-   onChange: PropTypes.func
+   onChange: PropTypes.func.isRequired
 };
 
 export default InputTableFilter;
