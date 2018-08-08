@@ -30,11 +30,19 @@ class InputTableFilter extends Component {
    }
 
    render() {
-      const { placeholder, name, style, onEnter, className } = this.props;
+      const {
+         placeholder,
+         name,
+         style,
+         onEnter,
+         className,
+         value
+      } = this.props;
       return (
          <input
             placeholder={placeholder}
             name={name}
+            value={value}
             type="text"
             style={style}
             onKeyPress={onEnter}
@@ -47,6 +55,7 @@ class InputTableFilter extends Component {
 
 InputTableFilter.propTypes = {
    placeholder: PropTypes.string,
+   value: PropTypes.string,
    name: PropTypes.string,
    className: PropTypes.string,
    style: PropTypes.object,
