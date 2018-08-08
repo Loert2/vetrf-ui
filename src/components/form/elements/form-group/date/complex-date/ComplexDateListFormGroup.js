@@ -12,20 +12,14 @@ const defaultValidate = (props = {}) => {
          props.value.filter(
             (it) =>
                it.singleDateTime ||
-               (it.dateInterval &&
-                  (it.dateInterval.startDateTime ||
-                     it.dateInterval.endDateTime))
+               (it.dateInterval && (it.dateInterval.startDateTime || it.dateInterval.endDateTime))
          )
       );
    return props.require && isEmptyList;
 };
 
 const getHasError = (props, count, oldHasError) => {
-   return validate(
-      props,
-      () => count > 0 || defaultValidate(props),
-      oldHasError
-   );
+   return validate(props, () => count > 0 || defaultValidate(props), oldHasError);
 };
 
 class ComplexDateListFormGroup extends Component {
@@ -55,9 +49,7 @@ class ComplexDateListFormGroup extends Component {
       this.setState((oldState) => {
          const { hasError: oldHasError, invalidityCount } = oldState;
 
-         const newCount = isDecrement
-            ? invalidityCount - 1
-            : invalidityCount + 1;
+         const newCount = isDecrement ? invalidityCount - 1 : invalidityCount + 1;
          const hasError = getHasError(this.props, newCount, oldHasError);
 
          return {
@@ -87,8 +79,7 @@ class ComplexDateListFormGroup extends Component {
 
       const showError = invalidityCount === 0;
 
-      const errorMassage =
-         showError && (errorText || 'Данная форма обязательна для заполнения');
+      const errorMassage = showError && (errorText || 'Данная форма обязательна для заполнения');
 
       return (
          <FormGroup

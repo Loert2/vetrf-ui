@@ -4,9 +4,7 @@ import AutocompleteInput from '../../simple/input/autocomplete/AutocompleteInput
 
 const AutocompleteInputSearch = (props) => (
    <div className="form-group">
-      <label className="col-xs-5 control-label no-padding-right">
-         {props.labelText}
-      </label>
+      <label className="col-xs-5 control-label no-padding-right">{props.labelText}</label>
       <div className="col-xs-7">
          <AutocompleteInput
             name={props.name}
@@ -22,8 +20,7 @@ const AutocompleteInputSearch = (props) => (
             resetAutocompleteList={props.resetAutocompleteList}
             onKeyPress={props.onEnter}
             onChange={(value) =>
-               props.onChange &&
-               props.onChange(value, props.searchField, props.selectField)
+               props.onChange && props.onChange(value, props.searchField, props.selectField)
             }
             onSelect={props.onSelect}
             items={props.items}

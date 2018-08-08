@@ -56,9 +56,7 @@ const AutocompleteFormGroup = (props) => {
             onAutocomplete={onAutocomplete}
             resetAutocompleteList={resetAutocompleteList}
             onKeyPress={onEnter}
-            onChange={(value) =>
-               onChange && onChange(value, searchField, selectField)
-            }
+            onChange={(value) => onChange && onChange(value, searchField, selectField)}
             onSelect={onSelect}
             items={items}
             viewKey={viewKey}

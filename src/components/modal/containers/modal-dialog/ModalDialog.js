@@ -33,9 +33,7 @@ class ModalDialog extends Component {
       } = this.props;
 
       return (
-         <Modal
-            style={{ display: this.state.show ? 'block' : 'none' }}
-            width={width}>
+         <Modal style={{ display: this.state.show ? 'block' : 'none' }} width={width}>
             <HeaderModal
                className={headerClass}
                title={header}
@@ -46,9 +44,7 @@ class ModalDialog extends Component {
             />
             <BodyModal style={bodyStyle}>{children}</BodyModal>
             {footer ? (
-               <CustomFooterModal className={footerClass}>
-                  {footer}
-               </CustomFooterModal>
+               <CustomFooterModal className={footerClass}>{footer}</CustomFooterModal>
             ) : (
                <ConfirmFooterModal
                   confirmBtn={confirmBtn}

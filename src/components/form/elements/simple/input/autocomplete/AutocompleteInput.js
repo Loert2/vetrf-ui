@@ -48,20 +48,11 @@ class AutocompleteInput extends PureComponent {
    }
 
    changeHandler(value) {
-      const {
-         onChange,
-         name,
-         searchField,
-         items,
-         resetAutocompleteList
-      } = this.props;
+      const { onChange, name, searchField, items, resetAutocompleteList } = this.props;
       onChange && onChange(value);
       if (name || searchField) {
          if (value && value.length > 2) {
-            this.requestAutocompleteList(
-               name ? { [name]: value } : value,
-               name || searchField
-            );
+            this.requestAutocompleteList(name ? { [name]: value } : value, name || searchField);
          } else if (!isEmpty(items)) {
             resetAutocompleteList && resetAutocompleteList();
          }
@@ -88,13 +79,9 @@ class AutocompleteInput extends PureComponent {
          selectField,
          dpropdownClass
       } = this.props;
-      const spliceItems =
-         !isEmpty(items) && items.length > 10
-            ? items.slice(0, 10)
-            : items || [];
+      const spliceItems = !isEmpty(items) && items.length > 10 ? items.slice(0, 10) : items || [];
       const field = name || selectField || searchField;
-      const dpropdownClassName =
-         dpropdownClass || 'autocomplete-dropdown-content';
+      const dpropdownClassName = dpropdownClass || 'autocomplete-dropdown-content';
       const itemList = spliceItems.map((item, index) => (
          <li
             key={uniqueId()}

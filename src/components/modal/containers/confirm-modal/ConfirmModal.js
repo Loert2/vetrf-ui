@@ -20,14 +20,7 @@ class ConfirmModal extends Component {
    }
 
    render() {
-      const {
-         header,
-         body,
-         confirmBtn,
-         onClose,
-         cancelBtn,
-         bodyText
-      } = this.props;
+      const { header, body, confirmBtn, onClose, cancelBtn, bodyText } = this.props;
 
       return (
          <Modal style={{ display: this.state.show ? 'block' : 'none' }}>

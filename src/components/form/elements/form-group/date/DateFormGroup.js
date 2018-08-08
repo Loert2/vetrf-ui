@@ -61,11 +61,7 @@ class DateFormGroup extends PureComponent {
             require={require}
             help={help}
             additionalBlock={additionalBlock}
-            errorText={
-               isValid
-                  ? errorText
-                  : 'Введенная дата не соотвествует формату - ДД.ММ.ГГГГ'
-            }
+            errorText={isValid ? errorText : 'Введенная дата не соотвествует формату - ДД.ММ.ГГГГ'}
             hasError={!isValid || hasError}>
             <DatePicker
                value={value}

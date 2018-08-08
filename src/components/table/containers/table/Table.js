@@ -13,8 +13,7 @@ const Table = (props) => (
          className={
             props.loading
                ? 'table table-bordered blur'
-               : props.className ||
-                 'table table-striped table-bordered table-hover'
+               : props.className || 'table table-striped table-bordered table-hover'
          }>
          {!props.hideHeader && (
             <TableHeader

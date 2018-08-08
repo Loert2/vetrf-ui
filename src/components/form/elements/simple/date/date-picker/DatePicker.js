@@ -26,18 +26,12 @@ const getValue = (value, format) => {
 class DatePicker extends PureComponent {
    constructor(props, context) {
       super(props, context);
-      this.validateFormat = props.validate
-         ? debounce(props.validate, 600)
-         : null;
+      this.validateFormat = props.validate ? debounce(props.validate, 600) : null;
       this.getFormat = this.getFormat.bind(this);
    }
 
    getFormat() {
-      const {
-         dateFormat = defaultDateFormat,
-         timeFormat,
-         fullFormat
-      } = this.props;
+      const { dateFormat = defaultDateFormat, timeFormat, fullFormat } = this.props;
       if (fullFormat) {
          return fullFormat;
       }
@@ -81,8 +75,7 @@ class DatePicker extends PureComponent {
                   Moment.locale('ru');
                   const formats = ['DD-MM-YYYY', 'DD/MM/YYYY', 'DD.MM.YYYY'];
                   if (Moment(value, formats, true).isValid()) {
-                     onChange &&
-                        onChange(Moment(value, formats).format('DD.MM.YYYY'));
+                     onChange && onChange(Moment(value, formats).format('DD.MM.YYYY'));
                   } else {
                      onChange && onChange(Moment().format('DD.MM.YYYY'));
                   }

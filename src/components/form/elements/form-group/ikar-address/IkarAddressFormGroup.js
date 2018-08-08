@@ -303,6 +303,5 @@ IkarAddressFormGroup.propTypes = {
 
 export default withValidate(
    IkarAddressFormGroup,
-   (props) =>
-      props.require && props.address && isEmpty(props.address.addressView)
+   (props) => props.require && props.address && isEmpty(props.address.addressView)
 );

@@ -23,14 +23,9 @@ const ProfileTable = ({ rows, itemList, tableClassName }) => {
    }
 
    return (
-      <table
-         className={
-            tableClassName || 'table color-table-border font-weight-normal'
-         }>
+      <table className={tableClassName || 'table color-table-border font-weight-normal'}>
          <thead />
-         <tbody className="font-weight-normal color-table-border">
-            {tableRows}
-         </tbody>
+         <tbody className="font-weight-normal color-table-border">{tableRows}</tbody>
       </table>
    );
 };

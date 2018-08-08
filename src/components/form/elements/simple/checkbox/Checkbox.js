@@ -14,11 +14,7 @@ const Checkbox = (props) => (
          value={props.value}
          style={props.style}
          disabled={props.disabled}
-         onKeyPress={(e) =>
-            (e.which === 10 || e.which === 13) &&
-            props.onEnter &&
-            props.onEnter()
-         }
+         onKeyPress={(e) => (e.which === 10 || e.which === 13) && props.onEnter && props.onEnter()}
          onChange={(e) => props.onChange && props.onChange(e.target.checked)}
          className={classNames('ace input-sm', props.className)}
          checked={props.value}

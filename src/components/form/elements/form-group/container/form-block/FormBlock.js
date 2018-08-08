@@ -5,11 +5,7 @@ import SubHeader from '../../../../../page/elements/sub-header/SubHeader';
 
 const FormBlock = ({ header, description, icon, children }) => (
    <div className="col-xs-12">
-      <SubHeader
-         header={header}
-         description={description}
-         icon={icon || 'fa fa-book orange'}
-      />
+      <SubHeader header={header} description={description} icon={icon || 'fa fa-book orange'} />
       {children}
    </div>
 );

@@ -7,8 +7,7 @@ import classNames from 'classnames';
  * */
 const TimeLineLabel = ({ text, className }) => {
    return (
-      <span
-         className={classNames('label label-lg arrowed-in-right', className)}>
+      <span className={classNames('label label-lg arrowed-in-right', className)}>
          <b>{text}</b>
       </span>
    );

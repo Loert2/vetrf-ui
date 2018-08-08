@@ -27,10 +27,7 @@ const TableHeader = ({ columns, sortedId, filterableTable }) => {
    if (filterableTable) {
       for (let i = 0; i < columns.length; i++) {
          filterColumns.push(
-            <FilterCell
-               key={columns[i].key || uniqueId()}
-               filter={columns[i].filter}
-            />
+            <FilterCell key={columns[i].key || uniqueId()} filter={columns[i].filter} />
          );
       }
    }

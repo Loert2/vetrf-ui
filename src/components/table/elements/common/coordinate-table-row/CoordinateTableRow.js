@@ -21,10 +21,7 @@ const CoordinateTableRow = ({ header, columns, item, rowKey, readOnly }) => {
          <TableCell
             key={key}
             className={columns[i].cellClassName}
-            data={
-               columns[i].dataFormatter &&
-               columns[i].dataFormatter(item, key, rowKey, readOnly)
-            }
+            data={columns[i].dataFormatter && columns[i].dataFormatter(item, key, rowKey, readOnly)}
          />
       );
    }

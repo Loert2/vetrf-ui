@@ -8,9 +8,7 @@ export { default as TimeLineLabel } from './elements/label/TimeLineLabel';
 export {
    default as TimeLineLabelContainer
 } from './elements/label/container/TimeLineLabelContainer';
-export {
-   default as TimeLineContainer
-} from './containers/time-line/TimeLineContainer';
+export { default as TimeLineContainer } from './containers/time-line/TimeLineContainer';
 export {
    default as TimeLineListContainer
 } from './containers/time-line-list/TimeLineListContainer';

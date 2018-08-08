@@ -8,8 +8,7 @@ const CoordinateTable = ({ id, tableClassName, columns, rows, readOnly }) => (
    <table
       id={id}
       className={
-         tableClassName ||
-         'table table-striped table-bordered table-hover font-weight-normal'
+         tableClassName || 'table table-striped table-bordered table-hover font-weight-normal'
       }>
       <TableHeader columns={columns} />
       <CoordinateTableBody rows={rows} columns={columns} readOnly={readOnly} />

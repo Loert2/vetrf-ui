@@ -60,29 +60,16 @@ class PaginationList extends Component {
 
    makePage() {
       const pages = this.getPages();
-      const {
-         currPage,
-         pageStartIndex,
-         firstPage,
-         prePage,
-         nextPage,
-         lastPage
-      } = this.props;
+      const { currPage, pageStartIndex, firstPage, prePage, nextPage, lastPage } = this.props;
       return pages.map(function(page, index) {
          const isActive = page === currPage;
          let disabled = false;
          let hidden = false;
-         if (
-            currPage === pageStartIndex &&
-            (page === firstPage || page === prePage)
-         ) {
+         if (currPage === pageStartIndex && (page === firstPage || page === prePage)) {
             disabled = true;
             hidden = true;
          }
-         if (
-            currPage === this.lastPage &&
-            (page === nextPage || page === lastPage)
-         ) {
+         if (currPage === this.lastPage && (page === nextPage || page === lastPage)) {
             disabled = true;
             hidden = true;
          }
@@ -106,18 +93,9 @@ class PaginationList extends Component {
    getPages() {
       let pages;
       let endPage = this.totalPages;
-      const {
-         currPage,
-         paginationSize,
-         pageStartIndex,
-         prePage,
-         nextPage
-      } = this.props;
+      const { currPage, paginationSize, pageStartIndex, prePage, nextPage } = this.props;
       if (endPage <= 0) return [];
-      let startPage = Math.max(
-         currPage - Math.floor(paginationSize / 2),
-         pageStartIndex
-      );
+      let startPage = Math.max(currPage - Math.floor(paginationSize / 2), pageStartIndex);
       endPage = startPage + paginationSize - 1;
 
       if (endPage > this.lastPage) {

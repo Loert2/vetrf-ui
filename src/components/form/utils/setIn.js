@@ -6,12 +6,7 @@ const setInWithPath = (state, value, path, pathIndex) => {
    }
 
    const first = path[pathIndex];
-   const next = setInWithPath(
-      state && state[first],
-      value,
-      path,
-      pathIndex + 1
-   );
+   const next = setInWithPath(state && state[first], value, path, pathIndex + 1);
 
    if (!state) {
       const initialized = isNaN(first) ? {} : [];
@@ -31,7 +26,6 @@ const setInWithPath = (state, value, path, pathIndex) => {
    };
 };
 
-const setIn = (state, field, value) =>
-   setInWithPath(state, value, toPath(field), 0);
+const setIn = (state, field, value) => setInWithPath(state, value, toPath(field), 0);
 
 export default setIn;

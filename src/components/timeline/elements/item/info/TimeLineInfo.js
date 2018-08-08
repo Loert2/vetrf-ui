@@ -10,19 +10,13 @@ const TimeLineInfo = ({ className, indicator = {} }) => {
       content = <i className={classNames(defaultClassName, indicator.icon)} />;
    } else if (indicator.text) {
       content = (
-         <span
-            className={classNames(
-               defaultClassName,
-               indicator.className || 'btn-primary'
-            )}>
+         <span className={classNames(defaultClassName, indicator.className || 'btn-primary')}>
             {indicator.text}
          </span>
       );
    }
 
-   return (
-      <div className={classNames('timeline-info', className)}>{content}</div>
-   );
+   return <div className={classNames('timeline-info', className)}>{content}</div>;
 };
 
 TimeLineInfo.propTypes = {

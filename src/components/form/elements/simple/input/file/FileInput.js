@@ -11,15 +11,9 @@ const FileInput = (props) => {
          value={props.value}
          style={props.style}
          disabled={props.disabled || ''}
-         onKeyPress={(e) =>
-            (e.which === 10 || e.which === 13) &&
-            props.onEnter &&
-            props.onEnter()
-         }
+         onKeyPress={(e) => (e.which === 10 || e.which === 13) && props.onEnter && props.onEnter()}
          onChange={
-            props.name
-               ? props.onChange
-               : (e) => props.onChange && props.onChange(e.target.files[0])
+            props.name ? props.onChange : (e) => props.onChange && props.onChange(e.target.files[0])
          }
          className={props.className}
          placeholder={props.placeholder}

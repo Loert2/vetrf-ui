@@ -21,8 +21,7 @@ const formatInputProps = { style: { height: '32px' } };
 const getIsInterval = (complexDate = {}) => {
    return !!(
       complexDate.dateInterval &&
-      (complexDate.dateInterval.startDateTime ||
-         complexDate.dateInterval.endDateTime)
+      (complexDate.dateInterval.startDateTime || complexDate.dateInterval.endDateTime)
    );
 };
 
@@ -73,15 +72,8 @@ class ComplexDate extends Component {
    }
 
    isValid() {
-      const {
-         isValidSingleDate,
-         isValidBeginDate,
-         isValidEndDate,
-         isInterval
-      } = this.state;
-      return isInterval
-         ? isValidBeginDate && isValidEndDate
-         : isValidSingleDate;
+      const { isValidSingleDate, isValidBeginDate, isValidEndDate, isInterval } = this.state;
+      return isInterval ? isValidBeginDate && isValidEndDate : isValidSingleDate;
    }
 
    updateDateFormat(newFormat = {}) {
@@ -97,10 +89,7 @@ class ComplexDate extends Component {
    toggleForm() {
       const { onChange, complexDate = {}, complexDatePath } = this.props;
 
-      const {
-         singleDateTime,
-         dateInterval: { startDateTime } = {}
-      } = complexDate;
+      const { singleDateTime, dateInterval: { startDateTime } = {} } = complexDate;
 
       const isInterval = !this.state.isInterval;
       const beforeToggleIsValid = this.isValid();
@@ -123,9 +112,7 @@ class ComplexDate extends Component {
                      dateInterval: {}
                   };
                }
-               newComplexDate.view = getFormattedComplexDateView(
-                  newComplexDate
-               );
+               newComplexDate.view = getFormattedComplexDateView(newComplexDate);
                onChange(newComplexDate, complexDatePath);
             }
             return {
@@ -135,12 +122,7 @@ class ComplexDate extends Component {
             };
          },
          () =>
-            this.postToggleValidate(
-               isInterval,
-               startDateTime,
-               singleDateTime,
-               beforeToggleIsValid
-            )
+            this.postToggleValidate(isInterval, startDateTime, singleDateTime, beforeToggleIsValid)
       );
    }
 
@@ -159,9 +141,7 @@ class ComplexDate extends Component {
          field = isValidSingleDateField;
          value = beginDate;
       }
-      this.validateFormat(field, beforeToggleIsValid)(
-         formatValue(value, storeFormat, format)
-      );
+      this.validateFormat(field, beforeToggleIsValid)(formatValue(value, storeFormat, format));
    }
 
    validateFormat(isValidField, beforeToggleIsValid) {
@@ -170,16 +150,12 @@ class ComplexDate extends Component {
             complexDate: { format = defaultFormat },
             handleChangeValidity
          } = this.props;
-         const oldValid =
-            beforeToggleIsValid !== undefined
-               ? beforeToggleIsValid
-               : this.isValid();
+         const oldValid = beforeToggleIsValid !== undefined ? beforeToggleIsValid : this.isValid();
 
          this.setState(
             (oldState) => ({
                ...oldState,
-               [isValidField]:
-                  Moment(value, format.view, true).isValid() || isEmpty(value)
+               [isValidField]: Moment(value, format.view, true).isValid() || isEmpty(value)
             }),
             () => {
                const newValid = this.isValid();
@@ -193,9 +169,7 @@ class ComplexDate extends Component {
 
    getChangeDateHandler(path) {
       const { onChange, complexDatePath } = this.props;
-      return (value) =>
-         onChange &&
-         onChange(this.getNewComplexDate(value, path), complexDatePath);
+      return (value) => onChange && onChange(this.getNewComplexDate(value, path), complexDatePath);
    }
 
    getNewComplexDate(value, path) {
@@ -260,8 +234,7 @@ class ComplexDate extends Component {
       return (
          <div className="complex-date">
             <div
-               className={`complex-date__format ${isInterval &&
-                  'complex-date__format--interval'}`}>
+               className={`complex-date__format ${isInterval && 'complex-date__format--interval'}`}>
                <Select
                   options={formatList}
                   valueKey="id"
@@ -281,21 +254,12 @@ class ComplexDate extends Component {
                {dateForm}
             </div>
             <div
-               className={`complex-date__switch ${isInterval &&
-                  'complex-date__switch--interval'}`}>
-               <span className="option-switch__element option-switch__element--text">
-                  дата
-               </span>&nbsp;
+               className={`complex-date__switch ${isInterval && 'complex-date__switch--interval'}`}>
+               <span className="option-switch__element option-switch__element--text">дата</span>&nbsp;
                <span className="option-switch__element option-switch__element--switch">
-                  <Switch
-                     value={isInterval}
-                     text=""
-                     onChange={this.toggleForm}
-                  />
+                  <Switch value={isInterval} text="" onChange={this.toggleForm} />
                </span>&nbsp;
-               <span className="option-switch__element option-switch__element--text">
-                  период
-               </span>
+               <span className="option-switch__element option-switch__element--text">период</span>
             </div>
             {showError && (
                <p className="help-block has-error complex-date__error-block">
@@ -311,10 +275,7 @@ ComplexDate.propTypes = {
    complexDate: PropTypes.shape({
       singleDateTime: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
       dateInterval: PropTypes.shape({
-         startDateTime: PropTypes.oneOfType([
-            PropTypes.object,
-            PropTypes.string
-         ]),
+         startDateTime: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
          endDateTime: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
       }),
       format: PropTypes.object

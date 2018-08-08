@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import ComplexDate from '../ComplexDate';
 import { Button } from '../../../../../../index';
 import isEmpty from 'lodash/isEmpty';
-import {
-   defaultFormat,
-   defaultStoreFormat
-} from '../../../../../utils/moment-utils';
+import { defaultFormat, defaultStoreFormat } from '../../../../../utils/moment-utils';
 import classNames from 'classnames';
 import { uniqueId } from 'lodash/util';
 
@@ -55,8 +52,7 @@ class ComplexDateList extends Component {
                   <div
                      className={classNames(
                         'complex-date-list__item__date',
-                        list.length > 1 &&
-                           'complex-date-list__item__date--with-delete'
+                        list.length > 1 && 'complex-date-list__item__date--with-delete'
                      )}>
                      <ComplexDate
                         key={`complex-date_${key}`}
@@ -124,9 +120,7 @@ class ComplexDateList extends Component {
          <div className="complex-date-list">
             {this.getComplexDateList(dateList)}
             <div className="complex-date-list__panel">
-               <p className="complex-date-list__panel__info help-block">
-                  {this.getView(dateList)}
-               </p>
+               <p className="complex-date-list__panel__info help-block">{this.getView(dateList)}</p>
                {dateList.length < maxListLength && (
                   <div className="complex-date-list__panel__add-button">
                      <Button

@@ -16,14 +16,7 @@ class SelectTableFilter extends Component {
    }
 
    render() {
-      const {
-         id,
-         className,
-         optionList,
-         idType,
-         valueType,
-         placeholder
-      } = this.props;
+      const { id, className, optionList, idType, valueType, placeholder } = this.props;
 
       return (
          <SimpleSelect

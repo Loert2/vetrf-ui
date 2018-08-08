@@ -20,10 +20,7 @@ class Alert extends React.PureComponent {
          return (
             <div id={id} className={className || 'alert alert-info'}>
                {closeButton && (
-                  <button
-                     type="button"
-                     className="close"
-                     onClick={this.closeAlert}>
+                  <button type="button" className="close" onClick={this.closeAlert}>
                      <i className="ace-icon fa fa-times" />
                   </button>
                )}

@@ -18,11 +18,7 @@ const IkarAddressForeign = (props) => {
       inputClassName,
       formGroupLabelClassName,
       formGroupFieldClassName,
-      ikarAddressOptions: {
-         countryOptions,
-         regionOptions,
-         foreignAddressOptions
-      },
+      ikarAddressOptions: { countryOptions, regionOptions, foreignAddressOptions },
       countries,
       regions,
       address: { country, region, foreignAddress },
@@ -43,14 +39,10 @@ const IkarAddressForeign = (props) => {
                   labelKey={countryOptions.selectOptionLabelKey || 'name'}
                   options={countries}
                   className={selectClassName}
-                  placeholder={
-                     countryOptions.placeholder || 'Выберите страну...'
-                  }
+                  placeholder={countryOptions.placeholder || 'Выберите страну...'}
                   help={countryOptions.help}
                   showError={showError}
-                  errorText={
-                     countryOptions.errorText || THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={countryOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />
@@ -67,14 +59,10 @@ const IkarAddressForeign = (props) => {
                   labelKey={regionOptions.selectOptionLabelKey || 'view'}
                   options={regions}
                   className={selectClassName}
-                  placeholder={
-                     regionOptions.placeholder || 'Выберите регион...'
-                  }
+                  placeholder={regionOptions.placeholder || 'Выберите регион...'}
                   help={regionOptions.help}
                   showError={showError}
-                  errorText={
-                     regionOptions.errorText || THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={regionOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />
@@ -88,15 +76,10 @@ const IkarAddressForeign = (props) => {
                   require={foreignAddressOptions.isRequiredField}
                   value={foreignAddress}
                   className={inputClassName}
-                  placeholder={
-                     foreignAddressOptions.placeholder || 'Введите адрес...'
-                  }
+                  placeholder={foreignAddressOptions.placeholder || 'Введите адрес...'}
                   help={foreignAddressOptions.help}
                   showError={showError}
-                  errorText={
-                     foreignAddressOptions.errorText ||
-                     THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={foreignAddressOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />

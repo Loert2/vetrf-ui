@@ -8,16 +8,7 @@ import FormGroup from '../container/form-group/FormGroup';
 import withValidate from './../withValidate';
 
 const InputSelectFormGroup = (props) => {
-   const {
-      labelText,
-      require,
-      help,
-      input,
-      select,
-      additionalBlock,
-      errorText,
-      hasError
-   } = props;
+   const { labelText, require, help, input, select, additionalBlock, errorText, hasError } = props;
 
    return (
       <FormGroup
@@ -41,9 +32,7 @@ const InputSelectFormGroup = (props) => {
                         onFocus={input.onFocus}
                         disabled={input.disabled}
                         onKeyPress={input.onEnter}
-                        onChange={(value) =>
-                           input.onChange && input.onChange(value, input.field)
-                        }
+                        onChange={(value) => input.onChange && input.onChange(value, input.field)}
                         className={input.className || 'form-control'}
                         placeholder={input.placeholder}
                         float={input.float}
@@ -61,9 +50,7 @@ const InputSelectFormGroup = (props) => {
                         onFocus={input.onFocus}
                         disabled={input.disabled || ''}
                         onKeyPress={input.onEnter}
-                        onChange={(value) =>
-                           input.onChange && input.onChange(value, input.field)
-                        }
+                        onChange={(value) => input.onChange && input.onChange(value, input.field)}
                         className={input.className || 'form-control'}
                         placeholder={input.placeholder}
                      />
@@ -77,9 +64,7 @@ const InputSelectFormGroup = (props) => {
                      style={select.style}
                      styleInput={select.styleInput}
                      options={select.options}
-                     onChange={(value) =>
-                        select.onChange && select.onChange(value, select.field)
-                     }
+                     onChange={(value) => select.onChange && select.onChange(value, select.field)}
                      valueKey={select.valueKey}
                      labelKey={select.labelKey}
                      className={select.className}

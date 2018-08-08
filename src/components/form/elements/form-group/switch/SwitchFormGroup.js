@@ -5,19 +5,14 @@ import FormGroup from '../container/form-group/FormGroup';
 import Switch from '../../simple/switch/Switch';
 
 const SwitchFormGroup = (props) => (
-   <FormGroup
-      labelText={props.labelText}
-      help={props.help}
-      additionalBlock={props.additionalBlock}>
+   <FormGroup labelText={props.labelText} help={props.help} additionalBlock={props.additionalBlock}>
       <Switch
          id={props.id}
          name={props.name}
          value={props.value}
          style={props.style}
          disabled={props.disabled}
-         onChange={(value) =>
-            props.onChange && props.onChange(value, props.field)
-         }
+         onChange={(value) => props.onChange && props.onChange(value, props.field)}
          className={props.className}
          text={props.text}
       />

@@ -74,19 +74,13 @@ export default class NavSearch extends Component {
                <div className="result">
                   <ul>
                      {this.props.content &&
-                        this.props.content.error && (
-                           <li className="error">Ошибка загрузки</li>
-                        )}
+                        this.props.content.error && <li className="error">Ошибка загрузки</li>}
                      {this.props.content &&
-                        this.props.content.loading && (
-                           <li className="loading">Загрузка...</li>
-                        )}
+                        this.props.content.loading && <li className="loading">Загрузка...</li>}
                      {this.props.content &&
                         !this.props.content.loading &&
                         !this.props.content.error &&
-                        content.length === 0 && (
-                           <li className="not-found">Ничего не найдено</li>
-                        )}
+                        content.length === 0 && <li className="not-found">Ничего не найдено</li>}
                      {this.props.content &&
                         this.props.content.content &&
                         content.map((elem, index) => (
@@ -95,9 +89,7 @@ export default class NavSearch extends Component {
                               onClick={() => {
                                  this.closeOnSelect();
                                  if (this.props.onSelect) {
-                                    this.props.onSelect(
-                                       elem[this.props.idType]
-                                    );
+                                    this.props.onSelect(elem[this.props.idType]);
                                  }
                               }}>
                               {React.createElement(this.props.template, elem)}

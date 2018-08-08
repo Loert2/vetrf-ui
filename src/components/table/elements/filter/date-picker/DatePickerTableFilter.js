@@ -66,13 +66,7 @@ class DatePickerTableFilter extends Component {
    }
 
    render() {
-      const {
-         className,
-         inputProps,
-         id,
-         errorClassName,
-         errorText
-      } = this.props;
+      const { className, inputProps, id, errorClassName, errorText } = this.props;
 
       const { value, hasError } = this.state;
 

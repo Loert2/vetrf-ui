@@ -17,8 +17,7 @@ const SwitchText = (props) => (
       onChange={props.onChange}
       className={props.className || 'ace ace-switch ace-switch-view btn-empty'}
       text={
-         props.text ||
-         'Карточки\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Таблица'
+         props.text || 'Карточки\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Таблица'
       }
    />
 );

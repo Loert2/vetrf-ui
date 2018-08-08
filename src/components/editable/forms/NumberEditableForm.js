@@ -68,9 +68,7 @@ class NumberEditableForm extends Component {
       if (edit) {
          return (
             <div className="editable-input">
-               <form
-                  className="form-inline editable-wrap editable-number"
-                  role="form">
+               <form className="form-inline editable-wrap editable-number" role="form">
                   <div className="editable-controls form-group">
                      <input
                         type="number"
@@ -110,9 +108,7 @@ class NumberEditableForm extends Component {
          } else {
             return (
                <div className="editable-input">
-                  <a
-                     onClick={this.toggleEdit}
-                     className="editable editable-click">
+                  <a onClick={this.toggleEdit} className="editable editable-click">
                      <span>&nbsp;&nbsp;&nbsp;{val}&nbsp;&nbsp;&nbsp;</span>
                   </a>
                </div>

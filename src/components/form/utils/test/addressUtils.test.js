@@ -69,9 +69,9 @@ test('get russian addressView from undefined address should contains empty strin
 });
 
 test('get foreign addressView from address should contains string', () => {
-   expect(
-      getForeignAddressView(stateForeignAddress, getAddressViewLabels())
-   ).toEqual('23, 35a, 3-улица, Сан-Франциско, 320450, Калифорния, США');
+   expect(getForeignAddressView(stateForeignAddress, getAddressViewLabels())).toEqual(
+      '23, 35a, 3-улица, Сан-Франциско, 320450, Калифорния, США'
+   );
 });
 
 test('get foreign addressView from address should contains string without prop eeeeeeeeeee', () => {
@@ -80,9 +80,7 @@ test('get foreign addressView from address should contains string without prop e
       region: { guid: '222-2', view: 'Калифорния' },
       eeeeeeeeeee: { guid: 'aeeee', name: 'eeeeeeeeeee' }
    };
-   expect(getForeignAddressView(address, getAddressViewLabels())).toEqual(
-      'Калифорния, США'
-   );
+   expect(getForeignAddressView(address, getAddressViewLabels())).toEqual('Калифорния, США');
 });
 
 test('get foreign addressView from undefined address should contains empty string', () => {

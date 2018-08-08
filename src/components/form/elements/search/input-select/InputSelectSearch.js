@@ -6,9 +6,7 @@ import AutocompleteInput from '../../simple/input/autocomplete/AutocompleteInput
 
 const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
    <div className="form-group">
-      <label className="col-sm-5 control-label no-padding-right">
-         {labelText}
-      </label>
+      <label className="col-sm-5 control-label no-padding-right">{labelText}</label>
       <div className="col-sm-7">
          <span className="col-xs-12 col-sm-7 no-padding">
             {autocomplete ? (
@@ -22,8 +20,7 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                      items={input.autocompleteItems}
                      onSelect={input.onSelectItem}
                      onChange={(value) =>
-                        input.onChange &&
-                        input.onChange(value, input.searchField)
+                        input.onChange && input.onChange(value, input.searchField)
                      }
                      maxLength={input.maxLength}
                      style={input.styleInput}
@@ -48,9 +45,7 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                   onFocus={input.onFocus}
                   disabled={input.disabled}
                   onKeyPress={input.onEnter}
-                  onChange={(value) =>
-                     input.onChange && input.onChange(value, input.field)
-                  }
+                  onChange={(value) => input.onChange && input.onChange(value, input.field)}
                   className={input.className || 'input-sm col-xs-8'}
                   placeholder={input.placeholder || labelText}
                />
@@ -63,9 +58,7 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                valueKey={select.valueKey || 'id'}
                labelKey={select.labelKey || 'name'}
                options={select.options}
-               onChange={(value) =>
-                  select.onChange && select.onChange(value, select.field)
-               }
+               onChange={(value) => select.onChange && select.onChange(value, select.field)}
                className={select.className || 'col-xs-4 no-padding'}
                placeholder={select.placeholder || ''}
             />

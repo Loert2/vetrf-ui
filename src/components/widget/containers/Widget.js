@@ -9,18 +9,11 @@ import WidgetBody from '../elements/body/WidgetBody';
 const Widget = ({ className, header, body, children }) => (
    <WidgetBox className={className}>
       {!isEmpty(header) && (
-         <WidgetHeader
-            className={header.className}
-            title={header.title}
-            toolbar={header.toolbar}
-         />
+         <WidgetHeader className={header.className} title={header.title} toolbar={header.toolbar} />
       )}
 
       {!body.invisible && (
-         <WidgetBody
-            className={body.className}
-            toolbox={body.toolbox}
-            footer={body.footer}>
+         <WidgetBody className={body.className} toolbox={body.toolbox} footer={body.footer}>
             {children}
          </WidgetBody>
       )}

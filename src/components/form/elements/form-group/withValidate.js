@@ -48,24 +48,15 @@ const withValidate = (WrappedComponent, customValidate) =>
          } = props;
          const hasError =
             showError &&
-            (customValidate
-               ? customValidate(value)
-               : defaultValidate && defaultValidate(value));
+            (customValidate ? customValidate(value) : defaultValidate && defaultValidate(value));
          if (oldHasError !== hasError && errorHandler) {
-            errorHandler(
-               hasError,
-               field,
-               labelText,
-               errorText || defaultErrorText
-            );
+            errorHandler(hasError, field, labelText, errorText || defaultErrorText);
          }
          return hasError;
       }
 
       render() {
-         return (
-            <WrappedComponent {...this.props} hasError={this.state.hasError} />
-         );
+         return <WrappedComponent {...this.props} hasError={this.state.hasError} />;
       }
    };
 

@@ -33,11 +33,7 @@ const TableBody = (props) => {
       for (let i = 0; i < dataList.length; i++) {
          rows.push(
             <TableRow
-               key={
-                  (keyFunction && keyFunction(dataList[i])) ||
-                  dataList[i].id ||
-                  uniqueId()
-               } //TODO: Убрать uniqueId, постараться его не использовать.
+               key={(keyFunction && keyFunction(dataList[i])) || dataList[i].id || uniqueId()} //TODO: Убрать uniqueId, постараться его не использовать.
                columns={columns}
                onClick={onClickRow}
                getRowClassName={getRowClassName}

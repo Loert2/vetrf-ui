@@ -4,16 +4,7 @@ import ReactTooltip from 'react-tooltip';
 import classNames from 'classnames';
 import uniqueId from 'lodash/uniqueId';
 
-const Button = ({
-   id,
-   className,
-   onClick,
-   disabled,
-   href,
-   tooltip,
-   icon,
-   text
-}) => {
+const Button = ({ id, className, onClick, disabled, href, tooltip, icon, text }) => {
    const toolTipId = uniqueId();
    return (
       <a

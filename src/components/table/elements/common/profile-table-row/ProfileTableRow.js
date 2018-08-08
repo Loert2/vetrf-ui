@@ -6,14 +6,7 @@ import classNames from 'classnames';
 import TableCell from '../cell/TableCell';
 import HeaderColumn from '../header-column/HeaderColumn';
 
-const ProfileTableRow = ({
-   first,
-   header,
-   field,
-   dataFormatter,
-   itemList,
-   getCellClass
-}) => {
+const ProfileTableRow = ({ first, header, field, dataFormatter, itemList, getCellClass }) => {
    const cells = [];
    cells.push(
       <HeaderColumn

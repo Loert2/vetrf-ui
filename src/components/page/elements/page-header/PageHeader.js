@@ -29,16 +29,11 @@ const PageHeader = ({
       </div>
       {toolbar && (
          <div
-            className={
-               toolbarClassName ||
-               'col-xs-12 col-lg-4 no-padding-right toolbar-container'
-            }>
+            className={toolbarClassName || 'col-xs-12 col-lg-4 no-padding-right toolbar-container'}>
             {toolbar}
          </div>
       )}
-      {secondLineInfo && (
-         <div className="padding-top-10 col-xs-12">{secondLineInfo}</div>
-      )}
+      {secondLineInfo && <div className="padding-top-10 col-xs-12">{secondLineInfo}</div>}
    </div>
 );
 

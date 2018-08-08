@@ -18,9 +18,7 @@ const CheckboxSearch = (props) => {
    } = props;
    return (
       <div className="form-group">
-         <label className="col-xs-5 control-label no-padding-right">
-            {labelText}
-         </label>
+         <label className="col-xs-5 control-label no-padding-right">{labelText}</label>
          <div className="col-xs-7">
             <Checkbox
                name={name}

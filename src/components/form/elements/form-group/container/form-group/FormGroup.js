@@ -19,15 +19,8 @@ const FormGroup = (props) => {
       fieldClassName
    } = props;
    return (
-      <div
-         className={classNames(
-            'form-group',
-            hasError ? errorClassName || 'has-error' : ''
-         )}>
-         <label
-            className={
-               labelClassName || 'col-sm-3 control-label no-padding-right'
-            }>
+      <div className={classNames('form-group', hasError ? errorClassName || 'has-error' : '')}>
+         <label className={labelClassName || 'col-sm-3 control-label no-padding-right'}>
             {labelText}
             {require && <RequireStar />}
          </label>

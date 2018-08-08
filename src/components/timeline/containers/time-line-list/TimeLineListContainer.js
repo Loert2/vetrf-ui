@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import TimeLineContainer from '../time-line/TimeLineContainer';
 import uniqueId from 'lodash/uniqueId';
 
-const TimeLineListContainer = ({
-   timeLineList,
-   timeLineContainerClassName
-}) => {
+const TimeLineListContainer = ({ timeLineList, timeLineContainerClassName }) => {
    const list = timeLineList.map((timeLine) => (
       <TimeLineContainer
          key={uniqueId()}

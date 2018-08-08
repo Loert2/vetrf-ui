@@ -73,10 +73,7 @@ export default class HeaderColumn extends Component {
                {sortable &&
                   onSort && (
                      <i
-                        className={classNames(
-                           'sort-caret fa',
-                           this.state.sortIcon || 'fa-sort'
-                        )}
+                        className={classNames('sort-caret fa', this.state.sortIcon || 'fa-sort')}
                         onClick={this.onClickHandler}
                      />
                   )}

@@ -5,8 +5,7 @@ import { DateRange } from '../../../simple';
 import validate, { isValidDate } from '../../../../utils/validate-utils';
 import isEmpty from 'lodash/isEmpty';
 
-const getOnChange = (onChange, path) => (value) =>
-   onChange && onChange(value, path);
+const getOnChange = (onChange, path) => (value) => onChange && onChange(value, path);
 
 const getDefaultInvalidFormatMessage = (formatView) =>
    `Введенная дата не соответствует формату - ${formatView}`;
@@ -34,18 +33,10 @@ class DateRangeFormGroup extends Component {
 
    componentWillReceiveProps(nextProps) {
       const { hasError: oldHasError } = this.state;
-      const {
-         require,
-         dateFormat,
-         timeFormat,
-         viewFormat,
-         beginDate,
-         endDate
-      } = nextProps;
+      const { require, dateFormat, timeFormat, viewFormat, beginDate, endDate } = nextProps;
 
       const format = getFormatView(dateFormat, timeFormat, viewFormat);
-      const defaultValidate = () =>
-         !this.isValid() || (require && !beginDate && !endDate);
+      const defaultValidate = () => !this.isValid() || (require && !beginDate && !endDate);
 
       const hasError = validate(
          nextProps,
@@ -111,10 +102,7 @@ class DateRangeFormGroup extends Component {
             help={help}
             additionalBlock={additionalBlock}
             errorText={
-               isValid
-                  ? errorText
-                  : invalidFormatMessage ||
-                    getDefaultInvalidFormatMessage(format)
+               isValid ? errorText : invalidFormatMessage || getDefaultInvalidFormatMessage(format)
             }
             hasError={!isValid || hasError}
             fieldClassName={fieldClassName}

@@ -10,11 +10,7 @@ import SwitchText from '../../../../form/elements/simple/switch/text/SwitchText'
 const PaginationRow = (props) => (
    <div className="row">
       <div className="col-xs-7 pull-left">
-         <TableInfo
-            page={props.page}
-            sizePerPage={props.sizePerPage}
-            itemCount={props.itemCount}
-         />
+         <TableInfo page={props.page} sizePerPage={props.sizePerPage} itemCount={props.itemCount} />
          {props.itemCount > props.sizePerPage && (
             <PaginationList
                currPage={props.page}

@@ -2,9 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import Moment from 'moment/moment';
 
 export const formatValue = (value, oldFormat = {}, format = {}) => {
-   const formattedValue = Moment(value, oldFormat.view, true).format(
-      format.view
-   );
+   const formattedValue = Moment(value, oldFormat.view, true).format(format.view);
    const isValid = Moment(formattedValue, format.view, true).isValid();
    if (!isValid || isEmpty(value)) {
       return value;
@@ -36,8 +34,7 @@ export const getFormattedComplexDateView = (complexDate = {}) => {
    } = complexDate;
    if (startDateTime || endDateTime) {
       return `${formatValue(startDateTime, defaultStoreFormat, format) ||
-         defaultDate}-${formatValue(endDateTime, defaultStoreFormat, format) ||
-         defaultDate}`;
+         defaultDate}-${formatValue(endDateTime, defaultStoreFormat, format) || defaultDate}`;
    } else if (singleDateTime) {
       return formatValue(singleDateTime, defaultStoreFormat, format);
    }

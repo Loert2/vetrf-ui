@@ -12,9 +12,7 @@ export default (props) => (
       labelKey={props.labelKey || 'name'}
       value={props.value}
       ignoreCase={props.ignoreCase || true}
-      searchPromptText={
-         props.searchPromptText || 'Для начала поиска введите ещё 2 символа'
-      }
+      searchPromptText={props.searchPromptText || 'Для начала поиска введите ещё 2 символа'}
       loadingPlaceholder={props.loadingPlaceholder || 'Загрузка...'}
       loadOptions={props.loadOptions}
       cache={props.cache || false}

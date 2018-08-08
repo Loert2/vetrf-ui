@@ -9,11 +9,7 @@ const TableLoadingBlock = ({ text, icon, style, backgroundClassName }) => (
             {text || 'Загрузка...'}
          </h4>
       </div>
-      <div
-         className={
-            backgroundClassName || 'modal-backdrop fade in loading-background'
-         }
-      />
+      <div className={backgroundClassName || 'modal-backdrop fade in loading-background'} />
    </div>
 );
 

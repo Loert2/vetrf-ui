@@ -10,30 +10,28 @@ class InputTableFilter extends Component {
 
       this.filter = this.filter.bind(this);
 
-      const { onChange, delay } = props;
-      this.onFilter = debounce(onChange, delay || Const.FILTER_DELAY);
+      const { filterRequest, delay, onChange } = props;
+      this.onFilter = debounce(filterRequest || onChange, delay || Const.FILTER_DELAY);
    }
 
    filter(event) {
       let filter;
-      if (this.props.name) {
+      const { name, onChange, filterRequest } = this.props;
+      if (name) {
          event.persist();
          filter = { [event.target.name]: event.target.value };
       } else {
          filter = event;
       }
+      // TODO: временно, для сохранения обратной совместимости, по возможности избавиться от проверки
+      if (!filterRequest) {
+         onChange(filter);
+      }
       this.onFilter(filter);
    }
 
    render() {
-      const {
-         placeholder,
-         name,
-         style,
-         onEnter,
-         className,
-         value = ''
-      } = this.props;
+      const { placeholder, name, style, onEnter, className, value } = this.props;
       return (
          <input
             placeholder={placeholder}
@@ -57,7 +55,8 @@ InputTableFilter.propTypes = {
    style: PropTypes.object,
    delay: PropTypes.number,
    onEnter: PropTypes.func,
-   onChange: PropTypes.func.isRequired
+   onChange: PropTypes.func.isRequired,
+   filterRequest: PropTypes.func
 };
 
 export default InputTableFilter;

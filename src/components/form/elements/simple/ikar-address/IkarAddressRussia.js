@@ -80,14 +80,10 @@ const IkarAddressRussia = (props) => {
                   valueKey={countryOptions.selectOptionValueKey || 'guid'}
                   labelKey={countryOptions.selectOptionLabelKey || 'name'}
                   options={countries}
-                  placeholder={
-                     countryOptions.placeholder || 'Выберите страну...'
-                  }
+                  placeholder={countryOptions.placeholder || 'Выберите страну...'}
                   help={countryOptions.help}
                   showError={showError}
-                  errorText={
-                     countryOptions.errorText || THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={countryOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />
@@ -104,14 +100,10 @@ const IkarAddressRussia = (props) => {
                   labelKey={regionOptions.selectOptionLabelKey || 'view'}
                   options={regions}
                   className={selectClassName}
-                  placeholder={
-                     regionOptions.placeholder || 'Выберите регион...'
-                  }
+                  placeholder={regionOptions.placeholder || 'Выберите регион...'}
                   help={regionOptions.help}
                   showError={showError}
-                  errorText={
-                     regionOptions.errorText || THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={regionOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />
@@ -128,14 +120,10 @@ const IkarAddressRussia = (props) => {
                   labelKey={districtOptions.selectOptionLabelKey || 'view'}
                   options={districts}
                   className={selectClassName}
-                  placeholder={
-                     districtOptions.placeholder || 'Выберите район...'
-                  }
+                  placeholder={districtOptions.placeholder || 'Выберите район...'}
                   help={districtOptions.help}
                   showError={showError}
-                  errorText={
-                     districtOptions.errorText || THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={districtOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />
@@ -152,16 +140,11 @@ const IkarAddressRussia = (props) => {
                   labelKey={localityOptions.selectOptionLabelKey || 'view'}
                   loadOptions={findLocality}
                   className={selectClassName}
-                  placeholder={
-                     localityOptions.placeholder ||
-                     'Введите населенный пункт...'
-                  }
+                  placeholder={localityOptions.placeholder || 'Введите населенный пункт...'}
                   help={localityOptions.help}
                   ignoreCase={asyncSelectIgnoreCase}
                   showError={showError}
-                  errorText={
-                     localityOptions.errorText || THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={localityOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />
@@ -171,9 +154,7 @@ const IkarAddressRussia = (props) => {
                <AsyncSelectFormGroup
                   id="ikarAddressSelectInputSubLocality"
                   onChange={getChangeHandlerByField(SUB_LOCALITY_FIELD)}
-                  labelText={
-                     subLocalityOptions.label || 'Подчиненный населенный пункт'
-                  }
+                  labelText={subLocalityOptions.label || 'Подчиненный населенный пункт'}
                   require={subLocalityOptions.isRequiredField}
                   value={subLocality}
                   valueKey={subLocalityOptions.selectOptionValueKey || 'guid'}
@@ -181,15 +162,12 @@ const IkarAddressRussia = (props) => {
                   loadOptions={findSubLocality}
                   className={selectClassName}
                   placeholder={
-                     subLocalityOptions.placeholder ||
-                     'Введите подчиненный населенный пункт...'
+                     subLocalityOptions.placeholder || 'Введите подчиненный населенный пункт...'
                   }
                   help={subLocalityOptions.help}
                   ignoreCase={asyncSelectIgnoreCase}
                   showError={showError}
-                  errorText={
-                     subLocalityOptions.errorText || THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={subLocalityOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />
@@ -210,9 +188,7 @@ const IkarAddressRussia = (props) => {
                   help={streetOptions.help}
                   ignoreCase={asyncSelectIgnoreCase}
                   showError={showError}
-                  errorText={
-                     streetOptions.errorText || THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={streetOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />
@@ -226,14 +202,10 @@ const IkarAddressRussia = (props) => {
                   require={houseOptions.isRequiredField}
                   value={house}
                   className={houseOptions.className}
-                  placeholder={
-                     houseOptions.placeholder || 'Введите номер дома...'
-                  }
+                  placeholder={houseOptions.placeholder || 'Введите номер дома...'}
                   help={houseOptions.help}
                   showError={showError}
-                  errorText={
-                     houseOptions.errorText || THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={houseOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />
@@ -247,14 +219,10 @@ const IkarAddressRussia = (props) => {
                   require={buildingOptions.isRequiredField}
                   value={building}
                   className={buildingOptions.className}
-                  placeholder={
-                     buildingOptions.placeholder || 'Введите строение...'
-                  }
+                  placeholder={buildingOptions.placeholder || 'Введите строение...'}
                   help={buildingOptions.help}
                   showError={showError}
-                  errorText={
-                     buildingOptions.errorText || THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={buildingOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />
@@ -268,10 +236,7 @@ const IkarAddressRussia = (props) => {
                   require={roomOptions.isRequiredField}
                   value={room}
                   className={roomOptions.className}
-                  placeholder={
-                     roomOptions.placeholder ||
-                     'Введите номер квартиры/офиса...'
-                  }
+                  placeholder={roomOptions.placeholder || 'Введите номер квартиры/офиса...'}
                   help={roomOptions.help}
                   showError={showError}
                   errorText={roomOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
@@ -289,10 +254,7 @@ const IkarAddressRussia = (props) => {
                   value={postIndex}
                   maxLength={6}
                   className={postIndexOptions.className}
-                  placeholder={
-                     postIndexOptions.placeholder ||
-                     'Введите почтовый индекс...'
-                  }
+                  placeholder={postIndexOptions.placeholder || 'Введите почтовый индекс...'}
                   help={postIndexOptions.help || 'Должен содержать 6 цифр'}
                   showError={showError}
                   customValidate={(value) => value && value.length < 6}
@@ -313,15 +275,10 @@ const IkarAddressRussia = (props) => {
                   require={postBoxOptions.isRequiredField}
                   value={postBox}
                   className={postBoxOptions.className}
-                  placeholder={
-                     postBoxOptions.placeholder ||
-                     'Введите № абонентского ящика...'
-                  }
+                  placeholder={postBoxOptions.placeholder || 'Введите № абонентского ящика...'}
                   help={postBoxOptions.help}
                   showError={showError}
-                  errorText={
-                     postBoxOptions.errorText || THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={postBoxOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />
@@ -331,22 +288,16 @@ const IkarAddressRussia = (props) => {
                <InputFormGroup
                   id="ikarAddressInputAdditinalInfo"
                   onChange={getChangeHandlerByField(ADDITIONAL_INFO_FIELD)}
-                  labelText={
-                     additionalInfoOptions.label || 'Дополнительная информация'
-                  }
+                  labelText={additionalInfoOptions.label || 'Дополнительная информация'}
                   require={additionalInfoOptions.isRequiredField}
                   value={additionalInfo}
                   className={additionalInfoOptions.className}
                   placeholder={
-                     additionalInfoOptions.placeholder ||
-                     'Введите дополнительную информацию...'
+                     additionalInfoOptions.placeholder || 'Введите дополнительную информацию...'
                   }
                   help={additionalInfoOptions.help}
                   showError={showError}
-                  errorText={
-                     additionalInfoOptions.errorText ||
-                     THIS_FIELD_MUST_BE_FILLED
-                  }
+                  errorText={additionalInfoOptions.errorText || THIS_FIELD_MUST_BE_FILLED}
                   labelClassName={formGroupLabelClassName}
                   fieldClassName={formGroupFieldClassName}
                />

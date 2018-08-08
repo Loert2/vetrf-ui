@@ -4,9 +4,7 @@ import Input from '../../simple/input/Input';
 
 const InputSearch = (props) => (
    <div className="form-group">
-      <label className="col-xs-5 control-label no-padding-right">
-         {props.labelText}
-      </label>
+      <label className="col-xs-5 control-label no-padding-right">{props.labelText}</label>
       <div className="col-xs-7">
          <Input
             inputType={props.inputType || 'text'}
@@ -20,9 +18,7 @@ const InputSearch = (props) => (
             onFocus={props.onFocus}
             disabled={props.disabled}
             onKeyPress={props.onEnter}
-            onChange={(value) =>
-               props.onChange && props.onChange(value, props.field)
-            }
+            onChange={(value) => props.onChange && props.onChange(value, props.field)}
             className={props.className || 'col-xs-12 col-sm-7 input-sm'}
             placeholder={props.placeholder || props.labelText}
          />

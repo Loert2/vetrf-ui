@@ -5,13 +5,7 @@ import TimeLineInfo from '../info/TimeLineInfo';
 import Widget from '../../../../widget/containers/Widget';
 import classNames from 'classnames';
 
-const TimeLineItem = ({
-   className,
-   widgetMetaData = {},
-   date = {},
-   info = {},
-   children
-}) => {
+const TimeLineItem = ({ className, widgetMetaData = {}, date = {}, info = {}, children }) => {
    return (
       <div className={classNames('timeline-item clearfix', className)}>
          <TimeLineDate className={date.className} date={date.content} />

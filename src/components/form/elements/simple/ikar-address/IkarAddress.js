@@ -7,10 +7,7 @@ import IkarAddressRussia from './IkarAddressRussia';
 import IkarAddressForeign from './IkarAddressForeign';
 import Button from '../../../../buttons/button/Button';
 import Form from '../../../containers/Form';
-import {
-   getRussianAddressView,
-   getForeignAddressView
-} from '../../../utils/addressUtils';
+import { getRussianAddressView, getForeignAddressView } from '../../../utils/addressUtils';
 import {
    COUNTRY_RUSSIA_GUID,
    COUNTRY_FIELD,
@@ -32,30 +29,20 @@ const getAddressViewLabels = (props) => {
    } = props;
 
    return {
-      [COUNTRY_FIELD]:
-         (countryOptions && countryOptions.selectOptionLabelKey) || 'name',
-      [REGION_FIELD]:
-         (regionOptions && regionOptions.selectOptionLabelKey) || 'view',
-      [DISTRICT_FIELD]:
-         (districtOptions && districtOptions.selectOptionLabelKey) || 'view',
-      [LOCALITY_FIELD]:
-         (localityOptions && localityOptions.selectOptionLabelKey) || 'view',
+      [COUNTRY_FIELD]: (countryOptions && countryOptions.selectOptionLabelKey) || 'name',
+      [REGION_FIELD]: (regionOptions && regionOptions.selectOptionLabelKey) || 'view',
+      [DISTRICT_FIELD]: (districtOptions && districtOptions.selectOptionLabelKey) || 'view',
+      [LOCALITY_FIELD]: (localityOptions && localityOptions.selectOptionLabelKey) || 'view',
       [SUB_LOCALITY_FIELD]:
-         (subLocalityOptions && subLocalityOptions.selectOptionLabelKey) ||
-         'view',
-      [STREET_FIELD]:
-         (streetOptions && streetOptions.selectOptionLabelKey) || 'view'
+         (subLocalityOptions && subLocalityOptions.selectOptionLabelKey) || 'view',
+      [STREET_FIELD]: (streetOptions && streetOptions.selectOptionLabelKey) || 'view'
    };
 };
 
 const notEmpty = (addressElement, pattern, func) =>
-   pattern &&
-   pattern.length > 1 &&
-   !isEmpty(addressElement) &&
-   isFunction(func);
+   pattern && pattern.length > 1 && !isEmpty(addressElement) && isFunction(func);
 
-const isRussia = (country) =>
-   isEmpty(country) || country.guid === COUNTRY_RUSSIA_GUID;
+const isRussia = (country) => isEmpty(country) || country.guid === COUNTRY_RUSSIA_GUID;
 
 const getToggleBtnOptions = (
    hideFormTooltip = 'Скрыть форму',
@@ -111,9 +98,7 @@ class IkarAddress extends Component {
       this.findStreet = this.findStreet.bind(this);
       this.toggleShowForm = this.toggleShowForm.bind(this);
       this.formAndChangeAddress = this.formAndChangeAddress.bind(this);
-      this.setStateFromRequestResult = this.setStateFromRequestResult.bind(
-         this
-      );
+      this.setStateFromRequestResult = this.setStateFromRequestResult.bind(this);
 
       this.addressViewLabels = getAddressViewLabels(this.props);
    }
@@ -152,11 +137,7 @@ class IkarAddress extends Component {
       }
       if (findDistrict && isRussia(country) && region) {
          districtsRequest = findDistrict(region);
-         this.setStateFromRequestResult(
-            districtsRequest,
-            this.state,
-            'districts'
-         );
+         this.setStateFromRequestResult(districtsRequest, this.state, 'districts');
       }
    }
 
@@ -179,11 +160,7 @@ class IkarAddress extends Component {
    getAddressView(address) {
       const { russianAddressViewOptions } = this.props;
       if (isRussia(address.country)) {
-         return getRussianAddressView(
-            address,
-            this.addressViewLabels,
-            russianAddressViewOptions
-         );
+         return getRussianAddressView(address, this.addressViewLabels, russianAddressViewOptions);
       }
       return getForeignAddressView(address, this.addressViewLabels);
    }
@@ -213,11 +190,7 @@ class IkarAddress extends Component {
                if (!isEmpty(country)) {
                   const { findRegion } = this.props;
                   const regionsRequest = findRegion && findRegion(country);
-                  this.setStateFromRequestResult(
-                     regionsRequest,
-                     newState,
-                     'regions'
-                  );
+                  this.setStateFromRequestResult(regionsRequest, newState, 'regions');
                   address = {
                      ...address,
                      country: country
@@ -248,11 +221,7 @@ class IkarAddress extends Component {
                   const { findDistrict } = this.props;
                   if (findDistrict && isRussia(address.country)) {
                      const districtsRequest = findDistrict(region);
-                     this.setStateFromRequestResult(
-                        districtsRequest,
-                        newState,
-                        'districts'
-                     );
+                     this.setStateFromRequestResult(districtsRequest, newState, 'districts');
                   }
                   address = {
                      ...address,
@@ -294,11 +263,7 @@ class IkarAddress extends Component {
                   subLocality: null,
                   street: null
                };
-               this.formAndChangeAddress(
-                  address,
-                  subLocality,
-                  SUB_LOCALITY_FIELD
-               );
+               this.formAndChangeAddress(address, subLocality, SUB_LOCALITY_FIELD);
             };
 
          case STREET_FIELD:

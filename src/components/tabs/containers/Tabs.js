@@ -9,8 +9,7 @@ export default class Tabs extends Component {
       super(props, context);
       const { selectedName, tabs } = props;
       this.state = {
-         selectedName:
-            selectedName || (tabs && tabs.length > 0 && tabs[0].name) || ''
+         selectedName: selectedName || (tabs && tabs.length > 0 && tabs[0].name) || ''
       };
       this.onSelect = this.onSelect.bind(this);
    }
@@ -24,11 +23,7 @@ export default class Tabs extends Component {
       const { selectedName } = this.state;
       return (
          <div className="col-xs-12">
-            <TabList
-               tabs={tabs}
-               onSelect={this.onSelect}
-               selectedName={selectedName}
-            />
+            <TabList tabs={tabs} onSelect={this.onSelect} selectedName={selectedName} />
             <TabContentList tabs={tabs} selectedName={selectedName} />
          </div>
       );

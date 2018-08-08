@@ -11,11 +11,7 @@ const RadioBtn = (props) => (
          style={props.style}
          disabled={props.disabled}
          checked={props.checked}
-         onKeyPress={(e) =>
-            (e.which === 10 || e.which === 13) &&
-            props.onEnter &&
-            props.onEnter()
-         }
+         onKeyPress={(e) => (e.which === 10 || e.which === 13) && props.onEnter && props.onEnter()}
          onChange={(e) => props.onChange && props.onChange(e.target.value)}
          className={props.className}
       />
