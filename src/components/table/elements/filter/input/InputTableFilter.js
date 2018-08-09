@@ -24,7 +24,7 @@ class InputTableFilter extends Component {
          filter = event;
       }
       // TODO: временно, для сохранения обратной совместимости, по возможности избавиться от проверки
-      if (!filterRequest) {
+      if (filterRequest) {
          onChange(filter);
       }
       this.onFilter(filter);
