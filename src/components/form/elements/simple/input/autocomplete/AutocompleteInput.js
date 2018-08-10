@@ -9,6 +9,7 @@ import isObject from 'lodash/isObject';
 
 import Input from '../Input';
 import Button from '../../../../../buttons/button/Button';
+import classNames from 'classnames';
 
 class AutocompleteInput extends PureComponent {
    constructor(props, context) {
@@ -113,7 +114,7 @@ class AutocompleteInput extends PureComponent {
       );
       return (
          <div className="autocomplete-dropdown col-xs-12 no-padding">
-            <span className={(label || btn) && 'input-group'}>
+            <span className={classNames({ 'input-group': label || btn })}>
                {label}
                <Input
                   type="text"
