@@ -189,3 +189,5 @@ export { default as Widget } from './widget/containers/Widget';
 // Утилиты форм
 export { default as setIn } from './form/utils/setIn';
 export { default as deleteIn } from './form/utils/deleteIn';
+
+export { default as withTooltip } from './hoc/withTooltip';
