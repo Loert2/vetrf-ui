@@ -2,13 +2,19 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import uniqueId from 'lodash/uniqueId';
+import classNames from 'classnames';
 
-const withTooltip = (Component) => {
+const withTooltip = (Component, isBlock) => {
    const wrapped = ({ tooltip, tooltipId = uniqueId(), ...rest }) => {
       if (tooltip) {
          return (
             <Fragment>
-               <Component data-tip={tooltip} data-for={tooltipId} {...rest} />
+               <div
+                  className={classNames({ inline: !isBlock })}
+                  data-tip={tooltip}
+                  data-for={tooltipId}>
+                  <Component {...rest} />
+               </div>
                <ReactTooltip
                   id={tooltipId}
                   effect="solid"
