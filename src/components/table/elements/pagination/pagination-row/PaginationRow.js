@@ -5,7 +5,6 @@ import TableInfo from '../table-info/TableInfo';
 import SizePerPage from '../size-per-page/SizePerPage';
 import PaginationList from '../pagination-list/PaginationList';
 import Const from '../../constants/index';
-import SwitchText from '../../../../form/elements/simple/switch/text/SwitchText';
 
 const PaginationRow = (props) => (
    <div className="row">
@@ -37,11 +36,6 @@ const PaginationRow = (props) => (
                      />
                      <span>&nbsp;записей на странице</span>
                   </div>
-                  {props.switchableView && (
-                     <div>
-                        <SwitchText onChange={props.onChangeView} />
-                     </div>
-                  )}
                </div>
             </div>
          )}
@@ -59,7 +53,6 @@ PaginationRow.propTypes = {
    itemCount: PropTypes.number,
    sizePerPage: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
    nextPage: PropTypes.string,
-   switchableView: PropTypes.bool,
    onChangePage: PropTypes.func,
    onChangeView: PropTypes.func
 };
