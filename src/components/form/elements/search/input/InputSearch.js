@@ -20,7 +20,7 @@ const InputSearch = (props) => (
             onKeyPress={props.onEnter}
             onChange={(value) => props.onChange && props.onChange(value, props.field)}
             className={props.className || 'col-xs-12 col-sm-7 input-sm'}
-            placeholder={props.placeholder || props.labelText}
+            placeholder={props.placeholder}
          />
       </div>
    </div>

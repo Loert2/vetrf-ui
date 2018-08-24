@@ -31,7 +31,7 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                      onKeyPress={input.onEnter}
                      className={input.className || 'input-sm col-xs-12'}
                      dpropdownClass={input.dpropdownClass}
-                     placeholder={input.placeholder || labelText}
+                     placeholder={input.placeholder}
                   />
                </span>
             ) : (
@@ -47,7 +47,7 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                   onKeyPress={input.onEnter}
                   onChange={(value) => input.onChange && input.onChange(value, input.field)}
                   className={input.className || 'input-sm col-xs-8'}
-                  placeholder={input.placeholder || labelText}
+                  placeholder={input.placeholder}
                />
             )}
             <Select
@@ -60,7 +60,7 @@ const InputSelectSearch = ({ autocomplete, labelText, input, select }) => (
                options={select.options}
                onChange={(value) => select.onChange && select.onChange(value, select.field)}
                className={select.className || 'col-xs-4 no-padding'}
-               placeholder={select.placeholder || ''}
+               placeholder={select.placeholder}
             />
          </span>
       </div>
