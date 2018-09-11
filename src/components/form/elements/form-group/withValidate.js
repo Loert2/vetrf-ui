@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isFunction from 'lodash/isFunction';
+import validate from '../../utils/validate-utils';
 
-const withValidate = (WrappedComponent, customValidate) =>
+const withValidate = (WrappedComponent, defaultValidate) =>
    class extends React.PureComponent {
       constructor(props) {
          super(props);
          this.state = { hasError: false };
 
-         this.validate = this.validate.bind(this);
+         this.validateRequire = this.validateRequire.bind(this);
       }
 
       static propTypes = {
@@ -21,12 +22,17 @@ const withValidate = (WrappedComponent, customValidate) =>
          labelText: PropTypes.string
       };
 
+      validateRequire(value) {
+         const { require } = this.props;
+         return require && !value;
+      }
+
       componentWillReceiveProps(nextProps) {
-         const hasError = this.validate(
+         const hasError = validate(
             nextProps,
-            isFunction(customValidate)
-               ? () => customValidate(nextProps)
-               : () => nextProps.require && !nextProps.value,
+            isFunction(defaultValidate)
+               ? (value) => defaultValidate({ ...nextProps, value })
+               : this.validateRequire,
             this.state.hasError
          );
          if (hasError !== this.state.hasError) {
@@ -34,25 +40,6 @@ const withValidate = (WrappedComponent, customValidate) =>
                hasError: hasError
             });
          }
-      }
-
-      validate(props = {}, defaultValidate, oldHasError, defaultErrorText) {
-         const {
-            showError,
-            value,
-            customValidate,
-            errorHandler,
-            field,
-            labelText,
-            errorText
-         } = props;
-         const hasError =
-            showError &&
-            (customValidate ? customValidate(value) : defaultValidate && defaultValidate(value));
-         if (oldHasError !== hasError && errorHandler) {
-            errorHandler(hasError, field, labelText, errorText || defaultErrorText);
-         }
-         return hasError;
       }
 
       render() {
