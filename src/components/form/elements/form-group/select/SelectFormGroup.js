@@ -29,7 +29,9 @@ const SelectFormGroup = (props) => {
       labelKey,
       className,
       placeholder,
-      field
+      field,
+      clearable,
+      ...restProps
    } = props;
 
    return (
@@ -57,6 +59,8 @@ const SelectFormGroup = (props) => {
             className={className}
             disabled={disabled}
             placeholder={placeholder}
+            clearable={clearable}
+            {...restProps}
          />
       </FormGroup>
    );
@@ -77,6 +81,7 @@ SelectFormGroup.propTypes = {
    disabled: PropTypes.bool,
    multiple: PropTypes.bool,
    validate: PropTypes.bool,
+   clearable: PropTypes.bool,
    value: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
    field: PropTypes.string,
    style: PropTypes.object,
