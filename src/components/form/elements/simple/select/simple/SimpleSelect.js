@@ -52,7 +52,7 @@ SimpleSelect.propTypes = {
    className: PropTypes.string,
    id: PropTypes.string,
    onChange: PropTypes.func,
-   value: PropTypes.object,
+   value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
    placeholder: PropTypes.string,
    notClearableOptions: PropTypes.bool,
    options: PropTypes.arrayOf(PropTypes.object)
