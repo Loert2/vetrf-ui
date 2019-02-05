@@ -189,5 +189,7 @@ export { default as Widget } from './widget/containers/Widget';
 // Утилиты форм
 export { default as setIn } from './form/utils/setIn';
 export { default as deleteIn } from './form/utils/deleteIn';
+//Древо элементов
+export { default as CheckboxTree } from './other/react-checkbox-tree/CheckboxTree';
 
 export { default as withTooltip } from './hoc/withTooltip';

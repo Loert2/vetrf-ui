@@ -15,7 +15,7 @@ module.exports = {
                name: 'Элементы',
                components: './src/components/page/elements/**/[A-Z]*.js'
             }
-         ],
+         ]
       },
       {
          name: 'Компоненты форм',
@@ -40,7 +40,7 @@ module.exports = {
                name: 'Контейнеры',
                components: './src/components/form/containers/**/[A-Z]*.js'
             }
-         ],
+         ]
       },
       {
          name: 'Кнопки',
@@ -140,7 +140,8 @@ module.exports = {
       path.join(__dirname, './src/assets/css/font-vetis.css'),
       path.join(__dirname, './src/assets/css/address.css'),
       path.join(__dirname, './src/assets/css/toggle-text.css'),
-      path.join(__dirname, './src/components/form/elements/simple/ikar-address/IkarAddress.css')
+      path.join(__dirname, './src/components/form/elements/simple/ikar-address/IkarAddress.css'),
+      path.join(__dirname, './src/assets/css/react-checkbox-tree.css')
    ],
 
    styleguideComponents: {
