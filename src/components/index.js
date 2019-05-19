@@ -51,9 +51,7 @@ export {
 } from './form/elements/form-group/date/complex-date/ComplexDateListFormGroup';
 export { default as FormBlock } from './form/elements/form-group/container/form-block/FormBlock';
 export { default as FormGroup } from './form/elements/form-group/container/form-group/FormGroup';
-export {
-   default as FileUploadFormGroup
-} from './form/elements/form-group/file-upload/FileUploadFormGroup';
+export { default as FileFormGroup } from './form/elements/form-group/file/FileFormGroup';
 export { default as InputFormGroup } from './form/elements/form-group/input/InputFormGroup';
 export {
    default as InputSelectFormGroup
@@ -98,6 +96,8 @@ export {
 } from './form/elements/simple/input/autocomplete/AutocompleteInput';
 export { default as FileInput } from './form/elements/simple/input/file/FileInput';
 export { default as FileUpload } from './form/elements/simple/file-upload/FileUpload';
+export { default as FileDownload } from './form/elements/simple/file-download/FileDownload';
+export { default as FileDownloadLink } from './form/elements/simple/file-download/FileDownloadLink';
 export { default as Input } from './form/elements/simple/input/Input';
 export { default as NumberInput } from './form/elements/simple/input/number/NumberInput';
 export { default as Select } from './form/elements/simple/select/Select';

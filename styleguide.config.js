@@ -134,6 +134,7 @@ module.exports = {
    require: [
       path.join(__dirname, './src/vendor/styles/vendor.css'),
       path.join(__dirname, './src/vendor/src/file-upload/file-upload.css'),
+      path.join(__dirname, './src/vendor/src/file-download/file-download.css'),
       path.join(__dirname, './src/vendor/src/react-datetime/react-datetime.css'),
       path.join(__dirname, './src/vendor/src/react-select/react-select.css'),
       path.join(__dirname, './src/assets/css/irena.css'),

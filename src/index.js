@@ -8,6 +8,7 @@ import './vendor/styles/vendor.css';
 import './vendor/src/react-datetime/react-datetime.css';
 import './vendor/src/react-select/react-select.css';
 import './vendor/src/file-upload/file-upload.css';
+import './vendor/src/file-download/file-download.css';
 import './assets/css/address.css';
 import './assets/css/font-vetis.css';
 import './assets/css/toggle-text.css';
