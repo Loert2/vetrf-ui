@@ -8,7 +8,7 @@ import get from 'lodash/get';
 
 const FileDownload = ({ fileModel, editable, removeAction, urlFile }) => (
    <div className="file-download-container">
-      <div className="file-download-form">
+      <div className="file-download-form file-download__border">
          <FileDownloadLink href={urlFile(fileModel)} fileName={get(fileModel, 'file.name')} />
          {editable && (
             <div className="file-download__btn-delete">
