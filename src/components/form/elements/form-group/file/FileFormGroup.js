@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
+import FileDownload from '../../simple/file-download/FileDownload';
 import FileUpload from '../../simple/file-upload/FileUpload';
 import FormGroup from '../container/form-group/FormGroup';
 import withValidate from '../withValidate';
 
 import get from 'lodash/get';
 
-class FileUploadFormGroup extends PureComponent {
+class FileFormGroup extends PureComponent {
    constructor(props) {
       super(props);
       this.state = { fileName: '' };
@@ -37,9 +38,11 @@ class FileUploadFormGroup extends PureComponent {
          dataText,
          id,
          className,
-         hasError
+         hasError,
+         editable,
+         removeAction,
+         urlFile
       } = this.props;
-
       const { fileName } = this.state;
       return (
          <FormGroup
@@ -49,19 +52,29 @@ class FileUploadFormGroup extends PureComponent {
             additionalBlock={additionalBlock}
             hasError={hasError}
             errorText={errorText}>
-            <FileUpload
-               id={id}
-               dataText={dataText || fileName}
-               value={value}
-               className={className}
-               onChange={this.onChangeHandler}
-            />
+            {value ? (
+               <FileDownload
+                  id={id}
+                  fileModel={value}
+                  editable={editable}
+                  removeAction={removeAction}
+                  urlFile={urlFile}
+               />
+            ) : (
+               <FileUpload
+                  id={id}
+                  dataText={dataText || fileName}
+                  value={value}
+                  className={className}
+                  onChange={this.onChangeHandler}
+               />
+            )}
          </FormGroup>
       );
    }
 }
 
-FileUploadFormGroup.propTypes = {
+FileFormGroup.propTypes = {
    value: PropTypes.string,
    field: PropTypes.string,
    dataText: PropTypes.string,
@@ -76,9 +89,12 @@ FileUploadFormGroup.propTypes = {
    errorHandler: PropTypes.func,
    onChange: PropTypes.func,
    additionalBlock: PropTypes.node,
-   className: PropTypes.string
+   className: PropTypes.string,
+   editable: PropTypes.bool,
+   removeAction: PropTypes.func,
+   urlFile: PropTypes.func
 };
 
-FileUploadFormGroup.defaultProps = {};
+FileFormGroup.defaultProps = {};
 
-export default withValidate(FileUploadFormGroup);
+export default withValidate(FileFormGroup);
