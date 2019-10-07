@@ -1,4 +1,4 @@
 node_modules/
-lib/
-styleguide/build/
-src/vendor/
+dist/
+build/
+styleguide/
