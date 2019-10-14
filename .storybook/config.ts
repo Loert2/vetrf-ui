@@ -23,4 +23,4 @@ function loadStories() {
 configure(loadStories, module);
 
 addDecorator(withKnobs);
-addDecorator(withInfo);
+addDecorator(withInfo as any); // TODO: убрать as any, когда addon-info поправится
