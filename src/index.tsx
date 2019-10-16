@@ -1,4 +1,5 @@
 import { Navbar, NavbarProps } from './components/Navbar/Navbar';
+import { Badge, BadgeProps } from './components/other/badge/Badge';
 
 import './vendor/styles/vendor.css';
 import './vendor/styles/react-datetime.css';
@@ -12,3 +13,4 @@ import './assets/css/toggle-text.css';
 import './assets/css/react-checkbox-tree.css';
 
 export { Navbar, NavbarProps };
+export { Badge, BadgeProps };
