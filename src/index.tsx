@@ -1,5 +1,5 @@
 import { Navbar, NavbarProps } from './components/Navbar/Navbar';
-import { Badge, BadgeProps } from './components/other/badge/Badge';
+import { Badge, BadgeProps } from './components/other/Badge/Badge';
 
 import './vendor/styles/vendor.css';
 import './vendor/styles/react-datetime.css';

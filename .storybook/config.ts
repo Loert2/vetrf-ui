@@ -12,6 +12,7 @@ import '../src/assets/css/font-vetis.css';
 import '../src/assets/css/irena.css';
 import '../src/assets/css/toggle-text.css';
 import '../src/assets/css/react-checkbox-tree.css';
+import '../src/assets/css/story-book.css';
 
 // automatically import all files ending in *.stories.tsx
 const req = require.context('../src', true, /\.stories\.tsx$/);
