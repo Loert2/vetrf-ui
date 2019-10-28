@@ -51,26 +51,19 @@ export interface IconProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 function getSizeClassName(size: Size) {
-   if (size !== 100) {
-      if (size > 100) {
-         return `bigger-${size}`;
-      } else {
-         return `smaller-${size}`;
-      }
+   if (size === 100) {
+      return '';
    }
-   return null;
+   if (size > 100) {
+      return `bigger-${size}`;
+   }
+   return `smaller-${size}`;
 }
 
 export const Icon = ({ icon, size = 110, color, className, ...rest }: IconProps) => (
    <i
       {...rest}
-      className={classNames(
-         'ace-icon fa',
-         `fa-${icon}`,
-         size && getSizeClassName(size),
-         color,
-         className
-      )}
+      className={classNames('ace-icon fa', `fa-${icon}`, getSizeClassName(size), color, className)}
    />
 );
 

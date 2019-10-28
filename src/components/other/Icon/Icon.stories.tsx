@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Icon from './Icon';
+import { Icon, Size } from './Icon';
 import { select, text } from '@storybook/addon-knobs';
 import { SelectTypeOptionsProp } from '@storybook/addon-knobs/dist/components/types';
 import { Color } from '../../../utils/type/Color';
@@ -74,8 +74,9 @@ stories.add(
                275,
                280,
                290,
-               300
-            ],
+               300,
+               undefined
+            ] as SelectTypeOptionsProp<Size>,
             150
          )}
       />
