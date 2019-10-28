@@ -1,7 +1,7 @@
 import { Navbar, NavbarProps } from './components/Navbar/Navbar';
 import { Badge, BadgeProps } from './components/other/Badge/Badge';
 import { Icon, IconProps } from './components/other/Icon/Icon';
-import { ColorProps } from './utils/type/ColorProps';
+import { Color } from './utils/type/Color';
 
 import './vendor/styles/vendor.css';
 import './vendor/styles/react-datetime.css';
@@ -17,4 +17,4 @@ import './assets/css/react-checkbox-tree.css';
 export { Navbar, NavbarProps };
 export { Badge, BadgeProps };
 export { Icon, IconProps };
-export { ColorProps };
+export { Color };

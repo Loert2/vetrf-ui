@@ -1,7 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Icon from './Icon';
-import { select, object } from '@storybook/addon-knobs';
+import { select, text } from '@storybook/addon-knobs';
+import { SelectTypeOptionsProp } from '@storybook/addon-knobs/dist/components/types';
+import { Color } from '../../../utils/type/Color';
 
 const stories = storiesOf('Icon', module);
 
@@ -9,7 +11,7 @@ stories.add(
    'Icon',
    () => (
       <Icon
-         icon={object('icon', 'spinner')}
+         icon={text('icon', 'file')}
          color={select(
             'color',
             [
@@ -30,8 +32,9 @@ stories.add(
                'pink2',
                'brown',
                'grey',
-               'light-grey'
-            ],
+               'light-grey',
+               undefined
+            ] as SelectTypeOptionsProp<Color>,
             'blue'
          )}
          size={select(
@@ -73,9 +76,8 @@ stories.add(
                290,
                300
             ],
-            200
+            150
          )}
-         spin={select('spin', ['spin', 'pulse', ' '], 'spin')}
       />
    ),
    {
@@ -84,7 +86,7 @@ stories.add(
          text: `
             ### Notes
 
-            Icon
+            Иконка [Font Awesome v4.7](https://fontawesome.com/v4.7.0/icons/)
          `,
          propTables: [Icon]
       }

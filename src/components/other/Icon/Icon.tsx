@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { ColorProps } from '../../../utils/type/ColorProps';
+import { Color } from '../../../utils/type/Color';
 
 export type Size =
    | 20
@@ -39,35 +39,39 @@ export type Size =
    | 290
    | 300;
 
-export type Spin = 'spin' | 'pulse' | ' ';
-
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-
-export interface IconProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'>, ColorProps {
-   /** Допустимые типы передаваемых параметров: Font Awesome v4.7 */
+export interface IconProps extends React.HTMLAttributes<HTMLElement> {
+   /** Допустимые типы передаваемых параметров: https://fontawesome.com/v4.7.0/icons/.
+         Вместо полного css-класса иконки необходимо указывать её название без префикса fa-, например file, а не fa-file */
    icon: string;
    /** Размер иконки */
    size?: Size;
-   /** Допустимые типы передаваемых параметров: spin, pulse */
-   spin?: Spin;
+   /** Допустимые типы передаваемых параметров: dark, white, red, red2, light-red, blue, light-blue, green, light-green,
+         orange, orange2, light-orange, purple, pink, pink2, brown, grey, light-grey */
+   color?: Color;
 }
 
-export const Icon = ({ icon, size, spin, color, className, ...rest }: IconProps) => (
+function getSizeClassName(size: Size) {
+   if (size !== 100) {
+      if (size > 100) {
+         return `bigger-${size}`;
+      } else {
+         return `smaller-${size}`;
+      }
+   }
+   return null;
+}
+
+export const Icon = ({ icon, size = 110, color, className, ...rest }: IconProps) => (
    <i
       {...rest}
       className={classNames(
          'ace-icon fa',
          `fa-${icon}`,
-         size && size !== 100 && (size > 100 ? `bigger-${size}` : `smaller-${size}`),
-         spin && `fa-${spin}`,
+         size && getSizeClassName(size),
          color,
          className
       )}
    />
 );
-
-Icon.defaultProps = {
-   size: 110
-};
 
 export default Icon;
