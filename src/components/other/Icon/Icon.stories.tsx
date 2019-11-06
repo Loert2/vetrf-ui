@@ -1,9 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Icon, Size } from './Icon';
+import Icon from './Icon';
 import { select, text } from '@storybook/addon-knobs';
 import { SelectTypeOptionsProp } from '@storybook/addon-knobs/dist/components/types';
 import { Color } from '../../../utils/type/Color';
+import { Size } from '../../../utils/type/Size';
 
 const stories = storiesOf('Icon', module);
 

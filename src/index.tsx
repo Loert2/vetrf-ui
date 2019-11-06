@@ -12,6 +12,7 @@ import './assets/css/file-upload.css';
 import './assets/css/file-download.css';
 import './assets/css/font-vetis.css';
 import './assets/css/irena.css';
+import './assets/css/common.css';
 import './assets/css/toggle-text.css';
 import './assets/css/react-checkbox-tree.css';
 

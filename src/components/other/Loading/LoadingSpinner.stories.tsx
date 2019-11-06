@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select, object, text } from '@storybook/addon-knobs';
+import { select, text } from '@storybook/addon-knobs';
 import { SelectTypeOptionsProp } from '@storybook/addon-knobs/dist/components/types';
 import { LoadingSpinner, Spin, IconSpinner } from './LoadingSpinner';
-import { Size } from '../Icon/Icon';
+import { Size } from '../../../utils/type/Size';
 import { Color } from '../../../utils/type/Color';
 
 const stories = storiesOf('Loading', module);
@@ -65,7 +65,7 @@ stories.add(
                300,
                undefined
             ] as SelectTypeOptionsProp<Size>,
-            100
+            150
          )}
          color={select(
             'color',
@@ -93,7 +93,6 @@ stories.add(
             'blue'
          )}
          text={text('text', 'Загрузка...')}
-         style={object('style ', { 'font-size': '12pt' })}
       />
    ),
    {

@@ -10,6 +10,7 @@ import '../src/assets/css/file-upload.css';
 import '../src/assets/css/file-download.css';
 import '../src/assets/css/font-vetis.css';
 import '../src/assets/css/irena.css';
+import '../src/assets/css/common.css';
 import '../src/assets/css/toggle-text.css';
 import '../src/assets/css/react-checkbox-tree.css';
 import '../src/assets/css/story-book.css';
