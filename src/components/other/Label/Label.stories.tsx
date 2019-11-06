@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { select, text, object } from '@storybook/addon-knobs';
+import { select, text } from '@storybook/addon-knobs';
 import { SelectTypeOptionsProp } from '@storybook/addon-knobs/dist/components/types';
-import { Label, Color, Size, Arrowed } from './Label';
-import { Size as SizeIcon } from '../Icon/Icon';
+import { Label, LabelColor, LabelSize, Arrowed } from './Label';
+import { Size as SizeIcon } from '../../../utils/type/Size';
 import { Color as ColorIcon } from '../../../utils/type/Color';
 
 const stories = storiesOf('Label', module);
@@ -29,10 +29,14 @@ stories.add(
                'light',
                'yellow',
                undefined
-            ] as SelectTypeOptionsProp<Color>,
+            ] as SelectTypeOptionsProp<LabelColor>,
             'success'
          )}
-         size={select('size', ['sm', 'lg', 'xlg', undefined] as SelectTypeOptionsProp<Size>, 'xlg')}
+         size={select(
+            'size',
+            ['sm', 'lg', 'xlg', undefined] as SelectTypeOptionsProp<LabelSize>,
+            'xlg'
+         )}
          arrowedRight={select(
             'arrowedRight',
             ['arrowed', 'arrowed-in', undefined] as SelectTypeOptionsProp<Arrowed>,
@@ -43,7 +47,6 @@ stories.add(
             ['arrowed', 'arrowed-in', undefined] as SelectTypeOptionsProp<Arrowed>,
             'arrowed-in'
          )}
-         style={object('style ', { 'font-size': '10pt' })}
          icon={text('icon', 'exclamation-triangle')}
          colorIcon={select(
             'colorIcon',
