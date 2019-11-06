@@ -65,12 +65,7 @@ export const Label = ({
          className
       )}>
       {icon && (
-         <Icon
-            icon={icon}
-            size={sizeIcon}
-            color={colorIcon}
-            className={classNames(text && 'text-margin-right')}
-         />
+         <Icon icon={icon} size={sizeIcon} color={colorIcon} className={text && 'right-space'} />
       )}
       {text}
    </span>

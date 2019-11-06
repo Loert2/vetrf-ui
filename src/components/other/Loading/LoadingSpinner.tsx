@@ -32,11 +32,7 @@ export const LoadingSpinner = ({
    ...rest
 }: LoadingSpinnerProps) => (
    <span {...rest} className={classNames(color, getSizeClassName(size), className)}>
-      <Icon
-         icon={icon}
-         className={classNames(`fa-${spin}`, text && 'text-margin-right')}
-         color={color}
-      />
+      <Icon icon={icon} className={classNames(`fa-${spin}`, text && 'right-space')} color={color} />
       {text}
    </span>
 );
