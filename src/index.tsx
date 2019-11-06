@@ -2,6 +2,7 @@ import { Navbar, NavbarProps } from './components/Navbar/Navbar';
 import { Badge, BadgeProps } from './components/other/Badge/Badge';
 import { Icon, IconProps } from './components/other/Icon/Icon';
 import { Color } from './utils/type/Color';
+import { Label, LabelProps } from './components/other/Label/Label';
 import { LoadingSpinner, LoadingSpinnerProps } from './components/other/Loading/LoadingSpinner';
 
 import './vendor/styles/vendor.css';
@@ -20,4 +21,5 @@ export { Navbar, NavbarProps };
 export { Badge, BadgeProps };
 export { Icon, IconProps };
 export { Color };
+export { Label, LabelProps };
 export { LoadingSpinner, LoadingSpinnerProps };
