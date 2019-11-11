@@ -9,7 +9,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
    /** Тип сообщения */
    massageType?: MassageType;
    /** Контент сообщения */
-   children?: ReactNode;
+   children: ReactNode;
    /** Кнопка для закрытия сообщения */
    closable?: boolean;
 }
@@ -21,7 +21,7 @@ export const Alert = ({
    className,
    ...rest
 }: AlertProps) => {
-   const [showAlert, close] = useClose(true);
+   const [showAlert, close] = useClose();
    if (!showAlert) {
       return null;
    }

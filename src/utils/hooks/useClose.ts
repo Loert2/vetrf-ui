@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const useClose = (initialState: boolean): [boolean, () => void] => {
-   const [value, setValue] = useState(initialState);
+const useClose = (): [boolean, () => void] => {
+   const [value, setValue] = useState(true);
    const close = () => setValue(() => false);
    return [value, close];
 };
