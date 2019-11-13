@@ -8,7 +8,7 @@ export interface WithTooltipProps {
 }
 
 export const withTooltip = <P extends object>(Component: React.ComponentType<P>) => {
-   const wrapped = ({ tooltip, tooltipId = uniqueId(), ...rest }: WithTooltipProps) => {
+   const wrapped = ({ tooltip, tooltipId = uniqueId(), ...rest }: WithTooltipProps & P) => {
       if (!tooltip) {
          return <Component {...(rest as P)} />;
       }

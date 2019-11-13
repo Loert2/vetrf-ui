@@ -5,7 +5,7 @@ import { Color } from './utils/type/Color';
 import { Label, LabelProps } from './components/other/Label/Label';
 import { LoadingSpinner, LoadingSpinnerProps } from './components/other/Loading/LoadingSpinner';
 import { Alert, AlertProps } from './components/other/Alert/Alert';
-import { withTooltip, WithTooltipProps } from './components/hoc/withTooltip';
+import { withTooltip, WithTooltipProps } from './components/hoc/WithTooltip/withTooltip';
 
 import './vendor/styles/vendor.css';
 import './vendor/styles/react-datetime.css';

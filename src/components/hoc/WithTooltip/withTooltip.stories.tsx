@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import withTooltip from './withTooltip';
 import { text } from '@storybook/addon-knobs';
+import Icon from '../../other/Icon/Icon';
 
 interface PropDefinition {
    property: string;
@@ -17,7 +18,8 @@ const TableInfo = [
       propType: { name: 'string' },
       required: '-',
       defaultValue: '-',
-      description: 'Подсказка'
+      description:
+         'Подсказка. Если не передавать этот параметр, то вернется переданный компонент без изменений'
    },
    {
       property: 'tooltipId',
@@ -60,21 +62,33 @@ const Table = () => {
 };
 
 const stories = storiesOf('withTooltip', module);
-const LabelExample = () => {
-   return <label className="label label-success label-xlg">Наведи на меня</label>;
-};
-const WithTooltip = withTooltip(LabelExample);
+const WithTooltip = withTooltip(Icon);
 
-stories.add('withTooltip', () => <WithTooltip tooltip={text('tooltip', 'Подсказка')} />, {
-   info: {
-      inline: true,
-      text: `
+stories.add(
+   'withTooltip',
+   () => (
+      <WithTooltip
+         tooltip={text('tooltip', 'Подсказка')}
+         icon="question-circle"
+         size={150}
+         color="green"
+      />
+   ),
+   {
+      info: {
+         inline: true,
+         text: `
             ### Notes
 
-            Всплывающее сообщение-подсказка при наведении на компонент.
+            HOC withToolTip - компонент-обёртка.
 
+            Всплывающее сообщение-подсказка при наведении на компонент. Пример вызова компонента-обертки:
+            ~~~js
+            const WithTooltip = withTooltip(Icon);
+            ~~~
             При щелчке подсказка убирается.
          `,
-      TableComponent: Table
+         TableComponent: Table
+      }
    }
-});
+);
