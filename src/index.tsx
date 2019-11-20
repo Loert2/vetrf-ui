@@ -6,6 +6,7 @@ import { Label, LabelProps } from './components/other/Label/Label';
 import { LoadingSpinner, LoadingSpinnerProps } from './components/other/Loading/LoadingSpinner';
 import { Alert, AlertProps } from './components/other/Alert/Alert';
 import { withTooltip, WithTooltipProps } from './components/hoc/WithTooltip/withTooltip';
+import { Button, ButtonProps } from './components/buttons/Button/Button';
 
 import './vendor/styles/vendor.css';
 import './vendor/styles/react-datetime.css';
@@ -27,3 +28,4 @@ export { Label, LabelProps };
 export { LoadingSpinner, LoadingSpinnerProps };
 export { Alert, AlertProps };
 export { withTooltip, WithTooltipProps };
+export { Button, ButtonProps };
