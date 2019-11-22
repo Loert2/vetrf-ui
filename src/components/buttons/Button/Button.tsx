@@ -20,15 +20,13 @@ export type ButtonColor =
 
 export type ButtonSize = 'minier' | 'xs' | 'sm' | 'lg' | 'xlg';
 
-export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    /** Текст кнопки */
    text?: string;
    /** Цвет кнопки */
    color?: ButtonColor;
    /** Размер кнопки */
    size?: ButtonSize;
-   /** Блокировка кнопки */
-   disabled?: boolean;
    /** Иконка кнопки. Допустимые типы передаваемых параметров: https://fontawesome.com/v4.7.0/icons/.
          Вместо полного css-класса иконки необходимо указывать её название без префикса fa-, например file, а не fa-file */
    icon?: string;
@@ -37,7 +35,7 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
    /** Размер иконки */
    sizeIcon?: SizeIcon;
    /** Действие при нажатии на кнопку */
-   onClick: () => void | Function;
+   onClick: () => void;
 }
 
 export const Button = ({
@@ -55,7 +53,6 @@ export const Button = ({
    return (
       <button
          {...rest}
-         type="button"
          className={classNames(
             'btn',
             color && `btn-${color}`,
