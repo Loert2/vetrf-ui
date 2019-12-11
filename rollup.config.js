@@ -5,6 +5,7 @@ import postcss from 'rollup-plugin-postcss';
 import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
 import svgr from '@svgr/rollup';
+import alias from "rollup-plugin-alias";
 
 import pkg from './package.json';
 
@@ -39,6 +40,9 @@ export default {
          rollupCommonJSResolveHack: true,
          clean: true,
          exclude: ['src/**/*.stories.tsx', 'src/**/*.test.(tsx|ts)']
+      }),
+      alias({
+         "react-datetime": "node_modules/react-datetime/dist/react-datetime.js"
       }),
       commonjs()
    ]
