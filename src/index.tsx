@@ -51,6 +51,7 @@ import InputSelectSearch from './components/form/fields/search/InputSelectSearch
 import SelectSearch from './components/form/fields/search/SelectSearch/SelectSearch';
 import CheckboxSearch from './components/form/fields/search/CheckboxSearch/CheckboxSearch';
 
+import Form from './components/form/containers/Form/Form';
 import FormGroup from './components/form/containers/FormGroup/FormGroup';
 import FormBlock from './components/form/containers/FormBlock/FormBlock';
 import withValidate from './components/form/fields/field/hoc/withValidate';
@@ -141,6 +142,7 @@ export { ModalDialog };
 export { ConfirmModal };
 export { ItemLinkList };
 
+export { Form }
 export { FormActionsPanel };
 export { FormAction };
 
