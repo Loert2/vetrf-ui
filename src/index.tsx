@@ -1,4 +1,4 @@
-import { Navbar, NavbarProps } from './components/page/Navbar/Navbar';
+// import { Navbar, NavbarProps } from './components/page/Navbar/Navbar';
 import { Badge, BadgeProps } from './components/other/Badge/Badge';
 import { Icon, IconProps } from './components/other/Icon/Icon';
 import { Color } from './utils/type/Color';
@@ -117,9 +117,13 @@ import './assets/css/irena.css';
 import './assets/css/common.css';
 import './assets/css/toggle-text.css';
 import './assets/css/react-checkbox-tree.css';
+import useOnClickOutside from './utils/hooks/useOnClickOutside';
+import useClose from './utils/hooks/useClose';
+import useToggle from './utils/hooks/useToggle';
 /** ------------------------------------------------------------------------------------------------ */
 
-export { Navbar, NavbarProps };
+// TODO: Доделать всё меню, а потом уже экспортировать
+// export { Navbar, NavbarProps };
 export { Badge, BadgeProps };
 export { Icon, IconProps };
 export { Color };
@@ -222,4 +226,8 @@ export { Widget };
 
 export { default as setIn } from './utils/function/setIn';
 export { default as deleteIn } from './utils/function/deleteIn';
+
+export { useOnClickOutside }
+export { useClose }
+export { useToggle }
 /** ------------------------------------------------------------------------------------------------ */
