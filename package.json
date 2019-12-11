@@ -1,10 +1,8 @@
 {
-   "name": "react-library-example",
-   "version": "1.0.0",
-   "description": "Simple example of react library",
-   "author": "jmorozov",
+   "name": "vetrf-ui",
+   "version": "0.3.0-SNAPSHOT",
+   "description": "vetrf UI library",
    "license": "MIT",
-   "repository": "jmorozov/react-library-example",
    "main": "dist/index.js",
    "module": "dist/index.es.js",
    "jsnext:main": "dist/index.es.js",
