@@ -1,61 +1,30 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 import classNames from 'classnames';
-import Icon from '../../other/Icon/Icon';
-import { ColorButton as ColorLinkButton } from '../../../utils/type/ColorButton';
-import { SizeButton as SizeLinkButton } from '../../../utils/type/SizeButton';
-import { Color as ColorIcon } from '../../../utils/type/Color';
-import { Size as SizeIcon } from '../../../utils/type/Size';
+import uniqueId from 'lodash/uniqueId';
 
-export interface ButtonLinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
-   /** Адресс ссылки */
-   href: string;
-   /** Текст кнопки */
-   text?: string;
-   /** Цвет кнопки */
-   color?: ColorLinkButton;
-   /** Размер кнопки */
-   size?: SizeLinkButton;
-   /** Блокировка кнопки */
-   disabled?: boolean;
-   /** Иконка кнопки. Допустимые типы передаваемых параметров: https://fontawesome.com/v4.7.0/icons/.
-         Вместо полного css-класса иконки необходимо указывать её название без префикса fa-, например file, а не fa-file */
-   icon?: string;
-   /** Цвет иконки */
-   colorIcon?: ColorIcon;
-   /** Размер иконки */
-   sizeIcon?: SizeIcon;
-}
-
-export const ButtonLink = ({
-   className,
-   href,
-   text,
-   color,
-   size,
-   disabled,
-   icon,
-   colorIcon,
-   sizeIcon,
-   ...rest
-}: ButtonLinkProps) => {
+// TODO: This is old way. Rewrite it!
+const ButtonLink = ({ id, href, className, tooltip, icon, text }: any) => {
+   const toolTipId = uniqueId();
    return (
-      <Link
-         {...rest}
-         to={href}
-         className={classNames(
-            'btn decoration-none',
-            color && `btn-${color}`,
-            size && `btn-${size}`,
-            disabled && 'disabled',
-            className
-         )}>
-         {icon && (
-            <Icon icon={icon} size={sizeIcon} color={colorIcon} className={text && 'right-space'} />
+      <Link id={id} to={href} className={classNames('decoration-none', className)}>
+         <i data-tip={tooltip} data-for={toolTipId} className={icon} /> {text}
+         {tooltip && (
+            <ReactTooltip id={toolTipId} effect="solid" place="top" className="ace-tooltip" />
          )}
-         {text}
       </Link>
    );
+};
+
+ButtonLink.propTypes = {
+   id: PropTypes.string,
+   href: PropTypes.string,
+   className: PropTypes.string,
+   tooltip: PropTypes.string,
+   icon: PropTypes.string,
+   text: PropTypes.string
 };
 
 export default ButtonLink;

@@ -18,7 +18,10 @@
       "esModuleInterop": true,
       "strict": true,
       "resolveJsonModule": true,
-      "noEmit": true
+      "noEmit": true,
+      "allowSyntheticDefaultImports": true,
+      "strictNullChecks": false, // TODO: temporal. Just rewrite all to strict TS!
+      "noImplicitAny": false // TODO: temporal. Just rewrite all to strict TS!
    },
    "include": ["src"],
    "exclude": [
