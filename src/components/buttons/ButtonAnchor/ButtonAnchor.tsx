@@ -1,24 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 import Icon from '../../other/Icon/Icon';
+import { ColorButton as ColorButtonAnchor } from '../../../utils/type/ColorButton';
+import { SizeButton as SizeButtonAnchor } from '../../../utils/type/SizeButton';
 import { Color as ColorIcon } from '../../../utils/type/Color';
 import { Size as SizeIcon } from '../../../utils/type/Size';
-
-export type ButtonAnchorColor =
-   | 'info'
-   | 'primary'
-   | 'warning'
-   | 'default'
-   | 'success'
-   | 'danger'
-   | 'purple'
-   | 'pink'
-   | 'inverse'
-   | 'grey'
-   | 'light'
-   | 'yellow';
-
-export type ButtonAnchorSize = 'minier' | 'xs' | 'sm' | 'lg' | 'xlg';
 
 export interface ButtonAnchorProps extends React.HTMLAttributes<HTMLAnchorElement> {
    /** Адресс ссылки, который указывается целиком на внешний ресурс */
@@ -26,9 +12,9 @@ export interface ButtonAnchorProps extends React.HTMLAttributes<HTMLAnchorElemen
    /** Текст кнопки */
    text?: string;
    /** Цвет кнопки */
-   color?: ButtonAnchorColor;
+   color?: ColorButtonAnchor;
    /** Размер кнопки */
-   size?: ButtonAnchorSize;
+   size?: SizeButtonAnchor;
    /** Блокировка кнопки */
    disabled?: boolean;
    /** Иконка кнопки. Допустимые типы передаваемых параметров: https://fontawesome.com/v4.7.0/icons/.

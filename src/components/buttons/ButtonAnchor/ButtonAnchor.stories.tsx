@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { ButtonAnchor, ButtonAnchorColor, ButtonAnchorSize } from './ButtonAnchor';
+import { ButtonAnchor } from './ButtonAnchor';
+import { ColorButton as ColorButtonAnchor } from '../../../utils/type/ColorButton';
+import { SizeButton as SizeButtonAnchor } from '../../../utils/type/SizeButton';
 import { Size as SizeIcon } from '../../../utils/type/Size';
 import { Color as ColorIcon } from '../../../utils/type/Color';
 import { text, select, boolean } from '@storybook/addon-knobs';
@@ -30,15 +32,13 @@ stories.add(
                'light',
                'yellow',
                undefined
-            ] as SelectTypeOptionsProp<ButtonAnchorColor>,
+            ] as SelectTypeOptionsProp<ColorButtonAnchor>,
             'pink'
          )}
          size={select(
             'size',
-            ['minier', 'xs', 'sm', 'lg', 'xlg', undefined] as SelectTypeOptionsProp<
-               ButtonAnchorSize
-            >,
-            'xlg'
+            ['minier', 'xs', 'sm', 'lg', undefined] as SelectTypeOptionsProp<SizeButtonAnchor>,
+            'sm'
          )}
          disabled={boolean('disabled', false, 'Other')}
          icon={text('icon', 'link')}

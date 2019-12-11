@@ -27,13 +27,13 @@ describe('ButtonAnchor', () => {
       expect(json).toMatchSnapshot();
    });
 
-   it('should renders href', () => {
+   it('should render href correctly', () => {
       const component = mount(<ButtonAnchor href="https://about.gitlab.com/" />);
 
       expect(component.find('a').prop('href')).toBe('https://about.gitlab.com/');
    });
 
-   it('should renders text', () => {
+   it('should render text correctly', () => {
       const component = mount(
          <ButtonAnchor text="Ссылка на внешний сайт" href="https://about.gitlab.com/" />
       );
@@ -41,7 +41,7 @@ describe('ButtonAnchor', () => {
       expect(component.text()).toEqual('Ссылка на внешний сайт');
    });
 
-   it('should renders icon', () => {
+   it('should render icon correctly', () => {
       const component = mount(<ButtonAnchor icon="link" href="https://about.gitlab.com/" />);
 
       expect(component.find('i').length).toEqual(1);
@@ -54,9 +54,9 @@ describe('ButtonAnchor', () => {
    });
 
    it('with size prop should correctly form className', () => {
-      const component = mount(<ButtonAnchor size="xlg" href="https://about.gitlab.com/" />);
+      const component = mount(<ButtonAnchor size="lg" href="https://about.gitlab.com/" />);
 
-      expect(component.find('a').hasClass('btn-xlg')).toEqual(true);
+      expect(component.find('a').hasClass('btn-lg')).toEqual(true);
    });
 
    it('with disabled prop should correctly form className', () => {
