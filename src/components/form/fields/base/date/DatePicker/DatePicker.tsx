@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import Datetime from 'react-datetime';
 import Moment from 'moment';
 import 'moment/locale/ru';
 import debounce from 'lodash/debounce';
@@ -8,6 +7,10 @@ import isEmpty from 'lodash/isEmpty';
 
 const placeholderProps = { placeholder: 'дд.мм.гггг' };
 const defaultDateFormat = 'DD.MM.YYYY';
+
+// Конфликты между модульными системами стороннего компонента и нашей библиотеки принуждают к такому
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const Datetime = require('react-datetime');
 
 /**
  * Компонент-обертка для Datetime из react-datetime: https://github.com/YouCanBookMe/react-datetime
