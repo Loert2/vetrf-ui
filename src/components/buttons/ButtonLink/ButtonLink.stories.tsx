@@ -1,7 +1,9 @@
 import React from 'react';
 import { MemoryRouter, Switch, Route } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
-import { ButtonLink, ButtonLinkColor, ButtonLinkSize } from './ButtonLink';
+import { ButtonLink } from './ButtonLink';
+import { SizeButton as SizeButtonLink } from '../../../utils/type/SizeButton';
+import { ColorButton as ColorButtonLink } from '../../../utils/type/ColorButton';
 import { Size as SizeIcon } from '../../../utils/type/Size';
 import { Color as ColorIcon } from '../../../utils/type/Color';
 import { text, select, boolean } from '@storybook/addon-knobs';
@@ -47,15 +49,13 @@ stories.add(
                   'light',
                   'yellow',
                   undefined
-               ] as SelectTypeOptionsProp<ButtonLinkColor>,
+               ] as SelectTypeOptionsProp<ColorButtonLink>,
                'success'
             )}
             size={select(
                'size',
-               ['minier', 'xs', 'sm', 'lg', 'xlg', undefined] as SelectTypeOptionsProp<
-                  ButtonLinkSize
-               >,
-               'xlg'
+               ['minier', 'xs', 'sm', 'lg', undefined] as SelectTypeOptionsProp<SizeButtonLink>,
+               'sm'
             )}
             disabled={boolean('disabled', false, 'Other')}
             icon={text('icon', 'bell')}

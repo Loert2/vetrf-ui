@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Button, ButtonColor, ButtonSize } from './Button';
+import { Button } from './Button';
+import { ColorButton } from '../../../utils/type/ColorButton';
+import { SizeButton } from '../../../utils/type/SizeButton';
 import { Size as SizeIcon } from '../../../utils/type/Size';
 import { Color as ColorIcon } from '../../../utils/type/Color';
 import { text, select, boolean } from '@storybook/addon-knobs';
@@ -29,13 +31,13 @@ stories.add(
                'light',
                'yellow',
                undefined
-            ] as SelectTypeOptionsProp<ButtonColor>,
+            ] as SelectTypeOptionsProp<ColorButton>,
             'success'
          )}
          size={select(
             'size',
-            ['minier', 'xs', 'sm', 'lg', 'xlg', undefined] as SelectTypeOptionsProp<ButtonSize>,
-            'xlg'
+            ['minier', 'xs', 'sm', 'lg', undefined] as SelectTypeOptionsProp<SizeButton>,
+            'sm'
          )}
          disabled={boolean('disabled', false, 'Other')}
          icon={text('icon', 'bell')}

@@ -1,32 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
 import Icon from '../../other/Icon/Icon';
+import { ColorButton } from '../../../utils/type/ColorButton';
+import { SizeButton } from '../../../utils/type/SizeButton';
 import { Color as ColorIcon } from '../../../utils/type/Color';
 import { Size as SizeIcon } from '../../../utils/type/Size';
-
-export type ButtonColor =
-   | 'info'
-   | 'primary'
-   | 'warning'
-   | 'default'
-   | 'success'
-   | 'danger'
-   | 'purple'
-   | 'pink'
-   | 'inverse'
-   | 'grey'
-   | 'light'
-   | 'yellow';
-
-export type ButtonSize = 'minier' | 'xs' | 'sm' | 'lg' | 'xlg';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    /** Текст кнопки */
    text?: string;
    /** Цвет кнопки */
-   color?: ButtonColor;
+   color?: ColorButton;
    /** Размер кнопки */
-   size?: ButtonSize;
+   size?: SizeButton;
    /** Иконка кнопки. Допустимые типы передаваемых параметров: https://fontawesome.com/v4.7.0/icons/.
          Вместо полного css-класса иконки необходимо указывать её название без префикса fa-, например file, а не fa-file */
    icon?: string;

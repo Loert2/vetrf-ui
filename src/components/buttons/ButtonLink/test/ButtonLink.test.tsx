@@ -43,7 +43,7 @@ describe('ButtonLink', () => {
       expect(json).toMatchSnapshot();
    });
 
-   it('should onClick correctly called', () => {
+   it('should call onClick correctly', () => {
       const component = mount(
          <MemoryRouter initialEntries={['/']}>
             <ButtonLink href="/example" />
@@ -91,7 +91,7 @@ describe('ButtonLink', () => {
       expect(component.find('h2').text()).toEqual('Начальная страница');
    });
 
-   it('should renders text', () => {
+   it('should render text correctly', () => {
       const component = mount(
          <MemoryRouter initialEntries={['/']}>
             <ButtonLink text="Кнопка-ссылка" href="/example" />
@@ -101,7 +101,7 @@ describe('ButtonLink', () => {
       expect(component.find('Link').text()).toEqual('Кнопка-ссылка');
    });
 
-   it('should renders icon', () => {
+   it('should render icon correctly', () => {
       const component = mount(
          <MemoryRouter initialEntries={['/']}>
             <ButtonLink icon="info" href="/example" />
@@ -124,11 +124,11 @@ describe('ButtonLink', () => {
    it('with size prop should correctly form className', () => {
       const component = mount(
          <MemoryRouter initialEntries={['/']}>
-            <ButtonLink size="xlg" href="/example" />
+            <ButtonLink size="lg" href="/example" />
          </MemoryRouter>
       );
 
-      expect(component.find('Link').hasClass('btn-xlg')).toEqual(true);
+      expect(component.find('Link').hasClass('btn-lg')).toEqual(true);
    });
 
    it('with disabled prop should correctly form className', () => {
@@ -154,12 +154,12 @@ describe('ButtonLink', () => {
    it('with sizeIcon prop should correctly form className', () => {
       const componentBiggerSizeIcon = mount(
          <MemoryRouter initialEntries={['/']}>
-            <ButtonLink icon="info" sizeIcon={140} href="/example" />{' '}
+            <ButtonLink icon="info" sizeIcon={140} href="/example" />
          </MemoryRouter>
       );
       const componentSmallerSizeIcon = mount(
          <MemoryRouter initialEntries={['/']}>
-            <ButtonLink icon="info" sizeIcon={80} href="/example" />{' '}
+            <ButtonLink icon="info" sizeIcon={80} href="/example" />
          </MemoryRouter>
       );
 
@@ -170,7 +170,7 @@ describe('ButtonLink', () => {
    it('with right-space prop should correctly form className', () => {
       const component = mount(
          <MemoryRouter initialEntries={['/']}>
-            <ButtonLink icon="info" text="Кнопка-ссылка" href="/example" />{' '}
+            <ButtonLink icon="info" text="Кнопка-ссылка" href="/example" />
          </MemoryRouter>
       );
 
