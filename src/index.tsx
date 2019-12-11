@@ -7,6 +7,7 @@ import { LoadingSpinner, LoadingSpinnerProps } from './components/other/Loading/
 import { Alert, AlertProps } from './components/other/Alert/Alert';
 import { withTooltip, WithTooltipProps } from './components/hoc/WithTooltip/withTooltip';
 import { Button, ButtonProps } from './components/buttons/Button/Button';
+import { ButtonLink, ButtonLinkProps } from './components/buttons/ButtonLink/ButtonLink';
 import { ButtonAnchor, ButtonAnchorProps } from './components/buttons/ButtonAnchor/ButtonAnchor';
 
 import './vendor/styles/vendor.css';
@@ -30,4 +31,5 @@ export { LoadingSpinner, LoadingSpinnerProps };
 export { Alert, AlertProps };
 export { withTooltip, WithTooltipProps };
 export { Button, ButtonProps };
+export { ButtonLink, ButtonLinkProps };
 export { ButtonAnchor, ButtonAnchorProps };
