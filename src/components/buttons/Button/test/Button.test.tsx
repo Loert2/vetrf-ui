@@ -64,9 +64,9 @@ describe('Button', () => {
    });
 
    it('with size prop should correctly form className', () => {
-      const component = mount(<Button size="xlg" onClick={jest.fn()} />);
+      const component = mount(<Button size="lg" onClick={jest.fn()} />);
 
-      expect(component.find('button').hasClass('btn-xlg')).toEqual(true);
+      expect(component.find('button').hasClass('btn-lg')).toEqual(true);
    });
 
    it('with disabled prop should correctly form className', () => {

@@ -10,12 +10,13 @@ import {
 import { Alert, AlertProps } from './components/other/Alert/Alert';
 import { withTooltip, WithTooltipProps } from './components/hoc/WithTooltip/withTooltip';
 import { Button, ButtonProps } from './components/buttons/Button/Button';
+import { ButtonLink, ButtonLinkProps } from './components/buttons/ButtonLink/ButtonLink';
+import { ButtonAnchor, ButtonAnchorProps } from './components/buttons/ButtonAnchor/ButtonAnchor';
 
 /**
  * -------------------------------------------------------------------------------------------------
  * OLD WAY components
  * ------------------------------------------------------------------------------------------------- */
-import ButtonLink from './components/buttons/ButtonLink/ButtonLink';
 import ConfirmActionButton from './components/buttons/confirm-action/ConfirmActionButton/ConfirmActionButton';
 import CustomActionButton from './components/buttons/confirm-action/CustomActionButton/CustomActionButton';
 import PromptActionButton from './components/buttons/confirm-action/PromptActionButton/PromptActionButton';
@@ -132,12 +133,13 @@ export { LoadingSpinner, LoadingSpinnerProps };
 export { Alert, AlertProps };
 export { withTooltip, WithTooltipProps };
 export { Button, ButtonProps };
+export { ButtonLink, ButtonLinkProps };
+export { ButtonAnchor, ButtonAnchorProps };
 
 /**
  * -------------------------------------------------------------------------------------------------
  * OLD WAY components
  * ------------------------------------------------------------------------------------------------*/
-export { ButtonLink };
 export { ConfirmActionButton };
 export { CustomActionButton };
 export { PromptActionButton };

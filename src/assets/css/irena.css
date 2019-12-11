@@ -1445,3 +1445,7 @@ ul.autocomplete-dropdown-content.autocomplete-search {
 .date-filter p.has-error {
    margin-bottom: 0 !important;
 }
+
+a.disabled {
+   pointer-events: none;
+}
