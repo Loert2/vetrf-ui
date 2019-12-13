@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ComplexDate from '../ComplexDate/ComplexDate';
-import { Button } from '../../../../../buttons/Button/Button';
+import Button from '../../../../../buttons/Button/Button';
 import isEmpty from 'lodash/isEmpty';
 import { defaultFormat, defaultStoreFormat } from '../../../../utils/moment-utils';
 import classNames from 'classnames';
@@ -70,8 +70,11 @@ class ComplexDateList extends Component<any> {
                      <div className="complex-date-list__item__delete">
                         <Button
                            key={`btn-delete_${key}`}
-                           icon="ace-icon fa fa-times light-grey bigger-150"
-                           // tooltip="Удалить" // TODO: Здесь должна быть другая кнопка - ButtonAnchor
+                           onlyIcon={true}
+                           icon="times"
+                           iconSize={150}
+                           iconColor="light-grey"
+                           tooltip="Удалить"
                            onClick={() => this.deleteItem(it)}
                         />
                      </div>
@@ -126,9 +129,10 @@ class ComplexDateList extends Component<any> {
                   <div className="complex-date-list__panel__add-button">
                      <Button
                         text="Добавить"
-                        icon="ace-icon fa fa-plus"
+                        icon="plus"
                         onClick={this.addNewItem}
-                        className="btn btn-info btn-xs"
+                        size="xs"
+                        color="info"
                      />
                   </div>
                )}

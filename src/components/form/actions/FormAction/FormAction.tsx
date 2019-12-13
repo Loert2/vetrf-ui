@@ -9,18 +9,22 @@ const FormAction = ({ confirmBtn, resetBtn }) => (
    <FormActionsPanel>
       <Button
          text={confirmBtn.text}
-         className={confirmBtn.className || 'btn btn-info'}
-         icon={confirmBtn.icon || 'ace-icon fa fa-check bigger-110'}
+         color={confirmBtn.color || 'info'}
+         size={confirmBtn.size}
+         className={confirmBtn.className}
+         icon={confirmBtn.icon || 'check'}
          disabled={confirmBtn.disabled}
          onClick={confirmBtn.action}
       />
       &nbsp;&nbsp;&nbsp;
       <Button
          onClick={resetBtn.action}
-         icon={resetBtn.icon || 'ace-icon fa fa-undo bigger-110'}
-         className={resetBtn.className || 'btn'}
+         icon={resetBtn.icon || 'undo'}
+         className={resetBtn.className}
+         color={resetBtn.color}
+         size={resetBtn.size}
          text={resetBtn.text}
-         // href={resetBtn.href} // TODO: Переписать с поддрежкой новых кнопок
+         href={resetBtn.href}
       />
    </FormActionsPanel>
 );
@@ -28,14 +32,18 @@ const FormAction = ({ confirmBtn, resetBtn }) => (
 FormAction.propTypes = {
    confirmBtn: PropTypes.shape({
       className: PropTypes.string,
+      color: PropTypes.string,
+      size: PropTypes.string,
       icon: PropTypes.string,
       disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
       text: PropTypes.string,
       action: PropTypes.func
    }),
    resetBtn: PropTypes.shape({
-      // href: PropTypes.string, // TODO: Переписать с поддрежкой новых кнопок
+      href: PropTypes.string,
       className: PropTypes.string,
+      color: PropTypes.string,
+      size: PropTypes.string,
       icon: PropTypes.string,
       text: PropTypes.string,
       action: PropTypes.func
