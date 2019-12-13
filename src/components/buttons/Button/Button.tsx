@@ -115,6 +115,7 @@ const Button = (props: ButtonProps) => {
 
    return (
       <button
+         type="button"
          {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
          onClick={clickHandler}
          disabled={disabled}
