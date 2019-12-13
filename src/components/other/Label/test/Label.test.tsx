@@ -69,7 +69,7 @@ describe('Label', () => {
       expect(component.find('i').hasClass('fa-exclamation-triangle')).toEqual(true);
    });
 
-   it('with sizeIcon prop should correctly form className', () => {
+   it('with iconSize prop should correctly form className', () => {
       const componentBiggerSizeIcon = mount(<Label icon="info" sizeIcon={180} />);
       const componentSmallerSizeIcon = mount(<Label icon="info" sizeIcon={60} />);
 

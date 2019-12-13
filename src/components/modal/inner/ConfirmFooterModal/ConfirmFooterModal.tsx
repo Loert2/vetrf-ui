@@ -9,7 +9,7 @@ const ConfirmFooterModal = ({ className, confirmBtn, cancelBtn }) => (
    <CustomFooterModal className={className}>
       {confirmBtn &&
          confirmBtn.action && (
-            <Button
+            <Button // TODO: расширить возможности под новый компонент Button
                disabled={confirmBtn.disabled}
                onClick={confirmBtn.action}
                className={confirmBtn.className || 'btn btn-success'}
@@ -17,9 +17,9 @@ const ConfirmFooterModal = ({ className, confirmBtn, cancelBtn }) => (
                text={confirmBtn.text || 'Добавить'}
             />
          )}
-      <Button
+      <Button // TODO: расширить возможности под новый компонент Button
          onClick={cancelBtn.action}
-         // href={cancelBtn.href} // TODO: подумать как лучше вернуть это в новой версии
+         href={cancelBtn.href}
          className="btn btn-default"
          icon={cancelBtn.icon}
          text={cancelBtn.text || 'Отмена'}

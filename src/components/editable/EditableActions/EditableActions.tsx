@@ -49,7 +49,7 @@ class EditableActions extends Component<any> {
          return (
             <span style={nowrap}>
                <span>
-                  <button
+                  <button // TODO: а почему не Button?
                      type="button"
                      onClick={this.props.save}
                      className="btn btn-primary btn-xs">
@@ -57,7 +57,7 @@ class EditableActions extends Component<any> {
                   </button>
                </span>
                <span style={marginLeft}>
-                  <button
+                  <button // TODO: а почему не Button?
                      type="button"
                      onClick={this.cancel}
                      className="btn btn-default btn-xs"
@@ -70,10 +70,11 @@ class EditableActions extends Component<any> {
       } else {
          return (
             <Button
-               // tooltip="Редактировать" // TODO: тут должена быть кнопка-иконка
+               tooltip="Редактировать"
                onClick={this.toggleEdit}
-               icon="fa fa-pencil bigger-130 no-padding-right"
-               className="blue"
+               icon="pencil"
+               iconSize={130}
+               iconColor="blue"
             />
          );
       }

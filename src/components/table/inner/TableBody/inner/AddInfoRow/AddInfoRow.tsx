@@ -1,16 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '../../../../../buttons/Button/Button';
+import { SizeButton } from '../../../../../../utils/type/SizeButton';
+import { ColorButton } from '../../../../../../utils/type/ColorButton';
 
 // TODO: This is old way. Rewrite it!
-const AddInfoRow = ({ columnsLength, /* TODO: href,*/ btnClassName, addAction, text }) => (
+const AddInfoRow = ({ columnsLength, href, btnClassName, addAction, text, btnSize = 'minier', btnColor = 'info' }) => (
    <tr>
       <td colSpan={columnsLength}>
          <Button
-            // href={href} // TODO: здесь должна быть кнопка-иконка-ссылка
-            className={btnClassName || 'btn btn-minier btn-info'}
+            href={href}
+            className={btnClassName}
+            size={btnSize as SizeButton}
+            color={btnColor as ColorButton}
             onClick={addAction}
-            icon="fa fa-plus"
+            icon="plus"
             text={text || 'Добавить информацию'}
          />
       </td>

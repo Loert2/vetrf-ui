@@ -110,10 +110,14 @@ class AutocompleteInput extends PureComponent<any> {
                disabled={button.disabled}
                className={button.className}
                text={button.text}
-               // tooltip={button.tooltip} // TODO: Заменить другим компонентом, по необходимости
+               tooltip={button.tooltip}
+               color={button.color}
+               size={button.size}
                icon={button.icon}
+               iconSize={button.iconSize}
+               iconColor={button.iconColor}
                onClick={button.handleClick}
-               // href={button.href} // TODO: Заменить другим компонентом, по необходимости
+               href={button.href}
             />
          </span>
       );
@@ -178,7 +182,11 @@ class AutocompleteInput extends PureComponent<any> {
       className: PropTypes.string,
       text: PropTypes.string,
       tooltip: PropTypes.string,
+      color: PropTypes.string,
+      size: PropTypes.string,
       icon: PropTypes.string,
+      iconColor: PropTypes.string,
+      iconSize: PropTypes.number,
       href: PropTypes.string,
       handleClick: PropTypes.func
    })

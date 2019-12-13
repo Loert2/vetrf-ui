@@ -19,7 +19,7 @@ import {
    SUB_LOCALITY_FIELD,
    STREET_FIELD
 } from '../inner/ikarAddressConst';
-
+import { Color } from '../../../../../../utils/type/Color';
 
 const getAddressViewLabels = (props) => {
    const {
@@ -55,12 +55,14 @@ const getToggleBtnOptions = (
    if (isShownForm) {
       return {
          tooltip: hideFormTooltip,
-         icon: `fa fa-eye-slash blue bigger-110`
+         icon: 'slash',
+         iconColor: 'blue' as Color
       };
    } else {
       return {
          tooltip: showFormTooltip,
-         icon: `fa fa-pencil blue bigger-110`
+         icon: 'pencil',
+         iconColor: 'blue' as Color
       };
    }
 };
@@ -491,10 +493,13 @@ class IkarAddress extends Component<any> {
             </Form>
             {isShowAddressView && (
                <div className="text-muted ikar-address--address-view">
-                  {addressView}&nbsp;<Button
+                  {addressView}&nbsp;
+                  <Button
                      onClick={this.toggleShowForm}
-                     // tooltip={toggleBtnOptions.tooltip} // TODO: заменить на другой компонент, который поддерживает tooltip
+                     tooltip={toggleBtnOptions.tooltip}
+                     onlyIcon={true}
                      icon={toggleBtnOptions.icon}
+                     iconColor={toggleBtnOptions.iconColor}
                   />
                </div>
             )}

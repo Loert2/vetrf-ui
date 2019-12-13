@@ -24,8 +24,13 @@ class CustomActionButton extends Component {
          id,
          className,
          icon,
+         iconSize,
+         iconColor,
          buttonText,
-         // tooltip, // TODO: Вернуть в процессе переписывания и появления новых компонентов кнопок
+         buttonColor,
+         buttonSize,
+         isOnlyIconButton,
+         tooltip,
          disabled,
          body,
          onConfirm,
@@ -45,10 +50,15 @@ class CustomActionButton extends Component {
                id={id}
                className={className}
                onClick={this.toggleModal}
+               color={buttonColor}
+               size={buttonSize}
                icon={icon}
+               iconSize={iconSize}
+               iconColor={iconColor}
                text={buttonText}
                disabled={disabled}
-               // tooltip={tooltip} // TODO: Вернуть в процессе переписывания и появления новых компонентов кнопок
+               tooltip={tooltip}
+               onlyIcon={isOnlyIconButton}
             />
             {this.state.showModal && (
                <ConfirmModal
@@ -59,7 +69,7 @@ class CustomActionButton extends Component {
                   confirmBtn={{
                      action: onConfirm,
                      disabled: disabledConfirmBtn,
-                     className: confirmBtnClass || 'btn btn-danger',
+                     className: confirmBtnClass || 'btn btn-danger', // TODO: Переписать с учётом нового ком-та Button
                      text: confirmBtnText || 'Удалить',
                      icon: confirmBtnIcon
                   }}
@@ -78,10 +88,15 @@ class CustomActionButton extends Component {
    id: PropTypes.string,
    className: PropTypes.string,
    buttonText: PropTypes.string,
+   buttonColor: PropTypes.string,
+   buttonSize: PropTypes.string,
+   isOnlyIconButton: PropTypes.bool,
    icon: PropTypes.string,
+   iconColor: PropTypes.string,
+   iconSize: PropTypes.number,
    body: PropTypes.node,
    disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-   // tooltip: PropTypes.string, // TODO: Вернуть в процессе переписывания и появления новых компонентов кнопок
+   tooltip: PropTypes.string,
    confirmHeaderText: PropTypes.string,
    confirmBodyText: PropTypes.string,
    confirmBtnClass: PropTypes.string,

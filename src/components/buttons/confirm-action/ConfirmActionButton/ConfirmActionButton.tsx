@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import ConfirmModal from '../../../modal/ConfirmModal/ConfirmModal';
-import { Button } from '../../Button/Button';
+import Button from '../../Button/Button';
 
 // TODO: This is old way. Rewrite it!
 class ConfirmActionButton extends Component<any> {
@@ -34,9 +34,14 @@ class ConfirmActionButton extends Component<any> {
       const {
          id,
          className,
+         buttonColor,
+         buttonSize,
+         isOnlyIconButton,
          icon,
+         iconSize,
+         iconColor,
          buttonText,
-         // tooltip, // TODO: Вернуть в процессе переписывания и появления новых компонентов кнопок
+         tooltip,
          confirmHeaderText,
          confirmBodyText,
          onConfirm,
@@ -55,10 +60,15 @@ class ConfirmActionButton extends Component<any> {
                id={id}
                className={className}
                onClick={this.handleClick}
+               color={buttonColor}
+               size={buttonSize}
                icon={icon}
+               iconSize={iconSize}
+               iconColor={iconColor}
                text={buttonText}
                disabled={disabled}
-               // tooltip={tooltip} // TODO: Вернуть в процессе переписывания и появления новых компонентов кнопок
+               tooltip={tooltip}
+               onlyIcon={isOnlyIconButton}
             />
             {this.state.showModal && (
                <ConfirmModal
@@ -87,8 +97,11 @@ class ConfirmActionButton extends Component<any> {
    id: PropTypes.string,
    className: PropTypes.string,
    buttonText: PropTypes.string,
+   buttonColor: PropTypes.string,
+   buttonSize: PropTypes.string,
+   isOnlyIconButton: PropTypes.bool,
    disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-   // tooltip: PropTypes.string, // TODO: Вернуть в процессе переписывания и появления новых компонентов кнопок
+   tooltip: PropTypes.string,
    confirmHeaderText: PropTypes.string,
    confirmBodyText: PropTypes.node,
    confirmBtnClass: PropTypes.string,
@@ -98,6 +111,8 @@ class ConfirmActionButton extends Component<any> {
    confirmBtnText: PropTypes.string,
    cancelBtnText: PropTypes.string,
    icon: PropTypes.string,
+   iconColor: PropTypes.string,
+   iconSize: PropTypes.number,
    onConfirm: PropTypes.func,
    checkOpportunityToOpenModal: PropTypes.func
 };

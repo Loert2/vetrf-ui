@@ -14,7 +14,7 @@ const nodeShapeWithChildren = PropTypes.oneOfType([
    PropTypes.shape(nodeShape),
    PropTypes.shape({
       ...nodeShape,
-      children: PropTypes.arrayOf(nodeShape).isRequired
+      children: PropTypes.arrayOf(nodeShape as any).isRequired
    })
 ]);
 
