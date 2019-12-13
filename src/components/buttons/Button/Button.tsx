@@ -81,7 +81,7 @@ const Button = (props: ButtonProps) => {
 
    const clickHandler = disabled ? undefined : onClick;
 
-   if ('href' in props) {
+   if ('href' in props && props.href) {
       const { href } = props;
       classNameList.push('decoration-none');
 
