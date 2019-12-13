@@ -1,71 +1,27 @@
-## Проверить на наличие ошибок
+# react-library-example
+
+> Simple example of react library with typescript, rollup, jest, storybook, eslint and prettier
+
+## Install
 
 ```bash
-npm run lint
+npm i -s git+https://github.com/jmorozov/react-library-example.git
 ```
 
-## Запустить тесты 
+## Usage
 
-```bash
-npm run test
+```tsx
+import * as React from 'react';
+import 'react-library-example/dist/index.css';
+import { ExampleComponent } from 'react-library-example';
+
+class Example extends React.Component {
+   render() {
+      return <ExampleComponent text="Test" />;
+   }
+}
 ```
 
-## Скомпилировать для экспорта - сборка перед каждым коммитом
+## License
 
-Перед транспиляцией бабелем происходит линтинг, поэтому есть смысл посмотреть, что
-вам вывела консоль после запуска команды.
-
-```bash
-npm run compile
-```
-
-## Подключение проекта из своей ветки
-
- 1. Сделать изменения в библиотеке. Предлагается вести разарботку либо в песочнице, 
- либо использовать Styleguidist.
- 1. Прописать экспорты в index.js файлах (в корневом и в папке) 
- 1. **Скомпилировать для экспорта**
-    ```bash
-    npm run compile
-    ```
- 1. При компиляции папка lib не заменяется полностью, поэтому старые файлы, которые были удалены-перемещены в src не удаляются из lib, можно удалить папку lib и повторить действие 3
- 1. Commit and Push в свою ветку
- 1. В проекте, в котором используем библиотеку: 
-    * В package.json находим:
-    ```
-    "vetrf-ui": "git+http://git.vetrf.ru/platform/vetrf-ui.git"
-    ```  
-    * В конец после .git добавить #***название ветки*** (по умолчанию бибилиотека подгружается из master)
-    * Например:
-    ```
-    "vetrf-ui": "git+http://git.vetrf.ru/platform/vetrf-ui.git#select-filter"
-    ```
- 1. Обновить зависимости в проекте
-    ```bash
-    npm up
-    ```
- 1. Собрать и запустить проект
-
-
-## Sandbox
-
-Песочница для разработки компонентов представляет собой экземпляр [Create React App](https://github.com/facebookincubator/create-react-app)
-
-## Styleguidist
-
-При изменении конфига, либо добавления новых файлов документации, следует выполнить:
-
-```bash
-npm run styleguide-build
-```
-
-Для запуска сервера Styleguidist выполнить:
-
-```bash
-npm run styleguide-server
-```
-
-Для выполнения этих команд друг за другом одной командой, есть alias:
-
-```bash
-npm run stlg
+MIT © [jmorozov](https://github.com/jmorozov)
