@@ -1,26 +1,31 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import Breadcrumb from './inner/Breadcrumb/Breadcrumb';
+import { Breadcrumb } from './inner/Breadcrumb/Breadcrumb';
 import uniqueId from 'lodash/uniqueId';
 
-// TODO: This is old way. Rewrite it!
-const Breadcrumbs = ({ breadcrumbs }) => (
+export interface BreadcrumbType {
+   link?: string;
+   text: string;
+   active?: boolean;
+}
+
+export interface BreadcrumbsProps {
+   /** Массив хлебных крошек.  Типы передаваемых параметров: link, text, active (смотреть в компоненте Breadcrumb) */
+   breadcrumbs: BreadcrumbType[];
+}
+
+export const Breadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => (
    <div className="breadcrumbs">
       <ul className="breadcrumb">
-         {breadcrumbs.map(elem => <Breadcrumb key={uniqueId()} elem={elem} />)}
+         {breadcrumbs.map((elem, index, array) => (
+            <Breadcrumb
+               key={uniqueId()}
+               link={elem.link}
+               text={elem.text}
+               active={index === array.length - 1 ? (elem.active = true) : elem.active}
+            />
+         ))}
       </ul>
    </div>
 );
-
-Breadcrumbs.propTypes = {
-   breadcrumbs: PropTypes.arrayOf(
-      PropTypes.shape({
-         link: PropTypes.string,
-         text: PropTypes.string,
-         active: PropTypes.bool
-      })
-   ),
-   search: PropTypes.object
-};
 
 export default Breadcrumbs;
