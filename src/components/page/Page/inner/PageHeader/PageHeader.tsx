@@ -4,18 +4,18 @@ import Icon from '../../../../other/Icon/Icon';
 
 export interface PageHeaderProps {
    /** Заголовок */
-   header?: string;
+   header: string;
    /** Стили заголовка */
    headerClassName?: string;
-   /** Подзаголовок */
+   /** Маленький подзаголовок (отрисовывается справа от основного через знак  ">>") */
    subHeader?: string;
    /** Панель */
    toolbar?: ReactNode;
    /** Стили панели */
    toolbarClassName?: string;
-   /** Первый дополнительный компонент */
+   /** Какой-либо дополнительный компонент справа от самого заголовка и подзаголовка */
    additionalInfo?: ReactNode;
-   /** Второй дополнительный компонент */
+   /** Вторая строка заголовка (компонент) с дополнительной информацией */
    secondLineInfo?: ReactNode;
 }
 
