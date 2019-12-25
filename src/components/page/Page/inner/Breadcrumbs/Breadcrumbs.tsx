@@ -5,11 +5,10 @@ import uniqueId from 'lodash/uniqueId';
 export interface BreadcrumbType {
    link?: string;
    text: string;
-   active?: boolean;
 }
 
 export interface BreadcrumbsProps {
-   /** Массив хлебных крошек.  Типы передаваемых параметров: link, text, active (смотреть в компоненте Breadcrumb) */
+   /** Массив хлебных крошек */
    breadcrumbs: BreadcrumbType[];
 }
 
@@ -21,7 +20,7 @@ export const Breadcrumbs = ({ breadcrumbs }: BreadcrumbsProps) => (
                key={uniqueId()}
                link={elem.link}
                text={elem.text}
-               active={index === array.length - 1 ? (elem.active = true) : elem.active}
+               active={index === array.length - 1}
             />
          ))}
       </ul>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import uniqueId from 'lodash/uniqueId';
 
 export interface BreadcrumbProps {
    /** Ссылка */
@@ -12,8 +11,8 @@ export interface BreadcrumbProps {
 }
 
 export const Breadcrumb = ({ active, text, link }: BreadcrumbProps) => (
-   <li key={uniqueId()} className={active && 'active'}>
-      {link ? <Link to={link}> {text} </Link> : <span> {text} </span>}
+   <li className={active && 'active'}>
+      {link && !active ? <Link to={link}> {text} </Link> : <span> {text} </span>}
    </li>
 );
 

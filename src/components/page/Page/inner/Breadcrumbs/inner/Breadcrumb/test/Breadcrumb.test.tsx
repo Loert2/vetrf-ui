@@ -79,20 +79,15 @@ describe('Breadcrumb', () => {
          </MemoryRouter>
       );
 
-      //active срабатывает с задержкой, так как он реализован через стили
-      setTimeout(
-         () =>
-            component
-               .find('Link')
-               .at(0)
-               .simulate('click', { button: 0 }),
-         300
-      );
+      component
+         .find('span')
+         .at(0)
+         .simulate('click', { button: 0 });
 
       expect(component.find('h2').text()).toEqual('Главная страница');
    });
 
-   it('should renders link', () => {
+   it('should renders span', () => {
       const component = mount(
          <MemoryRouter initialEntries={['/']}>
             <Breadcrumb text="Крошка" />
@@ -102,7 +97,7 @@ describe('Breadcrumb', () => {
       expect(component.find('span').length).toEqual(1);
    });
 
-   it('should renders span', () => {
+   it('should renders link', () => {
       const component = mount(
          <MemoryRouter initialEntries={['/']}>
             <Breadcrumb link="/example" text="Крошка-ссылка" />
@@ -112,26 +107,30 @@ describe('Breadcrumb', () => {
       expect(component.find('Link').length).toEqual(1);
    });
 
-   it('should renders text', () => {
+   it('should renders text in Link', () => {
       const component = mount(
-         <MemoryRouter initialEntries={['/']}>
-            <Breadcrumb text="Крошка" />
-         </MemoryRouter>
-      );
-      const componentLink = mount(
          <MemoryRouter initialEntries={['/']}>
             <Breadcrumb link="/example" text="Крошка-ссылка" />
          </MemoryRouter>
       );
 
+      expect(component.find('Link').text()).toEqual(' Крошка-ссылка ');
+   });
+
+   it('should renders text in span', () => {
+      const component = mount(
+         <MemoryRouter initialEntries={['/']}>
+            <Breadcrumb text="Крошка" />
+         </MemoryRouter>
+      );
+
       expect(component.find('span').text()).toEqual(' Крошка ');
-      expect(componentLink.find('Link').text()).toEqual(' Крошка-ссылка ');
    });
 
    it('with active prop should correctly form className', () => {
       const component = mount(
          <MemoryRouter initialEntries={['/']}>
-            <Breadcrumb text="Крошка-ссылка" active />
+            <Breadcrumb text="Крошка" active />
          </MemoryRouter>
       );
 

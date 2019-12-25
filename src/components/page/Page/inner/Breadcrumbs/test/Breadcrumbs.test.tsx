@@ -55,32 +55,26 @@ describe('Breadcrumbs', () => {
          </MemoryRouter>
       );
 
-      expect(component.find('Link').length).toEqual(2);
+      const countBreadcrumbs = component.find('Link').length + component.find('span').length;
+
+      expect(twoBreadcrumbs).toHaveLength(countBreadcrumbs);
    });
 
-   it('in last breadcrumb with active prop should correctly form classNames', () => {
-      const componentFromBreadcrumb = mount(
-         <MemoryRouter initialEntries={['/']}>
-            <Breadcrumbs breadcrumbs={breadcrumb} />
-         </MemoryRouter>
-      );
-      const componentFromTwoBreadcrumbs = mount(
-         <MemoryRouter initialEntries={['/']}>
-            <Breadcrumbs breadcrumbs={twoBreadcrumbs} />
-         </MemoryRouter>
-      );
+   it.each([[breadcrumb], [twoBreadcrumbs]])(
+      'in last breadcrumb with active prop should correctly renderer span',
+      (arrayBreadcrumbs) => {
+         const component = mount(
+            <MemoryRouter initialEntries={['/']}>
+               <Breadcrumbs breadcrumbs={arrayBreadcrumbs} />
+            </MemoryRouter>
+         );
 
-      expect(
-         componentFromBreadcrumb
-            .find('li')
-            .at(breadcrumb.length - 1)
-            .hasClass('active')
-      ).toEqual(true);
-      expect(
-         componentFromTwoBreadcrumbs
-            .find('li')
-            .at(twoBreadcrumbs.length - 1)
-            .hasClass('active')
-      ).toEqual(true);
-   });
+         expect(
+            component
+               .find('li')
+               .at(arrayBreadcrumbs.length - 1)
+               .find('span').length
+         ).toEqual(1);
+      }
+   );
 });

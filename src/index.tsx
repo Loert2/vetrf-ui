@@ -10,14 +10,6 @@ import {
 import { Alert, AlertProps } from './components/other/Alert/Alert';
 import { withTooltip, WithTooltipProps } from './components/hoc/WithTooltip/withTooltip';
 import Button, { ButtonProps } from './components/buttons/Button/Button';
-import {
-   Breadcrumb,
-   BreadcrumbProps
-} from './components/page/Page/inner/Breadcrumbs/inner/Breadcrumb/Breadcrumb';
-import {
-   Breadcrumbs,
-   BreadcrumbsProps
-} from './components/page/Page/inner/Breadcrumbs/Breadcrumbs';
 
 /**
  * -------------------------------------------------------------------------------------------------
@@ -139,8 +131,6 @@ export { LoadingSpinner, LoadingSpinnerProps };
 export { Alert, AlertProps };
 export { withTooltip, WithTooltipProps };
 export { Button, ButtonProps };
-export { Breadcrumb, BreadcrumbProps };
-export { Breadcrumbs, BreadcrumbsProps };
 
 /**
  * -------------------------------------------------------------------------------------------------
