@@ -144,7 +144,7 @@ export { ModalDialog };
 export { ConfirmModal };
 export { ItemLinkList };
 
-export { Form }
+export { Form };
 export { FormActionsPanel };
 export { FormAction };
 
@@ -225,7 +225,7 @@ export { Widget };
 export { default as setIn } from './utils/function/setIn';
 export { default as deleteIn } from './utils/function/deleteIn';
 
-export { useOnClickOutside }
-export { useClose }
-export { useToggle }
+export { useOnClickOutside };
+export { useClose };
+export { useToggle };
 /** ------------------------------------------------------------------------------------------------ */
