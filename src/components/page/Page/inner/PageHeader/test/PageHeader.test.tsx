@@ -27,7 +27,9 @@ describe('PageHeader', () => {
    });
 
    it('with headerClassName prop should correctly form className', () => {
-      const component = mount(<PageHeader headerClassName="col-xs-6 no-padding-left" />);
+      const component = mount(
+         <PageHeader header="Заголовок" headerClassName="col-xs-6 no-padding-left" />
+      );
 
       expect(
          component
@@ -38,7 +40,9 @@ describe('PageHeader', () => {
    });
 
    it('with toolbar prop should correctly form headerClassName', () => {
-      const component = mount(<PageHeader toolbar={<button>Кнопка тулбара</button>} />);
+      const component = mount(
+         <PageHeader header="Заголовок" toolbar={<button>Кнопка тулбара</button>} />
+      );
 
       expect(
          component
@@ -49,7 +53,9 @@ describe('PageHeader', () => {
    });
 
    it('should render toolbar correctly', () => {
-      const component = mount(<PageHeader toolbar={<button>Кнопка тулбара</button>} />);
+      const component = mount(
+         <PageHeader header="Заголовок" toolbar={<button>Кнопка тулбара</button>} />
+      );
 
       expect(component.find('button').length).toEqual(1);
    });
@@ -57,6 +63,7 @@ describe('PageHeader', () => {
    it('with toolbarClassName prop should correctly form className', () => {
       const component = mount(
          <PageHeader
+            header="Заголовок"
             toolbar={<button>Кнопка тулбара</button>}
             toolbarClassName="col-xs-6 col-lg-4 no-padding-right toolbar-container"
          />
@@ -71,14 +78,17 @@ describe('PageHeader', () => {
    });
 
    it('should render subHeader correctly', () => {
-      const component = mount(<PageHeader subHeader="Подзаголовок" />);
+      const component = mount(<PageHeader header="Заголовок" subHeader="Подзаголовок" />);
 
       expect(component.find('small').length).toEqual(1);
    });
 
    it('should render additionalInfo correctly', () => {
       const component = mount(
-         <PageHeader additionalInfo={<small>Первый дополнительный компонент</small>} />
+         <PageHeader
+            header="Заголовок"
+            additionalInfo={<small>Первый дополнительный компонент</small>}
+         />
       );
 
       expect(component.find('small').length).toEqual(1);
@@ -86,7 +96,10 @@ describe('PageHeader', () => {
 
    it('should render secondLineInfo correctly', () => {
       const component = mount(
-         <PageHeader secondLineInfo={<small>Второй дополнительный компонент</small>} />
+         <PageHeader
+            header="Заголовок"
+            secondLineInfo={<small>Второй дополнительный компонент</small>}
+         />
       );
 
       expect(component.find('small').length).toEqual(1);
@@ -99,7 +112,7 @@ describe('PageHeader', () => {
    });
 
    it('should render text subHeader correctly', () => {
-      const component = mount(<PageHeader subHeader="Подзаголовок" />);
+      const component = mount(<PageHeader header="Заголовок" subHeader="Подзаголовок" />);
 
       expect(
          component

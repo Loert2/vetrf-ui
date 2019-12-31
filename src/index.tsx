@@ -75,7 +75,7 @@ import IkarAddressRussia from './components/form/fields/base/ikar/IkarAddressRus
 import IkarAddress from './components/form/fields/base/ikar/IkarAddress/IkarAddress';
 import IkarAddressFormGroup from './components/form/fields/field/ikar/IkarAddressFormGroup/IkarAddressFormGroup';
 
-import SubHeader from './components/page/SubHeader/SubHeader';
+import SubHeader, { SubHeaderProps } from './components/page/SubHeader/SubHeader';
 import Page from './components/page/Page/Page';
 import ScrollToTop from './components/page/ScrollToTop/ScrollToTop';
 import SimplePage from './components/page/SimplePage/SimplePage';
@@ -196,7 +196,7 @@ export { IkarAddressRussia };
 export { IkarAddress };
 export { IkarAddressFormGroup };
 
-export { SubHeader };
+export { SubHeader, SubHeaderProps };
 export { ScrollToTop };
 export { Page };
 export { SimplePage };
