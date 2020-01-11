@@ -250,7 +250,7 @@ class IkarAddress extends Component<any> {
 
          case DISTRICT_FIELD:
             return (district) => {
-               let address = {
+               const address = {
                   ...this.props.address,
                   district: null,
                   locality: null,
@@ -262,7 +262,7 @@ class IkarAddress extends Component<any> {
 
          case LOCALITY_FIELD:
             return (locality) => {
-               let address = {
+               const address = {
                   ...this.props.address,
                   locality: null,
                   subLocality: null,
@@ -273,7 +273,7 @@ class IkarAddress extends Component<any> {
 
          case SUB_LOCALITY_FIELD:
             return (subLocality) => {
-               let address = {
+               const address = {
                   ...this.props.address,
                   subLocality: null,
                   street: null
@@ -283,7 +283,7 @@ class IkarAddress extends Component<any> {
 
          case STREET_FIELD:
             return (street) => {
-               let address = {
+               const address = {
                   ...this.props.address,
                   street: street
                };

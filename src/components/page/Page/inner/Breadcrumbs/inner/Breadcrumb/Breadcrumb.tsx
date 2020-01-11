@@ -11,7 +11,7 @@ export interface BreadcrumbProps {
 }
 
 export const Breadcrumb = ({ active, text, link }: BreadcrumbProps) => (
-   <li className={active && 'active'}>
+   <li className={active ? 'active' : undefined}>
       {link && !active ? <Link to={link}> {text} </Link> : <span> {text} </span>}
    </li>
 );

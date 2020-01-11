@@ -100,7 +100,7 @@ class CheckboxTree extends React.Component<any> {
    }
 
    getIconsElements(icons) {
-      for (let iconName in icons) {
+      for (const iconName in icons) {
          if (icons.hasOwnProperty(iconName)) {
             this.iconsElements[iconName] = (
                <i className={classNames(ICON_PREFIX, icons[iconName])} />
