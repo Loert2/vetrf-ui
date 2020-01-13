@@ -1,28 +1,62 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
+import { Icon } from '../../other/Icon/Icon';
+import { Color as ColorIcon } from '../../../utils/type/Color';
+import { Size as SizeIcon } from '../../../utils/type/Size';
 
-// TODO: This is old way. Rewrite it!
-const SubHeader = (props) => (
+export type LevelType = 2 | 3 | 4 | 5 | 6;
+
+export interface SubHeaderProps {
+   /** Заголовок */
+   header: string;
+   /** Стили */
+   className?: string;
+   /** Уровень заголовка */
+   level?: LevelType;
+   /** Иконка. Допустимые типы передаваемых параметров: https://fontawesome.com/v4.7.0/icons/.
+           Вместо полного css-класса иконки необходимо указывать её название без префикса fa-, например file, а не fa-file */
+   icon: string;
+   /** Цвет иконки */
+   colorIcon?: ColorIcon;
+   /** Размер иконки */
+   sizeIcon?: SizeIcon;
+   /** Подпись (добавляется снизу заголовка) */
+   description?: string;
+   /** Нижняя гланица */
+   underline?: boolean;
+   /** Панель */
+   toolbar?: ReactNode;
+}
+
+function levelHeader({ level, className, icon, colorIcon, sizeIcon, header }: SubHeaderProps) {
+   const childrenComponent = (
+      <React.Fragment>
+         <Icon icon={icon} color={colorIcon} size={sizeIcon} />
+         &nbsp;{header}
+      </React.Fragment>
+   );
+   return React.createElement(`h${level}`, { className }, childrenComponent);
+}
+
+export const SubHeader = ({
+   className = 'lighter',
+   icon,
+   colorIcon,
+   sizeIcon,
+   header,
+   level = 4,
+   description,
+   underline,
+   toolbar
+}: SubHeaderProps) => (
    <div>
-      <div className={classNames('widget-header-my', props.underline && 'header blue')}>
-         <h4 className={props.className || 'lighter'}>
-            <i className={props.icon} />
-            &nbsp;{props.header}
-         </h4>&nbsp;
-         {props.toolbar}
+      <div className={classNames('widget-header-my', underline && 'header blue')}>
+         {levelHeader({ level, className, icon, colorIcon, sizeIcon, header })}
+         &nbsp;
+         {toolbar}
       </div>
-      {props.description && <p>{props.description}</p>}
+      {description && <p>{description}</p>}
    </div>
 );
-
-SubHeader.propTypes = {
-   className: PropTypes.string,
-   icon: PropTypes.string,
-   header: PropTypes.string,
-   description: PropTypes.string,
-   underline: PropTypes.bool,
-   toolbar: PropTypes.node
-};
 
 export default SubHeader;
