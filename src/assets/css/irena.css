@@ -610,18 +610,10 @@ a.remove-attached-file {
 .widget-header-my {
    color: rgb(67, 131, 180);
 }
-.widget-header-my h2 {
-   display: inline-block;
-}
-.widget-header-my h3 {
-   display: inline-block;
-}
-.widget-header-my h4 {
-   display: inline-block;
-}
-.widget-header-my h5 {
-   display: inline-block;
-}
+.widget-header-my h2,
+.widget-header-my h3,
+.widget-header-my h4,
+.widget-header-my h5,
 .widget-header-my h6 {
    display: inline-block;
 }

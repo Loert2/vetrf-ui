@@ -29,46 +29,13 @@ export interface SubHeaderProps {
 }
 
 function levelHeader({ level, className, icon, colorIcon, sizeIcon, header }: SubHeaderProps) {
-   const IconComponent = () => <Icon icon={icon} color={colorIcon} size={sizeIcon} />;
-   switch (level) {
-      case 2:
-         return (
-            <h2 className={className}>
-               <IconComponent />
-               &nbsp;{header}
-            </h2>
-         );
-      case 3:
-         return (
-            <h3 className={className}>
-               <IconComponent />
-               &nbsp;{header}
-            </h3>
-         );
-      case 4:
-         return (
-            <h4 className={className}>
-               <IconComponent />
-               &nbsp;{header}
-            </h4>
-         );
-      case 5:
-         return (
-            <h5 className={className}>
-               <IconComponent />
-               &nbsp;{header}
-            </h5>
-         );
-      case 6:
-         return (
-            <h6 className={className}>
-               <IconComponent />
-               &nbsp;{header}
-            </h6>
-         );
-      default:
-         return null;
-   }
+   const childrenComponent = (
+      <React.Fragment>
+         <Icon icon={icon} color={colorIcon} size={sizeIcon} />
+         &nbsp;{header}
+      </React.Fragment>
+   );
+   return React.createElement(`h${level}`, { className }, childrenComponent);
 }
 
 export const SubHeader = ({
