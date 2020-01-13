@@ -76,7 +76,7 @@ import IkarAddress from './components/form/fields/base/ikar/IkarAddress/IkarAddr
 import IkarAddressFormGroup from './components/form/fields/field/ikar/IkarAddressFormGroup/IkarAddressFormGroup';
 
 import SubHeader, { SubHeaderProps } from './components/page/SubHeader/SubHeader';
-import Page from './components/page/Page/Page';
+import Page, { PageProps } from './components/page/Page/Page';
 import ScrollToTop from './components/page/ScrollToTop/ScrollToTop';
 import SimplePage from './components/page/SimplePage/SimplePage';
 
@@ -198,7 +198,7 @@ export { IkarAddressFormGroup };
 
 export { SubHeader, SubHeaderProps };
 export { ScrollToTop };
-export { Page };
+export { Page, PageProps };
 export { SimplePage };
 
 export { NumberEditableForm };
