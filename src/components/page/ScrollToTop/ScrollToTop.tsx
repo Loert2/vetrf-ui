@@ -1,10 +1,9 @@
 import { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-// TODO: This is old way. Rewrite it!
-class ScrollToTop extends Component<any> {
+class ScrollToTop extends Component<RouteComponentProps> {
    componentDidUpdate(prevProps) {
-      if (this.props.location !== prevProps.location) {
+      if (this.props.location.pathname !== prevProps.location.pathname) {
          window.scrollTo(0, 0);
       }
    }

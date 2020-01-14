@@ -18,7 +18,7 @@ const Datetime = require('react-datetime');
 // TODO: This is old way. Rewrite it!
 const getValue = (value, format) => {
    if (!isEmpty(value)) {
-      let newValue = Moment(value, format, true);
+      const newValue = Moment(value, format, true);
       if (newValue.isValid()) {
          return newValue;
       }

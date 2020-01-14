@@ -75,10 +75,9 @@ import IkarAddressRussia from './components/form/fields/base/ikar/IkarAddressRus
 import IkarAddress from './components/form/fields/base/ikar/IkarAddress/IkarAddress';
 import IkarAddressFormGroup from './components/form/fields/field/ikar/IkarAddressFormGroup/IkarAddressFormGroup';
 
-import SubHeader from './components/page/SubHeader/SubHeader';
-import Page from './components/page/Page/Page';
+import SubHeader, { SubHeaderProps } from './components/page/SubHeader/SubHeader';
+import Page, { PageProps } from './components/page/Page/Page';
 import ScrollToTop from './components/page/ScrollToTop/ScrollToTop';
-import SimplePage from './components/page/SimplePage/SimplePage';
 
 import NumberEditableForm from './components/editable/NumberEditableForm/NumberEditableForm';
 import EditableActions from './components/editable/EditableActions/EditableActions';
@@ -144,7 +143,7 @@ export { ModalDialog };
 export { ConfirmModal };
 export { ItemLinkList };
 
-export { Form }
+export { Form };
 export { FormActionsPanel };
 export { FormAction };
 
@@ -196,10 +195,9 @@ export { IkarAddressRussia };
 export { IkarAddress };
 export { IkarAddressFormGroup };
 
-export { SubHeader };
+export { SubHeader, SubHeaderProps };
 export { ScrollToTop };
-export { Page };
-export { SimplePage };
+export { Page, PageProps };
 
 export { NumberEditableForm };
 export { EditableActions };
@@ -225,7 +223,7 @@ export { Widget };
 export { default as setIn } from './utils/function/setIn';
 export { default as deleteIn } from './utils/function/deleteIn';
 
-export { useOnClickOutside }
-export { useClose }
-export { useToggle }
+export { useOnClickOutside };
+export { useClose };
+export { useToggle };
 /** ------------------------------------------------------------------------------------------------ */
