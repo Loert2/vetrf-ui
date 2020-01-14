@@ -7,7 +7,7 @@ export interface PageProps {
    /** Заголовок сайта */
    title: string;
    /** Контент */
-   children: ReactNode;
+   children?: ReactNode;
    /** Массив хлебных крошек */
    breadcrumbs?: BreadcrumbType[];
    /** Заголовок страницы */
