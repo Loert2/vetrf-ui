@@ -1,53 +1,66 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import DocumentTitle from 'react-document-title';
-
-import Breadcrumbs from './inner/Breadcrumbs/Breadcrumbs';
+import { Breadcrumbs, BreadcrumbType } from './inner/Breadcrumbs/Breadcrumbs';
 import PageHeader from './inner/PageHeader/PageHeader';
 
-// TODO: This is old way. Rewrite it!
-const Page = (props) => (
-   <DocumentTitle title={props.title || 'Ирена'}>
+export interface PageProps {
+   /** Заголовок сайта */
+   title: string;
+   /** Контент */
+   children: ReactNode;
+   /** Массив хлебных крошек */
+   breadcrumbs?: BreadcrumbType[];
+   /** Заголовок страницы */
+   header?: string;
+   /** Стили заголовка */
+   headerClassName?: string;
+   /** Маленький подзаголовок (отрисовывается справа от основного через знак  ">>") */
+   subHeader?: string;
+   /** Панель */
+   toolbar?: ReactNode;
+   /** Стили панели */
+   toolbarClassName?: string;
+   /** Какой-либо дополнительный компонент справа от самого заголовка и подзаголовка */
+   additionalInfo?: ReactNode;
+   /** Вторая строка заголовка (компонент) с дополнительной информацией */
+   secondLineInfo?: ReactNode;
+}
+
+export const Page = ({
+   breadcrumbs,
+   children,
+   title,
+   toolbar,
+   toolbarClassName,
+   header,
+   headerClassName,
+   subHeader,
+   additionalInfo,
+   secondLineInfo
+}: PageProps) => (
+   <DocumentTitle title={title}>
       <div className="main-content-inner">
-         <Breadcrumbs breadcrumbs={props.breadcrumbs} />
+         {breadcrumbs && <Breadcrumbs breadcrumbs={breadcrumbs} />}
          <div className="page-content">
             <div className="row">
                <div className="col-xs-12">
-                  <PageHeader
-                     header={props.header}
-                     headerClassName={props.headerClassName}
-                     additionalInfo={props.additionalInfo}
-                     toolbar={props.toolbar}
-                     toolbarClassName={props.toolbarClassName}
-                     subHeader={props.subHeader}
-                     secondLineInfo={props.headerSecondLine}
-                  />
-                  {props.children}
+                  {header && (
+                     <PageHeader
+                        header={header}
+                        headerClassName={headerClassName}
+                        additionalInfo={additionalInfo}
+                        toolbar={toolbar}
+                        toolbarClassName={toolbarClassName}
+                        subHeader={subHeader}
+                        secondLineInfo={secondLineInfo}
+                     />
+                  )}
+                  {children}
                </div>
             </div>
          </div>
       </div>
    </DocumentTitle>
 );
-
-Page.propTypes = {
-   breadcrumbs: PropTypes.arrayOf(
-      PropTypes.shape({
-         link: PropTypes.string,
-         text: PropTypes.string,
-         home: PropTypes.bool,
-         active: PropTypes.bool
-      })
-   ),
-   children: PropTypes.node,
-   title: PropTypes.string,
-   toolbar: PropTypes.node,
-   additionalInfo: PropTypes.node,
-   headerSecondLine: PropTypes.node,
-   subHeader: PropTypes.string,
-   headerClassName: PropTypes.string,
-   toolbarClassName: PropTypes.string,
-   header: PropTypes.string
-};
 
 export default Page;
