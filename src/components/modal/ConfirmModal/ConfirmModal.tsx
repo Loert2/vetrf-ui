@@ -25,7 +25,7 @@ class ConfirmModal extends Component {
       const { header, body, confirmBtn, onClose, cancelBtn, bodyText }: any = this.props;
 
       return (
-         <Modal style={{ display: this.state.show ? 'block' : 'none' }}>
+         <Modal isVisible={this.state.show}>
             <HeaderModal
                title={header}
                onClose={() => {

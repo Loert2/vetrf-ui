@@ -1,10 +1,18 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { ReactNode } from 'react';
+import classNames from 'classnames';
 
-// TODO: This is old way. Rewrite it!
-const Modal = ({ style, children, width }) => (
+export interface ModalProps {
+   /** Видимость */
+   isVisible?: boolean;
+   /** Контент */
+   children: ReactNode;
+   /** Ширина */
+   width?: string;
+}
+
+export const Modal = ({ isVisible, children, width }: ModalProps) => (
    <div>
-      <div style={style} className="bootbox modal fade bootbox-prompt in">
+      <div className={classNames('bootbox modal fade bootbox-prompt in', isVisible && 'show')}>
          <div className="modal-dialog" style={{ width: width }}>
             <div className="modal-content">{children}</div>
          </div>
@@ -12,11 +20,5 @@ const Modal = ({ style, children, width }) => (
       <div className="modal-backdrop fade in" />
    </div>
 );
-
-Modal.propTypes = {
-   style: PropTypes.object,
-   children: PropTypes.node,
-   width: PropTypes.string
-};
 
 export default Modal;
