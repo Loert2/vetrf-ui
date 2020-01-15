@@ -35,7 +35,7 @@ class ModalDialog extends Component {
       }: any = this.props;
 
       return (
-         <Modal style={{ display: this.state.show ? 'block' : 'none' }} width={width}>
+         <Modal isVisible={this.state.show} width={width}>
             <HeaderModal
                className={headerClass}
                title={header}
