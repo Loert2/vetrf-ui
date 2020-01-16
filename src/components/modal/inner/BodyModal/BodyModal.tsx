@@ -1,19 +1,16 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 
-// TODO: This is old way. Rewrite it!
-const BodyModal = ({ className, style, children }) => (
-   <div className={className || 'modal-body'} style={style}>
+export interface BodyModalProps extends HTMLAttributes<HTMLDivElement> {
+   /** Контент */
+   children: ReactNode;
+}
+
+export const BodyModal = ({ className = 'modal-body', children }: BodyModalProps) => (
+   <div className={className}>
       <div className="row">
          <div className="col-xs-12">{children}</div>
       </div>
    </div>
 );
-
-BodyModal.propTypes = {
-   style: PropTypes.object,
-   className: PropTypes.string,
-   children: PropTypes.node
-};
 
 export default BodyModal;
