@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import classNames from 'classnames';
 
 export interface ModalProps {
    /** Видимость */
@@ -10,13 +11,17 @@ export interface ModalProps {
 }
 
 export const Modal = ({ isVisible, children, width }: ModalProps) => (
-   <div className={isVisible ? 'show' : 'hide'}>
-      <div className="bootbox modal fade bootbox-prompt in">
+   <div>
+      <div
+         className={classNames(
+            'bootbox modal fade bootbox-prompt in',
+            isVisible ? 'show' : 'hide'
+         )}>
          <div className="modal-dialog" style={{ width }}>
             <div className="modal-content">{children}</div>
          </div>
       </div>
-      <div className="modal-backdrop fade in" />
+      <div className={classNames('modal-backdrop', isVisible ? 'in' : 'fade')} />
    </div>
 );
 
