@@ -1,48 +1,79 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-
+import { ColorButton } from '../../../../utils/type/ColorButton';
+import { SizeButton } from '../../../../utils/type/SizeButton';
 import CustomFooterModal from '../CustomFooterModal/CustomFooterModal';
 import Button from '../../../buttons/Button/Button';
 
-// TODO: This is old way. Rewrite it!
-const ConfirmFooterModal = ({ className, confirmBtn, cancelBtn }) => (
+export type ConfirmButton = {
+   /** Стили кнопки */
+   className?: string;
+   /** Текст кнопки */
+   text?: string;
+   /** Цвет кнопки */
+   color?: ColorButton;
+   /** Размер кнопки */
+   size?: SizeButton;
+   /** Иконка кнопки. Допустимые типы передаваемых параметров: https://fontawesome.com/v4.7.0/icons/.
+    Вместо полного css-класса иконки необходимо указывать её название без префикса fa-, например file, а не fa-file */
+   icon?: string;
+   /** Действие при нажатии на кнопку */
+   action?: () => void;
+   /** Блокировка кнопки */
+   disabled?: boolean;
+};
+
+export type CancelButton = {
+   /** Стили кнопки */
+   className?: string;
+   /** Текст кнопки */
+   text?: string;
+   /** Размер кнопки */
+   size?: SizeButton;
+   /** Иконка кнопки. Допустимые типы передаваемых параметров: https://fontawesome.com/v4.7.0/icons/.
+    Вместо полного css-класса иконки необходимо указывать её название без префикса fa-, например file, а не fa-file */
+   icon?: string;
+   /** Действие при нажатии на кнопку */
+   action?: () => void;
+   /** Ссылка */
+   href?: string;
+};
+
+export interface ConfirmFooterModalProps {
+   /** Стили */
+   className?: string;
+   /** Кнопка подтверждения */
+   confirmBtn?: ConfirmButton;
+   /** Кнопка отмены */
+   cancelBtn?: CancelButton;
+}
+
+export const ConfirmFooterModal = ({
+   className,
+   confirmBtn = {},
+   cancelBtn = {}
+}: ConfirmFooterModalProps) => (
    <CustomFooterModal className={className}>
-      {confirmBtn &&
-         confirmBtn.action && (
-            <Button // TODO: расширить возможности под новый компонент Button
-               disabled={confirmBtn.disabled}
-               onClick={confirmBtn.action}
-               className={confirmBtn.className || 'btn btn-success'}
-               icon={confirmBtn.icon}
-               text={confirmBtn.text || 'Добавить'}
-            />
-         )}
-      <Button // TODO: расширить возможности под новый компонент Button
+      {confirmBtn && confirmBtn.action && (
+         <Button
+            onClick={confirmBtn.action}
+            text={confirmBtn.text || 'Добавить'}
+            disabled={confirmBtn.disabled}
+            className={confirmBtn.className}
+            color={confirmBtn.color || 'success'}
+            size={confirmBtn.size}
+            icon={confirmBtn.icon}
+         />
+      )}
+      <Button
          onClick={cancelBtn.action}
-         href={cancelBtn.href}
-         className="btn btn-default"
-         icon={cancelBtn.icon}
          text={cancelBtn.text || 'Отмена'}
+         href={cancelBtn.href}
+         className={cancelBtn.className}
+         color="default"
+         size={cancelBtn.size}
+         icon={cancelBtn.icon}
       />
    </CustomFooterModal>
 );
-
-ConfirmFooterModal.propTypes = {
-   className: PropTypes.string,
-   confirmBtn: PropTypes.shape({
-      disabled: PropTypes.string,
-      action: PropTypes.func,
-      className: PropTypes.string,
-      text: PropTypes.string,
-      icon: PropTypes.string
-   }),
-   cancelBtn: PropTypes.shape({
-      action: PropTypes.func,
-      text: PropTypes.string,
-      icon: PropTypes.string
-   })
-};
-
-ConfirmFooterModal.defaultProps = { confirmBtn: {}, cancelBtn: {} };
 
 export default ConfirmFooterModal;
