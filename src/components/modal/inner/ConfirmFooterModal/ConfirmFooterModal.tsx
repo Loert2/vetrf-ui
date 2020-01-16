@@ -49,11 +49,11 @@ export interface ConfirmFooterModalProps {
 
 export const ConfirmFooterModal = ({
    className,
-   confirmBtn = {},
+   confirmBtn,
    cancelBtn = {}
 }: ConfirmFooterModalProps) => (
    <CustomFooterModal className={className}>
-      {confirmBtn && confirmBtn.action && (
+      {confirmBtn?.action && (
          <Button
             onClick={confirmBtn.action}
             text={confirmBtn.text || 'Добавить'}

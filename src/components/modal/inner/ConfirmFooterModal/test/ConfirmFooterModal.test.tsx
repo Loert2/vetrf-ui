@@ -82,10 +82,6 @@ describe('ConfirmFooterModal', () => {
       const action = jest.fn();
       const component = mount(<ConfirmFooterModal cancelBtn={{ action }} />);
 
-      const component1 = create(<ConfirmFooterModal cancelBtn={{ action }} />);
-      const json = component1.toJSON();
-      expect(json).toMatchSnapshot();
-
       component
          .find('button')
          .at(0)
