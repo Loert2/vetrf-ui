@@ -1,20 +1,19 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 
-// TODO: This is old way. Rewrite it!
-const HeaderModal = ({ className, onClose, title }) => (
-   <div className={className || 'modal-header'}>
+export interface HeaderModalProps extends HTMLAttributes<HTMLDivElement> {
+   /** Заголовок */
+   title: string;
+   /** Закрытие при нажатии на кнопку. Обработчик кнопки передаётся извне */
+   onClose?: () => void;
+}
+
+export const HeaderModal = ({ className = 'modal-header', onClose, title }: HeaderModalProps) => (
+   <div className={className}>
       <button type="button" className="close" onClick={onClose}>
          &times;
       </button>
       <h4 className="modal-title">{title}</h4>
    </div>
 );
-
-HeaderModal.propTypes = {
-   title: PropTypes.string,
-   className: PropTypes.string,
-   onClose: PropTypes.func
-};
 
 export default HeaderModal;
