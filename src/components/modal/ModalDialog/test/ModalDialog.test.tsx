@@ -28,6 +28,7 @@ describe('ModalDialog', () => {
             <ModalDialog
                header="Заголовок"
                children="Контент"
+               onClose={jest.fn()}
                confirmBtn={{
                   action: jest.fn(),
                   text: 'Подтвердить',
@@ -50,93 +51,44 @@ describe('ModalDialog', () => {
       expect(json).toMatchSnapshot();
    });
 
-   //TODO Так как нельзя передать функцию в HeaderModal, то проверяем работоспособность кнопки по видимости модального окна
-   it('should in HeaderModal onClick correctly called ', () => {
-      const component = mount(<ModalDialog header="Заголовок" children="Контент" />);
+   it('should onClose correctly called and should correctly form class hide for concealment component', () => {
+      const component = mount(
+         <ModalDialog header="Заголовок" children="Контент" onClose={jest.fn()} />
+      );
 
-      component
-         .find('button')
-         .first()
-         .simulate('click');
+      component.find('button.close').simulate('click');
 
-      expect(
-         component
-            .find('div')
-            .at(1)
-            .hasClass('hide')
-      ).toEqual(true);
-      expect(
-         component
-            .find('div')
-            .at(1)
-            .hasClass('show')
-      ).toEqual(false);
+      expect(component.find('div.modal').hasClass('hide')).toEqual(true);
+      expect(component.find('div.modal').hasClass('show')).toEqual(false);
    });
 
-   it('with isVisible prop should has class show', () => {
+   it('should cancelBtn correctly called and should correctly form class fade for component background', () => {
       const component = mount(
          <ModalDialog
             header="Заголовок"
             children="Контент"
+            onClose={jest.fn()}
             cancelBtn={{
                text: 'Вернуться'
             }}
          />
       );
 
-      component
-         .find('button')
-         .at(1)
-         .simulate('click');
+      component.find('button.btn.btn-default').simulate('click');
 
-      expect(
-         component
-            .find('div')
-            .at(1)
-            .hasClass('hide')
-      ).toEqual(true);
-      expect(
-         component
-            .find('div')
-            .at(1)
-            .hasClass('show')
-      ).toEqual(false);
-   });
-
-   it('with isVisible prop should has class fade', () => {
-      const component = mount(
-         <ModalDialog
-            header="Заголовок"
-            children="Контент"
-            cancelBtn={{
-               text: 'Вернуться'
-            }}
-         />
-      );
-
-      component
-         .find('button')
-         .at(1)
-         .simulate('click');
-
-      expect(
-         component
-            .find('div')
-            .at(9)
-            .hasClass('fade')
-      ).toEqual(true);
-      expect(
-         component
-            .find('div')
-            .at(9)
-            .hasClass('in')
-      ).toEqual(false);
+      expect(component.find('div.modal-backdrop').hasClass('fade')).toEqual(true);
+      expect(component.find('div.modal-backdrop').hasClass('in')).toEqual(false);
    });
 
    it('based on link in cancelBtn should call onClick correctly', () => {
       const component = mount(
          <MemoryRouter initialEntries={['/']}>
-            <ModalDialog header="Заголовок" children="Контент" cancelBtn={{ href: '/example' }} />
+            <ModalDialog
+               header="Заголовок"
+               children="Контент"
+               onClose={jest.fn()}
+               cancelBtn={{ href: '/example' }}
+            />
             <Switch>
                {routesTest.map((route, index) => (
                   <Route
@@ -163,16 +115,12 @@ describe('ModalDialog', () => {
          <ModalDialog
             header="Заголовок"
             children="Контент"
-            footer={<button>Кнопка-заглушка</button>}
+            onClose={jest.fn()}
+            footer={<button className="btn btn-success">Кнопка-заглушка</button>}
          />
       );
 
-      expect(
-         component
-            .find('button')
-            .at(1)
-            .text()
-      ).toEqual('Кнопка-заглушка');
+      expect(component.find('button.btn.btn-success').text()).toEqual('Кнопка-заглушка');
    });
 
    it('should render confirm footer correctly', () => {
@@ -180,6 +128,7 @@ describe('ModalDialog', () => {
          <ModalDialog
             header="Заголовок"
             children="Контент"
+            onClose={jest.fn()}
             confirmBtn={{
                text: 'Подтвердить',
                action: jest.fn()
@@ -190,17 +139,26 @@ describe('ModalDialog', () => {
          />
       );
 
-      expect(
-         component
-            .find('button')
-            .at(1)
-            .text()
-      ).toEqual('Подтвердить');
-      expect(
-         component
-            .find('button')
-            .at(2)
-            .text()
-      ).toEqual('Вернуться');
+      expect(component.find('button.btn.btn-success').text()).toEqual('Подтвердить');
+      expect(component.find('button.btn.btn-default').text()).toEqual('Вернуться');
+   });
+
+   it('should onClick prop correctly called', () => {
+      const onClick = jest.fn();
+      const component = mount(
+         <ModalDialog
+            header="Заголовок"
+            children="Контент"
+            onClose={onClick}
+            cancelBtn={{
+               text: 'Вернуться'
+            }}
+         />
+      );
+
+      component.find('button.close').simulate('click');
+      component.find('button.btn.btn-default').simulate('click');
+
+      expect(onClick).toHaveBeenCalledTimes(2);
    });
 });

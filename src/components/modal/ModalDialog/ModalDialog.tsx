@@ -15,13 +15,14 @@ export interface ModalDialogProps {
    header: string;
    /** Стиль заголовка */
    headerClass?: string;
-   /** Контент тела */
+   /** Контент */
    children: ReactNode;
-   /** Стиль тела */
+   /** Стиль основной части */
    bodyClass?: string;
-   /** Контент нижней части */
+   /** Пользовательский нижний колонтитул.
+    * По умолчанию отображается панель с кнопками для подтверждения и отмены */
    footer?: ReactNode;
-   /** Стиль нижней части */
+   /** Стиль нижнего колонтитула */
    footerClass?: string;
    /** Ширина */
    width?: string;
@@ -29,7 +30,14 @@ export interface ModalDialogProps {
    confirmBtn?: ConfirmButton;
    /** Кнопка отмены */
    cancelBtn?: CancelButton;
+   /** Дополнительное действие при нажатии на кнопку закрытия */
+   onClose: () => void;
 }
+
+const closeHandler = ({ close, onClose }) => {
+   close();
+   onClose && onClose();
+};
 
 export const ModalDialog = ({
    headerClass,
@@ -40,12 +48,17 @@ export const ModalDialog = ({
    confirmBtn,
    cancelBtn = {},
    width,
-   children
+   children,
+   onClose
 }: ModalDialogProps) => {
-   const [show, close] = useClose();
+   const [isVisible, close] = useClose();
    return (
-      <Modal isVisible={show} width={width}>
-         <HeaderModal className={headerClass} title={header} onClose={close} />
+      <Modal isVisible={isVisible} width={width}>
+         <HeaderModal
+            className={headerClass}
+            title={header}
+            onClose={() => closeHandler({ close, onClose })}
+         />
          <BodyModal className={bodyClass}>{children}</BodyModal>
          {footer ? (
             <CustomFooterModal className={footerClass}>{footer}</CustomFooterModal>
@@ -53,12 +66,8 @@ export const ModalDialog = ({
             <ConfirmFooterModal
                confirmBtn={confirmBtn}
                cancelBtn={{
-                  action: close,
-                  href: cancelBtn.href,
-                  size: cancelBtn.size,
-                  className: cancelBtn.className,
-                  text: cancelBtn.text,
-                  icon: cancelBtn.icon
+                  action: () => closeHandler({ close, onClose }),
+                  ...cancelBtn
                }}
                className={footerClass}
             />
