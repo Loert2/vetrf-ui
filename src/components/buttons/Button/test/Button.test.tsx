@@ -157,6 +157,13 @@ describe('Button', () => {
       expect(component.find('a').prop('href')).toBe('https://about.gitlab.com/');
    });
 
+   it('with linkType = a should be based on anchor', () => {
+      const component = mount(<Button href="/about" linkType="a" />);
+
+      expect(component.find('a').length).toEqual(1);
+      expect(component.find('Link').length).toEqual(0);
+   });
+
    it('based on anchor should render text correctly', () => {
       const component = mount(
          <Button text="Ссылка на внешний сайт" href="https://about.gitlab.com/" />
