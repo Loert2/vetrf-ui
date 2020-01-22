@@ -8,6 +8,8 @@ import { Color as ColorIcon } from '../../../utils/type/Color';
 import { Size as SizeIcon } from '../../../utils/type/Size';
 import { withTooltip } from '../../../components/hoc/WithTooltip/withTooltip';
 
+type LinkType = 'a' | 'link';
+
 interface CommonButtonProps {
    /** Текст кнопки (игнорируется при onlyIcon === true) */
    text?: string;
@@ -31,7 +33,7 @@ interface CommonButtonProps {
 }
 
 type ButtonButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & CommonButtonProps;
-type ButtonLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & CommonButtonProps;
+type ButtonLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & CommonButtonProps & { linkType?: LinkType };
 
 export type ButtonProps = ButtonButtonProps | ButtonLinkProps;
 
@@ -85,11 +87,12 @@ const Button = (props: ButtonProps) => {
       const { href } = props;
       classNameList.push('decoration-none');
 
-      if (isUrlAbsolute(href)) {
-
+      if (props.linkType === 'a' || isUrlAbsolute(href)) {
+         // Избавимся от параметров, которые не должны быть переданы в элемент
+         const { linkType, ...restLinkProps } = rest as ButtonLinkProps;
          return (
             <a
-               {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+               {...(restLinkProps as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
                onClick={clickHandler}
                href={href}
                className={classNames(classNameList)}>
