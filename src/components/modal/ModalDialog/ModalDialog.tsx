@@ -34,7 +34,7 @@ export interface ModalDialogProps {
    onClose: () => void;
 }
 
-const closeHandler = ({ close, onClose }) => {
+const closeHandler = (close, onClose) => {
    close();
    onClose && onClose();
 };
@@ -57,7 +57,7 @@ export const ModalDialog = ({
          <HeaderModal
             className={headerClass}
             title={header}
-            onClose={() => closeHandler({ close, onClose })}
+            onClose={() => closeHandler(close, onClose)}
          />
          <BodyModal className={bodyClass}>{children}</BodyModal>
          {footer ? (
@@ -66,7 +66,7 @@ export const ModalDialog = ({
             <ConfirmFooterModal
                confirmBtn={confirmBtn}
                cancelBtn={{
-                  action: () => closeHandler({ close, onClose }),
+                  action: () => closeHandler(close, onClose),
                   ...cancelBtn
                }}
                className={footerClass}
