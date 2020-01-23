@@ -1,91 +1,79 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { ReactNode } from 'react';
 
 import Modal from '../inner/Modal/Modal';
 import HeaderModal from '../inner/HeaderModal/HeaderModal';
 import BodyModal from '../inner/BodyModal/BodyModal';
 import CustomFooterModal from '../inner/CustomFooterModal/CustomFooterModal';
-import ConfirmFooterModal from '../inner/ConfirmFooterModal/ConfirmFooterModal';
+import ConfirmFooterModal, {
+   ConfirmButton,
+   CancelButton
+} from '../inner/ConfirmFooterModal/ConfirmFooterModal';
+import useClose from '../../../utils/hooks/useClose';
 
-// TODO: This is old way. Rewrite it!
-class ModalDialog extends Component {
-   state = { show: true };
-
-   constructor(props, context) {
-      super(props, context);
-      this.hide = this.hide.bind(this);
-   }
-
-   hide() {
-      this.setState({ show: false });
-   }
-
-   render() {
-      const {
-         headerClass,
-         header,
-         onClose,
-         footerClass,
-         footer,
-         bodyStyle,
-         confirmBtn,
-         cancelBtn,
-         width,
-         children
-      }: any = this.props;
-
-      return (
-         <Modal isVisible={this.state.show} width={width}>
-            <HeaderModal
-               className={headerClass}
-               title={header}
-               onClose={() => {
-                  this.hide();
-                  onClose && onClose();
-               }}
-            />
-            <BodyModal style={bodyStyle}>{children}</BodyModal>
-            {footer ? (
-               <CustomFooterModal className={footerClass}>{footer}</CustomFooterModal>
-            ) : (
-               <ConfirmFooterModal
-                  confirmBtn={confirmBtn}
-                  cancelBtn={{
-                     action: () => {
-                        this.hide();
-                        onClose && onClose();
-                     },
-                     text: cancelBtn && cancelBtn.text,
-                     icon: cancelBtn && cancelBtn.icon
-                  }}
-                  className={footerClass}
-               />
-            )}
-         </Modal>
-      );
-   }
+export interface ModalDialogProps {
+   /** Заголовок */
+   header: string;
+   /** Стиль заголовка */
+   headerClass?: string;
+   /** Контент */
+   children: ReactNode;
+   /** Стиль основной части */
+   bodyClass?: string;
+   /** Пользовательский нижний колонтитул.
+    * По умолчанию отображается панель с кнопками для подтверждения и отмены */
+   footer?: ReactNode;
+   /** Стиль нижнего колонтитула */
+   footerClass?: string;
+   /** Ширина */
+   width?: string;
+   /** Кнопка подтверждения */
+   confirmBtn?: ConfirmButton;
+   /** Кнопка отмены */
+   cancelBtn?: CancelButton;
+   /** Дополнительное действие при нажатии на кнопку закрытия */
+   onClose: () => void;
 }
 
-(ModalDialog as any).propTypes = {
-   header: PropTypes.string,
-   headerClass: PropTypes.string,
-   footerClass: PropTypes.string,
-   width: PropTypes.string,
-   footer: PropTypes.node,
-   bodyStyle: PropTypes.object,
-   children: PropTypes.node,
-   onClose: PropTypes.func,
-   confirmBtn: PropTypes.shape({
-      disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-      action: PropTypes.func,
-      className: PropTypes.string,
-      text: PropTypes.string,
-      icon: PropTypes.string
-   }),
-   cancelBtn: PropTypes.shape({
-      text: PropTypes.string,
-      icon: PropTypes.string
-   })
+const closeHandler = (close, onClose) => {
+   close();
+   onClose && onClose();
+};
+
+export const ModalDialog = ({
+   headerClass,
+   header,
+   footerClass,
+   footer,
+   bodyClass,
+   confirmBtn,
+   cancelBtn = {},
+   width,
+   children,
+   onClose
+}: ModalDialogProps) => {
+   const [isVisible, close] = useClose();
+   return (
+      <Modal isVisible={isVisible} width={width}>
+         <HeaderModal
+            className={headerClass}
+            title={header}
+            onClose={() => closeHandler(close, onClose)}
+         />
+         <BodyModal className={bodyClass}>{children}</BodyModal>
+         {footer ? (
+            <CustomFooterModal className={footerClass}>{footer}</CustomFooterModal>
+         ) : (
+            <ConfirmFooterModal
+               confirmBtn={confirmBtn}
+               cancelBtn={{
+                  action: () => closeHandler(close, onClose),
+                  ...cancelBtn
+               }}
+               className={footerClass}
+            />
+         )}
+      </Modal>
+   );
 };
 
 export default ModalDialog;

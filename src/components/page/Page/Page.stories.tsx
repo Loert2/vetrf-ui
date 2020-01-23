@@ -43,7 +43,7 @@ stories.add(
             toolbar={<Button className="btn btn-primary btn-minier pull-right" text="Кнопка" />}
             subHeader={text('subHeader', 'Подзаголовок')}
             additionalInfo={<small>Дополнительный компонент</small>}
-            secondLineInfo={<h6>Дополнительный компонент в другом месте</h6>}>
+            secondLineInfo={<h6>Компонент для второй строки</h6>}>
             {text('children', 'Тут может быть ваш контент.')}
          </Page>
          <Switch>
@@ -66,9 +66,33 @@ stories.add(
              Для демонстрации работы breadcrumbs реализована простая функция маршрутизации.
              При переходе на главную страницу по ссылке меняется надпись после компонента.
 
-             Для примера реализации из StorySource брать только Page, остальная часть сделана для наглядной демонстрации.
+             ### Story Source
+             ***
+
+             ~~~jsx
+             <Page
+                title="Заголовок сайта"
+                breadcrumbs={[
+                   {
+                      link: '/',
+                      text: 'Главная'
+                   },
+                   {
+                      text: 'Активная'
+                   }
+                ]}
+                header="Заголовок"
+                toolbar={<Button className="btn btn-primary btn-minier pull-right" text="Кнопка" />}
+                subHeader="Подзаголовок"
+                additionalInfo={<small>Дополнительный компонент</small>}
+                secondLineInfo={<h6>Компонент для второй строки</h6>}
+             >
+                Тут может быть ваш контент.
+             </Page>
+             ~~~
           `,
-         propTables: [Page]
+         propTables: [Page],
+         source: false
       }
    }
 );
@@ -107,9 +131,30 @@ stories.add(
 
              Компонент-контейнер страницы. Включает в себя хлебные крошки, заголовок и подзаголовок страницы.
 
-             Для примера реализации из StorySource брать только Page, остальная часть сделана для наглядной демонстрации.
+             ### Story Source
+             ***
+
+             ~~~jsx
+             <Page
+                title="Заголовок сайта"
+                breadcrumbs={[
+                   {
+                      link: '/',
+                      text: 'Главная'
+                   },
+                   {
+                      text: 'Активная'
+                   }
+                ]}
+                header="Заголовок"
+                subHeader="Подзаголовок"
+             >
+                Тут может быть ваш контент.
+             </Page>
+             ~~~
           `,
-         propTables: [Page]
+         propTables: [Page],
+         source: false
       }
    }
 );
@@ -128,8 +173,18 @@ stories.add(
              ### Notes
 
              Компонент-контейнер страницы. Включает в себя заголовок и подзаголовок страницы.
+
+             ### Story Source
+             ***
+
+             ~~~jsx
+             <Page title="Заголовок сайта" header="Заголовок" subHeader="Подзаголовок">
+                Тут может быть ваш контент.
+             </Page>
+             ~~~
           `,
-         propTables: [Page]
+         propTables: [Page],
+         source: false
       }
    }
 );
@@ -166,9 +221,28 @@ stories.add(
 
              Компонент-контейнер страницы. Включает в себя хлебные крошки.
 
-             Для примера реализации из StorySource брать только Page, остальная часть сделана для наглядной демонстрации.
+             ### Story Source
+             ***
+
+             ~~~jsx
+             <Page
+                title="Заголовок сайта"
+                breadcrumbs={[
+                   {
+                      link: '/',
+                      text: 'Главная'
+                   },
+                   {
+                      text: 'Активная'
+                   }
+                ]}
+             >
+                Тут может быть ваш контент.
+             </Page>
+             ~~~
           `,
-         propTables: [Page]
+         propTables: [Page],
+         source: false
       }
    }
 );

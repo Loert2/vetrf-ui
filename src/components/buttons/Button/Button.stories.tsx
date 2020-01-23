@@ -40,10 +40,27 @@ stories.add(
 
             Примечание:
             1. Для демонстрации работы нажатия кнопки результат отображается в консоли браузера.
-            2. MemoryRouter тут только для демонстрации работы относительных ссылок.
-            3. При использовании вместо WithTooltip(Button) писать просто Button. Всё ужё обёрнуто за вас, а в Source Source это просто показано явно.
+
+            ### Story Source
+            ***
+
+            ~~~jsx
+            <Button
+               text="Нажми на меня"
+               color="success"
+               size="sm"
+               disabled={false}
+               icon="bell"
+               iconColor="white"
+               iconSize={100}
+               onClick={() => console.log('click')}
+               onlyIcon={false}
+               tooltip="Нажми на меня"
+            />
+            ~~~
          `,
-         propTables: [Button]
+         propTables: [Button],
+         source: false
       }
    }
 );
@@ -73,11 +90,26 @@ stories.add(
             Кнопка-ссылка. Вариант для использования в качестве стилизированной ссылки на внешний ресурс.
             В этом случае в href указывается абсолютный url, тогда будет основана на элементе \`a\`.
 
-            Примечание:
-            1. MemoryRouter тут только для демонстрации работы относительных ссылок.
-            2. При использовании вместо WithTooltip(Button) писать просто Button. Всё ужё обёрнуто за вас, а в Source Source это просто показано явно.
+            ### Story Source
+            ***
+
+            ~~~jsx
+            <Button
+               href="https://about.gitlab.com/"
+               text="Ссылка на внешний сайт"
+               color="pink"
+               size="sm"
+               disabled={false)}
+               icon="link"
+               iconColor="white"
+               iconSize={100}
+               onlyIcon={false}
+               tooltip="Нажми на меня"
+            />
+            ~~~
          `,
-         propTables: [Button]
+         propTables: [Button],
+         source: false
       }
    }
 );
@@ -129,11 +161,26 @@ stories.add(
 
              Для повторной демонстрации работы перезапустите страницу.
 
-             Примечание:
-             1. MemoryRouter тут только для демонстрации работы относительных ссылок. Вам нужен только Button.
-             2. При использовании вместо WithTooltip(Button) писать просто Button. Всё ужё обёрнуто за вас, а в Source Source это просто показано явно.
+             ### Story Source
+             ***
+
+             ~~~jsx
+             <Button
+                href="/example"
+                text="Ссылка на другую страницу"
+                color="success"
+                size="sm"
+                disabled={false}
+                icon="bell"
+                iconColor="white"
+                iconSize={100}
+                onlyIcon={false}
+                tooltip="Нажми на меня"
+             />
+             ~~~
          `,
-         propTables: [Button]
+         propTables: [Button],
+         source: false
       }
    }
 );
@@ -163,10 +210,24 @@ stories.add(
 
             Примечание:
             1. Для демонстрации работы нажатия кнопки результат отображается в консоли браузера.
-            2. MemoryRouter тут только для демонстрации работы относительных ссылок.
-            3. При использовании вместо WithTooltip(Button) писать просто Button. Всё ужё обёрнуто за вас, а в Source Source это просто показано явно.
+
+            ### Story Source
+            ***
+
+            ~~~jsx
+            <Button
+               disabled={false}
+               icon="bell"
+               iconColor="green"
+               iconSize={150}
+               onClick={() => console.log('click on icon')}
+               onlyIcon={true}
+               tooltip="Нажми на меня"
+            />
+            ~~~
          `,
-         propTables: [Button]
+         propTables: [Button],
+         source: false
       }
    }
 );
@@ -195,11 +256,23 @@ stories.add(
             В этом случае в href указывается абсолютный url, тогда будет основана на элементе \`a\`.
             Свойства text, color и size будут игнорироваться с выводом предупреждения в консоль.
 
-            Примечание:
-            1. MemoryRouter тут только для демонстрации работы относительных ссылок.
-            2. При использовании вместо WithTooltip(Button) писать просто Button. Всё ужё обёрнуто за вас, а в Source Source это просто показано явно.
+            ### Story Source
+            ***
+
+            ~~~jsx
+            <Button
+               href="https://about.gitlab.com/"
+               disabled={false}
+               icon="link"
+               iconColor="red"
+               iconSize={150}
+               onlyIcon={true}
+               tooltip="Нажми на меня"
+            />
+            ~~~
          `,
-         propTables: [Button]
+         propTables: [Button],
+         source: false
       }
    }
 );
@@ -237,12 +310,23 @@ stories.add(
 
              Для повторной демонстрации работы перезапустите страницу.
 
-             Примечание:
-             1. MemoryRouter тут только для демонстрации работы относительных ссылок.
-             2. При использовании вместо WithTooltip(Button) писать просто Button. Всё ужё обёрнуто за вас, а в Source Source это просто показано явно.
+             ### Story Source
+             ***
 
+             ~~~jsx
+             <Button
+                href="/example"
+                disabled={false}
+                icon="bell"
+                iconColor="purple"
+                iconSize={150}
+                onlyIcon={true}
+                tooltip="Нажми на меня"
+             />
+             ~~~
          `,
-         propTables: [Button]
+         propTables: [Button],
+         source: false
       }
    }
 );

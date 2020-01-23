@@ -28,14 +28,68 @@ describe('Modal', () => {
    it('with isVisible prop should has class show', () => {
       const component = shallow(<Modal children="Тут может быть ваш контент." isVisible={true} />);
 
-      expect(component.find('div').first().hasClass('show')).toEqual(true);
-      expect(component.find('div').first().hasClass('hide')).toEqual(false);
+      expect(
+         component
+            .find('div')
+            .at(1)
+            .hasClass('show')
+      ).toEqual(true);
+      expect(
+         component
+            .find('div')
+            .at(1)
+            .hasClass('hide')
+      ).toEqual(false);
    });
 
    it('without isVisible prop should has class hide', () => {
       const component = shallow(<Modal children="Тут может быть ваш контент." isVisible={false} />);
 
-      expect(component.find('div').first().hasClass('hide')).toEqual(true);
-      expect(component.find('div').first().hasClass('show')).toEqual(false);
+      expect(
+         component
+            .find('div')
+            .at(1)
+            .hasClass('hide')
+      ).toEqual(true);
+      expect(
+         component
+            .find('div')
+            .at(1)
+            .hasClass('show')
+      ).toEqual(false);
+   });
+
+   it('with isVisible prop should has class in', () => {
+      const component = shallow(<Modal children="Тут может быть ваш контент." isVisible={true} />);
+
+      expect(
+         component
+            .find('div')
+            .at(4)
+            .hasClass('in')
+      ).toEqual(true);
+      expect(
+         component
+            .find('div')
+            .at(4)
+            .hasClass('fade')
+      ).toEqual(false);
+   });
+
+   it('without isVisible prop should has class fade', () => {
+      const component = shallow(<Modal children="Тут может быть ваш контент." isVisible={false} />);
+
+      expect(
+         component
+            .find('div')
+            .at(4)
+            .hasClass('fade')
+      ).toEqual(true);
+      expect(
+         component
+            .find('div')
+            .at(4)
+            .hasClass('in')
+      ).toEqual(false);
    });
 });
