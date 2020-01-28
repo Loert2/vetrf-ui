@@ -1,120 +1,134 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 
-import ConfirmModal from '../../../modal/ConfirmModal/ConfirmModal';
 import Button from '../../Button/Button';
+import ModalDialog from '../../../modal/ModalDialog/ModalDialog';
+import useToggle from '../../../../utils/hooks/useToggle';
+import { ColorButton } from '../../../../utils/type/ColorButton';
+import { SizeButton } from '../../../../utils/type/SizeButton';
+import { Color as ColorIcon } from '../../../../utils/type/Color';
+import { Size as SizeIcon } from '../../../../utils/type/Size';
 
-// TODO: This is old way. Rewrite it!
-class ConfirmActionButton extends Component<any> {
-   state = {
-      showModal: false
-   };
-
-   constructor(props, context) {
-      super(props, context);
-
-      this.toggleModal = this.toggleModal.bind(this);
-      this.handleClick = this.handleClick.bind(this);
-   }
-
-   toggleModal() {
-      this.setState({ showModal: !this.state.showModal });
-   }
-
-   handleClick() {
-      const { checkOpportunityToOpenModal }: any = this.props;
-      if (checkOpportunityToOpenModal !== undefined && !this.state.showModal) {
-         checkOpportunityToOpenModal(this.toggleModal);
-      } else {
-         this.toggleModal();
-      }
-   }
-
-   render() {
-      const {
-         id,
-         className,
-         buttonColor,
-         buttonSize,
-         isOnlyIconButton,
-         icon,
-         iconSize,
-         iconColor,
-         buttonText,
-         tooltip,
-         confirmHeaderText,
-         confirmBodyText,
-         onConfirm,
-         disabled,
-         confirmBtnClass,
-         confirmBtnIcon,
-         cancelBtnIcon,
-         confirmBtnText,
-         confirmBtnDisabled,
-         cancelBtnText
-      } = this.props;
-
-      return (
-         <div className="inline">
-            <Button
-               id={id}
-               className={className}
-               onClick={this.handleClick}
-               color={buttonColor}
-               size={buttonSize}
-               icon={icon}
-               iconSize={iconSize}
-               iconColor={iconColor}
-               text={buttonText}
-               disabled={disabled}
-               tooltip={tooltip}
-               onlyIcon={isOnlyIconButton}
-            />
-            {this.state.showModal && (
-               <ConfirmModal
-                  onClose={this.toggleModal}
-                  header={confirmHeaderText || 'Подтверждение'}
-                  bodyText={confirmBodyText || 'Вы уверены?'}
-                  confirmBtn={{
-                     action: onConfirm,
-                     className: confirmBtnClass || 'btn btn-danger',
-                     text: confirmBtnText || 'Удалить',
-                     icon: confirmBtnIcon,
-                     disabled: confirmBtnDisabled
-                  }}
-                  cancelBtn={{
-                     text: cancelBtnText || 'Отмена',
-                     icon: cancelBtnIcon
-                  }}
-               />
-            )}
-         </div>
-      );
-   }
+export interface ConfirmActionButtonProps {
+   /** Текст кнопки (игнорируется при onlyIcon === true) */
+   buttonText?: string;
+   /** Стиль кнопки */
+   className?: string;
+   /** Цвет кнопки (игнорируется при onlyIcon === true) */
+   buttonColor?: ColorButton;
+   /** Размер кнопки (игнорируется при onlyIcon === true) */
+   buttonSize?: SizeButton;
+   /** Подсказка для кнопки */
+   tooltip?: string;
+   /** Иконка кнопки. Допустимые типы передаваемых параметров: https://fontawesome.com/v4.7.0/icons/.
+    Вместо полного css-класса иконки необходимо указывать её название без префикса fa-, например file, а не fa-file */
+   icon?: string;
+   /** Цвет иконки */
+   iconColor?: ColorIcon;
+   /** Размер иконки */
+   iconSize?: SizeIcon;
+   /** Действие при нажатии на кнопку */
+   onClick?: () => void;
+   /** Отображать только иконку */
+   isOnlyIconButton?: boolean;
+   /** Блокировка кнопки */
+   disabled?: boolean;
+   /** Заголовок модального окна */
+   confirmHeaderText?: string;
+   /** Контент модального окна */
+   confirmBodyContent?: ReactNode;
+   /** Действие при нажатии на кнопку подтверждения */
+   onConfirm?: () => void;
+   /** Цвет кнопки подтверждения */
+   confirmBtnColor?: ColorButton;
+   /** Размер кнопки подтверждения */
+   confirmBtnSize?: SizeButton;
+   /** Текст подтверждения */
+   confirmBtnText?: string;
+   /** Иконка кнопки подтверждения. Допустимые типы передаваемых параметров: https://fontawesome.com/v4.7.0/icons/.
+    Вместо полного css-класса иконки необходимо указывать её название без префикса fa-, например file, а не fa-file */
+   confirmBtnIcon?: string;
+   /** Блокировка кнопки подтверждения */
+   confirmBtnDisabled?: boolean;
+   /** Размер кнопки отмены */
+   cancelBtnSize?: SizeButton;
+   /** Текст кнопки отмены. Значение по умолчанию "Отмена".
+    * Это значение присваевается в компоненте ConfirmFooterModal */
+   cancelBtnText?: string;
+   /** Иконка кнопки отмены */
+   cancelBtnIcon?: string;
+   /** Функция для проверки возможности открытия модального окна */
+   checkOpportunityToOpenModal?: (toggleModal: () => void) => void;
 }
 
-(ConfirmActionButton as any).propTypes = {
-   id: PropTypes.string,
-   className: PropTypes.string,
-   buttonText: PropTypes.string,
-   buttonColor: PropTypes.string,
-   buttonSize: PropTypes.string,
-   isOnlyIconButton: PropTypes.bool,
-   disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-   tooltip: PropTypes.string,
-   confirmHeaderText: PropTypes.string,
-   confirmBodyText: PropTypes.node,
-   confirmBtnClass: PropTypes.string,
-   confirmBtnIcon: PropTypes.string,
-   confirmBtnDisabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-   cancelBtnIcon: PropTypes.string,
-   confirmBtnText: PropTypes.string,
-   cancelBtnText: PropTypes.string,
-   icon: PropTypes.string,
-   iconColor: PropTypes.string,
-   iconSize: PropTypes.number,
-   onConfirm: PropTypes.func,
-   checkOpportunityToOpenModal: PropTypes.func
+export const ConfirmActionButton = ({
+   className,
+   buttonColor,
+   buttonSize,
+   isOnlyIconButton,
+   icon,
+   iconSize,
+   iconColor,
+   buttonText,
+   tooltip,
+   confirmHeaderText = 'Подтверждение',
+   confirmBodyContent = 'Вы уверены?',
+   disabled,
+   onConfirm,
+   confirmBtnColor,
+   confirmBtnSize,
+   confirmBtnText,
+   confirmBtnIcon,
+   confirmBtnDisabled,
+   cancelBtnSize,
+   cancelBtnText,
+   cancelBtnIcon,
+   checkOpportunityToOpenModal
+}: ConfirmActionButtonProps) => {
+   const [isVisible, toggleModal] = useToggle(false);
+   const handleClick = () => {
+      if (checkOpportunityToOpenModal !== undefined && !isVisible) {
+         checkOpportunityToOpenModal(toggleModal);
+      } else {
+         toggleModal();
+      }
+   };
+   return (
+      <div className="inline">
+         <Button
+            className={className}
+            onClick={handleClick}
+            color={buttonColor}
+            size={buttonSize}
+            icon={icon}
+            iconSize={iconSize}
+            iconColor={iconColor}
+            text={buttonText}
+            disabled={disabled}
+            tooltip={tooltip}
+            onlyIcon={isOnlyIconButton}
+         />
+         {isVisible && (
+            <ModalDialog
+               onClose={toggleModal}
+               header={confirmHeaderText}
+               children={confirmBodyContent}
+               confirmBtn={{
+                  action: onConfirm,
+                  color: confirmBtnColor || 'danger',
+                  size: confirmBtnSize,
+                  text: confirmBtnText || 'Удалить',
+                  icon: confirmBtnIcon,
+                  disabled: confirmBtnDisabled
+               }}
+               cancelBtn={{
+                  size: cancelBtnSize,
+                  text: cancelBtnText,
+                  icon: cancelBtnIcon
+               }}
+            />
+         )}
+      </div>
+   );
 };
 
 export default ConfirmActionButton;

@@ -39,10 +39,10 @@ const TableActionButtons = ({ viewBtn, editBtn, deleteBtn, item }) => (
             icon={deleteBtn.icon || 'trash-o'}
             iconSize={deleteBtn.iconSize || DEFAULT_ICON_SIZE}
             iconColor={deleteBtn.iconColor || 'red'}
-            header={deleteBtn.confirmHeaderText}
-            bodyText={deleteBtn.confirmBodyText}
-            confirmClass={deleteBtn.confirmBtnClass}
-            confirmText={deleteBtn.confirmBtnText}
+            confirmHeaderText={deleteBtn.confirmHeaderText}
+            confirmBodyContent={deleteBtn.confirmBodyText}
+            confirmBtnColor={deleteBtn.confirmBtnColor}
+            confirmBtnText={deleteBtn.confirmBtnText}
             className={deleteBtn.className}
             isOnlyIconButton={true}
          />

@@ -15,8 +15,9 @@ import Button, { ButtonProps } from './components/buttons/Button/Button';
  * -------------------------------------------------------------------------------------------------
  * OLD WAY components
  * ------------------------------------------------------------------------------------------------- */
-import ConfirmActionButton from './components/buttons/confirm-action/ConfirmActionButton/ConfirmActionButton';
-import CustomActionButton from './components/buttons/confirm-action/CustomActionButton/CustomActionButton';
+import ConfirmActionButton, {
+   ConfirmActionButtonProps
+} from './components/buttons/confirm-action/ConfirmActionButton/ConfirmActionButton';
 import PromptActionButton from './components/buttons/confirm-action/PromptActionButton/PromptActionButton';
 
 import ModalDialog from './components/modal/ModalDialog/ModalDialog';
@@ -135,8 +136,7 @@ export { Button, ButtonProps };
  * -------------------------------------------------------------------------------------------------
  * OLD WAY components
  * ------------------------------------------------------------------------------------------------*/
-export { ConfirmActionButton };
-export { CustomActionButton };
+export { ConfirmActionButton, ConfirmActionButtonProps };
 export { PromptActionButton };
 
 export { ModalDialog };
