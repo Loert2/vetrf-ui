@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CustomActionButton from '../CustomActionButton/CustomActionButton';
 import Textarea from '../../../form/fields/base/textarea/Textarea/Textarea';
+import ConfirmActionButton from '../ConfirmActionButton/ConfirmActionButton';
 
 // TODO: This is old way. Rewrite it!
 class PromptActionButton extends Component {
@@ -22,7 +22,6 @@ class PromptActionButton extends Component {
 
    render() {
       const {
-         id,
          className,
          icon,
          buttonText,
@@ -30,9 +29,8 @@ class PromptActionButton extends Component {
          disabled,
          onConfirm,
          confirmHeaderText,
-         confirmBodyText,
          confirmBtnText,
-         confirmBtnClass,
+         confirmBtnColor,
          confirmBtnIcon,
          cancelBtnIcon,
          cancelBtnText,
@@ -43,15 +41,14 @@ class PromptActionButton extends Component {
       const { valueTextArea } = this.state;
 
       return (
-         <CustomActionButton
-            id={id}
+         <ConfirmActionButton
             className={className}
             icon={icon}
             buttonText={buttonText}
             tooltip={tooltip}
             disabled={disabled}
             onConfirm={() => onConfirm && onConfirm(valueTextArea)}
-            body={
+            confirmBodyContent={
                <Textarea
                   value={valueTextArea}
                   onChange={this.onChangeTextArea}
@@ -62,10 +59,9 @@ class PromptActionButton extends Component {
             }
             confirmBtnText={confirmBtnText}
             confirmHeaderText={confirmHeaderText}
-            confirmBodyText={confirmBodyText}
-            confirmBtnClass={confirmBtnClass}
+            confirmBtnColor={confirmBtnColor}
             confirmBtnIcon={confirmBtnIcon}
-            disabledConfirmBtn={valueTextArea.length === 0}
+            confirmBtnDisabled={valueTextArea.length === 0}
             cancelBtnIcon={cancelBtnIcon}
             cancelBtnText={cancelBtnText}
          />

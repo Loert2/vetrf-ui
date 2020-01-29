@@ -14,7 +14,7 @@ const FileDownload = ({ fileModel, editable, removeAction, urlFile }) => (
          {editable && (
             <div className="file-download__btn-delete">
                <ConfirmActionButton
-                  confirmBodyText={`Вы уверены, что хотите удалить файл ${get(
+                  confirmBodyContent={`Вы уверены, что хотите удалить файл ${get(
                      fileModel,
                      'file.name'
                   )}?`}
