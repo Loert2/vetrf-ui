@@ -21,7 +21,6 @@ import ConfirmActionButton, {
 import PromptActionButton from './components/buttons/confirm-action/PromptActionButton/PromptActionButton';
 
 import ModalDialog from './components/modal/ModalDialog/ModalDialog';
-import ConfirmModal from './components/modal/ConfirmModal/ConfirmModal';
 import ItemLinkList from './components/other/ItemLinkList/ItemLinkList';
 
 import FormActionsPanel from './components/form/actions/FormActionsPanel/FormActionsPanel';
@@ -140,7 +139,6 @@ export { ConfirmActionButton, ConfirmActionButtonProps };
 export { PromptActionButton };
 
 export { ModalDialog };
-export { ConfirmModal };
 export { ItemLinkList };
 
 export { Form };

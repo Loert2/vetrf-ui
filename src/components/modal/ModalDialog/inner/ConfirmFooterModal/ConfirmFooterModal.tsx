@@ -1,8 +1,8 @@
 import React from 'react';
-import { ColorButton } from '../../../../utils/type/ColorButton';
-import { SizeButton } from '../../../../utils/type/SizeButton';
+import { ColorButton } from '../../../../../utils/type/ColorButton';
+import { SizeButton } from '../../../../../utils/type/SizeButton';
 import CustomFooterModal from '../CustomFooterModal/CustomFooterModal';
-import Button from '../../../buttons/Button/Button';
+import Button from '../../../../buttons/Button/Button';
 
 export type ConfirmButton = {
    /** Стили кнопки */

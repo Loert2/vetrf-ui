@@ -1,13 +1,13 @@
 import React, { ReactNode } from 'react';
 
-import Modal from '../inner/Modal/Modal';
-import HeaderModal from '../inner/HeaderModal/HeaderModal';
-import BodyModal from '../inner/BodyModal/BodyModal';
-import CustomFooterModal from '../inner/CustomFooterModal/CustomFooterModal';
+import Modal from './inner/Modal/Modal';
+import HeaderModal from './inner/HeaderModal/HeaderModal';
+import BodyModal from './inner/BodyModal/BodyModal';
+import CustomFooterModal from './inner/CustomFooterModal/CustomFooterModal';
 import ConfirmFooterModal, {
    ConfirmButton,
    CancelButton
-} from '../inner/ConfirmFooterModal/ConfirmFooterModal';
+} from './inner/ConfirmFooterModal/ConfirmFooterModal';
 import useClose from '../../../utils/hooks/useClose';
 
 export interface ModalDialogProps {
