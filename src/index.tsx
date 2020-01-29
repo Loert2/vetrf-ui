@@ -23,57 +23,62 @@ import PromptActionButton from './components/buttons/confirm-action/PromptAction
 import ModalDialog from './components/modal/ModalDialog/ModalDialog';
 import ItemLinkList from './components/other/ItemLinkList/ItemLinkList';
 
-import FormActionsPanel from './components/form/actions/FormActionsPanel/FormActionsPanel';
-import FormAction from './components/form/actions/FormAction/FormAction';
+// @Deprecated
+import FormActionsPanel from './components/form/old/actions/FormActionsPanel/FormActionsPanel';
+import FormAction from './components/form/old/actions/FormAction/FormAction';
 
-import ComplexDate from './components/form/fields/base/date/ComplexDate/ComplexDate';
-import ComplexDateList from './components/form/fields/base/date/ComplexDateList/ComplexDateList';
-import DatePicker from './components/form/fields/base/date/DatePicker/DatePicker';
-import DateRange from './components/form/fields/base/date/DateRange/DateRange';
-import FileDownload from './components/form/fields/base/file/FileDownload/FileDownload';
-import FileUpload from './components/form/fields/base/file/FileUpload/FileUpload';
-import FileInput from './components/form/fields/base/file/FileInput/FileInput';
-import Input from './components/form/fields/base/input/Input/Input';
-import AutocompleteInput from './components/form/fields/base/input/AutocompleteInput/AutocompleteInput';
-import NumberInput from './components/form/fields/base/input/NumberInput/NumberInput';
-import RadioBtn from './components/form/fields/base/radio/RadioBtn/RadioBtn';
-import Select from './components/form/fields/base/select/Select/Select';
-import SimpleSelect from './components/form/fields/base/select/SimpleSelect/SimpleSelect';
-import AsyncSelect from './components/form/fields/base/select/AsyncSelect/AsyncSelect';
-import Switch from './components/form/fields/base/switch/Switch/Switch';
-import SwitchText from './components/form/fields/base/switch/SwitchText/SwitchText';
-import Textarea from './components/form/fields/base/textarea/Textarea/Textarea';
+// @Deprecated
+import ComplexDate from './components/form/old/fields/base/date/ComplexDate/ComplexDate';
+import ComplexDateList from './components/form/old/fields/base/date/ComplexDateList/ComplexDateList';
+import DatePicker from './components/form/old/fields/base/date/DatePicker/DatePicker';
+import DateRange from './components/form/old/fields/base/date/DateRange/DateRange';
+import FileDownload from './components/form/old/fields/base/file/FileDownload/FileDownload';
+import FileUpload from './components/form/old/fields/base/file/FileUpload/FileUpload';
+import FileInput from './components/form/old/fields/base/file/FileInput/FileInput';
+import Input from './components/form/old/fields/base/input/Input/Input';
+import AutocompleteInput from './components/form/old/fields/base/input/AutocompleteInput/AutocompleteInput';
+import NumberInput from './components/form/old/fields/base/input/NumberInput/NumberInput';
+import RadioBtn from './components/form/old/fields/base/radio/RadioBtn/RadioBtn';
+import Select from './components/form/old/fields/base/select/Select/Select';
+import SimpleSelect from './components/form/old/fields/base/select/SimpleSelect/SimpleSelect';
+import AsyncSelect from './components/form/old/fields/base/select/AsyncSelect/AsyncSelect';
+import Switch from './components/form/old/fields/base/switch/Switch/Switch';
+import SwitchText from './components/form/old/fields/base/switch/SwitchText/SwitchText';
+import Textarea from './components/form/old/fields/base/textarea/Textarea/Textarea';
 
-import AutocompleteInputSearch from './components/form/fields/search/AutocompleteInputSearch/AutocompleteInputSearch';
-import InputSearch from './components/form/fields/search/InputSearch/InputSearch';
-import InputSelectSearch from './components/form/fields/search/InputSelectSearch/InputSelectSearch';
-import SelectSearch from './components/form/fields/search/SelectSearch/SelectSearch';
-import CheckboxSearch from './components/form/fields/search/CheckboxSearch/CheckboxSearch';
+// @Deprecated
+import AutocompleteInputSearch from './components/form/old/fields/search/AutocompleteInputSearch/AutocompleteInputSearch';
+import InputSearch from './components/form/old/fields/search/InputSearch/InputSearch';
+import InputSelectSearch from './components/form/old/fields/search/InputSelectSearch/InputSelectSearch';
+import SelectSearch from './components/form/old/fields/search/SelectSearch/SelectSearch';
+import CheckboxSearch from './components/form/old/fields/search/CheckboxSearch/CheckboxSearch';
 
-import Form from './components/form/containers/Form/Form';
-import FormGroup from './components/form/containers/FormGroup/FormGroup';
-import FormBlock from './components/form/containers/FormBlock/FormBlock';
-import withValidate from './components/form/fields/field/hoc/withValidate';
-import AutocompleteFormGroup from './components/form/fields/field/input/AutocompleteFormGroup/AutocompleteFormGroup';
-import CheckboxFormGroup from './components/form/fields/field/checkbox/CheckboxFormGroup/CheckboxFormGroup';
-import DateFormGroup from './components/form/fields/field/date/DateFormGroup/DateFormGroup';
-import DateRangeFormGroup from './components/form/fields/field/date/DateRangeFormGroup/DateRangeFormGroup';
-import ComplexDateListFormGroup from './components/form/fields/field/date/ComplexDateListFormGroup/ComplexDateListFormGroup';
-import FileFormGroup from './components/form/fields/field/file/FileFormGroup/FileFormGroup';
-import InputFormGroup from './components/form/fields/field/input/InputFormGroup/InputFormGroup';
-import InputSelectFormGroup from './components/form/fields/field/input/InputSelectFormGroup/InputSelectFormGroup';
-import NumberFormGroup from './components/form/fields/field/input/NumberFormGroup/NumberFormGroup';
-import RadioBtnFormGroup from './components/form/fields/field/radio/RadioBtnFormGroup/RadioBtnFormGroup';
-import RadioBtnSwitchFormGroup from './components/form/fields/field/radio/RadioBtnSwitchFormGroup/RadioBtnSwitchFormGroup';
-import SelectFormGroup from './components/form/fields/field/select/SelectFormGroup/SelectFormGroup';
-import AsyncSelectFormGroup from './components/form/fields/field/select/AsyncSelectFormGroup/AsyncSelectFormGroup';
-import SwitchFormGroup from './components/form/fields/field/switch/SwitchFormGroup/SwitchFormGroup';
-import TextareaFormGroup from './components/form/fields/field/textarea/TextareaFormGroup/TextareaFormGroup';
+// @Deprecated
+import Form from './components/form/old/containers/Form/Form';
+import FormGroup from './components/form/old/containers/FormGroup/FormGroup';
+import FormBlock from './components/form/old/containers/FormBlock/FormBlock';
+import withValidate from './components/form/old/fields/field/hoc/withValidate';
+import AutocompleteFormGroup from './components/form/old/fields/field/input/AutocompleteFormGroup/AutocompleteFormGroup';
+import CheckboxFormGroup from './components/form/old/fields/field/checkbox/CheckboxFormGroup/CheckboxFormGroup';
+import DateFormGroup from './components/form/old/fields/field/date/DateFormGroup/DateFormGroup';
+import DateRangeFormGroup from './components/form/old/fields/field/date/DateRangeFormGroup/DateRangeFormGroup';
+import ComplexDateListFormGroup from './components/form/old/fields/field/date/ComplexDateListFormGroup/ComplexDateListFormGroup';
+import FileFormGroup from './components/form/old/fields/field/file/FileFormGroup/FileFormGroup';
+import InputFormGroup from './components/form/old/fields/field/input/InputFormGroup/InputFormGroup';
+import InputSelectFormGroup from './components/form/old/fields/field/input/InputSelectFormGroup/InputSelectFormGroup';
+import NumberFormGroup from './components/form/old/fields/field/input/NumberFormGroup/NumberFormGroup';
+import RadioBtnFormGroup from './components/form/old/fields/field/radio/RadioBtnFormGroup/RadioBtnFormGroup';
+import RadioBtnSwitchFormGroup from './components/form/old/fields/field/radio/RadioBtnSwitchFormGroup/RadioBtnSwitchFormGroup';
+import SelectFormGroup from './components/form/old/fields/field/select/SelectFormGroup/SelectFormGroup';
+import AsyncSelectFormGroup from './components/form/old/fields/field/select/AsyncSelectFormGroup/AsyncSelectFormGroup';
+import SwitchFormGroup from './components/form/old/fields/field/switch/SwitchFormGroup/SwitchFormGroup';
+import TextareaFormGroup from './components/form/old/fields/field/textarea/TextareaFormGroup/TextareaFormGroup';
 
-import IkarAddressForeign from './components/form/fields/base/ikar/IkarAddressForeign/IkarAddressForeign';
-import IkarAddressRussia from './components/form/fields/base/ikar/IkarAddressRussia/IkarAddressRussia';
-import IkarAddress from './components/form/fields/base/ikar/IkarAddress/IkarAddress';
-import IkarAddressFormGroup from './components/form/fields/field/ikar/IkarAddressFormGroup/IkarAddressFormGroup';
+// @Deprecated
+import IkarAddressForeign from './components/form/old/fields/base/ikar/IkarAddressForeign/IkarAddressForeign';
+import IkarAddressRussia from './components/form/old/fields/base/ikar/IkarAddressRussia/IkarAddressRussia';
+import IkarAddress from './components/form/old/fields/base/ikar/IkarAddress/IkarAddress';
+import IkarAddressFormGroup from './components/form/old/fields/field/ikar/IkarAddressFormGroup/IkarAddressFormGroup';
 
 import SubHeader, { SubHeaderProps } from './components/page/SubHeader/SubHeader';
 import Page, { PageProps } from './components/page/Page/Page';

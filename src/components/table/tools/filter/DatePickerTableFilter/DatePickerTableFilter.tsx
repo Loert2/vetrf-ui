@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import DatePicker from '../../../../form/fields/base/date/DatePicker/DatePicker';
+import DatePicker from '../../../../form/old/fields/base/date/DatePicker/DatePicker';
 import debounce from 'lodash/debounce';
 import Moment from 'moment';
 import classNames from 'classnames';

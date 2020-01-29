@@ -25,3 +25,8 @@ class Example extends React.Component {
 ## License
 
 MIT © [jmorozov](https://github.com/jmorozov)
+
+## Version Comments 0.6.0
+
+1. Add dependency `react-hook-form`
+2. Old form components now `Deprecated`

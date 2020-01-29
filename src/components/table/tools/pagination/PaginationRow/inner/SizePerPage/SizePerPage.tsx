@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import SimpleSelect from '../../../../../../form/fields/base/select/SimpleSelect/SimpleSelect';
+import SimpleSelect from '../../../../../../form/old/fields/base/select/SimpleSelect/SimpleSelect';
 import Const from '../../../../../inner/tableConstants';
 
 // TODO: This is old way. Rewrite it!

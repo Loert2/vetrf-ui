@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Textarea from '../../../form/fields/base/textarea/Textarea/Textarea';
+import Textarea from '../../../form/old/fields/base/textarea/Textarea/Textarea';
 import ConfirmActionButton from '../ConfirmActionButton/ConfirmActionButton';
 
 // TODO: This is old way. Rewrite it!
