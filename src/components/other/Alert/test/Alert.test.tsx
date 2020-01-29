@@ -19,7 +19,7 @@ describe('Alert', () => {
    it('should call onClick correctly', () => {
       const component = mount(<Alert children="Сообщение выведено" closable />);
 
-      component.find('button').simulate('click');
+      component.find('button.close').simulate('click');
 
       expect(component).toEqual({});
    });
@@ -33,12 +33,12 @@ describe('Alert', () => {
    it('should render button-close correctly', () => {
       const component = mount(<Alert children="Сообщение выведено" closable />);
 
-      expect(component.find('button').length).toEqual(1);
+      expect(component.find('button.close').length).toEqual(1);
    });
 
    it('with massageType prop should correctly form className', () => {
       const component = mount(<Alert children="Сообщение выведено" massageType="info" />);
 
-      expect(component.find('div').hasClass('alert-info')).toEqual(true);
+      expect(component.find('div.alert').hasClass('alert-info')).toEqual(true);
    });
 });

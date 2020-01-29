@@ -30,10 +30,10 @@ export const PageHeader = ({
 }: PageHeaderProps) => (
    <div className="page-header col-xs-12 no-padding-left no-padding-right">
       <div className={toolbar ? classNames(headerClassName, 'col-lg-8') : headerClassName}>
-         <h1>
+         <h1 className="page__header">
             {header}
             {subHeader && (
-               <small>
+               <small className="page__sub-header">
                   <Icon icon="angle-double-right" />
                   &nbsp;{subHeader}
                </small>

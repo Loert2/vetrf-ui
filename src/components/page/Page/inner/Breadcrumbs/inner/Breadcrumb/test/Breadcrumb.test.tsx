@@ -12,12 +12,12 @@ const routesTest = [
    {
       path: '/',
       exact: true,
-      main: () => <h2>Главная страница</h2>
+      main: () => <h2 className="page__root">Главная страница</h2>
    },
    {
       path: '/example',
       exact: true,
-      main: () => <h2>Страница при переходе по ссылке</h2>
+      main: () => <h2 className="page__example">Страница при переходе по ссылке</h2>
    }
 ];
 
@@ -55,11 +55,11 @@ describe('Breadcrumb', () => {
       //которое мешает корректной работе simulate, в связи с этим был добавлен дополнительный параметр в simulate
       //https://github.com/airbnb/enzyme/issues/516
       component
-         .find('Link')
-         .at(0)
+         .find('Link.breadcrumb__link')
+         .first()
          .simulate('click', { button: 0 });
 
-      expect(component.find('h2').text()).toEqual('Страница при переходе по ссылке');
+      expect(component.find('h2.page__example').text()).toEqual('Страница при переходе по ссылке');
    });
 
    it('with active prop should not call onClick', () => {
@@ -79,12 +79,9 @@ describe('Breadcrumb', () => {
          </MemoryRouter>
       );
 
-      component
-         .find('span')
-         .at(0)
-         .simulate('click', { button: 0 });
+      component.find('span.breadcrumb__active').simulate('click', { button: 0 });
 
-      expect(component.find('h2').text()).toEqual('Главная страница');
+      expect(component.find('h2.page__root').text()).toEqual('Главная страница');
    });
 
    it('should renders span', () => {
@@ -94,7 +91,7 @@ describe('Breadcrumb', () => {
          </MemoryRouter>
       );
 
-      expect(component.find('span').length).toEqual(1);
+      expect(component.find('span.breadcrumb__active').length).toEqual(1);
    });
 
    it('should renders link', () => {
@@ -104,7 +101,7 @@ describe('Breadcrumb', () => {
          </MemoryRouter>
       );
 
-      expect(component.find('Link').length).toEqual(1);
+      expect(component.find('Link.breadcrumb__link').length).toEqual(1);
    });
 
    it('should renders text in Link', () => {
@@ -114,7 +111,7 @@ describe('Breadcrumb', () => {
          </MemoryRouter>
       );
 
-      expect(component.find('Link').text()).toEqual(' Крошка-ссылка ');
+      expect(component.find('Link.breadcrumb__link').text()).toEqual(' Крошка-ссылка ');
    });
 
    it('should renders text in span', () => {
@@ -124,7 +121,7 @@ describe('Breadcrumb', () => {
          </MemoryRouter>
       );
 
-      expect(component.find('span').text()).toEqual(' Крошка ');
+      expect(component.find('span.breadcrumb__active').text()).toEqual(' Крошка ');
    });
 
    it('with active prop should correctly form className', () => {

@@ -18,7 +18,7 @@ stories.add(
          colorIcon={select('colorIcon', ColorOption, 'blue')}
          sizeIcon={select('sizeIcon', SizeOption, 100)}
          underline={boolean('underline', true, 'Other')}
-         toolbar={<Button className="btn btn-primary btn-minier" text="Кнопка тулбара" />}
+         toolbar={<Button color="primary" size="minier" text="Кнопка тулбара" />}
          description={text('description', 'Подпись')}
       />
    ),

@@ -19,41 +19,47 @@ describe('LoadingSpinner', () => {
    });
 
    it('should render text correctly', () => {
-      const component = mount(<LoadingSpinner icon="spinner" text="Загрузка..." />);
+      const component = mount(
+         <LoadingSpinner icon="spinner" text="Загрузка..." className="spinner" />
+      );
 
-      expect(component.find('span').text()).toEqual('Загрузка...');
+      expect(component.find('span.spinner').text()).toEqual('Загрузка...');
    });
 
    it('with color prop should correctly form className', () => {
-      const component = mount(<LoadingSpinner icon="spinner" color="brown" />);
+      const component = mount(<LoadingSpinner icon="spinner" color="brown" className="spinner" />);
 
-      expect(component.find('span').hasClass('brown')).toEqual(true);
-      expect(component.find('i').hasClass('brown')).toEqual(true);
+      expect(component.find('span.spinner').hasClass('brown')).toEqual(true);
+      expect(component.find('i.fa.fa-spinner').hasClass('brown')).toEqual(true);
    });
 
    it('with size prop should correctly form className', () => {
-      const componentBiggerSizeIcon = mount(<LoadingSpinner icon="spinner" size={240} />);
-      const componentSmallerSizeIcon = mount(<LoadingSpinner icon="spinner" size={70} />);
+      const componentBiggerSizeIcon = mount(
+         <LoadingSpinner icon="spinner" size={240} className="spinner" />
+      );
+      const componentSmallerSizeIcon = mount(
+         <LoadingSpinner icon="spinner" size={70} className="spinner" />
+      );
 
-      expect(componentBiggerSizeIcon.find('span').hasClass('bigger-240')).toEqual(true);
-      expect(componentSmallerSizeIcon.find('span').hasClass('smaller-70')).toEqual(true);
+      expect(componentBiggerSizeIcon.find('span.spinner').hasClass('bigger-240')).toEqual(true);
+      expect(componentSmallerSizeIcon.find('span.spinner').hasClass('smaller-70')).toEqual(true);
    });
 
    it('with spin prop should correctly form className', () => {
       const component = mount(<LoadingSpinner icon="spinner" spin="pulse" />);
 
-      expect(component.find('i').hasClass('fa-pulse')).toEqual(true);
+      expect(component.find('i.fa.fa-spinner').hasClass('fa-pulse')).toEqual(true);
    });
 
    it('with icon prop should correctly form className', () => {
       const component = mount(<LoadingSpinner icon="spinner" />);
 
-      expect(component.find('i').hasClass('fa-spinner')).toEqual(true);
+      expect(component.find('i.fa.fa-spinner').hasClass('fa-spinner')).toEqual(true);
    });
 
    it('with right-space prop should correctly form className', () => {
       const component = mount(<LoadingSpinner icon="spinner" />);
 
-      expect(component.find('i').hasClass('right-space')).toEqual(true);
+      expect(component.find('i.fa.fa-spinner').hasClass('right-space')).toEqual(true);
    });
 });

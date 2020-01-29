@@ -55,7 +55,8 @@ describe('Breadcrumbs', () => {
          </MemoryRouter>
       );
 
-      const countBreadcrumbs = component.find('Link').length + component.find('span').length;
+      const countBreadcrumbs =
+         component.find('Link.breadcrumb__link').length + component.find('span').length;
 
       expect(twoBreadcrumbs).toHaveLength(countBreadcrumbs);
    });
@@ -73,7 +74,7 @@ describe('Breadcrumbs', () => {
             component
                .find('li')
                .at(arrayBreadcrumbs.length - 1)
-               .find('span').length
+               .find('span.breadcrumb__active').length
          ).toEqual(1);
       }
    );

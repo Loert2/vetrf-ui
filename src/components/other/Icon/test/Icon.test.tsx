@@ -26,8 +26,8 @@ describe('Icon', () => {
       const componentBiggerSize = mount(<Icon icon="info" size={200} />);
       const componentSmallerSize = mount(<Icon icon="info" size={20} />);
 
-      expect(componentBiggerSize.find('i').hasClass('bigger-200')).toEqual(true);
-      expect(componentSmallerSize.find('i').hasClass('smaller-20')).toEqual(true);
+      expect(componentBiggerSize.find('i.fa.fa-info').hasClass('bigger-200')).toEqual(true);
+      expect(componentSmallerSize.find('i.fa.fa-info').hasClass('smaller-20')).toEqual(true);
    });
 
    it('with color prop should correctly form className', () => {

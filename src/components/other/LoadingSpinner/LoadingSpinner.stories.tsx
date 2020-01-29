@@ -5,7 +5,7 @@ import { SelectTypeOptionsProp } from '@storybook/addon-knobs/dist/components/ty
 import { LoadingSpinner, Spin, IconSpinner } from './LoadingSpinner';
 import { SizeOption, ColorOption } from '../../../utils/stories/options';
 
-const stories = storiesOf('Loading', module);
+const stories = storiesOf('LoadingSpinner', module);
 
 stories.add(
    'LoadingSpinner',

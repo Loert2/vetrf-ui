@@ -19,14 +19,14 @@ describe('HeaderModal', () => {
    it('should render title correctly', () => {
       const component = mount(<HeaderModal title="Заголовок" />);
 
-      expect(component.find('h4').text()).toEqual('Заголовок');
+      expect(component.find('h4.modal-title').text()).toEqual('Заголовок');
    });
 
    it('should onClick correctly called', () => {
       const onClick = jest.fn();
       const component = mount(<HeaderModal title="Заголовок" onClose={onClick} />);
 
-      component.find('button').simulate('click');
+      component.find('button.close').simulate('click');
 
       expect(onClick).toHaveBeenCalledTimes(1);
    });
