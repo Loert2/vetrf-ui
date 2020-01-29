@@ -33,6 +33,7 @@ stories.add(
             confirmBtnText={text('confirmBtnText', 'Удалить')}
             confirmBtnIcon={text('confirmBtnIcon', 'check')}
             confirmBtnDisabled={boolean('confirmBtnDisabled', false, 'Other')}
+            closeAfterConfirm={boolean('closeAfterConfirm', true, 'Other')}
             cancelBtnSize={select('cancelBtnSize', SizeButtonOption, 'sm')}
             cancelBtnText={text('cancelBtnText', 'Отмена')}
             cancelBtnIcon={text('cancelBtnIcon', 'close')}
@@ -46,7 +47,7 @@ stories.add(
              ### Notes
 
              Кнопка, по нажатию на которую открывается модальное окно с подтверждением действия
-             
+
              Примечание:
              Для демонстрации работы нажатия кнопки "Удалить" в модальном окне результат отображается в консоли браузера
           `,

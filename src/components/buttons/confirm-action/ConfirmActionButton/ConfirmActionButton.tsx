@@ -49,6 +49,8 @@ export interface ConfirmActionButtonProps {
    confirmBtnIcon?: string;
    /** Блокировка кнопки подтверждения */
    confirmBtnDisabled?: boolean;
+   /** Закрытие модального окна после нажатия на кнопку подтверждения */
+   closeAfterConfirm?: boolean;
    /** Размер кнопки отмены */
    cancelBtnSize?: SizeButton;
    /** Текст кнопки отмены. Значение по умолчанию "Отмена".
@@ -74,11 +76,12 @@ export const ConfirmActionButton = ({
    confirmBodyContent = 'Вы уверены?',
    disabled,
    onConfirm,
-   confirmBtnColor,
+   confirmBtnColor = 'danger',
    confirmBtnSize,
-   confirmBtnText,
+   confirmBtnText = 'Удалить',
    confirmBtnIcon,
    confirmBtnDisabled,
+   closeAfterConfirm,
    cancelBtnSize,
    cancelBtnText,
    cancelBtnIcon,
@@ -91,6 +94,10 @@ export const ConfirmActionButton = ({
       } else {
          toggleModal();
       }
+   };
+   const handleConfirm = () => {
+      onConfirm();
+      closeAfterConfirm && toggleModal();
    };
    return (
       <div className="inline">
@@ -113,10 +120,10 @@ export const ConfirmActionButton = ({
                header={confirmHeaderText}
                children={confirmBodyContent}
                confirmBtn={{
-                  action: onConfirm,
-                  color: confirmBtnColor || 'danger',
+                  action: handleConfirm,
+                  color: confirmBtnColor,
                   size: confirmBtnSize,
-                  text: confirmBtnText || 'Удалить',
+                  text: confirmBtnText,
                   icon: confirmBtnIcon,
                   disabled: confirmBtnDisabled
                }}

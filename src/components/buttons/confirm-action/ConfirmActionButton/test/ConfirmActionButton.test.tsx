@@ -48,32 +48,37 @@ describe('ConfirmActionButton', () => {
       expect(json).toMatchSnapshot();
    });
 
-   it('should render text correctly buttons', () => {
-      const component = mount(<ConfirmActionButton buttonText="Удалить запись" />);
+   it('should render button`s text correctly buttons', () => {
+      const component = mount(<ConfirmActionButton buttonText="Удалить запись" className="open" />);
 
-      expect(component.find('button').text()).toEqual('Удалить запись');
+      expect(component.find('button.open').text()).toEqual('Удалить запись');
    });
 
-   it('should render tooltip prop correctly buttons', () => {
+   it('should render button`s tooltip prop correctly ', () => {
       const component = mount(<ConfirmActionButton tooltip="?" />);
 
       expect(component.find('span').prop('data-tip')).toEqual('?');
    });
 
-   it('should render headerText prop correctly modal', () => {
-      const component = mount(<ConfirmActionButton confirmHeaderText="Подтвердить удаление" />);
+   it('should render modal headerText prop correctly', () => {
+      const component = mount(
+         <ConfirmActionButton confirmHeaderText="Подтвердить удаление" className="open" />
+      );
 
-      component.find('button').simulate('click');
+      component.find('button.open').simulate('click');
 
       expect(component.find('h4.modal-title').text()).toEqual('Подтвердить удаление');
    });
 
-   it('should render bodyContent prop correctly modal', () => {
+   it('should render modal bodyContent prop correctly', () => {
       const component = mount(
-         <ConfirmActionButton confirmBodyContent="Вы уверены что хотите удалить запись?" />
+         <ConfirmActionButton
+            confirmBodyContent="Вы уверены что хотите удалить запись?"
+            className="open"
+         />
       );
 
-      component.find('button').simulate('click');
+      component.find('button.open').simulate('click');
 
       expect(component.find('div.col-xs-12').text()).toEqual(
          'Вы уверены что хотите удалить запись?'
@@ -84,18 +89,20 @@ describe('ConfirmActionButton', () => {
       const checkOpenModal = (toggleModal) => {
          toggleModal && toggleModal();
       };
-      const component = mount(<ConfirmActionButton checkOpportunityToOpenModal={checkOpenModal} />);
+      const component = mount(
+         <ConfirmActionButton checkOpportunityToOpenModal={checkOpenModal} className="open" />
+      );
 
-      component.find('button').simulate('click');
+      component.find('button.open').simulate('click');
 
       expect(component.find('div.modal').hasClass('show')).toEqual(true);
       expect(component.find('div.modal').hasClass('hide')).toEqual(false);
    });
 
    it('should correctly form class in for concealment component', () => {
-      const component = mount(<ConfirmActionButton />);
+      const component = mount(<ConfirmActionButton className="open" />);
 
-      component.find('button').simulate('click');
+      component.find('button.open').simulate('click');
 
       expect(component.find('div.modal-backdrop').hasClass('in')).toEqual(true);
       expect(component.find('div.modal-backdrop').hasClass('fade')).toEqual(false);
@@ -103,9 +110,9 @@ describe('ConfirmActionButton', () => {
 
    it('should confirmBtn correctly called', () => {
       const onClick = jest.fn();
-      const component = mount(<ConfirmActionButton onConfirm={onClick} />);
+      const component = mount(<ConfirmActionButton onConfirm={onClick} className="open" />);
 
-      component.find('button').simulate('click');
+      component.find('button.open').simulate('click');
       component.find('button.btn.btn-danger').simulate('click');
 
       expect(onClick).toHaveBeenCalledTimes(1);
