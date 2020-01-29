@@ -1,5 +1,24 @@
 # Обновление библиотеки компонентов Ветис.UI
 
+
+## 0.5.0
+
+1. Переписаны компоненты:
+    - ModalDialog (#382801)
+    - ConfirmActionButton (#376811)
+2. Удалены компоненты:
+    - CustomActionButton (#376811)
+    - ConfirmModal (#382801)
+
+### Миграция с 0.5.0
+
+1. В `ModalDialog` свойство `style` заменено на `width`, которое принимает строку, потому что именно для указания ширины ранее использовался `style`.
+1. В `ConfirmActionButton` для `confirmBtn` теперь используются свойства обновлённого `Button` - большинство классов из `confirmBtnClass`
+меняется на свойства, например - `confirmBtnColor`. Свойство `confirmBodyText` переименовано в `confirmBodyContent` и может
+принимать `RactNode`
+1. `CustomActionButton` заменяется на `ConfirmActionButton` - `confirmBodyContent` может принимать любой компонент, поэтому
+`confirmBodyText` можно просто добавить в начало компонента, переданного в `confirmBodyContent` как `<p>`. `disabledConfirmBtn` -> `confirmBtnDisabled`
+
 ## 0.4.1
 
 1. В компонент Button добавлена возможность явно указать тип элемента для ссылки (refs #391249).
