@@ -32,10 +32,7 @@ describe('SubHeader', () => {
       const component = mount(<SubHeader header="Подзаголовок" icon="linux" underline />);
 
       expect(
-         component
-            .find('div')
-            .at(1)
-            .hasClass('widget-header-my header blue')
+         component.find('div.widget-header-my').hasClass('widget-header-my header blue')
       ).toEqual(true);
    });
 
@@ -44,29 +41,37 @@ describe('SubHeader', () => {
          <SubHeader header="Подзаголовок" icon="linux" description="Подпись" />
       );
 
-      expect(component.find('p').length).toEqual(1);
+      expect(component.find('p.sub-header__description').length).toEqual(1);
    });
 
    it('with level prop should render header correctly', () => {
-      const component = mount(<SubHeader header="Подзаголовок" icon="linux" level={5} />);
+      const component = mount(
+         <SubHeader header="Подзаголовок" icon="linux" level={5} className="sub-header" />
+      );
 
-      expect(component.find('h5').length).toEqual(1);
+      expect(component.find('h5.sub-header').length).toEqual(1);
    });
 
    it('with className prop should correctly form className', () => {
       const component = mount(
-         <SubHeader header="Подзаголовок" icon="linux" className="lighter no-padding-left" />
+         <SubHeader
+            header="Подзаголовок"
+            icon="linux"
+            className="sub-header lighter no-padding-left"
+         />
       );
 
-      expect(component.find('h4').hasClass('lighter no-padding-left')).toEqual(true);
+      expect(component.find('h4.sub-header').hasClass('lighter no-padding-left')).toEqual(true);
    });
 
    it('should render text header correctly', () => {
-      const component = mount(<SubHeader header="Подзаголовок" icon="linux" />);
+      const component = mount(
+         <SubHeader header="Подзаголовок" icon="linux" className="sub-header" />
+      );
 
       expect(
          component
-            .find('h4')
+            .find('h4.sub-header')
             .text()
             .trim()
       ).toEqual('Подзаголовок');
@@ -75,7 +80,7 @@ describe('SubHeader', () => {
    it('with icon prop should correctly form className', () => {
       const component = mount(<SubHeader header="Подзаголовок" icon="linux" />);
 
-      expect(component.find('i').hasClass('fa-linux')).toEqual(true);
+      expect(component.find('i.fa.fa-linux').hasClass('fa-linux')).toEqual(true);
    });
 
    it('with iconSize prop should correctly form className', () => {
@@ -86,15 +91,19 @@ describe('SubHeader', () => {
          <SubHeader header="Подзаголовок" icon="linux" sizeIcon={50} />
       );
 
-      expect(componentBiggerSizeIcon.find('i').hasClass('bigger-200')).toEqual(true);
-      expect(componentSmallerSizeIcon.find('i').hasClass('smaller-50')).toEqual(true);
+      expect(componentBiggerSizeIcon.find('i.fa.fa-linux').hasClass('bigger-200')).toEqual(true);
+      expect(componentSmallerSizeIcon.find('i.fa.fa-linux').hasClass('smaller-50')).toEqual(true);
    });
 
    it('should render toolbar correctly', () => {
       const component = mount(
-         <SubHeader header="Подзаголовок" icon="linux" toolbar={<button>Кнопка тулбара</button>} />
+         <SubHeader
+            header="Подзаголовок"
+            icon="linux"
+            toolbar={<button className="btn button_toolbar">Кнопка тулбара</button>}
+         />
       );
 
-      expect(component.find('button').length).toEqual(1);
+      expect(component.find('button.button_toolbar').length).toEqual(1);
    });
 });

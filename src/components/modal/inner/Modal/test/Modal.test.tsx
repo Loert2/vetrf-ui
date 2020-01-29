@@ -28,68 +28,28 @@ describe('Modal', () => {
    it('with isVisible prop should has class show', () => {
       const component = shallow(<Modal children="Тут может быть ваш контент." isVisible={true} />);
 
-      expect(
-         component
-            .find('div')
-            .at(1)
-            .hasClass('show')
-      ).toEqual(true);
-      expect(
-         component
-            .find('div')
-            .at(1)
-            .hasClass('hide')
-      ).toEqual(false);
+      expect(component.find('div.modal').hasClass('show')).toEqual(true);
+      expect(component.find('div.modal').hasClass('hide')).toEqual(false);
    });
 
    it('without isVisible prop should has class hide', () => {
       const component = shallow(<Modal children="Тут может быть ваш контент." isVisible={false} />);
 
-      expect(
-         component
-            .find('div')
-            .at(1)
-            .hasClass('hide')
-      ).toEqual(true);
-      expect(
-         component
-            .find('div')
-            .at(1)
-            .hasClass('show')
-      ).toEqual(false);
+      expect(component.find('div.modal').hasClass('hide')).toEqual(true);
+      expect(component.find('div.modal').hasClass('show')).toEqual(false);
    });
 
    it('with isVisible prop should has class in', () => {
       const component = shallow(<Modal children="Тут может быть ваш контент." isVisible={true} />);
 
-      expect(
-         component
-            .find('div')
-            .at(4)
-            .hasClass('in')
-      ).toEqual(true);
-      expect(
-         component
-            .find('div')
-            .at(4)
-            .hasClass('fade')
-      ).toEqual(false);
+      expect(component.find('div.modal-backdrop').hasClass('in')).toEqual(true);
+      expect(component.find('div.modal-backdrop').hasClass('fade')).toEqual(false);
    });
 
    it('without isVisible prop should has class fade', () => {
       const component = shallow(<Modal children="Тут может быть ваш контент." isVisible={false} />);
 
-      expect(
-         component
-            .find('div')
-            .at(4)
-            .hasClass('fade')
-      ).toEqual(true);
-      expect(
-         component
-            .find('div')
-            .at(4)
-            .hasClass('in')
-      ).toEqual(false);
+      expect(component.find('div.modal-backdrop').hasClass('fade')).toEqual(true);
+      expect(component.find('div.modal-backdrop').hasClass('in')).toEqual(false);
    });
 });

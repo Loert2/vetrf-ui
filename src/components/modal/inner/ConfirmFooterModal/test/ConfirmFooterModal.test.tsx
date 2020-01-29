@@ -13,12 +13,12 @@ const routesTest = [
    {
       path: '/',
       exact: true,
-      main: () => <h2>Начальная страница</h2>
+      main: () => <h2 className="page__root">Начальная страница</h2>
    },
    {
       path: '/example',
       exact: true,
-      main: () => <h2>Страница с ссылкой</h2>
+      main: () => <h2 className="page__exemple">Страница с ссылкой</h2>
    }
 ];
 
@@ -56,36 +56,33 @@ describe('ConfirmFooterModal', () => {
 
    it('should onClick confirmBtn correctly called', () => {
       const action = jest.fn();
-      const component = mount(<ConfirmFooterModal confirmBtn={{ action }} />);
+      const component = mount(
+         <ConfirmFooterModal confirmBtn={{ action, className: 'confirm-button' }} />
+      );
 
-      component
-         .find('button')
-         .at(0)
-         .simulate('click');
+      component.find('button.confirm-button').simulate('click');
 
       expect(action).toHaveBeenCalledTimes(1);
    });
 
    it('with disabled prop should not call onClick confirmBtn', () => {
       const action = jest.fn();
-      const component = mount(<ConfirmFooterModal confirmBtn={{ action, disabled: true }} />);
+      const component = mount(
+         <ConfirmFooterModal confirmBtn={{ action, disabled: true, className: 'confirm-button' }} />
+      );
 
-      component
-         .find('button')
-         .at(0)
-         .simulate('click');
+      component.find('button.confirm-button').simulate('click');
 
       expect(action).toHaveBeenCalledTimes(0);
    });
 
    it('should onClick cancelBtn correctly called', () => {
       const action = jest.fn();
-      const component = mount(<ConfirmFooterModal cancelBtn={{ action }} />);
+      const component = mount(
+         <ConfirmFooterModal cancelBtn={{ action, className: 'cancel-button' }} />
+      );
 
-      component
-         .find('button')
-         .at(0)
-         .simulate('click');
+      component.find('button.cancel-button').simulate('click');
 
       expect(action).toHaveBeenCalledTimes(1);
    });
@@ -112,33 +109,27 @@ describe('ConfirmFooterModal', () => {
       //https://github.com/airbnb/enzyme/issues/516
       component.find('a').simulate('click', { button: 0 });
 
-      expect(component.find('h2').text()).toEqual('Страница с ссылкой');
+      expect(component.find('h2.page__exemple').text()).toEqual('Страница с ссылкой');
    });
 
    it('with color prop in confirmBtn should correctly form className', () => {
       const component = mount(
-         <ConfirmFooterModal confirmBtn={{ color: 'pink', action: jest.fn() }} />
+         <ConfirmFooterModal
+            confirmBtn={{ color: 'pink', action: jest.fn(), className: 'confirm-button' }}
+         />
       );
 
-      expect(
-         component
-            .find('button')
-            .at(0)
-            .hasClass('btn-pink')
-      ).toEqual(true);
+      expect(component.find('button.confirm-button').hasClass('btn-pink')).toEqual(true);
    });
 
    it('with size prop in confirmBtn should correctly form className', () => {
       const component = mount(
-         <ConfirmFooterModal confirmBtn={{ size: 'sm', action: jest.fn() }} />
+         <ConfirmFooterModal
+            confirmBtn={{ size: 'sm', action: jest.fn(), className: 'confirm-button' }}
+         />
       );
 
-      expect(
-         component
-            .find('button')
-            .at(0)
-            .hasClass('btn-sm')
-      ).toEqual(true);
+      expect(component.find('button.confirm-button').hasClass('btn-sm')).toEqual(true);
    });
 
    it('with icon prop in confirmBtn should correctly form className', () => {
@@ -146,7 +137,7 @@ describe('ConfirmFooterModal', () => {
          <ConfirmFooterModal confirmBtn={{ icon: 'plus', action: jest.fn() }} />
       );
 
-      expect(component.find('i').hasClass('fa-plus')).toEqual(true);
+      expect(component.find('i.fa.fa-plus').hasClass('fa-plus')).toEqual(true);
    });
 
    it('with text and icon prop confirmBtn should correctly form className', () => {
@@ -154,6 +145,6 @@ describe('ConfirmFooterModal', () => {
          <ConfirmFooterModal confirmBtn={{ icon: 'info', text: 'Отправить', action: jest.fn() }} />
       );
 
-      expect(component.find('i').hasClass('right-space')).toEqual(true);
+      expect(component.find('i.fa.fa-info').hasClass('right-space')).toEqual(true);
    });
 });

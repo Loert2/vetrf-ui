@@ -55,7 +55,7 @@ export const SubHeader = ({
          &nbsp;
          {toolbar}
       </div>
-      {description && <p>{description}</p>}
+      {description && <p className="sub-header__description">{description}</p>}
    </div>
 );
 

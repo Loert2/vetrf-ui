@@ -60,26 +60,28 @@ describe('Label', () => {
    it('should render icon correctly', () => {
       const component = mount(<Label icon="exclamation-triangle" />);
 
-      expect(component.find('i').length).toEqual(1);
+      expect(component.find('i.fa.fa-exclamation-triangle').length).toEqual(1);
    });
 
    it('with icon prop should correctly form className', () => {
       const component = mount(<Label icon="exclamation-triangle" />);
 
-      expect(component.find('i').hasClass('fa-exclamation-triangle')).toEqual(true);
+      expect(
+         component.find('i.fa.fa-exclamation-triangle').hasClass('fa-exclamation-triangle')
+      ).toEqual(true);
    });
 
    it('with iconSize prop should correctly form className', () => {
       const componentBiggerSizeIcon = mount(<Label icon="info" sizeIcon={180} />);
       const componentSmallerSizeIcon = mount(<Label icon="info" sizeIcon={60} />);
 
-      expect(componentBiggerSizeIcon.find('i').hasClass('bigger-180')).toEqual(true);
-      expect(componentSmallerSizeIcon.find('i').hasClass('smaller-60')).toEqual(true);
+      expect(componentBiggerSizeIcon.find('i.fa.fa-info').hasClass('bigger-180')).toEqual(true);
+      expect(componentSmallerSizeIcon.find('i.fa.fa-info').hasClass('smaller-60')).toEqual(true);
    });
 
    it('with right-space prop should correctly form className', () => {
       const component = mount(<Label icon="exclamation-triangle" text="Кнопка" />);
 
-      expect(component.find('i').hasClass('right-space')).toEqual(true);
+      expect(component.find('i.fa.fa-exclamation-triangle').hasClass('right-space')).toEqual(true);
    });
 });
