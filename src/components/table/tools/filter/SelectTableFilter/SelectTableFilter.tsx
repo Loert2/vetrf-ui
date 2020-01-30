@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import SimpleSelect from '../../../../form/fields/base/select/SimpleSelect/SimpleSelect';
+import SimpleSelect from '../../../../form/old/fields/base/select/SimpleSelect/SimpleSelect';
 
 // TODO: This is old way. Rewrite it!
 class SelectTableFilter extends Component<any> {
